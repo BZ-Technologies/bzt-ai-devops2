@@ -1,9 +1,9 @@
 import { GrammyError } from "grammy";
-import { formatErrorMessage } from "openclaw/plugin-sdk/infra-runtime";
-import { retryAsync } from "openclaw/plugin-sdk/infra-runtime";
-import { fetchRemoteMedia } from "openclaw/plugin-sdk/media-runtime";
-import { saveMediaBuffer } from "openclaw/plugin-sdk/media-runtime";
-import { logVerbose, warn } from "openclaw/plugin-sdk/runtime-env";
+import { formatErrorMessage } from "openbz/plugin-sdk/infra-runtime";
+import { retryAsync } from "openbz/plugin-sdk/infra-runtime";
+import { fetchRemoteMedia } from "openbz/plugin-sdk/media-runtime";
+import { saveMediaBuffer } from "openbz/plugin-sdk/media-runtime";
+import { logVerbose, warn } from "openbz/plugin-sdk/runtime-env";
 import { shouldRetryTelegramIpv4Fallback, type TelegramTransport } from "../fetch.js";
 import { cacheSticker, getCachedSticker } from "../sticker-cache.js";
 import { resolveTelegramMediaPlaceholder } from "./helpers.js";

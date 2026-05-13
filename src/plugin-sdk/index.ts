@@ -23,8 +23,8 @@ export type {
 export type {
   AnyAgentTool,
   MediaUnderstandingProviderPlugin,
-  OpenClawPluginApi,
-  OpenClawPluginConfigSchema,
+  OpenBZPluginApi,
+  OpenBZPluginConfigSchema,
   PluginLogger,
   ProviderAuthContext,
   ProviderAuthResult,
@@ -37,9 +37,9 @@ export type {
   SubagentRunParams,
   SubagentRunResult,
 } from "../plugins/runtime/types.js";
-export type { OpenClawConfig } from "../config/config.js";
-/** @deprecated Use OpenClawConfig instead */
-export type { OpenClawConfig as ClawdbotConfig } from "../config/config.js";
+export type { OpenBZConfig } from "../config/config.js";
+/** @deprecated Use OpenBZConfig instead */
+export type { OpenBZConfig as BzdbotConfig } from "../config/config.js";
 export * from "./image-generation.js";
 export type { SecretInput, SecretRef } from "../config/types.secrets.js";
 export type { RuntimeEnv } from "../runtime.js";

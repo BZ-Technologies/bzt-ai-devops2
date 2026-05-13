@@ -87,14 +87,14 @@ async function removeMacApp(runtime: RuntimeEnv, dryRun?: boolean) {
   if (process.platform !== "darwin") {
     return;
   }
-  await removePath("/Applications/OpenClaw.app", runtime, {
+  await removePath("/Applications/BZ AI DevOps2.app", runtime, {
     dryRun,
-    label: "/Applications/OpenClaw.app",
+    label: "/Applications/BZ AI DevOps2.app",
   });
 }
 
 function logBackupRecommendation(runtime: RuntimeEnv) {
-  runtime.log(`Recommended first: ${formatCliCommand("openclaw backup create")}`);
+  runtime.log(`Recommended first: ${formatCliCommand("openbz backup create")}`);
 }
 
 export async function uninstallCommand(runtime: RuntimeEnv, opts: UninstallOptions) {
@@ -120,12 +120,12 @@ export async function uninstallCommand(runtime: RuntimeEnv, opts: UninstallOptio
           label: "Gateway service",
           hint: "launchd / systemd / schtasks",
         },
-        { value: "state", label: "State + config", hint: "~/.openclaw" },
+        { value: "state", label: "State + config", hint: "~/.openbz" },
         { value: "workspace", label: "Workspace", hint: "agent files" },
         {
           value: "app",
           label: "macOS app",
-          hint: "/Applications/OpenClaw.app",
+          hint: "/Applications/BZ AI DevOps2.app",
         },
       ],
       initialValues: ["service", "state", "workspace"],

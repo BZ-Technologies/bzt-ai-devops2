@@ -1,1 +1,1 @@
-export { transcribeFirstAudio } from "openclaw/plugin-sdk/media-runtime";
+export { transcribeFirstAudio } from "openbz/plugin-sdk/media-runtime";

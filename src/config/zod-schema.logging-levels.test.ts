@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { OpenClawSchema } from "./zod-schema.js";
+import { OpenBZSchema } from "./zod-schema.js";
 
-describe("OpenClawSchema logging levels", () => {
+describe("OpenBZSchema logging levels", () => {
   it("accepts valid logging level values for level and consoleLevel", () => {
     expect(() =>
-      OpenClawSchema.parse({
+      OpenBZSchema.parse({
         logging: {
           level: "debug",
           consoleLevel: "warn",
@@ -15,14 +15,14 @@ describe("OpenClawSchema logging levels", () => {
 
   it("rejects invalid logging level values", () => {
     expect(() =>
-      OpenClawSchema.parse({
+      OpenBZSchema.parse({
         logging: {
           level: "loud",
         },
       }),
     ).toThrow();
     expect(() =>
-      OpenClawSchema.parse({
+      OpenBZSchema.parse({
         logging: {
           consoleLevel: "verbose",
         },

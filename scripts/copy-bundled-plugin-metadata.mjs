@@ -179,9 +179,9 @@ export function copyBundledPluginMetadata(params = {}) {
     sourcePluginDirs.add(dirent.name);
 
     const pluginDir = path.join(extensionsRoot, dirent.name);
-    const manifestPath = path.join(pluginDir, "openclaw.plugin.json");
+    const manifestPath = path.join(pluginDir, "openbz.plugin.json");
     const distPluginDir = path.join(distExtensionsRoot, dirent.name);
-    const distManifestPath = path.join(distPluginDir, "openclaw.plugin.json");
+    const distManifestPath = path.join(distPluginDir, "openbz.plugin.json");
     const distPackageJsonPath = path.join(distPluginDir, "package.json");
     if (!fs.existsSync(manifestPath)) {
       removePathIfExists(distPluginDir);
@@ -211,12 +211,12 @@ export function copyBundledPluginMetadata(params = {}) {
     }
 
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-    if (packageJson.openclaw && "extensions" in packageJson.openclaw) {
-      packageJson.openclaw = {
-        ...packageJson.openclaw,
-        extensions: rewritePackageExtensions(packageJson.openclaw.extensions),
-        ...(typeof packageJson.openclaw.setupEntry === "string"
-          ? { setupEntry: rewritePackageEntry(packageJson.openclaw.setupEntry) }
+    if (packageJson.openbz && "extensions" in packageJson.openbz) {
+      packageJson.openbz = {
+        ...packageJson.openbz,
+        extensions: rewritePackageExtensions(packageJson.openbz.extensions),
+        ...(typeof packageJson.openbz.setupEntry === "string"
+          ? { setupEntry: rewritePackageEntry(packageJson.openbz.setupEntry) }
           : {}),
       };
     }

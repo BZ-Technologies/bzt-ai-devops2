@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 import {
   mergeSessionEntry,
   setSessionRuntimeModel,
@@ -14,7 +14,7 @@ import { deriveSessionTotalTokens, hasNonzeroUsage } from "../usage.js";
 type RunResult = Awaited<ReturnType<(typeof import("../pi-embedded.js"))["runEmbeddedPiAgent"]>>;
 
 export async function updateSessionStoreAfterAgentRun(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   contextTokensOverride?: number;
   sessionId: string;
   sessionKey: string;

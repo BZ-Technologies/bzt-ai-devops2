@@ -33,15 +33,15 @@ export function setupAccessControlTestHarness(): void {
   });
 }
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     loadConfig: () => config,
   };
 });
 
-vi.mock("openclaw/plugin-sdk/conversation-runtime", () => ({
+vi.mock("openbz/plugin-sdk/conversation-runtime", () => ({
   readChannelAllowFromStore: (...args: unknown[]) => readAllowFromStoreMock(...args),
   upsertChannelPairingRequest: (...args: unknown[]) => upsertPairingRequestMock(...args),
 }));

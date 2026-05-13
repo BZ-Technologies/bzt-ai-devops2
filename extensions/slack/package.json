@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/slack",
+  "name": "@openbz/slack",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw Slack channel plugin",
+  "description": "BZ AI DevOps2 Slack channel plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ],

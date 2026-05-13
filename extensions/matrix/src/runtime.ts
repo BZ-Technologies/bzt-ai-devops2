@@ -1,5 +1,5 @@
-import type { PluginRuntime } from "openclaw/plugin-sdk/matrix";
-import { createPluginRuntimeStore } from "openclaw/plugin-sdk/runtime-store";
+import type { PluginRuntime } from "openbz/plugin-sdk/matrix";
+import { createPluginRuntimeStore } from "openbz/plugin-sdk/runtime-store";
 
 const { setRuntime: setMatrixRuntime, getRuntime: getMatrixRuntime } =
   createPluginRuntimeStore<PluginRuntime>("Matrix runtime not initialized");

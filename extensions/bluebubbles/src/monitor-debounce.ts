@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/bluebubbles";
+import type { OpenBZConfig } from "openbz/plugin-sdk/bluebubbles";
 import type { NormalizedWebhookMessage } from "./monitor-normalize.js";
 import type { BlueBubblesCoreRuntime, WebhookTarget } from "./monitor-shared.js";
 
@@ -95,7 +95,7 @@ function combineDebounceEntries(entries: BlueBubblesDebounceEntry[]): Normalized
 }
 
 function resolveBlueBubblesDebounceMs(
-  config: OpenClawConfig,
+  config: OpenBZConfig,
   core: BlueBubblesCoreRuntime,
 ): number {
   const inbound = config.messages?.inbound;

@@ -1,4 +1,4 @@
-import { resetInboundDedupe } from "openclaw/plugin-sdk/reply-runtime";
+import { resetInboundDedupe } from "openbz/plugin-sdk/reply-runtime";
 import { beforeEach, vi, type Mock } from "vitest";
 
 export const useSpy: Mock = vi.fn();
@@ -92,8 +92,8 @@ vi.mock("undici", async (importOriginal) => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/media-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/media-runtime")>();
+vi.mock("openbz/plugin-sdk/media-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/media-runtime")>();
   const mockModule = Object.create(null) as Record<string, unknown>;
   Object.defineProperties(mockModule, Object.getOwnPropertyDescriptors(actual));
   Object.defineProperty(mockModule, "saveMediaBuffer", {
@@ -105,8 +105,8 @@ vi.mock("openclaw/plugin-sdk/media-runtime", async (importOriginal) => {
   return mockModule;
 });
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     loadConfig: () => ({
@@ -115,15 +115,15 @@ vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     updateLastRoute: vi.fn(async () => undefined),
   };
 });
 
-vi.mock("openclaw/plugin-sdk/conversation-runtime", () => ({
+vi.mock("openbz/plugin-sdk/conversation-runtime", () => ({
   readChannelAllowFromStore: vi.fn(async () => [] as string[]),
   upsertChannelPairingRequest: vi.fn(async () => ({
     code: "PAIRCODE",
@@ -131,7 +131,7 @@ vi.mock("openclaw/plugin-sdk/conversation-runtime", () => ({
   })),
 }));
 
-vi.mock("openclaw/plugin-sdk/reply-runtime", () => {
+vi.mock("openbz/plugin-sdk/reply-runtime", () => {
   const replySpy = vi.fn(async (_ctx, opts) => {
     await opts?.onReplyStart?.();
     return undefined;

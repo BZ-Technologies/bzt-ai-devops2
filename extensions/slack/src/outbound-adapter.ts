@@ -2,15 +2,15 @@ import {
   resolvePayloadMediaUrls,
   sendPayloadMediaSequence,
   sendTextMediaPayload,
-} from "openclaw/plugin-sdk/channel-runtime";
-import type { ChannelOutboundAdapter } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveOutboundSendDep } from "openclaw/plugin-sdk/channel-runtime";
+} from "openbz/plugin-sdk/channel-runtime";
+import type { ChannelOutboundAdapter } from "openbz/plugin-sdk/channel-runtime";
+import { resolveOutboundSendDep } from "openbz/plugin-sdk/channel-runtime";
 import {
   resolveInteractiveTextFallback,
   type InteractiveReply,
-} from "openclaw/plugin-sdk/channel-runtime";
-import type { OutboundIdentity } from "openclaw/plugin-sdk/infra-runtime";
-import { getGlobalHookRunner } from "openclaw/plugin-sdk/plugin-runtime";
+} from "openbz/plugin-sdk/channel-runtime";
+import type { OutboundIdentity } from "openbz/plugin-sdk/infra-runtime";
+import { getGlobalHookRunner } from "openbz/plugin-sdk/plugin-runtime";
 import { parseSlackBlocksInput } from "./blocks-input.js";
 import { buildSlackInteractiveBlocks, type SlackBlock } from "./blocks-render.js";
 import { sendMessageSlack, type SlackSendIdentity } from "./send.js";

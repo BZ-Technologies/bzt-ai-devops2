@@ -2,14 +2,14 @@ import {
   buildChannelConfigSchema,
   LineConfigSchema,
   type ChannelPlugin,
-  type OpenClawConfig,
+  type OpenBZConfig,
   type ResolvedLineAccount,
-} from "openclaw/plugin-sdk/line";
+} from "openbz/plugin-sdk/line";
 import {
   listLineAccountIds,
   resolveDefaultLineAccountId,
   resolveLineAccount,
-} from "openclaw/plugin-sdk/line";
+} from "openbz/plugin-sdk/line";
 import { lineSetupAdapter } from "./setup-core.js";
 import { lineSetupWizard } from "./setup-surface.js";
 
@@ -43,10 +43,10 @@ export const lineSetupPlugin: ChannelPlugin<ResolvedLineAccount> = {
   reload: { configPrefixes: ["channels.line"] },
   configSchema: buildChannelConfigSchema(LineConfigSchema),
   config: {
-    listAccountIds: (cfg: OpenClawConfig) => listLineAccountIds(cfg),
-    resolveAccount: (cfg: OpenClawConfig, accountId?: string | null) =>
+    listAccountIds: (cfg: OpenBZConfig) => listLineAccountIds(cfg),
+    resolveAccount: (cfg: OpenBZConfig, accountId?: string | null) =>
       resolveLineAccount({ cfg, accountId: accountId ?? undefined }),
-    defaultAccountId: (cfg: OpenClawConfig) => resolveDefaultLineAccountId(cfg),
+    defaultAccountId: (cfg: OpenBZConfig) => resolveDefaultLineAccountId(cfg),
     isConfigured: (account) =>
       Boolean(account.channelAccessToken?.trim() && account.channelSecret?.trim()),
     describeAccount: (account) => ({

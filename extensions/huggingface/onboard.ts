@@ -2,16 +2,16 @@ import {
   buildHuggingfaceModelDefinition,
   HUGGINGFACE_BASE_URL,
   HUGGINGFACE_MODEL_CATALOG,
-} from "openclaw/plugin-sdk/provider-models";
+} from "openbz/plugin-sdk/provider-models";
 import {
   applyAgentDefaultModelPrimary,
   applyProviderConfigWithModelCatalog,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/provider-onboard";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/provider-onboard";
 
 export const HUGGINGFACE_DEFAULT_MODEL_REF = "huggingface/deepseek-ai/DeepSeek-R1";
 
-export function applyHuggingfaceProviderConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyHuggingfaceProviderConfig(cfg: OpenBZConfig): OpenBZConfig {
   const models = { ...cfg.agents?.defaults?.models };
   models[HUGGINGFACE_DEFAULT_MODEL_REF] = {
     ...models[HUGGINGFACE_DEFAULT_MODEL_REF],
@@ -27,7 +27,7 @@ export function applyHuggingfaceProviderConfig(cfg: OpenClawConfig): OpenClawCon
   });
 }
 
-export function applyHuggingfaceConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyHuggingfaceConfig(cfg: OpenBZConfig): OpenBZConfig {
   return applyAgentDefaultModelPrimary(
     applyHuggingfaceProviderConfig(cfg),
     HUGGINGFACE_DEFAULT_MODEL_REF,

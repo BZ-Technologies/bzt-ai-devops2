@@ -1,47 +1,47 @@
 import type { Message, ReactionTypeEmoji } from "@grammyjs/types";
-import { resolveAgentDir, resolveDefaultAgentId } from "openclaw/plugin-sdk/agent-runtime";
-import { resolveDefaultModelForAgent } from "openclaw/plugin-sdk/agent-runtime";
-import { shouldDebounceTextInbound } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveChannelConfigWrites } from "openclaw/plugin-sdk/channel-runtime";
-import { loadConfig } from "openclaw/plugin-sdk/config-runtime";
-import { writeConfigFile } from "openclaw/plugin-sdk/config-runtime";
+import { resolveAgentDir, resolveDefaultAgentId } from "openbz/plugin-sdk/agent-runtime";
+import { resolveDefaultModelForAgent } from "openbz/plugin-sdk/agent-runtime";
+import { shouldDebounceTextInbound } from "openbz/plugin-sdk/channel-runtime";
+import { resolveChannelConfigWrites } from "openbz/plugin-sdk/channel-runtime";
+import { loadConfig } from "openbz/plugin-sdk/config-runtime";
+import { writeConfigFile } from "openbz/plugin-sdk/config-runtime";
 import {
   loadSessionStore,
   resolveSessionStoreEntry,
   resolveStorePath,
   updateSessionStore,
-} from "openclaw/plugin-sdk/config-runtime";
-import type { DmPolicy } from "openclaw/plugin-sdk/config-runtime";
+} from "openbz/plugin-sdk/config-runtime";
+import type { DmPolicy } from "openbz/plugin-sdk/config-runtime";
 import type {
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "openclaw/plugin-sdk/config-runtime";
-import { applyModelOverrideToSessionEntry } from "openclaw/plugin-sdk/config-runtime";
-import { readChannelAllowFromStore } from "openclaw/plugin-sdk/conversation-runtime";
+} from "openbz/plugin-sdk/config-runtime";
+import { applyModelOverrideToSessionEntry } from "openbz/plugin-sdk/config-runtime";
+import { readChannelAllowFromStore } from "openbz/plugin-sdk/conversation-runtime";
 import {
   buildPluginBindingResolvedText,
   parsePluginBindingApprovalCustomId,
   resolvePluginConversationBindingApproval,
-} from "openclaw/plugin-sdk/conversation-runtime";
-import { enqueueSystemEvent } from "openclaw/plugin-sdk/infra-runtime";
-import { MediaFetchError } from "openclaw/plugin-sdk/media-runtime";
-import { dispatchPluginInteractiveHandler } from "openclaw/plugin-sdk/plugin-runtime";
+} from "openbz/plugin-sdk/conversation-runtime";
+import { enqueueSystemEvent } from "openbz/plugin-sdk/infra-runtime";
+import { MediaFetchError } from "openbz/plugin-sdk/media-runtime";
+import { dispatchPluginInteractiveHandler } from "openbz/plugin-sdk/plugin-runtime";
 import {
   createInboundDebouncer,
   resolveInboundDebounceMs,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { buildCommandsPaginationKeyboard } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
+import { buildCommandsPaginationKeyboard } from "openbz/plugin-sdk/reply-runtime";
 import {
   buildModelsProviderData,
   formatModelsAvailableHeader,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { resolveStoredModelOverride } from "openclaw/plugin-sdk/reply-runtime";
-import { listSkillCommandsForAgents } from "openclaw/plugin-sdk/reply-runtime";
-import { buildCommandsMessagePaginated } from "openclaw/plugin-sdk/reply-runtime";
-import { resolveAgentRoute } from "openclaw/plugin-sdk/routing";
-import { resolveThreadSessionKeys } from "openclaw/plugin-sdk/routing";
-import { danger, logVerbose, warn } from "openclaw/plugin-sdk/runtime-env";
+} from "openbz/plugin-sdk/reply-runtime";
+import { resolveStoredModelOverride } from "openbz/plugin-sdk/reply-runtime";
+import { listSkillCommandsForAgents } from "openbz/plugin-sdk/reply-runtime";
+import { buildCommandsMessagePaginated } from "openbz/plugin-sdk/reply-runtime";
+import { resolveAgentRoute } from "openbz/plugin-sdk/routing";
+import { resolveThreadSessionKeys } from "openbz/plugin-sdk/routing";
+import { danger, logVerbose, warn } from "openbz/plugin-sdk/runtime-env";
 import { withTelegramApiErrorLogging } from "./api-logging.js";
 import {
   isSenderAllowed,

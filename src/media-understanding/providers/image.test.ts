@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const completeMock = vi.fn();
 const minimaxUnderstandImageMock = vi.fn();
-const ensureOpenClawModelsJsonMock = vi.fn(async () => {});
+const ensureOpenBZModelsJsonMock = vi.fn(async () => {});
 const getApiKeyForModelMock = vi.fn(async () => ({
   apiKey: "oauth-test", // pragma: allowlist secret
   source: "test",
@@ -35,7 +35,7 @@ vi.mock("../../agents/minimax-vlm.js", () => ({
 }));
 
 vi.mock("../../agents/models-config.js", () => ({
-  ensureOpenClawModelsJson: ensureOpenClawModelsJsonMock,
+  ensureOpenBZModelsJson: ensureOpenBZModelsJsonMock,
 }));
 
 vi.mock("../../agents/model-auth.js", () => ({
@@ -75,7 +75,7 @@ describe("describeImageWithModel", () => {
 
     const result = await describeImageWithModel({
       cfg: {},
-      agentDir: "/tmp/openclaw-agent",
+      agentDir: "/tmp/openbz-agent",
       provider: "minimax-portal",
       model: "MiniMax-VL-01",
       buffer: Buffer.from("png-bytes"),
@@ -89,7 +89,7 @@ describe("describeImageWithModel", () => {
       text: "portal ok",
       model: "MiniMax-VL-01",
     });
-    expect(ensureOpenClawModelsJsonMock).toHaveBeenCalled();
+    expect(ensureOpenBZModelsJsonMock).toHaveBeenCalled();
     expect(getApiKeyForModelMock).toHaveBeenCalled();
     expect(requireApiKeyMock).toHaveBeenCalled();
     expect(setRuntimeApiKeyMock).toHaveBeenCalledWith("minimax-portal", "oauth-test");
@@ -125,7 +125,7 @@ describe("describeImageWithModel", () => {
 
     const result = await describeImageWithModel({
       cfg: {},
-      agentDir: "/tmp/openclaw-agent",
+      agentDir: "/tmp/openbz-agent",
       provider: "minimax-portal",
       model: "custom-vision",
       buffer: Buffer.from("png-bytes"),
@@ -169,7 +169,7 @@ describe("describeImageWithModel", () => {
 
     const result = await describeImageWithModel({
       cfg: {},
-      agentDir: "/tmp/openclaw-agent",
+      agentDir: "/tmp/openbz-agent",
       provider: "google",
       model: "gemini-3.1-flash-preview",
       profile: "google:default",
@@ -219,7 +219,7 @@ describe("describeImageWithModel", () => {
 
     const result = await describeImageWithModel({
       cfg: {},
-      agentDir: "/tmp/openclaw-agent",
+      agentDir: "/tmp/openbz-agent",
       provider: "google",
       model: "gemini-3.1-flash-lite",
       profile: "google:default",

@@ -1,8 +1,8 @@
-import { createScopedChannelMediaMaxBytesResolver } from "openclaw/plugin-sdk/channel-runtime";
-import type { ChannelOutboundAdapter } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveOutboundSendDep, type OutboundSendDeps } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { resolveTextChunkLimit } from "openclaw/plugin-sdk/reply-runtime";
+import { createScopedChannelMediaMaxBytesResolver } from "openbz/plugin-sdk/channel-runtime";
+import type { ChannelOutboundAdapter } from "openbz/plugin-sdk/channel-runtime";
+import { resolveOutboundSendDep, type OutboundSendDeps } from "openbz/plugin-sdk/channel-runtime";
+import { resolveMarkdownTableMode } from "openbz/plugin-sdk/config-runtime";
+import { resolveTextChunkLimit } from "openbz/plugin-sdk/reply-runtime";
 import { markdownToSignalTextChunks } from "./format.js";
 import { sendMessageSignal } from "./send.js";
 

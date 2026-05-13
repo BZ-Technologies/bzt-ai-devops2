@@ -2,31 +2,31 @@ import { sequentialize } from "@grammyjs/runner";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
 import type { ApiClientOptions } from "grammy";
 import { Bot } from "grammy";
-import { resolveDefaultAgentId } from "openclaw/plugin-sdk/agent-runtime";
+import { resolveDefaultAgentId } from "openbz/plugin-sdk/agent-runtime";
 import {
   resolveThreadBindingIdleTimeoutMsForChannel,
   resolveThreadBindingMaxAgeMsForChannel,
   resolveThreadBindingSpawnPolicy,
-} from "openclaw/plugin-sdk/channel-runtime";
+} from "openbz/plugin-sdk/channel-runtime";
 import {
   isNativeCommandsExplicitlyDisabled,
   resolveNativeCommandsEnabled,
   resolveNativeSkillsEnabled,
-} from "openclaw/plugin-sdk/config-runtime";
-import type { OpenClawConfig, ReplyToMode } from "openclaw/plugin-sdk/config-runtime";
-import { loadConfig } from "openclaw/plugin-sdk/config-runtime";
+} from "openbz/plugin-sdk/config-runtime";
+import type { OpenBZConfig, ReplyToMode } from "openbz/plugin-sdk/config-runtime";
+import { loadConfig } from "openbz/plugin-sdk/config-runtime";
 import {
   resolveChannelGroupPolicy,
   resolveChannelGroupRequireMention,
-} from "openclaw/plugin-sdk/config-runtime";
-import { loadSessionStore, resolveStorePath } from "openclaw/plugin-sdk/config-runtime";
-import { formatUncaughtError } from "openclaw/plugin-sdk/infra-runtime";
-import { resolveTextChunkLimit } from "openclaw/plugin-sdk/reply-runtime";
-import { DEFAULT_GROUP_HISTORY_LIMIT, type HistoryEntry } from "openclaw/plugin-sdk/reply-runtime";
-import { danger, logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { getChildLogger } from "openclaw/plugin-sdk/runtime-env";
-import { createSubsystemLogger } from "openclaw/plugin-sdk/runtime-env";
-import { createNonExitingRuntime, type RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+} from "openbz/plugin-sdk/config-runtime";
+import { loadSessionStore, resolveStorePath } from "openbz/plugin-sdk/config-runtime";
+import { formatUncaughtError } from "openbz/plugin-sdk/infra-runtime";
+import { resolveTextChunkLimit } from "openbz/plugin-sdk/reply-runtime";
+import { DEFAULT_GROUP_HISTORY_LIMIT, type HistoryEntry } from "openbz/plugin-sdk/reply-runtime";
+import { danger, logVerbose, shouldLogVerbose } from "openbz/plugin-sdk/runtime-env";
+import { getChildLogger } from "openbz/plugin-sdk/runtime-env";
+import { createSubsystemLogger } from "openbz/plugin-sdk/runtime-env";
+import { createNonExitingRuntime, type RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
 import { resolveTelegramAccount } from "./accounts.js";
 import { registerTelegramHandlers } from "./bot-handlers.js";
 import { createTelegramMessageProcessor } from "./bot-message.js";
@@ -54,7 +54,7 @@ export type TelegramBotOptions = {
   mediaMaxMb?: number;
   replyToMode?: ReplyToMode;
   proxyFetch?: typeof fetch;
-  config?: OpenClawConfig;
+  config?: OpenBZConfig;
   /** Signal to abort in-flight Telegram API fetch requests (e.g. getUpdates) on shutdown. */
   fetchAbortSignal?: AbortSignal;
   updateOffset?: {

@@ -1,15 +1,15 @@
-import { mapAllowFromEntries } from "openclaw/plugin-sdk/channel-config-helpers";
-import { createAccountStatusSink } from "openclaw/plugin-sdk/channel-lifecycle";
-import { buildAccountScopedDmSecurityPolicy } from "openclaw/plugin-sdk/channel-policy";
+import { mapAllowFromEntries } from "openbz/plugin-sdk/channel-config-helpers";
+import { createAccountStatusSink } from "openbz/plugin-sdk/channel-lifecycle";
+import { buildAccountScopedDmSecurityPolicy } from "openbz/plugin-sdk/channel-policy";
 import type {
   ChannelAccountSnapshot,
   ChannelDirectoryEntry,
   ChannelGroupContext,
   ChannelMessageActionAdapter,
   ChannelPlugin,
-  OpenClawConfig,
+  OpenBZConfig,
   GroupToolPolicyConfig,
-} from "openclaw/plugin-sdk/zalouser";
+} from "openbz/plugin-sdk/zalouser";
 import {
   buildChannelSendResult,
   buildBaseAccountStatusSnapshot,
@@ -22,7 +22,7 @@ import {
   normalizeAccountId,
   sendPayloadWithChunkedTextAndMedia,
   setAccountEnabledInConfigSection,
-} from "openclaw/plugin-sdk/zalouser";
+} from "openbz/plugin-sdk/zalouser";
 import { buildPassiveProbedChannelStatusSummary } from "../../shared/channel-status-summary.js";
 import {
   listZalouserAccountIds,
@@ -165,11 +165,11 @@ function resolveZalouserQrProfile(accountId?: string | null): string {
   return normalized;
 }
 
-function resolveZalouserOutboundChunkMode(cfg: OpenClawConfig, accountId?: string) {
+function resolveZalouserOutboundChunkMode(cfg: OpenBZConfig, accountId?: string) {
   return getZalouserRuntime().channel.text.resolveChunkMode(cfg, "zalouser", accountId);
 }
 
-function resolveZalouserOutboundTextChunkLimit(cfg: OpenClawConfig, accountId?: string) {
+function resolveZalouserOutboundTextChunkLimit(cfg: OpenBZConfig, accountId?: string) {
   return getZalouserRuntime().channel.text.resolveTextChunkLimit(cfg, "zalouser", accountId, {
     fallbackLimit: ZALOUSER_TEXT_CHUNK_LIMIT,
   });

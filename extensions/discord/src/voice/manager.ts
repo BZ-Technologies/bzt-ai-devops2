@@ -16,21 +16,21 @@ import {
   type AudioPlayer,
   type VoiceConnection,
 } from "@discordjs/voice";
-import { resolveAgentDir } from "openclaw/plugin-sdk/agent-runtime";
-import { agentCommandFromIngress } from "openclaw/plugin-sdk/agent-runtime";
-import { resolveTtsConfig, type ResolvedTtsConfig } from "openclaw/plugin-sdk/agent-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { isDangerousNameMatchingEnabled } from "openclaw/plugin-sdk/config-runtime";
-import type { DiscordAccountConfig, TtsConfig } from "openclaw/plugin-sdk/config-runtime";
-import { formatErrorMessage } from "openclaw/plugin-sdk/infra-runtime";
-import { resolvePreferredOpenClawTmpDir } from "openclaw/plugin-sdk/infra-runtime";
-import { transcribeAudioFile } from "openclaw/plugin-sdk/media-understanding-runtime";
-import { resolveAgentRoute } from "openclaw/plugin-sdk/routing";
-import { logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { createSubsystemLogger } from "openclaw/plugin-sdk/runtime-env";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
-import { parseTtsDirectives } from "openclaw/plugin-sdk/speech";
-import { textToSpeech } from "openclaw/plugin-sdk/speech-runtime";
+import { resolveAgentDir } from "openbz/plugin-sdk/agent-runtime";
+import { agentCommandFromIngress } from "openbz/plugin-sdk/agent-runtime";
+import { resolveTtsConfig, type ResolvedTtsConfig } from "openbz/plugin-sdk/agent-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import { isDangerousNameMatchingEnabled } from "openbz/plugin-sdk/config-runtime";
+import type { DiscordAccountConfig, TtsConfig } from "openbz/plugin-sdk/config-runtime";
+import { formatErrorMessage } from "openbz/plugin-sdk/infra-runtime";
+import { resolvePreferredOpenBZTmpDir } from "openbz/plugin-sdk/infra-runtime";
+import { transcribeAudioFile } from "openbz/plugin-sdk/media-understanding-runtime";
+import { resolveAgentRoute } from "openbz/plugin-sdk/routing";
+import { logVerbose, shouldLogVerbose } from "openbz/plugin-sdk/runtime-env";
+import { createSubsystemLogger } from "openbz/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
+import { parseTtsDirectives } from "openbz/plugin-sdk/speech";
+import { textToSpeech } from "openbz/plugin-sdk/speech-runtime";
 import { formatMention } from "../mentions.js";
 import { resolveDiscordOwnerAccess } from "../monitor/allow-list.js";
 import { formatDiscordUserTag } from "../monitor/format.js";
@@ -108,8 +108,8 @@ function mergeTtsConfig(base: TtsConfig, override?: TtsConfig): TtsConfig {
   };
 }
 
-function resolveVoiceTtsConfig(params: { cfg: OpenClawConfig; override?: TtsConfig }): {
-  cfg: OpenClawConfig;
+function resolveVoiceTtsConfig(params: { cfg: OpenBZConfig; override?: TtsConfig }): {
+  cfg: OpenBZConfig;
   resolved: ResolvedTtsConfig;
 } {
   if (!params.override) {
@@ -207,7 +207,7 @@ function estimateDurationSeconds(pcm: Buffer): number {
 }
 
 async function writeWavFile(pcm: Buffer): Promise<{ path: string; durationSeconds: number }> {
-  const tempDir = await fs.mkdtemp(path.join(resolvePreferredOpenClawTmpDir(), "discord-voice-"));
+  const tempDir = await fs.mkdtemp(path.join(resolvePreferredOpenBZTmpDir(), "discord-voice-"));
   const filePath = path.join(tempDir, `segment-${randomUUID()}.wav`);
   const wav = buildWavBuffer(pcm);
   await fs.writeFile(filePath, wav);
@@ -227,7 +227,7 @@ function scheduleTempCleanup(tempDir: string, delayMs: number = 30 * 60 * 1000):
 }
 
 async function transcribeAudio(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   agentId: string;
   filePath: string;
 }): Promise<string | undefined> {
@@ -259,7 +259,7 @@ export class DiscordVoiceManager {
   constructor(
     private params: {
       client: Client;
-      cfg: OpenClawConfig;
+      cfg: OpenBZConfig;
       discordConfig: DiscordAccountConfig;
       accountId: string;
       runtime: RuntimeEnv;

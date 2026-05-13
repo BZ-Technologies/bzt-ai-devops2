@@ -1,4 +1,4 @@
-import { resolveLineAccount } from "openclaw/plugin-sdk/line";
+import { resolveLineAccount } from "openbz/plugin-sdk/line";
 import {
   DEFAULT_ACCOUNT_ID,
   formatDocsLink,
@@ -7,7 +7,7 @@ import {
   splitSetupEntries,
   type ChannelSetupDmPolicy,
   type ChannelSetupWizard,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import {
   isLineConfigured,
   listLineAccountIds,

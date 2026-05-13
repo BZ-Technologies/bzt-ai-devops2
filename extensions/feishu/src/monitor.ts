@@ -1,4 +1,4 @@
-import type { ClawdbotConfig, RuntimeEnv } from "openclaw/plugin-sdk/feishu";
+import type { BzdbotConfig, RuntimeEnv } from "openbz/plugin-sdk/feishu";
 import { listEnabledFeishuAccounts, resolveFeishuAccount } from "./accounts.js";
 import {
   monitorSingleAccount,
@@ -14,7 +14,7 @@ import {
 } from "./monitor.state.js";
 
 export type MonitorFeishuOpts = {
-  config?: ClawdbotConfig;
+  config?: BzdbotConfig;
   runtime?: RuntimeEnv;
   abortSignal?: AbortSignal;
   accountId?: string;

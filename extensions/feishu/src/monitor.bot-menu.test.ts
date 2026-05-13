@@ -1,4 +1,4 @@
-import type { ClawdbotConfig, RuntimeEnv } from "openclaw/plugin-sdk/feishu";
+import type { BzdbotConfig, RuntimeEnv } from "openbz/plugin-sdk/feishu";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { hasControlCommand } from "../../../src/auto-reply/command-detection.js";
 import {
@@ -83,7 +83,7 @@ async function registerHandlers() {
   createEventDispatcherMock.mockReturnValue({ register });
 
   await monitorSingleAccount({
-    cfg: {} as ClawdbotConfig,
+    cfg: {} as BzdbotConfig,
     account: buildAccount(),
     runtime: {
       log: vi.fn(),

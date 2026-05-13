@@ -1,5 +1,5 @@
-import type { PluginRuntime } from "openclaw/plugin-sdk/core";
-import { createPluginRuntimeStore } from "openclaw/plugin-sdk/runtime-store";
+import type { PluginRuntime } from "openbz/plugin-sdk/core";
+import { createPluginRuntimeStore } from "openbz/plugin-sdk/runtime-store";
 
 const { setRuntime: setDiscordRuntime, getRuntime: getDiscordRuntime } =
   createPluginRuntimeStore<PluginRuntime>("Discord runtime not initialized");

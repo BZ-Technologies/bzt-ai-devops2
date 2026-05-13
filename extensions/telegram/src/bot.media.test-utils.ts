@@ -1,4 +1,4 @@
-import * as ssrf from "openclaw/plugin-sdk/infra-runtime";
+import * as ssrf from "openbz/plugin-sdk/infra-runtime";
 import { afterEach, beforeAll, beforeEach, expect, vi, type Mock } from "vitest";
 import { onSpy, sendChatActionSpy } from "./bot.media.e2e-harness.js";
 
@@ -103,7 +103,7 @@ afterEach(() => {
 
 beforeAll(async () => {
   ({ createTelegramBot: createTelegramBotRef } = await import("./bot.js"));
-  const replyModule = await import("openclaw/plugin-sdk/reply-runtime");
+  const replyModule = await import("openbz/plugin-sdk/reply-runtime");
   replySpyRef = (replyModule as unknown as { __replySpy: ReturnType<typeof vi.fn> }).__replySpy;
 }, TELEGRAM_BOT_IMPORT_TIMEOUT_MS);
 

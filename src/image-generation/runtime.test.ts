@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+import type { OpenBZConfig } from "../config/config.js";
 import { createEmptyPluginRegistry } from "../plugins/registry.js";
 import { setActivePluginRegistry } from "../plugins/runtime.js";
 import { generateImage, listRuntimeImageGenerationProviders } from "./runtime.js";
@@ -41,7 +41,7 @@ describe("image-generation runtime helpers", () => {
           },
         },
       },
-    } as OpenClawConfig;
+    } as OpenBZConfig;
 
     const result = await generateImage({
       cfg,

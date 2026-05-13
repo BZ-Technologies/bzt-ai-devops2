@@ -1,12 +1,12 @@
 import type {
   ChannelThreadingContext,
   ChannelThreadingToolContext,
-} from "openclaw/plugin-sdk/channel-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+} from "openbz/plugin-sdk/channel-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
 import { resolveSlackAccount, resolveSlackReplyToMode } from "./accounts.js";
 
 export function buildSlackThreadingToolContext(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId?: string | null;
   context: ChannelThreadingContext;
   hasRepliedRef?: { value: boolean };

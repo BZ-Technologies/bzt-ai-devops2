@@ -1,16 +1,16 @@
-import { emptyPluginConfigSchema, type OpenClawPluginApi } from "openclaw/plugin-sdk/core";
+import { emptyPluginConfigSchema, type OpenBZPluginApi } from "openbz/plugin-sdk/core";
 import {
   createPluginBackedWebSearchProvider,
   getScopedCredentialValue,
   setScopedCredentialValue,
-} from "openclaw/plugin-sdk/provider-web-search";
+} from "openbz/plugin-sdk/provider-web-search";
 
 const perplexityPlugin = {
   id: "perplexity",
   name: "Perplexity Plugin",
   description: "Bundled Perplexity plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerWebSearchProvider(
       createPluginBackedWebSearchProvider({
         id: "perplexity",
@@ -19,7 +19,7 @@ const perplexityPlugin = {
         envVars: ["PERPLEXITY_API_KEY", "OPENROUTER_API_KEY"],
         placeholder: "pplx-...",
         signupUrl: "https://www.perplexity.ai/settings/api",
-        docsUrl: "https://docs.openclaw.ai/perplexity",
+        docsUrl: "https://docs.openbz.ai/perplexity",
         autoDetectOrder: 50,
         getCredentialValue: (searchConfig) => getScopedCredentialValue(searchConfig, "perplexity"),
         setCredentialValue: (searchConfigTarget, value) =>

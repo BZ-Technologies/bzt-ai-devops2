@@ -1,13 +1,13 @@
-import { formatAllowFromLowercase } from "openclaw/plugin-sdk/allow-from";
+import { formatAllowFromLowercase } from "openbz/plugin-sdk/allow-from";
 import {
   createScopedAccountConfigAccessors,
   createScopedChannelConfigBase,
-} from "openclaw/plugin-sdk/channel-config-helpers";
+} from "openbz/plugin-sdk/channel-config-helpers";
 import { buildChannelConfigSchema } from "../../../src/channels/plugins/config-schema.js";
 import { patchChannelConfigForAccount } from "../../../src/channels/plugins/setup-wizard-helpers.js";
 import type { ChannelPlugin } from "../../../src/channels/plugins/types.plugin.js";
 import { getChatChannelMeta } from "../../../src/channels/registry.js";
-import type { OpenClawConfig } from "../../../src/config/config.js";
+import type { OpenBZConfig } from "../../../src/config/config.js";
 import { hasConfiguredSecretInput } from "../../../src/config/types.secrets.js";
 import { SlackConfigSchema } from "../../../src/config/zod-schema.providers-core.js";
 import { formatDocsLink } from "../../../src/terminal/links.js";
@@ -23,11 +23,11 @@ import { isSlackInteractiveRepliesEnabled } from "./interactive-replies.js";
 export const SLACK_CHANNEL = "slack" as const;
 
 function buildSlackManifest(botName: string) {
-  const safeName = botName.trim() || "OpenClaw";
+  const safeName = botName.trim() || "BZ AI DevOps2";
   const manifest = {
     display_information: {
       name: safeName,
-      description: `${safeName} connector for OpenClaw`,
+      description: `${safeName} connector for BZ AI DevOps2`,
     },
     features: {
       bot_user: {
@@ -40,8 +40,8 @@ function buildSlackManifest(botName: string) {
       },
       slash_commands: [
         {
-          command: "/openclaw",
-          description: "Send a message to OpenClaw",
+          command: "/openbz",
+          description: "Send a message to BZ AI DevOps2",
           should_escape: false,
         },
       ],
@@ -91,7 +91,7 @@ function buildSlackManifest(botName: string) {
   return JSON.stringify(manifest, null, 2);
 }
 
-export function buildSlackSetupLines(botName = "OpenClaw"): string[] {
+export function buildSlackSetupLines(botName = "BZ AI DevOps2"): string[] {
   return [
     "1) Slack API -> Create App -> From scratch or From manifest (with the JSON below)",
     "2) Add Socket Mode + enable it to get the app-level token (xapp-...)",
@@ -107,10 +107,10 @@ export function buildSlackSetupLines(botName = "OpenClaw"): string[] {
 }
 
 export function setSlackChannelAllowlist(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   accountId: string,
   channelKeys: string[],
-): OpenClawConfig {
+): OpenBZConfig {
   const channels = Object.fromEntries(channelKeys.map((key) => [key, { allow: true }]));
   return patchChannelConfigForAccount({
     cfg,

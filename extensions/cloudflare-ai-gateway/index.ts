@@ -1,4 +1,4 @@
-import { emptyPluginConfigSchema, type OpenClawPluginApi } from "openclaw/plugin-sdk/core";
+import { emptyPluginConfigSchema, type OpenBZPluginApi } from "openbz/plugin-sdk/core";
 import {
   applyAuthProfileConfig,
   buildApiKeyCredential,
@@ -12,11 +12,11 @@ import {
   type SecretInput,
   upsertAuthProfile,
   validateApiKeyInput,
-} from "openclaw/plugin-sdk/provider-auth";
+} from "openbz/plugin-sdk/provider-auth";
 import {
   buildCloudflareAiGatewayModelDefinition,
   resolveCloudflareAiGatewayBaseUrl,
-} from "openclaw/plugin-sdk/provider-models";
+} from "openbz/plugin-sdk/provider-models";
 import {
   applyCloudflareAiGatewayConfig,
   buildCloudflareAiGatewayConfigPatch,
@@ -89,7 +89,7 @@ const cloudflareAiGatewayPlugin = {
   name: "Cloudflare AI Gateway Provider",
   description: "Bundled Cloudflare AI Gateway provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "Cloudflare AI Gateway",

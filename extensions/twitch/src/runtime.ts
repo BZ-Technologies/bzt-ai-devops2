@@ -1,5 +1,5 @@
-import { createPluginRuntimeStore } from "openclaw/plugin-sdk/runtime-store";
-import type { PluginRuntime } from "openclaw/plugin-sdk/twitch";
+import { createPluginRuntimeStore } from "openbz/plugin-sdk/runtime-store";
+import type { PluginRuntime } from "openbz/plugin-sdk/twitch";
 
 const { setRuntime: setTwitchRuntime, getRuntime: getTwitchRuntime } =
   createPluginRuntimeStore<PluginRuntime>("Twitch runtime not initialized");

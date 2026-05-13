@@ -1,1 +1,1 @@
-export { handleSlackMessageAction } from "openclaw/plugin-sdk/slack";
+export { handleSlackMessageAction } from "openbz/plugin-sdk/slack";

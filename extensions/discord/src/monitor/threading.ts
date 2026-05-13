@@ -1,10 +1,10 @@
 import { ChannelType, type Client } from "@buape/carbon";
 import { Routes } from "discord-api-types/v10";
-import type { ReplyToMode } from "openclaw/plugin-sdk/config-runtime";
-import { createReplyReferencePlanner } from "openclaw/plugin-sdk/reply-runtime";
-import { buildAgentSessionKey } from "openclaw/plugin-sdk/routing";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { truncateUtf16Safe } from "openclaw/plugin-sdk/text-runtime";
+import type { ReplyToMode } from "openbz/plugin-sdk/config-runtime";
+import { createReplyReferencePlanner } from "openbz/plugin-sdk/reply-runtime";
+import { buildAgentSessionKey } from "openbz/plugin-sdk/routing";
+import { logVerbose } from "openbz/plugin-sdk/runtime-env";
+import { truncateUtf16Safe } from "openbz/plugin-sdk/text-runtime";
 import type { DiscordChannelConfigResolved } from "./allow-list.js";
 import type { DiscordMessageEvent } from "./listeners.js";
 import {

@@ -1,1 +1,1 @@
-export { resolveRequestUrl } from "openclaw/plugin-sdk/bluebubbles";
+export { resolveRequestUrl } from "openbz/plugin-sdk/bluebubbles";

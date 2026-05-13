@@ -1,17 +1,17 @@
 import type { RequestClient } from "@buape/carbon";
-import { resolveAgentAvatar } from "openclaw/plugin-sdk/agent-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { MarkdownTableMode, ReplyToMode } from "openclaw/plugin-sdk/config-runtime";
-import { createDiscordRetryRunner, type RetryRunner } from "openclaw/plugin-sdk/infra-runtime";
+import { resolveAgentAvatar } from "openbz/plugin-sdk/agent-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import type { MarkdownTableMode, ReplyToMode } from "openbz/plugin-sdk/config-runtime";
+import { createDiscordRetryRunner, type RetryRunner } from "openbz/plugin-sdk/infra-runtime";
 import {
   resolveRetryConfig,
   retryAsync,
   type RetryConfig,
-} from "openclaw/plugin-sdk/infra-runtime";
-import type { ChunkMode } from "openclaw/plugin-sdk/reply-runtime";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
-import { convertMarkdownTables } from "openclaw/plugin-sdk/text-runtime";
+} from "openbz/plugin-sdk/infra-runtime";
+import type { ChunkMode } from "openbz/plugin-sdk/reply-runtime";
+import type { ReplyPayload } from "openbz/plugin-sdk/reply-runtime";
+import type { RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
+import { convertMarkdownTables } from "openbz/plugin-sdk/text-runtime";
 import { resolveDiscordAccount } from "../accounts.js";
 import { chunkDiscordTextWithMode } from "../chunk.js";
 import { sendMessageDiscord, sendVoiceMessageDiscord, sendWebhookMessageDiscord } from "../send.js";
@@ -108,7 +108,7 @@ function resolveBoundThreadBinding(params: {
 }
 
 function resolveBindingPersona(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   binding: DiscordThreadBindingLookupRecord | undefined,
 ): {
   username?: string;
@@ -133,7 +133,7 @@ function resolveBindingPersona(
 }
 
 async function sendDiscordChunkWithFallback(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   target: string;
   text: string;
   token: string;
@@ -210,7 +210,7 @@ async function sendDiscordChunkWithFallback(params: {
 }
 
 async function sendAdditionalDiscordMedia(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   target: string;
   token: string;
   rest?: RequestClient;
@@ -239,7 +239,7 @@ async function sendAdditionalDiscordMedia(params: {
 }
 
 export async function deliverDiscordReply(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   replies: ReplyPayload[];
   target: string;
   token: string;

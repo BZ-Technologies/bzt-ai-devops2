@@ -2,16 +2,16 @@ import {
   buildMistralModelDefinition,
   MISTRAL_BASE_URL,
   MISTRAL_DEFAULT_MODEL_ID,
-} from "openclaw/plugin-sdk/provider-models";
+} from "openbz/plugin-sdk/provider-models";
 import {
   applyAgentDefaultModelPrimary,
   applyProviderConfigWithDefaultModel,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/provider-onboard";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/provider-onboard";
 
 export const MISTRAL_DEFAULT_MODEL_REF = `mistral/${MISTRAL_DEFAULT_MODEL_ID}`;
 
-export function applyMistralProviderConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyMistralProviderConfig(cfg: OpenBZConfig): OpenBZConfig {
   const models = { ...cfg.agents?.defaults?.models };
   models[MISTRAL_DEFAULT_MODEL_REF] = {
     ...models[MISTRAL_DEFAULT_MODEL_REF],
@@ -28,6 +28,6 @@ export function applyMistralProviderConfig(cfg: OpenClawConfig): OpenClawConfig 
   });
 }
 
-export function applyMistralConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyMistralConfig(cfg: OpenBZConfig): OpenBZConfig {
   return applyAgentDefaultModelPrimary(applyMistralProviderConfig(cfg), MISTRAL_DEFAULT_MODEL_REF);
 }

@@ -1,19 +1,19 @@
 import type { StreamFn } from "@mariozechner/pi-agent-core";
 import {
   emptyPluginConfigSchema,
-  type OpenClawPluginApi,
+  type OpenBZPluginApi,
   type ProviderResolveDynamicModelContext,
   type ProviderRuntimeModel,
-} from "openclaw/plugin-sdk/core";
-import { createProviderApiKeyAuthMethod } from "openclaw/plugin-sdk/provider-auth";
-import { DEFAULT_CONTEXT_TOKENS } from "openclaw/plugin-sdk/provider-models";
+} from "openbz/plugin-sdk/core";
+import { createProviderApiKeyAuthMethod } from "openbz/plugin-sdk/provider-auth";
+import { DEFAULT_CONTEXT_TOKENS } from "openbz/plugin-sdk/provider-models";
 import {
   getOpenRouterModelCapabilities,
   loadOpenRouterModelCapabilities,
   createOpenRouterSystemCacheWrapper,
   createOpenRouterWrapper,
   isProxyReasoningUnsupported,
-} from "openclaw/plugin-sdk/provider-stream";
+} from "openbz/plugin-sdk/provider-stream";
 import { applyOpenrouterConfig, OPENROUTER_DEFAULT_MODEL_REF } from "./onboard.js";
 import { buildOpenrouterProvider } from "./provider-catalog.js";
 
@@ -79,7 +79,7 @@ const openRouterPlugin = {
   name: "OpenRouter Provider",
   description: "Bundled OpenRouter provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "OpenRouter",

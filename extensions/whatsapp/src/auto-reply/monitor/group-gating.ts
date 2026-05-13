@@ -1,9 +1,9 @@
-import { resolveMentionGating } from "openclaw/plugin-sdk/channel-runtime";
-import type { loadConfig } from "openclaw/plugin-sdk/config-runtime";
-import { hasControlCommand } from "openclaw/plugin-sdk/reply-runtime";
-import { parseActivationCommand } from "openclaw/plugin-sdk/reply-runtime";
-import { recordPendingHistoryEntryIfEnabled } from "openclaw/plugin-sdk/reply-runtime";
-import { normalizeE164 } from "openclaw/plugin-sdk/text-runtime";
+import { resolveMentionGating } from "openbz/plugin-sdk/channel-runtime";
+import type { loadConfig } from "openbz/plugin-sdk/config-runtime";
+import { hasControlCommand } from "openbz/plugin-sdk/reply-runtime";
+import { parseActivationCommand } from "openbz/plugin-sdk/reply-runtime";
+import { recordPendingHistoryEntryIfEnabled } from "openbz/plugin-sdk/reply-runtime";
+import { normalizeE164 } from "openbz/plugin-sdk/text-runtime";
 import type { MentionConfig } from "../mentions.js";
 import { buildMentionConfig, debugMention, resolveOwnerList } from "../mentions.js";
 import type { WebInboundMsg } from "../types.js";

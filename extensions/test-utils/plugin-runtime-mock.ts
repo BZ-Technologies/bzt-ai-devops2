@@ -1,6 +1,6 @@
-import { DEFAULT_MODEL, DEFAULT_PROVIDER } from "openclaw/plugin-sdk/agent-runtime";
-import type { PluginRuntime } from "openclaw/plugin-sdk/test-utils";
-import { removeAckReactionAfterReply, shouldAckReaction } from "openclaw/plugin-sdk/test-utils";
+import { DEFAULT_MODEL, DEFAULT_PROVIDER } from "openbz/plugin-sdk/agent-runtime";
+import type { PluginRuntime } from "openbz/plugin-sdk/test-utils";
+import { removeAckReactionAfterReply, shouldAckReaction } from "openbz/plugin-sdk/test-utils";
 import { vi } from "vitest";
 
 type DeepPartial<T> = {
@@ -317,7 +317,7 @@ export function createPluginRuntimeMock(overrides: DeepPartial<PluginRuntime> = 
       })),
     },
     state: {
-      resolveStateDir: vi.fn(() => "/tmp/openclaw"),
+      resolveStateDir: vi.fn(() => "/tmp/openbz"),
     },
     modelAuth: {
       getApiKeyForModel: vi.fn() as unknown as PluginRuntime["modelAuth"]["getApiKeyForModel"],

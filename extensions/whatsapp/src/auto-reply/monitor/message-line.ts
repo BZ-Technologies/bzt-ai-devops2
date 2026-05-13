@@ -1,9 +1,9 @@
-import { resolveMessagePrefix } from "openclaw/plugin-sdk/agent-runtime";
-import type { loadConfig } from "openclaw/plugin-sdk/config-runtime";
+import { resolveMessagePrefix } from "openbz/plugin-sdk/agent-runtime";
+import type { loadConfig } from "openbz/plugin-sdk/config-runtime";
 import {
   formatInboundEnvelope,
   type EnvelopeFormatOptions,
-} from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
 import type { WebInboundMsg } from "../types.js";
 
 export function formatReplyContext(msg: WebInboundMsg) {

@@ -1,10 +1,10 @@
-import type { MarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import type { ChunkMode } from "openclaw/plugin-sdk/reply-runtime";
-import { chunkMarkdownTextWithMode } from "openclaw/plugin-sdk/reply-runtime";
-import { createReplyReferencePlanner } from "openclaw/plugin-sdk/reply-runtime";
-import { isSilentReplyText, SILENT_REPLY_TOKEN } from "openclaw/plugin-sdk/reply-runtime";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+import type { MarkdownTableMode } from "openbz/plugin-sdk/config-runtime";
+import type { ChunkMode } from "openbz/plugin-sdk/reply-runtime";
+import { chunkMarkdownTextWithMode } from "openbz/plugin-sdk/reply-runtime";
+import { createReplyReferencePlanner } from "openbz/plugin-sdk/reply-runtime";
+import { isSilentReplyText, SILENT_REPLY_TOKEN } from "openbz/plugin-sdk/reply-runtime";
+import type { ReplyPayload } from "openbz/plugin-sdk/reply-runtime";
+import type { RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
 import { parseSlackBlocksInput } from "../blocks-input.js";
 import { markdownToSlackMrkdwnChunks } from "../format.js";
 import { sendMessageSlack, type SlackSendIdentity } from "../send.js";

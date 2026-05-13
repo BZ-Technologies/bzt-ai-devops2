@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/openrouter-provider",
+  "name": "@openbz/openrouter-provider",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw OpenRouter provider plugin",
+  "description": "BZ AI DevOps2 OpenRouter provider plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ]

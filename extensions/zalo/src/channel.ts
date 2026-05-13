@@ -1,15 +1,15 @@
-import { mapAllowFromEntries } from "openclaw/plugin-sdk/channel-config-helpers";
+import { mapAllowFromEntries } from "openbz/plugin-sdk/channel-config-helpers";
 import {
   buildAccountScopedDmSecurityPolicy,
   buildOpenGroupPolicyRestrictSendersWarning,
   buildOpenGroupPolicyWarning,
   collectOpenProviderGroupPolicyWarnings,
-} from "openclaw/plugin-sdk/channel-policy";
+} from "openbz/plugin-sdk/channel-policy";
 import type {
   ChannelAccountSnapshot,
   ChannelPlugin,
-  OpenClawConfig,
-} from "openclaw/plugin-sdk/zalo";
+  OpenBZConfig,
+} from "openbz/plugin-sdk/zalo";
 import {
   buildBaseAccountStatusSnapshot,
   buildChannelConfigSchema,
@@ -23,7 +23,7 @@ import {
   isNumericTargetId,
   sendPayloadWithChunkedTextAndMedia,
   setAccountEnabledInConfigSection,
-} from "openclaw/plugin-sdk/zalo";
+} from "openbz/plugin-sdk/zalo";
 import {
   listZaloAccountIds,
   resolveDefaultZaloAccountId,

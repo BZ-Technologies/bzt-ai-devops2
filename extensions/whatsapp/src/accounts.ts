@@ -6,10 +6,10 @@ import {
   normalizeAccountId,
   resolveAccountEntry,
   resolveUserPath,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/account-resolution";
-import { resolveOAuthDir } from "openclaw/plugin-sdk/state-paths";
-import type { DmPolicy, GroupPolicy, WhatsAppAccountConfig } from "openclaw/plugin-sdk/whatsapp";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/account-resolution";
+import { resolveOAuthDir } from "openbz/plugin-sdk/state-paths";
+import type { DmPolicy, GroupPolicy, WhatsAppAccountConfig } from "openbz/plugin-sdk/whatsapp";
 import { hasWebCredsSync } from "./auth-store.js";
 
 export type ResolvedWhatsAppAccount = {
@@ -41,7 +41,7 @@ const { listConfiguredAccountIds, listAccountIds, resolveDefaultAccountId } =
 export const listWhatsAppAccountIds = listAccountIds;
 export const resolveDefaultWhatsAppAccountId = resolveDefaultAccountId;
 
-export function listWhatsAppAuthDirs(cfg: OpenClawConfig): string[] {
+export function listWhatsAppAuthDirs(cfg: OpenBZConfig): string[] {
   const oauthDir = resolveOAuthDir();
   const whatsappDir = path.join(oauthDir, "whatsapp");
   const authDirs = new Set<string>([oauthDir, path.join(whatsappDir, DEFAULT_ACCOUNT_ID)]);
@@ -66,12 +66,12 @@ export function listWhatsAppAuthDirs(cfg: OpenClawConfig): string[] {
   return Array.from(authDirs);
 }
 
-export function hasAnyWhatsAppAuth(cfg: OpenClawConfig): boolean {
+export function hasAnyWhatsAppAuth(cfg: OpenBZConfig): boolean {
   return listWhatsAppAuthDirs(cfg).some((authDir) => hasWebCredsSync(authDir));
 }
 
 function resolveAccountConfig(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   accountId: string,
 ): WhatsAppAccountConfig | undefined {
   return resolveAccountEntry(cfg.channels?.whatsapp?.accounts, accountId);
@@ -94,7 +94,7 @@ function legacyAuthExists(authDir: string): boolean {
   }
 }
 
-export function resolveWhatsAppAuthDir(params: { cfg: OpenClawConfig; accountId: string }): {
+export function resolveWhatsAppAuthDir(params: { cfg: OpenBZConfig; accountId: string }): {
   authDir: string;
   isLegacy: boolean;
 } {
@@ -117,7 +117,7 @@ export function resolveWhatsAppAuthDir(params: { cfg: OpenClawConfig; accountId:
 }
 
 export function resolveWhatsAppAccount(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId?: string | null;
 }): ResolvedWhatsAppAccount {
   const rootCfg = params.cfg.channels?.whatsapp;
@@ -162,7 +162,7 @@ export function resolveWhatsAppMediaMaxBytes(
   return mediaMaxMb * 1024 * 1024;
 }
 
-export function listEnabledWhatsAppAccounts(cfg: OpenClawConfig): ResolvedWhatsAppAccount[] {
+export function listEnabledWhatsAppAccounts(cfg: OpenBZConfig): ResolvedWhatsAppAccount[] {
   return listWhatsAppAccountIds(cfg)
     .map((accountId) => resolveWhatsAppAccount({ cfg, accountId }))
     .filter((account) => account.enabled);

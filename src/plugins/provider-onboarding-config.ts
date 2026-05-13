@@ -1,5 +1,5 @@
 import { findNormalizedProviderKey } from "../agents/provider-id.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { OpenBZConfig } from "../config/config.js";
 import type { AgentModelEntryConfig } from "../config/types.agent-defaults.js";
 import type {
   ModelApi,
@@ -19,12 +19,12 @@ function extractAgentDefaultModelFallbacks(model: unknown): string[] | undefined
 }
 
 export function applyOnboardAuthAgentModelsAndProviders(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   params: {
     agentModels: Record<string, AgentModelEntryConfig>;
     providers: Record<string, ModelProviderConfig>;
   },
-): OpenClawConfig {
+): OpenBZConfig {
   return {
     ...cfg,
     agents: {
@@ -42,9 +42,9 @@ export function applyOnboardAuthAgentModelsAndProviders(
 }
 
 export function applyAgentDefaultModelPrimary(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   primary: string,
-): OpenClawConfig {
+): OpenBZConfig {
   const existingFallbacks = extractAgentDefaultModelFallbacks(cfg.agents?.defaults?.model);
   return {
     ...cfg,
@@ -62,7 +62,7 @@ export function applyAgentDefaultModelPrimary(
 }
 
 export function applyProviderConfigWithDefaultModels(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   params: {
     agentModels: Record<string, AgentModelEntryConfig>;
     providerId: string;
@@ -71,7 +71,7 @@ export function applyProviderConfigWithDefaultModels(
     defaultModels: ModelDefinitionConfig[];
     defaultModelId?: string;
   },
-): OpenClawConfig {
+): OpenBZConfig {
   const providerState = resolveProviderModelMergeState(cfg, params.providerId);
 
   const defaultModels = params.defaultModels;
@@ -97,7 +97,7 @@ export function applyProviderConfigWithDefaultModels(
 }
 
 export function applyProviderConfigWithDefaultModel(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   params: {
     agentModels: Record<string, AgentModelEntryConfig>;
     providerId: string;
@@ -106,7 +106,7 @@ export function applyProviderConfigWithDefaultModel(
     defaultModel: ModelDefinitionConfig;
     defaultModelId?: string;
   },
-): OpenClawConfig {
+): OpenBZConfig {
   return applyProviderConfigWithDefaultModels(cfg, {
     agentModels: params.agentModels,
     providerId: params.providerId,
@@ -118,7 +118,7 @@ export function applyProviderConfigWithDefaultModel(
 }
 
 export function applyProviderConfigWithModelCatalog(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   params: {
     agentModels: Record<string, AgentModelEntryConfig>;
     providerId: string;
@@ -126,7 +126,7 @@ export function applyProviderConfigWithModelCatalog(
     baseUrl: string;
     catalogModels: ModelDefinitionConfig[];
   },
-): OpenClawConfig {
+): OpenBZConfig {
   const providerState = resolveProviderModelMergeState(cfg, params.providerId);
   const catalogModels = params.catalogModels;
   const mergedModels =
@@ -156,7 +156,7 @@ type ProviderModelMergeState = {
 };
 
 function resolveProviderModelMergeState(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   providerId: string,
 ): ProviderModelMergeState {
   const providers = { ...cfg.models?.providers } as Record<string, ModelProviderConfig>;
@@ -175,7 +175,7 @@ function resolveProviderModelMergeState(
 }
 
 function applyProviderConfigWithMergedModels(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   params: {
     agentModels: Record<string, AgentModelEntryConfig>;
     providerId: string;
@@ -185,7 +185,7 @@ function applyProviderConfigWithMergedModels(
     mergedModels: ModelDefinitionConfig[];
     fallbackModels: ModelDefinitionConfig[];
   },
-): OpenClawConfig {
+): OpenBZConfig {
   params.providerState.providers[params.providerId] = buildProviderConfig({
     existingProvider: params.providerState.existingProvider,
     api: params.api,

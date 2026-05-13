@@ -2,12 +2,12 @@ import {
   buildZaiModelDefinition,
   resolveZaiBaseUrl,
   ZAI_DEFAULT_MODEL_ID,
-} from "openclaw/plugin-sdk/provider-models";
+} from "openbz/plugin-sdk/provider-models";
 import {
   applyAgentDefaultModelPrimary,
   applyProviderConfigWithModelCatalog,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/provider-onboard";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/provider-onboard";
 
 export const ZAI_DEFAULT_MODEL_REF = `zai/${ZAI_DEFAULT_MODEL_ID}`;
 
@@ -20,9 +20,9 @@ const ZAI_DEFAULT_MODELS = [
 ];
 
 export function applyZaiProviderConfig(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   params?: { endpoint?: string; modelId?: string },
-): OpenClawConfig {
+): OpenBZConfig {
   const modelId = params?.modelId?.trim() || ZAI_DEFAULT_MODEL_ID;
   const modelRef = `zai/${modelId}`;
   const existingProvider = cfg.models?.providers?.zai;
@@ -48,9 +48,9 @@ export function applyZaiProviderConfig(
 }
 
 export function applyZaiConfig(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   params?: { endpoint?: string; modelId?: string },
-): OpenClawConfig {
+): OpenBZConfig {
   const modelId = params?.modelId?.trim() || ZAI_DEFAULT_MODEL_ID;
   const modelRef = modelId === ZAI_DEFAULT_MODEL_ID ? ZAI_DEFAULT_MODEL_REF : `zai/${modelId}`;
   return applyAgentDefaultModelPrimary(applyZaiProviderConfig(cfg, params), modelRef);

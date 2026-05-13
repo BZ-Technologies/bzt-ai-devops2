@@ -1,6 +1,6 @@
 import type { WebClient as SlackWebClient } from "@slack/web-api";
-import { pruneMapToMaxSize } from "openclaw/plugin-sdk/infra-runtime";
-import { logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
+import { pruneMapToMaxSize } from "openbz/plugin-sdk/infra-runtime";
+import { logVerbose, shouldLogVerbose } from "openbz/plugin-sdk/runtime-env";
 import type { SlackMessageEvent } from "../types.js";
 
 type ThreadTsCacheEntry = {

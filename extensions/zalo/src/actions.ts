@@ -1,9 +1,9 @@
 import type {
   ChannelMessageActionAdapter,
   ChannelMessageActionName,
-  OpenClawConfig,
-} from "openclaw/plugin-sdk/zalo";
-import { extractToolSend, jsonResult, readStringParam } from "openclaw/plugin-sdk/zalo";
+  OpenBZConfig,
+} from "openbz/plugin-sdk/zalo";
+import { extractToolSend, jsonResult, readStringParam } from "openbz/plugin-sdk/zalo";
 import { listEnabledZaloAccounts } from "./accounts.js";
 
 let zaloActionsRuntimePromise: Promise<typeof import("./actions.runtime.js")> | null = null;
@@ -15,7 +15,7 @@ async function loadZaloActionsRuntime() {
 
 const providerId = "zalo";
 
-function listEnabledAccounts(cfg: OpenClawConfig) {
+function listEnabledAccounts(cfg: OpenBZConfig) {
   return listEnabledZaloAccounts(cfg).filter(
     (account) => account.enabled && account.tokenSource !== "none",
   );

@@ -2,8 +2,8 @@ import {
   createScopedAccountConfigAccessors,
   createScopedChannelConfigBase,
   createScopedDmSecurityResolver,
-} from "openclaw/plugin-sdk/channel-config-helpers";
-import { collectAllowlistProviderRestrictSendersWarnings } from "openclaw/plugin-sdk/channel-policy";
+} from "openbz/plugin-sdk/channel-config-helpers";
+import { collectAllowlistProviderRestrictSendersWarnings } from "openbz/plugin-sdk/channel-policy";
 import {
   buildChannelConfigSchema,
   buildComputedAccountStatusSnapshot,
@@ -14,11 +14,11 @@ import {
   processLineMessage,
   type ChannelPlugin,
   type ChannelStatusIssue,
-  type OpenClawConfig,
+  type OpenBZConfig,
   type LineConfig,
   type LineChannelData,
   type ResolvedLineAccount,
-} from "openclaw/plugin-sdk/line";
+} from "openbz/plugin-sdk/line";
 import { getLineRuntime } from "./runtime.js";
 import { lineSetupAdapter } from "./setup-core.js";
 import { lineSetupWizard } from "./setup-surface.js";
@@ -46,7 +46,7 @@ const lineConfigAccessors = createScopedAccountConfigAccessors({
       .map((entry) => entry.replace(/^line:(?:user:)?/i, "")),
 });
 
-const lineConfigBase = createScopedChannelConfigBase<ResolvedLineAccount, OpenClawConfig>({
+const lineConfigBase = createScopedChannelConfigBase<ResolvedLineAccount, OpenBZConfig>({
   sectionKey: "line",
   listAccountIds: (cfg) => getLineRuntime().channel.line.listLineAccountIds(cfg),
   resolveAccount: (cfg, accountId) =>
@@ -60,7 +60,7 @@ const resolveLineDmPolicy = createScopedDmSecurityResolver<ResolvedLineAccount>(
   resolvePolicy: (account) => account.config.dmPolicy,
   resolveAllowFrom: (account) => account.config.allowFrom,
   policyPathSuffix: "dmPolicy",
-  approveHint: "openclaw pairing approve line <code>",
+  approveHint: "openbz pairing approve line <code>",
   normalizeEntry: (raw) => raw.replace(/^line:(?:user:)?/i, ""),
 });
 
@@ -82,7 +82,7 @@ export const linePlugin: ChannelPlugin<ResolvedLineAccount> = {
       if (!account.channelAccessToken) {
         throw new Error("LINE channel access token not configured");
       }
-      await line.pushMessageLine(id, "OpenClaw: your access has been approved.", {
+      await line.pushMessageLine(id, "BZ AI DevOps2: your access has been approved.", {
         channelAccessToken: account.channelAccessToken,
       });
     },
@@ -498,7 +498,7 @@ export const linePlugin: ChannelPlugin<ResolvedLineAccount> = {
     },
     logoutAccount: async ({ accountId, cfg }) => {
       const envToken = process.env.LINE_CHANNEL_ACCESS_TOKEN?.trim() ?? "";
-      const nextCfg = { ...cfg } as OpenClawConfig;
+      const nextCfg = { ...cfg } as OpenBZConfig;
       const lineConfig = (cfg.channels?.line ?? {}) as LineConfig;
       const nextLine = { ...lineConfig };
       let cleared = false;

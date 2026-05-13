@@ -1,1 +1,1 @@
-export { withFileLock } from "openclaw/plugin-sdk/msteams";
+export { withFileLock } from "openbz/plugin-sdk/msteams";

@@ -2,7 +2,7 @@ import {
   DEFAULT_ACCOUNT_ID,
   noteChannelLookupFailure,
   noteChannelLookupSummary,
-  type OpenClawConfig,
+  type OpenBZConfig,
   parseMentionOrPrefixedId,
   patchChannelConfigForAccount,
   promptLegacyChannelAllowFrom,
@@ -10,9 +10,9 @@ import {
   setLegacyChannelDmPolicyWithAllowFrom,
   setSetupChannelEnabled,
   type WizardPrompter,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import { formatDocsLink } from "../../../src/terminal/links.js";
-import { type ChannelSetupDmPolicy, type ChannelSetupWizard } from "openclaw/plugin-sdk/setup";
+import { type ChannelSetupDmPolicy, type ChannelSetupWizard } from "openbz/plugin-sdk/setup";
 import { inspectDiscordAccount } from "./account-inspect.js";
 import {
   listDiscordAccountIds,
@@ -54,10 +54,10 @@ async function resolveDiscordAllowFromEntries(params: { token?: string; entries:
 }
 
 async function promptDiscordAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   prompter: WizardPrompter;
   accountId?: string;
-}): Promise<OpenClawConfig> {
+}): Promise<OpenBZConfig> {
   const accountId = resolveSetupAccountId({
     accountId: params.accountId,
     defaultAccountId: resolveDefaultDiscordAccountId(params.cfg),

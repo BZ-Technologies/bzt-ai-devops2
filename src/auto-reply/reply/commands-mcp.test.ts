@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 import { withTempHome } from "../../config/home-env.test-harness.js";
 import { handleCommands } from "./commands-core.js";
 import { buildCommandTestParams } from "./commands.test-harness.js";
@@ -10,12 +10,12 @@ import { buildCommandTestParams } from "./commands.test-harness.js";
 const tempDirs: string[] = [];
 
 async function createWorkspace(): Promise<string> {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-command-mcp-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openbz-command-mcp-"));
   tempDirs.push(dir);
   return dir;
 }
 
-function buildCfg(): OpenClawConfig {
+function buildCfg(): OpenBZConfig {
   return {
     commands: {
       text: true,
@@ -32,7 +32,7 @@ describe("handleCommands /mcp", () => {
   });
 
   it("writes MCP config and shows it back", async () => {
-    await withTempHome("openclaw-command-mcp-home-", async () => {
+    await withTempHome("openbz-command-mcp-home-", async () => {
       const workspaceDir = await createWorkspace();
       const setParams = buildCommandTestParams(
         '/mcp set context7={"command":"uvx","args":["context7-mcp"]}',
@@ -56,7 +56,7 @@ describe("handleCommands /mcp", () => {
   });
 
   it("rejects internal writes without operator.admin", async () => {
-    await withTempHome("openclaw-command-mcp-home-", async () => {
+    await withTempHome("openbz-command-mcp-home-", async () => {
       const workspaceDir = await createWorkspace();
       const params = buildCommandTestParams(
         '/mcp set context7={"command":"uvx","args":["context7-mcp"]}',
@@ -76,7 +76,7 @@ describe("handleCommands /mcp", () => {
   });
 
   it("accepts non-stdio MCP config at the config layer", async () => {
-    await withTempHome("openclaw-command-mcp-home-", async () => {
+    await withTempHome("openbz-command-mcp-home-", async () => {
       const workspaceDir = await createWorkspace();
       const params = buildCommandTestParams(
         '/mcp set remote={"url":"https://example.com/mcp"}',

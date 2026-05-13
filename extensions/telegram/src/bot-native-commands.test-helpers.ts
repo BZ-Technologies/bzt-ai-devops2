@@ -1,8 +1,8 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { ChannelGroupPolicy } from "openclaw/plugin-sdk/config-runtime";
-import type { TelegramAccountConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
-import type { MockFn } from "openclaw/plugin-sdk/test-utils";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import type { ChannelGroupPolicy } from "openbz/plugin-sdk/config-runtime";
+import type { TelegramAccountConfig } from "openbz/plugin-sdk/config-runtime";
+import type { RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
+import type { MockFn } from "openbz/plugin-sdk/test-utils";
 import { vi } from "vitest";
 import {
   createNativeCommandTestParams,
@@ -12,17 +12,17 @@ import type { RegisterTelegramNativeCommandsParams } from "./bot-native-commands
 import { registerTelegramNativeCommands } from "./bot-native-commands.js";
 
 type GetPluginCommandSpecsFn =
-  typeof import("openclaw/plugin-sdk/plugin-runtime").getPluginCommandSpecs;
-type MatchPluginCommandFn = typeof import("openclaw/plugin-sdk/plugin-runtime").matchPluginCommand;
+  typeof import("openbz/plugin-sdk/plugin-runtime").getPluginCommandSpecs;
+type MatchPluginCommandFn = typeof import("openbz/plugin-sdk/plugin-runtime").matchPluginCommand;
 type ExecutePluginCommandFn =
-  typeof import("openclaw/plugin-sdk/plugin-runtime").executePluginCommand;
+  typeof import("openbz/plugin-sdk/plugin-runtime").executePluginCommand;
 type DispatchReplyWithBufferedBlockDispatcherFn =
-  typeof import("openclaw/plugin-sdk/reply-runtime").dispatchReplyWithBufferedBlockDispatcher;
+  typeof import("openbz/plugin-sdk/reply-runtime").dispatchReplyWithBufferedBlockDispatcher;
 type DispatchReplyWithBufferedBlockDispatcherResult = Awaited<
   ReturnType<DispatchReplyWithBufferedBlockDispatcherFn>
 >;
 type RecordInboundSessionMetaSafeFn =
-  typeof import("openclaw/plugin-sdk/channel-runtime").recordInboundSessionMetaSafe;
+  typeof import("openbz/plugin-sdk/channel-runtime").recordInboundSessionMetaSafe;
 type AnyMock = MockFn<(...args: unknown[]) => unknown>;
 type AnyAsyncMock = MockFn<(...args: unknown[]) => Promise<unknown>>;
 type NativeCommandHarness = {
@@ -42,7 +42,7 @@ export const getPluginCommandSpecs = pluginCommandMocks.getPluginCommandSpecs;
 export const matchPluginCommand = pluginCommandMocks.matchPluginCommand;
 export const executePluginCommand = pluginCommandMocks.executePluginCommand;
 
-vi.mock("openclaw/plugin-sdk/plugin-runtime", () => ({
+vi.mock("openbz/plugin-sdk/plugin-runtime", () => ({
   getPluginCommandSpecs: pluginCommandMocks.getPluginCommandSpecs,
   matchPluginCommand: pluginCommandMocks.matchPluginCommand,
   executePluginCommand: pluginCommandMocks.executePluginCommand,
@@ -65,17 +65,17 @@ const replyPipelineMocks = vi.hoisted(() => {
 export const dispatchReplyWithBufferedBlockDispatcher =
   replyPipelineMocks.dispatchReplyWithBufferedBlockDispatcher;
 
-vi.mock("openclaw/plugin-sdk/reply-runtime", () => ({
+vi.mock("openbz/plugin-sdk/reply-runtime", () => ({
   finalizeInboundContext: replyPipelineMocks.finalizeInboundContext,
 }));
-vi.mock("openclaw/plugin-sdk/reply-runtime", () => ({
+vi.mock("openbz/plugin-sdk/reply-runtime", () => ({
   dispatchReplyWithBufferedBlockDispatcher:
     replyPipelineMocks.dispatchReplyWithBufferedBlockDispatcher,
 }));
-vi.mock("openclaw/plugin-sdk/channel-runtime", () => ({
+vi.mock("openbz/plugin-sdk/channel-runtime", () => ({
   createReplyPrefixOptions: replyPipelineMocks.createReplyPrefixOptions,
 }));
-vi.mock("openclaw/plugin-sdk/channel-runtime", () => ({
+vi.mock("openbz/plugin-sdk/channel-runtime", () => ({
   recordInboundSessionMetaSafe: replyPipelineMocks.recordInboundSessionMetaSafe,
 }));
 
@@ -84,13 +84,13 @@ const deliveryMocks = vi.hoisted(() => ({
 }));
 export const deliverReplies = deliveryMocks.deliverReplies;
 vi.mock("./bot/delivery.js", () => ({ deliverReplies: deliveryMocks.deliverReplies }));
-vi.mock("openclaw/plugin-sdk/conversation-runtime", () => ({
+vi.mock("openbz/plugin-sdk/conversation-runtime", () => ({
   readChannelAllowFromStore: vi.fn(async () => []),
 }));
 export { createNativeCommandTestParams };
 
 export function createNativeCommandsHarness(params?: {
-  cfg?: OpenClawConfig;
+  cfg?: OpenBZConfig;
   runtime?: RuntimeEnv;
   telegramCfg?: TelegramAccountConfig;
   allowFrom?: string[];
@@ -116,7 +116,7 @@ export function createNativeCommandsHarness(params?: {
 
   registerTelegramNativeCommands({
     bot,
-    cfg: params?.cfg ?? ({} as OpenClawConfig),
+    cfg: params?.cfg ?? ({} as OpenBZConfig),
     runtime: params?.runtime ?? ({ log } as unknown as RuntimeEnv),
     accountId: "default",
     telegramCfg: params?.telegramCfg ?? ({} as TelegramAccountConfig),

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../../src/config/config.js";
+import type { OpenBZConfig } from "../../../src/config/config.js";
 import { clearPluginCommands, registerPluginCommand } from "../../../src/plugins/commands.js";
 const deliveryMocks = vi.hoisted(() => ({
   deliverReplies: vi.fn(async () => ({ delivered: true })),
@@ -142,7 +142,7 @@ describe("registerTelegramNativeCommands real plugin registry", () => {
 
     registerTelegramNativeCommands({
       ...createNativeCommandTestParams({
-        commands: { allowFrom: { telegram: ["999"] } } as OpenClawConfig["commands"],
+        commands: { allowFrom: { telegram: ["999"] } } as OpenBZConfig["commands"],
       }),
       bot,
       allowFrom: ["999"],

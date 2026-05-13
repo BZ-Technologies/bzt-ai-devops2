@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+import type { OpenBZConfig } from "../config/config.js";
 
 export type GeneratedImageAsset = {
   buffer: Buffer;
@@ -12,7 +12,7 @@ export type ImageGenerationRequest = {
   provider: string;
   model: string;
   prompt: string;
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   agentDir?: string;
   count?: number;
   size?: string;

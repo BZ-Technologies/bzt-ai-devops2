@@ -2,26 +2,26 @@ import {
   findModelInCatalog,
   loadModelCatalog,
   modelSupportsVision,
-} from "openclaw/plugin-sdk/agent-runtime";
-import { resolveDefaultModelForAgent } from "openclaw/plugin-sdk/agent-runtime";
-import { resolveControlCommandGate } from "openclaw/plugin-sdk/channel-runtime";
-import { formatLocationText, type NormalizedLocation } from "openclaw/plugin-sdk/channel-runtime";
-import { logInboundDrop } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveMentionGatingWithBypass } from "openclaw/plugin-sdk/channel-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+} from "openbz/plugin-sdk/agent-runtime";
+import { resolveDefaultModelForAgent } from "openbz/plugin-sdk/agent-runtime";
+import { resolveControlCommandGate } from "openbz/plugin-sdk/channel-runtime";
+import { formatLocationText, type NormalizedLocation } from "openbz/plugin-sdk/channel-runtime";
+import { logInboundDrop } from "openbz/plugin-sdk/channel-runtime";
+import { resolveMentionGatingWithBypass } from "openbz/plugin-sdk/channel-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
 import type {
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "openclaw/plugin-sdk/config-runtime";
-import { hasControlCommand } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/config-runtime";
+import { hasControlCommand } from "openbz/plugin-sdk/reply-runtime";
 import {
   recordPendingHistoryEntryIfEnabled,
   type HistoryEntry,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { buildMentionRegexes, matchesMentionWithExplicit } from "openclaw/plugin-sdk/reply-runtime";
-import type { MsgContext } from "openclaw/plugin-sdk/reply-runtime";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
+} from "openbz/plugin-sdk/reply-runtime";
+import { buildMentionRegexes, matchesMentionWithExplicit } from "openbz/plugin-sdk/reply-runtime";
+import type { MsgContext } from "openbz/plugin-sdk/reply-runtime";
+import { logVerbose } from "openbz/plugin-sdk/runtime-env";
 import type { NormalizedAllowFrom } from "./bot-access.js";
 import { isSenderAllowed } from "./bot-access.js";
 import type {
@@ -54,7 +54,7 @@ export type TelegramInboundBodyResult = {
 };
 
 async function resolveStickerVisionSupport(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   agentId?: string;
 }): Promise<boolean> {
   try {
@@ -74,7 +74,7 @@ async function resolveStickerVisionSupport(params: {
 }
 
 export async function resolveTelegramInboundBody(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   primaryCtx: TelegramContext;
   msg: TelegramContext["message"];
   allMedia: TelegramMediaRef[];

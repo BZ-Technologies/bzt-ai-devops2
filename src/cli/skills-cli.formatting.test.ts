@@ -13,10 +13,10 @@ describe("skills-cli (e2e)", () => {
   let envSnapshot: ReturnType<typeof captureEnv>;
 
   beforeAll(() => {
-    envSnapshot = captureEnv(["OPENCLAW_BUNDLED_SKILLS_DIR"]);
-    tempWorkspaceDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-skills-test-"));
-    tempBundledDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-bundled-skills-test-"));
-    process.env.OPENCLAW_BUNDLED_SKILLS_DIR = tempBundledDir;
+    envSnapshot = captureEnv(["OPENBZ_BUNDLED_SKILLS_DIR"]);
+    tempWorkspaceDir = fs.mkdtempSync(path.join(os.tmpdir(), "openbz-skills-test-"));
+    tempBundledDir = fs.mkdtempSync(path.join(os.tmpdir(), "openbz-bundled-skills-test-"));
+    process.env.OPENBZ_BUNDLED_SKILLS_DIR = tempBundledDir;
   });
 
   afterAll(() => {
@@ -36,7 +36,7 @@ describe("skills-cli (e2e)", () => {
         skill: {
           name: "peekaboo",
           description: "Capture UI screenshots",
-          source: "openclaw-bundled",
+          source: "openbz-bundled",
           filePath: path.join(baseDir, "SKILL.md"),
           baseDir,
         } as SkillEntry["skill"],

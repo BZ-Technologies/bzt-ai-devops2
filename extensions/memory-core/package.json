@@ -1,18 +1,18 @@
 {
-  "name": "@openclaw/memory-core",
+  "name": "@openbz/memory-core",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw core memory search plugin",
+  "description": "BZ AI DevOps2 core memory search plugin",
   "type": "module",
   "peerDependencies": {
-    "openclaw": ">=2026.3.11"
+    "openbz": ">=2026.3.11"
   },
   "peerDependenciesMeta": {
-    "openclaw": {
+    "openbz": {
       "optional": true
     }
   },
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ]

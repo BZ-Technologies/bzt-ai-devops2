@@ -1,15 +1,15 @@
 import {
   DEFAULT_ACCOUNT_ID,
   type ChannelSetupAdapter,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/setup";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/setup";
 import type { FeishuConfig } from "./types.js";
 
 export function setFeishuNamedAccountEnabled(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   accountId: string,
   enabled: boolean,
-): OpenClawConfig {
+): OpenBZConfig {
   const feishuCfg = cfg.channels?.feishu as FeishuConfig | undefined;
   return {
     ...cfg,

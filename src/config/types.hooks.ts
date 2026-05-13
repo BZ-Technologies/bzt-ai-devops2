@@ -113,7 +113,7 @@ export type HooksConfig = {
   token?: string;
   /**
    * Default session key used for hook agent runs when no request/mapping session key is used.
-   * If omitted, OpenClaw generates `hook:<uuid>` per request.
+   * If omitted, BZ AI DevOps2 generates `hook:<uuid>` per request.
    */
   defaultSessionKey?: string;
   /**

@@ -1,5 +1,5 @@
 import type { AgentToolResult } from "@mariozechner/pi-agent-core";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 import { defaultRuntime } from "../../runtime.js";
 import { getChannelPlugin, listChannelPlugins } from "./index.js";
 import type { ChannelMessageCapability } from "./message-capabilities.js";
@@ -38,7 +38,7 @@ function logMessageActionError(params: {
 
 function runListActionsSafely(params: {
   pluginId: string;
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   listActions: NonNullable<ChannelActions["listActions"]>;
 }): ChannelMessageActionName[] {
   try {
@@ -54,7 +54,7 @@ function runListActionsSafely(params: {
   }
 }
 
-export function listChannelMessageActions(cfg: OpenClawConfig): ChannelMessageActionName[] {
+export function listChannelMessageActions(cfg: OpenBZConfig): ChannelMessageActionName[] {
   const actions = new Set<ChannelMessageActionName>(["send", "broadcast"]);
   for (const plugin of listChannelPlugins()) {
     if (!plugin.actions?.listActions) {
@@ -75,7 +75,7 @@ export function listChannelMessageActions(cfg: OpenClawConfig): ChannelMessageAc
 function listCapabilities(params: {
   pluginId: string;
   actions: ChannelActions;
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
 }): readonly ChannelMessageCapability[] {
   try {
     return params.actions.getCapabilities?.({ cfg: params.cfg }) ?? [];
@@ -89,7 +89,7 @@ function listCapabilities(params: {
   }
 }
 
-export function listChannelMessageCapabilities(cfg: OpenClawConfig): ChannelMessageCapability[] {
+export function listChannelMessageCapabilities(cfg: OpenBZConfig): ChannelMessageCapability[] {
   const capabilities = new Set<ChannelMessageCapability>();
   for (const plugin of listChannelPlugins()) {
     if (!plugin.actions) {
@@ -107,7 +107,7 @@ export function listChannelMessageCapabilities(cfg: OpenClawConfig): ChannelMess
 }
 
 export function listChannelMessageCapabilitiesForChannel(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   channel?: string;
 }): ChannelMessageCapability[] {
   if (!params.channel) {
@@ -126,7 +126,7 @@ export function listChannelMessageCapabilitiesForChannel(params: {
 }
 
 export function channelSupportsMessageCapability(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   capability: ChannelMessageCapability,
 ): boolean {
   return listChannelMessageCapabilities(cfg).includes(capability);
@@ -134,7 +134,7 @@ export function channelSupportsMessageCapability(
 
 export function channelSupportsMessageCapabilityForChannel(
   params: {
-    cfg: OpenClawConfig;
+    cfg: OpenBZConfig;
     channel?: string;
   },
   capability: ChannelMessageCapability,

@@ -187,15 +187,15 @@ export function resetSlackTestState(config: Record<string, unknown> = defaultSla
   getSlackHandlers()?.clear();
 }
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     loadConfig: () => slackTestState.config,
   };
 });
 
-vi.mock("openclaw/plugin-sdk/reply-runtime", () => ({
+vi.mock("openbz/plugin-sdk/reply-runtime", () => ({
   getReplyFromConfig: (...args: unknown[]) => slackTestState.replyMock(...args),
 }));
 
@@ -213,17 +213,17 @@ vi.mock("./send.js", () => ({
   sendMessageSlack: (...args: unknown[]) => slackTestState.sendMock(...args),
 }));
 
-vi.mock("openclaw/plugin-sdk/conversation-runtime", () => ({
+vi.mock("openbz/plugin-sdk/conversation-runtime", () => ({
   readChannelAllowFromStore: (...args: unknown[]) => slackTestState.readAllowFromStoreMock(...args),
   upsertChannelPairingRequest: (...args: unknown[]) =>
     slackTestState.upsertPairingRequestMock(...args),
 }));
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
-    resolveStorePath: vi.fn(() => "/tmp/openclaw-sessions.json"),
+    resolveStorePath: vi.fn(() => "/tmp/openbz-sessions.json"),
     updateLastRoute: (...args: unknown[]) => slackTestState.updateLastRouteMock(...args),
     resolveSessionKey: vi.fn(),
     readSessionUpdatedAt: vi.fn(() => undefined),

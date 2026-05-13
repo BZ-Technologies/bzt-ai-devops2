@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 import type { ChannelSetupDmPolicy } from "./setup-wizard-types.js";
 import type { ChannelSetupWizard } from "./setup-wizard.js";
 
@@ -16,7 +16,7 @@ type ResolveGroupAllowlistParams = Parameters<
 export function createAllowlistSetupWizardProxy<TGroupResolved>(params: {
   loadWizard: () => Promise<ChannelSetupWizard>;
   createBase: (handlers: {
-    promptAllowFrom: (params: PromptAllowFromParams) => Promise<OpenClawConfig>;
+    promptAllowFrom: (params: PromptAllowFromParams) => Promise<OpenBZConfig>;
     resolveAllowFromEntries: (
       params: ResolveAllowFromEntriesParams,
     ) => Promise<ResolveAllowFromEntriesResult>;

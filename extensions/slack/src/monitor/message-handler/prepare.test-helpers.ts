@@ -1,11 +1,11 @@
 import type { App } from "@slack/bolt";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import type { RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
 import type { ResolvedSlackAccount } from "../../accounts.js";
 import { createSlackMonitorContext } from "../context.js";
 
 export function createInboundSlackTestContext(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   appClient?: App["client"];
   defaultRequireMention?: boolean;
   replyToMode?: "off" | "all" | "first";
@@ -40,7 +40,7 @@ export function createInboundSlackTestContext(params: {
     threadInheritParent: false,
     slashCommand: {
       enabled: false,
-      name: "openclaw",
+      name: "openbz",
       sessionPrefix: "slack:slash",
       ephemeral: true,
     },

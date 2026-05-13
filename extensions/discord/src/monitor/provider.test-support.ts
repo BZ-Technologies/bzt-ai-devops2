@@ -1,6 +1,6 @@
 import type { Mock } from "vitest";
 import { expect, vi } from "vitest";
-import type { OpenClawConfig } from "../../../../src/config/config.js";
+import type { OpenBZConfig } from "../../../../src/config/config.js";
 import type { RuntimeEnv } from "../../../../src/runtime.js";
 
 export type NativeCommandSpecMock = {
@@ -29,7 +29,7 @@ type ProviderMonitorTestMocks = {
   createdBindingManagers: Array<{ stop: ReturnType<typeof vi.fn> }>;
   getAcpSessionStatusMock: Mock<
     (params: {
-      cfg: OpenClawConfig;
+      cfg: OpenBZConfig;
       sessionKey: string;
       signal?: AbortSignal;
     }) => Promise<{ state: string }>
@@ -101,7 +101,7 @@ const providerMonitorTestMocks: ProviderMonitorTestMocks = vi.hoisted(() => {
     })),
     createdBindingManagers,
     getAcpSessionStatusMock: vi.fn(
-      async (_params: { cfg: OpenClawConfig; sessionKey: string; signal?: AbortSignal }) => ({
+      async (_params: { cfg: OpenBZConfig; sessionKey: string; signal?: AbortSignal }) => ({
         state: "idle",
       }),
     ),
@@ -243,7 +243,7 @@ export const baseRuntime = (): RuntimeEnv => ({
   exit: vi.fn(),
 });
 
-export const baseConfig = (): OpenClawConfig =>
+export const baseConfig = (): OpenBZConfig =>
   ({
     channels: {
       discord: {
@@ -252,7 +252,7 @@ export const baseConfig = (): OpenClawConfig =>
         },
       },
     },
-  }) as OpenClawConfig;
+  }) as OpenBZConfig;
 
 vi.mock("@buape/carbon", () => {
   class ReadyListener {}

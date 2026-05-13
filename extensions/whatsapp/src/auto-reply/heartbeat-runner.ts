@@ -1,25 +1,25 @@
-import { appendCronStyleCurrentTimeLine } from "openclaw/plugin-sdk/agent-runtime";
-import { resolveWhatsAppHeartbeatRecipients } from "openclaw/plugin-sdk/channel-runtime";
-import { loadConfig } from "openclaw/plugin-sdk/config-runtime";
+import { appendCronStyleCurrentTimeLine } from "openbz/plugin-sdk/agent-runtime";
+import { resolveWhatsAppHeartbeatRecipients } from "openbz/plugin-sdk/channel-runtime";
+import { loadConfig } from "openbz/plugin-sdk/config-runtime";
 import {
   loadSessionStore,
   resolveSessionKey,
   resolveStorePath,
   updateSessionStore,
-} from "openclaw/plugin-sdk/config-runtime";
-import { emitHeartbeatEvent, resolveIndicatorType } from "openclaw/plugin-sdk/infra-runtime";
-import { resolveHeartbeatVisibility } from "openclaw/plugin-sdk/infra-runtime";
-import { resolveHeartbeatReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/config-runtime";
+import { emitHeartbeatEvent, resolveIndicatorType } from "openbz/plugin-sdk/infra-runtime";
+import { resolveHeartbeatVisibility } from "openbz/plugin-sdk/infra-runtime";
+import { resolveHeartbeatReplyPayload } from "openbz/plugin-sdk/reply-runtime";
 import {
   DEFAULT_HEARTBEAT_ACK_MAX_CHARS,
   resolveHeartbeatPrompt,
   stripHeartbeatToken,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { getReplyFromConfig } from "openclaw/plugin-sdk/reply-runtime";
-import { HEARTBEAT_TOKEN } from "openclaw/plugin-sdk/reply-runtime";
-import { normalizeMainKey } from "openclaw/plugin-sdk/routing";
-import { getChildLogger } from "openclaw/plugin-sdk/runtime-env";
-import { redactIdentifier } from "openclaw/plugin-sdk/text-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
+import { getReplyFromConfig } from "openbz/plugin-sdk/reply-runtime";
+import { HEARTBEAT_TOKEN } from "openbz/plugin-sdk/reply-runtime";
+import { normalizeMainKey } from "openbz/plugin-sdk/routing";
+import { getChildLogger } from "openbz/plugin-sdk/runtime-env";
+import { redactIdentifier } from "openbz/plugin-sdk/text-runtime";
 import { newConnectionId } from "../reconnect.js";
 import { sendMessageWhatsApp } from "../send.js";
 import { formatError } from "../session.js";

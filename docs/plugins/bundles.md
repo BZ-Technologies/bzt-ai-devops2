@@ -1,15 +1,15 @@
 ---
-summary: "Unified bundle format guide for Codex, Claude, and Cursor bundles in OpenClaw"
+summary: "Unified bundle format guide for Codex, Claude, and Cursor bundles in BZ AI DevOps2"
 read_when:
   - You want to install or debug a Codex, Claude, or Cursor-compatible bundle
-  - You need to understand how OpenClaw maps bundle content into native features
+  - You need to understand how BZ AI DevOps2 maps bundle content into native features
   - You are documenting bundle compatibility or current support limits
 title: "Plugin Bundles"
 ---
 
 # Plugin bundles
 
-OpenClaw supports one shared class of external plugin package: **bundle
+BZ AI DevOps2 supports one shared class of external plugin package: **bundle
 plugins**.
 
 Today that means three closely related ecosystems:
@@ -18,8 +18,8 @@ Today that means three closely related ecosystems:
 - Claude bundles
 - Cursor bundles
 
-OpenClaw shows all of them as `Format: bundle` in `openclaw plugins list`.
-Verbose output and `openclaw plugins info <id>` also show the subtype
+BZ AI DevOps2 shows all of them as `Format: bundle` in `openbz plugins list`.
+Verbose output and `openbz plugins info <id>` also show the subtype
 (`codex`, `claude`, or `cursor`).
 
 Related:
@@ -30,22 +30,22 @@ Related:
 
 ## What a bundle is
 
-A bundle is a **content/metadata pack**, not a native in-process OpenClaw
+A bundle is a **content/metadata pack**, not a native in-process BZ AI DevOps2
 plugin.
 
-Today, OpenClaw does **not** execute bundle runtime code in-process. Instead,
+Today, BZ AI DevOps2 does **not** execute bundle runtime code in-process. Instead,
 it detects known bundle files, reads the metadata, and maps supported bundle
-content into native OpenClaw surfaces such as skills, hook packs, MCP config,
+content into native BZ AI DevOps2 surfaces such as skills, hook packs, MCP config,
 and embedded Pi settings.
 
 That is the main trust boundary:
 
-- native OpenClaw plugin: runtime module executes in-process
+- native BZ AI DevOps2 plugin: runtime module executes in-process
 - bundle: metadata/content pack, with selective feature mapping
 
 ## Shared bundle model
 
-Codex, Claude, and Cursor bundles are similar enough that OpenClaw treats them
+Codex, Claude, and Cursor bundles are similar enough that BZ AI DevOps2 treats them
 as one normalized model.
 
 Shared idea:
@@ -55,27 +55,27 @@ Shared idea:
 - optional tool/runtime metadata such as MCP, hooks, agents, or LSP
 - install as a directory or archive, then enable in the normal plugin list
 
-Common OpenClaw behavior:
+Common BZ AI DevOps2 behavior:
 
 - detect the bundle subtype
 - normalize it into one internal bundle record
-- map supported parts into native OpenClaw features
+- map supported parts into native BZ AI DevOps2 features
 - report unsupported parts as detected-but-not-wired capabilities
 
 In practice, most users do not need to think about the vendor-specific format
-first. The more useful question is: which bundle surfaces does OpenClaw map
+first. The more useful question is: which bundle surfaces does BZ AI DevOps2 map
 today?
 
 ## Detection order
 
-OpenClaw prefers native OpenClaw plugin/package layouts before bundle handling.
+BZ AI DevOps2 prefers native BZ AI DevOps2 plugin/package layouts before bundle handling.
 
 Practical effect:
 
-- `openclaw.plugin.json` wins over bundle detection
-- package installs with valid `package.json` + `openclaw.extensions` use the
+- `openbz.plugin.json` wins over bundle detection
+- package installs with valid `package.json` + `openbz.extensions` use the
   native install path
-- if a directory contains both native and bundle metadata, OpenClaw treats it
+- if a directory contains both native and bundle metadata, BZ AI DevOps2 treats it
   as native first
 
 That avoids partially installing a dual-format package as a bundle and then
@@ -83,23 +83,23 @@ loading it later as a native plugin.
 
 ## What works today
 
-OpenClaw normalizes bundle metadata into one internal bundle record, then maps
+BZ AI DevOps2 normalizes bundle metadata into one internal bundle record, then maps
 supported surfaces into existing native behavior.
 
 ### Supported now
 
 #### Skill content
 
-- bundle skill roots load as normal OpenClaw skill roots
+- bundle skill roots load as normal BZ AI DevOps2 skill roots
 - Claude `commands` roots are treated as additional skill roots
 - Cursor `.cursor/commands` roots are treated as additional skill roots
 
-This means Claude markdown command files work through the normal OpenClaw skill
+This means Claude markdown command files work through the normal BZ AI DevOps2 skill
 loader. Cursor command markdown works through the same path.
 
 #### Hook packs
 
-- bundle hook roots work **only** when they use the normal OpenClaw hook-pack
+- bundle hook roots work **only** when they use the normal BZ AI DevOps2 hook-pack
   layout. Today this is primarily the Codex-compatible case:
   - `HOOK.md`
   - `handler.ts` or `handler.js`
@@ -107,9 +107,9 @@ loader. Cursor command markdown works through the same path.
 #### MCP for Pi
 
 - enabled bundles can contribute MCP server config
-- OpenClaw merges bundle MCP config into the effective embedded Pi settings as
+- BZ AI DevOps2 merges bundle MCP config into the effective embedded Pi settings as
   `mcpServers`
-- OpenClaw also exposes supported bundle MCP tools during embedded Pi agent
+- BZ AI DevOps2 also exposes supported bundle MCP tools during embedded Pi agent
   turns by launching supported stdio MCP servers as subprocesses
 - project-local Pi settings still apply after bundle defaults, so workspace
   settings can override bundle MCP entries when needed
@@ -118,7 +118,7 @@ loader. Cursor command markdown works through the same path.
 
 - Claude `settings.json` is imported as default embedded Pi settings when the
   bundle is enabled
-- OpenClaw sanitizes shell override keys before applying them
+- BZ AI DevOps2 sanitizes shell override keys before applying them
 
 Sanitized keys:
 
@@ -128,7 +128,7 @@ Sanitized keys:
 ### Detected but not executed
 
 These surfaces are detected, shown in bundle capabilities, and may appear in
-diagnostics/info output, but OpenClaw does not run them yet:
+diagnostics/info output, but BZ AI DevOps2 does not run them yet:
 
 - Claude `agents`
 - Claude `hooks.json` automation
@@ -141,14 +141,14 @@ diagnostics/info output, but OpenClaw does not run them yet:
 
 ## Capability reporting
 
-`openclaw plugins info <id>` shows bundle capabilities from the normalized
+`openbz plugins info <id>` shows bundle capabilities from the normalized
 bundle record.
 
 Supported capabilities are loaded quietly. Unsupported capabilities produce a
 warning such as:
 
 ```text
-bundle capability detected but not wired into OpenClaw yet: agents
+bundle capability detected but not wired into BZ AI DevOps2 yet: agents
 ```
 
 Current exceptions:
@@ -158,12 +158,12 @@ Current exceptions:
 - Cursor `commands` is considered supported because it maps to skills
 - bundle MCP is considered supported because it maps into embedded Pi settings
   and exposes supported stdio tools to embedded Pi
-- Codex `hooks` is considered supported only for OpenClaw hook-pack layouts
+- Codex `hooks` is considered supported only for BZ AI DevOps2 hook-pack layouts
 
 ## Format differences
 
 The formats are close, but not byte-for-byte identical. These are the practical
-differences that matter in OpenClaw.
+differences that matter in BZ AI DevOps2.
 
 ### Codex
 
@@ -175,17 +175,17 @@ Typical markers:
 - optional `.mcp.json`
 - optional `.app.json`
 
-Codex bundles fit OpenClaw best when they use skill roots and OpenClaw-style
+Codex bundles fit BZ AI DevOps2 best when they use skill roots and BZ AI DevOps2-style
 hook-pack directories.
 
 ### Claude
 
-OpenClaw supports both:
+BZ AI DevOps2 supports both:
 
 - manifest-based Claude bundles: `.claude-plugin/plugin.json`
 - manifestless Claude bundles that use the default Claude layout
 
-Default Claude layout markers OpenClaw recognizes:
+Default Claude layout markers BZ AI DevOps2 recognizes:
 
 - `skills/`
 - `commands/`
@@ -223,7 +223,7 @@ Cursor-specific notes:
 
 ## Claude custom paths
 
-Claude bundle manifests can declare custom component paths. OpenClaw treats
+Claude bundle manifests can declare custom component paths. BZ AI DevOps2 treats
 those paths as **additive**, not replacing defaults.
 
 Currently recognized custom path keys:
@@ -239,9 +239,9 @@ Currently recognized custom path keys:
 Examples:
 
 - default `commands/` plus manifest `commands: "extra-commands"` =>
-  OpenClaw scans both
+  BZ AI DevOps2 scans both
 - default `skills/` plus manifest `skills: ["team-skills"]` =>
-  OpenClaw scans both
+  BZ AI DevOps2 scans both
 
 ## Security model
 
@@ -254,7 +254,7 @@ Current behavior:
 - bundle settings files are read with the same boundary checks
 - supported stdio bundle MCP servers may be launched as subprocesses for
   embedded Pi tool calls
-- OpenClaw does not load arbitrary bundle runtime modules in-process
+- BZ AI DevOps2 does not load arbitrary bundle runtime modules in-process
 
 This makes bundle support safer by default than native plugin modules, but you
 should still treat third-party bundles as trusted content for the features they
@@ -263,19 +263,19 @@ do expose.
 ## Install examples
 
 ```bash
-openclaw plugins install ./my-codex-bundle
-openclaw plugins install ./my-claude-bundle
-openclaw plugins install ./my-cursor-bundle
-openclaw plugins install ./my-bundle.tgz
-openclaw plugins marketplace list <marketplace-name>
-openclaw plugins install <plugin-name>@<marketplace-name>
-openclaw plugins info my-bundle
+openbz plugins install ./my-codex-bundle
+openbz plugins install ./my-claude-bundle
+openbz plugins install ./my-cursor-bundle
+openbz plugins install ./my-bundle.tgz
+openbz plugins marketplace list <marketplace-name>
+openbz plugins install <plugin-name>@<marketplace-name>
+openbz plugins info my-bundle
 ```
 
-If the directory is a native OpenClaw plugin/package, the native install path
+If the directory is a native BZ AI DevOps2 plugin/package, the native install path
 still wins.
 
-For Claude marketplace names, OpenClaw reads the local Claude known-marketplace
+For Claude marketplace names, BZ AI DevOps2 reads the local Claude known-marketplace
 registry at `~/.claude/plugins/known_marketplaces.json`. Marketplace entries
 can resolve to bundle-compatible directories/archives or to native plugin
 sources; after resolution, the normal install rules still apply.
@@ -284,9 +284,9 @@ sources; after resolution, the normal install rules still apply.
 
 ### Bundle is detected but capabilities do not run
 
-Check `openclaw plugins info <id>`.
+Check `openbz plugins info <id>`.
 
-If the capability is listed but OpenClaw says it is not wired yet, that is a
+If the capability is listed but BZ AI DevOps2 says it is not wired yet, that is a
 real product limit, not a broken install.
 
 ### Claude command files do not appear
@@ -297,11 +297,11 @@ Make sure the bundle is enabled and the markdown files are inside a detected
 ### Claude settings do not apply
 
 Current support is limited to embedded Pi settings from `settings.json`.
-OpenClaw does not treat bundle settings as raw OpenClaw config patches.
+BZ AI DevOps2 does not treat bundle settings as raw BZ AI DevOps2 config patches.
 
 ### Claude hooks do not execute
 
 `hooks/hooks.json` is only detected today.
 
-If you need runnable bundle hooks today, use the normal OpenClaw hook-pack
-layout through a supported Codex hook root or ship a native OpenClaw plugin.
+If you need runnable bundle hooks today, use the normal BZ AI DevOps2 hook-pack
+layout through a supported Codex hook root or ship a native BZ AI DevOps2 plugin.

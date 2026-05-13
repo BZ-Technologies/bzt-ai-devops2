@@ -1,7 +1,7 @@
-import { createRunStateMachine } from "openclaw/plugin-sdk/channel-runtime";
-import { formatDurationSeconds } from "openclaw/plugin-sdk/infra-runtime";
-import { KeyedAsyncQueue } from "openclaw/plugin-sdk/keyed-async-queue";
-import { danger } from "openclaw/plugin-sdk/runtime-env";
+import { createRunStateMachine } from "openbz/plugin-sdk/channel-runtime";
+import { formatDurationSeconds } from "openbz/plugin-sdk/infra-runtime";
+import { KeyedAsyncQueue } from "openbz/plugin-sdk/keyed-async-queue";
+import { danger } from "openbz/plugin-sdk/runtime-env";
 import { materializeDiscordInboundJob, type DiscordInboundJob } from "./inbound-job.js";
 import type { RuntimeEnv } from "./message-handler.preflight.types.js";
 import { processDiscordMessage } from "./message-handler.process.js";

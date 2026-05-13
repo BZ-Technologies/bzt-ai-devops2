@@ -1,33 +1,33 @@
-import * as compatSdk from "openclaw/plugin-sdk/compat";
-import * as coreSdk from "openclaw/plugin-sdk/core";
+import * as compatSdk from "openbz/plugin-sdk/compat";
+import * as coreSdk from "openbz/plugin-sdk/core";
 import type {
   ChannelMessageActionContext as CoreChannelMessageActionContext,
-  OpenClawPluginApi as CoreOpenClawPluginApi,
+  OpenBZPluginApi as CoreOpenBZPluginApi,
   PluginRuntime as CorePluginRuntime,
-} from "openclaw/plugin-sdk/core";
-import * as discordSdk from "openclaw/plugin-sdk/discord";
-import * as imessageSdk from "openclaw/plugin-sdk/imessage";
-import * as lineSdk from "openclaw/plugin-sdk/line";
-import * as msteamsSdk from "openclaw/plugin-sdk/msteams";
-import * as nostrSdk from "openclaw/plugin-sdk/nostr";
-import * as ollamaSetupSdk from "openclaw/plugin-sdk/ollama-setup";
-import * as providerSetupSdk from "openclaw/plugin-sdk/provider-setup";
-import * as routingSdk from "openclaw/plugin-sdk/routing";
-import * as runtimeSdk from "openclaw/plugin-sdk/runtime";
-import * as sandboxSdk from "openclaw/plugin-sdk/sandbox";
-import * as selfHostedProviderSetupSdk from "openclaw/plugin-sdk/self-hosted-provider-setup";
-import * as setupSdk from "openclaw/plugin-sdk/setup";
-import * as signalSdk from "openclaw/plugin-sdk/signal";
-import * as slackSdk from "openclaw/plugin-sdk/slack";
-import * as telegramSdk from "openclaw/plugin-sdk/telegram";
-import * as whatsappSdk from "openclaw/plugin-sdk/whatsapp";
+} from "openbz/plugin-sdk/core";
+import * as discordSdk from "openbz/plugin-sdk/discord";
+import * as imessageSdk from "openbz/plugin-sdk/imessage";
+import * as lineSdk from "openbz/plugin-sdk/line";
+import * as msteamsSdk from "openbz/plugin-sdk/msteams";
+import * as nostrSdk from "openbz/plugin-sdk/nostr";
+import * as ollamaSetupSdk from "openbz/plugin-sdk/ollama-setup";
+import * as providerSetupSdk from "openbz/plugin-sdk/provider-setup";
+import * as routingSdk from "openbz/plugin-sdk/routing";
+import * as runtimeSdk from "openbz/plugin-sdk/runtime";
+import * as sandboxSdk from "openbz/plugin-sdk/sandbox";
+import * as selfHostedProviderSetupSdk from "openbz/plugin-sdk/self-hosted-provider-setup";
+import * as setupSdk from "openbz/plugin-sdk/setup";
+import * as signalSdk from "openbz/plugin-sdk/signal";
+import * as slackSdk from "openbz/plugin-sdk/slack";
+import * as telegramSdk from "openbz/plugin-sdk/telegram";
+import * as whatsappSdk from "openbz/plugin-sdk/whatsapp";
 import { describe, expect, expectTypeOf, it } from "vitest";
 import type { ChannelMessageActionContext } from "../channels/plugins/types.js";
 import type { PluginRuntime } from "../plugins/runtime/types.js";
-import type { OpenClawPluginApi } from "../plugins/types.js";
+import type { OpenBZPluginApi } from "../plugins/types.js";
 import type {
   ChannelMessageActionContext as SharedChannelMessageActionContext,
-  OpenClawPluginApi as SharedOpenClawPluginApi,
+  OpenBZPluginApi as SharedOpenBZPluginApi,
   PluginRuntime as SharedPluginRuntime,
 } from "./channel-plugin-common.js";
 import { pluginSdkSubpaths } from "./entrypoints.js";
@@ -36,7 +36,7 @@ const importPluginSdkSubpath = (specifier: string) => import(/* @vite-ignore */ 
 
 const bundledExtensionSubpathLoaders = pluginSdkSubpaths.map((id: string) => ({
   id,
-  load: () => importPluginSdkSubpath(`openclaw/plugin-sdk/${id}`),
+  load: () => importPluginSdkSubpath(`openbz/plugin-sdk/${id}`),
 }));
 
 const asExports = (mod: object) => mod as Record<string, unknown>;
@@ -106,13 +106,13 @@ describe("plugin-sdk subpath exports", () => {
   });
 
   it("exports shared core types used by bundled channels", () => {
-    expectTypeOf<CoreOpenClawPluginApi>().toMatchTypeOf<OpenClawPluginApi>();
+    expectTypeOf<CoreOpenBZPluginApi>().toMatchTypeOf<OpenBZPluginApi>();
     expectTypeOf<CorePluginRuntime>().toMatchTypeOf<PluginRuntime>();
     expectTypeOf<CoreChannelMessageActionContext>().toMatchTypeOf<ChannelMessageActionContext>();
   });
 
   it("keeps core shared types aligned with the channel prelude", () => {
-    expectTypeOf<CoreOpenClawPluginApi>().toMatchTypeOf<SharedOpenClawPluginApi>();
+    expectTypeOf<CoreOpenBZPluginApi>().toMatchTypeOf<SharedOpenBZPluginApi>();
     expectTypeOf<CorePluginRuntime>().toMatchTypeOf<SharedPluginRuntime>();
     expectTypeOf<CoreChannelMessageActionContext>().toMatchTypeOf<SharedChannelMessageActionContext>();
   });
@@ -153,7 +153,7 @@ describe("plugin-sdk subpath exports", () => {
   });
 
   it("exports IRC helpers", async () => {
-    const ircSdk = await import("openclaw/plugin-sdk/irc");
+    const ircSdk = await import("openbz/plugin-sdk/irc");
     expect(typeof ircSdk.resolveIrcAccount).toBe("function");
     expect(typeof ircSdk.ircSetupWizard).toBe("object");
     expect(typeof ircSdk.ircSetupAdapter).toBe("object");
@@ -168,7 +168,7 @@ describe("plugin-sdk subpath exports", () => {
   });
 
   it("exports Feishu helpers", async () => {
-    const feishuSdk = await import("openclaw/plugin-sdk/feishu");
+    const feishuSdk = await import("openbz/plugin-sdk/feishu");
     expect(typeof feishuSdk.feishuSetupWizard).toBe("object");
     expect(typeof feishuSdk.feishuSetupAdapter).toBe("object");
   });
@@ -193,38 +193,38 @@ describe("plugin-sdk subpath exports", () => {
   });
 
   it("exports Google Chat helpers", async () => {
-    const googlechatSdk = await import("openclaw/plugin-sdk/googlechat");
+    const googlechatSdk = await import("openbz/plugin-sdk/googlechat");
     expect(typeof googlechatSdk.googlechatSetupWizard).toBe("object");
     expect(typeof googlechatSdk.googlechatSetupAdapter).toBe("object");
   });
 
   it("exports Zalo helpers", async () => {
-    const zaloSdk = await import("openclaw/plugin-sdk/zalo");
+    const zaloSdk = await import("openbz/plugin-sdk/zalo");
     expect(typeof zaloSdk.zaloSetupWizard).toBe("object");
     expect(typeof zaloSdk.zaloSetupAdapter).toBe("object");
   });
 
   it("exports Synology Chat helpers", async () => {
-    const synologyChatSdk = await import("openclaw/plugin-sdk/synology-chat");
+    const synologyChatSdk = await import("openbz/plugin-sdk/synology-chat");
     expect(typeof synologyChatSdk.synologyChatSetupWizard).toBe("object");
     expect(typeof synologyChatSdk.synologyChatSetupAdapter).toBe("object");
   });
 
   it("exports Zalouser helpers", async () => {
-    const zalouserSdk = await import("openclaw/plugin-sdk/zalouser");
+    const zalouserSdk = await import("openbz/plugin-sdk/zalouser");
     expect(typeof zalouserSdk.zalouserSetupWizard).toBe("object");
     expect(typeof zalouserSdk.zalouserSetupAdapter).toBe("object");
   });
 
   it("exports Tlon helpers", async () => {
-    const tlonSdk = await import("openclaw/plugin-sdk/tlon");
+    const tlonSdk = await import("openbz/plugin-sdk/tlon");
     expect(typeof tlonSdk.fetchWithSsrFGuard).toBe("function");
     expect(typeof tlonSdk.tlonSetupWizard).toBe("object");
     expect(typeof tlonSdk.tlonSetupAdapter).toBe("object");
   });
 
   it("exports acpx helpers", async () => {
-    const acpxSdk = await import("openclaw/plugin-sdk/acpx");
+    const acpxSdk = await import("openbz/plugin-sdk/acpx");
     expect(typeof acpxSdk.listKnownProviderAuthEnvVarNames).toBe("function");
     expect(typeof acpxSdk.omitEnvKeysCaseInsensitive).toBe("function");
   });
@@ -238,26 +238,26 @@ describe("plugin-sdk subpath exports", () => {
   });
 
   it("keeps the newly added bundled plugin-sdk contracts available", async () => {
-    const bluebubbles = await import("openclaw/plugin-sdk/bluebubbles");
+    const bluebubbles = await import("openbz/plugin-sdk/bluebubbles");
     expect(typeof bluebubbles.parseFiniteNumber).toBe("function");
 
-    const matrix = await import("openclaw/plugin-sdk/matrix");
+    const matrix = await import("openbz/plugin-sdk/matrix");
     expect(typeof matrix.matrixSetupWizard).toBe("object");
     expect(typeof matrix.matrixSetupAdapter).toBe("object");
 
-    const mattermost = await import("openclaw/plugin-sdk/mattermost");
+    const mattermost = await import("openbz/plugin-sdk/mattermost");
     expect(typeof mattermost.parseStrictPositiveInteger).toBe("function");
 
-    const nextcloudTalk = await import("openclaw/plugin-sdk/nextcloud-talk");
+    const nextcloudTalk = await import("openbz/plugin-sdk/nextcloud-talk");
     expect(typeof nextcloudTalk.waitForAbortSignal).toBe("function");
 
-    const twitch = await import("openclaw/plugin-sdk/twitch");
+    const twitch = await import("openbz/plugin-sdk/twitch");
     expect(typeof twitch.DEFAULT_ACCOUNT_ID).toBe("string");
     expect(typeof twitch.normalizeAccountId).toBe("function");
     expect(typeof twitch.twitchSetupWizard).toBe("object");
     expect(typeof twitch.twitchSetupAdapter).toBe("object");
 
-    const zalo = await import("openclaw/plugin-sdk/zalo");
+    const zalo = await import("openbz/plugin-sdk/zalo");
     expect(typeof zalo.resolveClientIp).toBe("function");
   });
 });

@@ -1,40 +1,40 @@
 import { ChannelType, type RequestClient } from "@buape/carbon";
-import { resolveAckReaction, resolveHumanDelayConfig } from "openclaw/plugin-sdk/agent-runtime";
-import { EmbeddedBlockChunker } from "openclaw/plugin-sdk/agent-runtime";
-import { shouldAckReaction as shouldAckReactionGate } from "openclaw/plugin-sdk/channel-runtime";
-import { logTypingFailure, logAckFailure } from "openclaw/plugin-sdk/channel-runtime";
-import { createReplyPrefixOptions } from "openclaw/plugin-sdk/channel-runtime";
-import { recordInboundSession } from "openclaw/plugin-sdk/channel-runtime";
+import { resolveAckReaction, resolveHumanDelayConfig } from "openbz/plugin-sdk/agent-runtime";
+import { EmbeddedBlockChunker } from "openbz/plugin-sdk/agent-runtime";
+import { shouldAckReaction as shouldAckReactionGate } from "openbz/plugin-sdk/channel-runtime";
+import { logTypingFailure, logAckFailure } from "openbz/plugin-sdk/channel-runtime";
+import { createReplyPrefixOptions } from "openbz/plugin-sdk/channel-runtime";
+import { recordInboundSession } from "openbz/plugin-sdk/channel-runtime";
 import {
   createStatusReactionController,
   DEFAULT_TIMING,
   type StatusReactionAdapter,
-} from "openclaw/plugin-sdk/channel-runtime";
-import { createTypingCallbacks } from "openclaw/plugin-sdk/channel-runtime";
-import { isDangerousNameMatchingEnabled } from "openclaw/plugin-sdk/config-runtime";
-import { resolveDiscordPreviewStreamMode } from "openclaw/plugin-sdk/config-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { readSessionUpdatedAt, resolveStorePath } from "openclaw/plugin-sdk/config-runtime";
-import { getAgentScopedMediaLocalRoots } from "openclaw/plugin-sdk/media-runtime";
-import { resolveChunkMode } from "openclaw/plugin-sdk/reply-runtime";
-import { dispatchInboundMessage } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/channel-runtime";
+import { createTypingCallbacks } from "openbz/plugin-sdk/channel-runtime";
+import { isDangerousNameMatchingEnabled } from "openbz/plugin-sdk/config-runtime";
+import { resolveDiscordPreviewStreamMode } from "openbz/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "openbz/plugin-sdk/config-runtime";
+import { readSessionUpdatedAt, resolveStorePath } from "openbz/plugin-sdk/config-runtime";
+import { getAgentScopedMediaLocalRoots } from "openbz/plugin-sdk/media-runtime";
+import { resolveChunkMode } from "openbz/plugin-sdk/reply-runtime";
+import { dispatchInboundMessage } from "openbz/plugin-sdk/reply-runtime";
 import {
   formatInboundEnvelope,
   resolveEnvelopeFormatOptions,
-} from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
 import {
   buildPendingHistoryContextFromMap,
   clearHistoryEntriesIfEnabled,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { finalizeInboundContext } from "openclaw/plugin-sdk/reply-runtime";
-import { createReplyDispatcherWithTyping } from "openclaw/plugin-sdk/reply-runtime";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
-import { buildAgentSessionKey } from "openclaw/plugin-sdk/routing";
-import { resolveThreadSessionKeys } from "openclaw/plugin-sdk/routing";
-import { danger, logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { convertMarkdownTables } from "openclaw/plugin-sdk/text-runtime";
-import { stripReasoningTagsFromText } from "openclaw/plugin-sdk/text-runtime";
-import { truncateUtf16Safe } from "openclaw/plugin-sdk/text-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
+import { finalizeInboundContext } from "openbz/plugin-sdk/reply-runtime";
+import { createReplyDispatcherWithTyping } from "openbz/plugin-sdk/reply-runtime";
+import type { ReplyPayload } from "openbz/plugin-sdk/reply-runtime";
+import { buildAgentSessionKey } from "openbz/plugin-sdk/routing";
+import { resolveThreadSessionKeys } from "openbz/plugin-sdk/routing";
+import { danger, logVerbose, shouldLogVerbose } from "openbz/plugin-sdk/runtime-env";
+import { convertMarkdownTables } from "openbz/plugin-sdk/text-runtime";
+import { stripReasoningTagsFromText } from "openbz/plugin-sdk/text-runtime";
+import { truncateUtf16Safe } from "openbz/plugin-sdk/text-runtime";
 import { resolveDiscordMaxLinesPerMessage } from "../accounts.js";
 import { chunkDiscordTextWithMode } from "../chunk.js";
 import { resolveDiscordDraftStreamingChunking } from "../draft-chunking.js";

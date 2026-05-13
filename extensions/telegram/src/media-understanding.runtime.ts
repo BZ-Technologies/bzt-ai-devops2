@@ -1,1 +1,1 @@
-export { describeImageWithModel, transcribeFirstAudio } from "openclaw/plugin-sdk/media-runtime";
+export { describeImageWithModel, transcribeFirstAudio } from "openbz/plugin-sdk/media-runtime";

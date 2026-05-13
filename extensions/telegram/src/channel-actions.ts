@@ -3,21 +3,21 @@ import {
   readStringArrayParam,
   readStringOrNumberParam,
   readStringParam,
-} from "openclaw/plugin-sdk/agent-runtime";
-import { handleTelegramAction } from "openclaw/plugin-sdk/agent-runtime";
-import { readBooleanParam } from "openclaw/plugin-sdk/boolean-param";
-import { resolveReactionMessageId } from "openclaw/plugin-sdk/channel-runtime";
+} from "openbz/plugin-sdk/agent-runtime";
+import { handleTelegramAction } from "openbz/plugin-sdk/agent-runtime";
+import { readBooleanParam } from "openbz/plugin-sdk/boolean-param";
+import { resolveReactionMessageId } from "openbz/plugin-sdk/channel-runtime";
 import {
   createUnionActionGate,
   listTokenSourcedAccounts,
-} from "openclaw/plugin-sdk/channel-runtime";
+} from "openbz/plugin-sdk/channel-runtime";
 import type {
   ChannelMessageActionAdapter,
   ChannelMessageActionName,
-} from "openclaw/plugin-sdk/channel-runtime";
-import type { TelegramActionConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveTelegramPollVisibility } from "openclaw/plugin-sdk/telegram";
-import { extractToolSend } from "openclaw/plugin-sdk/tool-send";
+} from "openbz/plugin-sdk/channel-runtime";
+import type { TelegramActionConfig } from "openbz/plugin-sdk/config-runtime";
+import { resolveTelegramPollVisibility } from "openbz/plugin-sdk/telegram";
+import { extractToolSend } from "openbz/plugin-sdk/tool-send";
 import {
   createTelegramActionGate,
   listEnabledTelegramAccounts,

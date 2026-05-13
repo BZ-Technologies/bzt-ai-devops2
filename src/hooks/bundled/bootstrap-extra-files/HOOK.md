@@ -1,15 +1,15 @@
 ---
 name: bootstrap-extra-files
 description: "Inject additional workspace bootstrap files via glob/path patterns"
-homepage: https://docs.openclaw.ai/automation/hooks#bootstrap-extra-files
+homepage: https://docs.openbz.ai/automation/hooks#bootstrap-extra-files
 metadata:
   {
-    "openclaw":
+    "openbz":
       {
         "emoji": "📎",
         "events": ["agent:bootstrap"],
         "requires": { "config": ["workspace.dir"] },
-        "install": [{ "id": "bundled", "kind": "bundled", "label": "Bundled with OpenClaw" }],
+        "install": [{ "id": "bundled", "kind": "bundled", "label": "Bundled with BZ AI DevOps2" }],
       },
   }
 ---

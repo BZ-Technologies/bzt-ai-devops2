@@ -1,33 +1,33 @@
 import type { Bot, Context } from "grammy";
-import { resolveCommandAuthorizedFromAuthorizers } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveNativeCommandSessionTargets } from "openclaw/plugin-sdk/channel-runtime";
-import { createReplyPrefixOptions } from "openclaw/plugin-sdk/channel-runtime";
-import { recordInboundSessionMetaSafe } from "openclaw/plugin-sdk/channel-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { ChannelGroupPolicy } from "openclaw/plugin-sdk/config-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
+import { resolveCommandAuthorizedFromAuthorizers } from "openbz/plugin-sdk/channel-runtime";
+import { resolveNativeCommandSessionTargets } from "openbz/plugin-sdk/channel-runtime";
+import { createReplyPrefixOptions } from "openbz/plugin-sdk/channel-runtime";
+import { recordInboundSessionMetaSafe } from "openbz/plugin-sdk/channel-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import type { ChannelGroupPolicy } from "openbz/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "openbz/plugin-sdk/config-runtime";
 import {
   normalizeTelegramCommandName,
   resolveTelegramCustomCommands,
   TELEGRAM_COMMAND_NAME_PATTERN,
-} from "openclaw/plugin-sdk/config-runtime";
+} from "openbz/plugin-sdk/config-runtime";
 import type {
   ReplyToMode,
   TelegramAccountConfig,
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "openclaw/plugin-sdk/config-runtime";
-import { ensureConfiguredAcpRouteReady } from "openclaw/plugin-sdk/conversation-runtime";
-import { getAgentScopedMediaLocalRoots } from "openclaw/plugin-sdk/media-runtime";
+} from "openbz/plugin-sdk/config-runtime";
+import { ensureConfiguredAcpRouteReady } from "openbz/plugin-sdk/conversation-runtime";
+import { getAgentScopedMediaLocalRoots } from "openbz/plugin-sdk/media-runtime";
 import {
   executePluginCommand,
   getPluginCommandSpecs,
   matchPluginCommand,
-} from "openclaw/plugin-sdk/plugin-runtime";
-import { resolveChunkMode } from "openclaw/plugin-sdk/reply-runtime";
-import { resolveCommandAuthorization } from "openclaw/plugin-sdk/reply-runtime";
-import type { CommandArgs } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/plugin-runtime";
+import { resolveChunkMode } from "openbz/plugin-sdk/reply-runtime";
+import { resolveCommandAuthorization } from "openbz/plugin-sdk/reply-runtime";
+import type { CommandArgs } from "openbz/plugin-sdk/reply-runtime";
 import {
   buildCommandTextFromArgs,
   findCommandByNativeName,
@@ -35,15 +35,15 @@ import {
   listNativeCommandSpecsForConfig,
   parseCommandArgs,
   resolveCommandArgMenu,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { finalizeInboundContext } from "openclaw/plugin-sdk/reply-runtime";
-import { dispatchReplyWithBufferedBlockDispatcher } from "openclaw/plugin-sdk/reply-runtime";
-import { listSkillCommandsForAgents } from "openclaw/plugin-sdk/reply-runtime";
-import { resolveAgentRoute } from "openclaw/plugin-sdk/routing";
-import { resolveThreadSessionKeys } from "openclaw/plugin-sdk/routing";
-import { danger, logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { getChildLogger } from "openclaw/plugin-sdk/runtime-env";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+} from "openbz/plugin-sdk/reply-runtime";
+import { finalizeInboundContext } from "openbz/plugin-sdk/reply-runtime";
+import { dispatchReplyWithBufferedBlockDispatcher } from "openbz/plugin-sdk/reply-runtime";
+import { listSkillCommandsForAgents } from "openbz/plugin-sdk/reply-runtime";
+import { resolveAgentRoute } from "openbz/plugin-sdk/routing";
+import { resolveThreadSessionKeys } from "openbz/plugin-sdk/routing";
+import { danger, logVerbose } from "openbz/plugin-sdk/runtime-env";
+import { getChildLogger } from "openbz/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
 import { withTelegramApiErrorLogging } from "./api-logging.js";
 import { isSenderAllowed, normalizeDmAllowFromWithStore } from "./bot-access.js";
 import type { TelegramMediaRef } from "./bot-message-context.js";
@@ -90,7 +90,7 @@ type TelegramCommandAuthResult = {
 };
 
 export type RegisterTelegramHandlerParams = {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId: string;
   bot: Bot;
   mediaMaxBytes: number;
@@ -121,7 +121,7 @@ export type RegisterTelegramHandlerParams = {
 
 export type RegisterTelegramNativeCommandsParams = {
   bot: Bot;
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   runtime: RuntimeEnv;
   accountId: string;
   telegramCfg: TelegramAccountConfig;
@@ -145,7 +145,7 @@ export type RegisterTelegramNativeCommandsParams = {
 async function resolveTelegramCommandAuth(params: {
   msg: NonNullable<TelegramNativeCommandContext["message"]>;
   bot: Bot;
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId: string;
   telegramCfg: TelegramAccountConfig;
   allowFrom?: Array<string | number>;

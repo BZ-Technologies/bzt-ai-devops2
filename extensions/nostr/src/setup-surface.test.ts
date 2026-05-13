@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/nostr";
+import type { OpenBZConfig } from "openbz/plugin-sdk/nostr";
 import { describe, expect, it, vi } from "vitest";
 import { buildChannelSetupWizardAdapterFromSetupWizard } from "../../../src/channels/plugins/setup-wizard.js";
 import type { WizardPrompter } from "../../../src/wizard/prompts.js";
@@ -45,7 +45,7 @@ describe("nostr setup wizard", () => {
     });
 
     const result = await nostrConfigureAdapter.configure({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as OpenBZConfig,
       runtime: createRuntimeEnv(),
       prompter,
       options: {},

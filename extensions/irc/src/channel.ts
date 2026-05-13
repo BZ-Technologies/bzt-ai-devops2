@@ -1,10 +1,10 @@
-import { formatNormalizedAllowFromEntries } from "openclaw/plugin-sdk/allow-from";
-import { createScopedAccountConfigAccessors } from "openclaw/plugin-sdk/channel-config-helpers";
+import { formatNormalizedAllowFromEntries } from "openbz/plugin-sdk/allow-from";
+import { createScopedAccountConfigAccessors } from "openbz/plugin-sdk/channel-config-helpers";
 import {
   buildAccountScopedDmSecurityPolicy,
   buildOpenGroupPolicyWarning,
   collectAllowlistProviderGroupPolicyWarnings,
-} from "openclaw/plugin-sdk/channel-policy";
+} from "openbz/plugin-sdk/channel-policy";
 import {
   buildBaseAccountStatusSnapshot,
   buildBaseChannelStatusSummary,
@@ -16,7 +16,7 @@ import {
   PAIRING_APPROVED_MESSAGE,
   setAccountEnabledInConfigSection,
   type ChannelPlugin,
-} from "openclaw/plugin-sdk/irc";
+} from "openbz/plugin-sdk/irc";
 import { runStoppablePassiveMonitor } from "../../shared/passive-monitor.js";
 import {
   listIrcAccountIds,

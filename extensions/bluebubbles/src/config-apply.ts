@@ -1,4 +1,4 @@
-import { DEFAULT_ACCOUNT_ID, type OpenClawConfig } from "openclaw/plugin-sdk/bluebubbles";
+import { DEFAULT_ACCOUNT_ID, type OpenBZConfig } from "openbz/plugin-sdk/bluebubbles";
 
 type BlueBubblesConfigPatch = {
   serverUrl?: string;
@@ -29,12 +29,12 @@ function normalizePatch(
 }
 
 export function applyBlueBubblesConnectionConfig(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId: string;
   patch: BlueBubblesConfigPatch;
   onlyDefinedFields?: boolean;
   accountEnabled?: AccountEnabledMode;
-}): OpenClawConfig {
+}): OpenBZConfig {
   const patch = normalizePatch(params.patch, params.onlyDefinedFields === true);
   if (params.accountId === DEFAULT_ACCOUNT_ID) {
     return {

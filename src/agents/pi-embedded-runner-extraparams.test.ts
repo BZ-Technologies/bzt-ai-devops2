@@ -1159,8 +1159,8 @@ describe("applyExtraParamsToAgent", () => {
 
     expect(calls).toHaveLength(1);
     expect(calls[0]?.headers).toEqual({
-      "HTTP-Referer": "https://openclaw.ai",
-      "X-OpenRouter-Title": "OpenClaw",
+      "HTTP-Referer": "https://openbz.ai",
+      "X-OpenRouter-Title": "BZ AI DevOps2",
       "X-OpenRouter-Categories": "cli-agent",
       "X-Custom": "1",
     });

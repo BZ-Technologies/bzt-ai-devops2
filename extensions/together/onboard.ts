@@ -2,16 +2,16 @@ import {
   buildTogetherModelDefinition,
   TOGETHER_BASE_URL,
   TOGETHER_MODEL_CATALOG,
-} from "openclaw/plugin-sdk/provider-models";
+} from "openbz/plugin-sdk/provider-models";
 import {
   applyAgentDefaultModelPrimary,
   applyProviderConfigWithModelCatalog,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/provider-onboard";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/provider-onboard";
 
 export const TOGETHER_DEFAULT_MODEL_REF = "together/moonshotai/Kimi-K2.5";
 
-export function applyTogetherProviderConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyTogetherProviderConfig(cfg: OpenBZConfig): OpenBZConfig {
   const models = { ...cfg.agents?.defaults?.models };
   models[TOGETHER_DEFAULT_MODEL_REF] = {
     ...models[TOGETHER_DEFAULT_MODEL_REF],
@@ -27,7 +27,7 @@ export function applyTogetherProviderConfig(cfg: OpenClawConfig): OpenClawConfig
   });
 }
 
-export function applyTogetherConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyTogetherConfig(cfg: OpenBZConfig): OpenBZConfig {
   return applyAgentDefaultModelPrimary(
     applyTogetherProviderConfig(cfg),
     TOGETHER_DEFAULT_MODEL_REF,

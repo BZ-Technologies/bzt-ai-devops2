@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/mistral-provider",
+  "name": "@openbz/mistral-provider",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw Mistral provider plugin",
+  "description": "BZ AI DevOps2 Mistral provider plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ]

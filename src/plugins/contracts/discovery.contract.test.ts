@@ -21,8 +21,8 @@ vi.mock("../../../extensions/github-copilot/token.js", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/provider-setup", async () => {
-  const actual = await vi.importActual<object>("openclaw/plugin-sdk/provider-setup");
+vi.mock("openbz/plugin-sdk/provider-setup", async () => {
+  const actual = await vi.importActual<object>("openbz/plugin-sdk/provider-setup");
   return {
     ...actual,
     buildOllamaProvider: (...args: unknown[]) => buildOllamaProviderMock(...args),
@@ -31,8 +31,8 @@ vi.mock("openclaw/plugin-sdk/provider-setup", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/self-hosted-provider-setup", async () => {
-  const actual = await vi.importActual<object>("openclaw/plugin-sdk/self-hosted-provider-setup");
+vi.mock("openbz/plugin-sdk/self-hosted-provider-setup", async () => {
+  const actual = await vi.importActual<object>("openbz/plugin-sdk/self-hosted-provider-setup");
   return {
     ...actual,
     buildVllmProvider: (...args: unknown[]) => buildVllmProviderMock(...args),
@@ -40,8 +40,8 @@ vi.mock("openclaw/plugin-sdk/self-hosted-provider-setup", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/ollama-setup", async () => {
-  const actual = await vi.importActual<object>("openclaw/plugin-sdk/ollama-setup");
+vi.mock("openbz/plugin-sdk/ollama-setup", async () => {
+  const actual = await vi.importActual<object>("openbz/plugin-sdk/ollama-setup");
   return {
     ...actual,
     buildOllamaProvider: (...args: unknown[]) => buildOllamaProviderMock(...args),

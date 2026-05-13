@@ -3,14 +3,14 @@ import os from "node:os";
 import path from "node:path";
 import {
   emptyPluginConfigSchema,
-  type OpenClawPluginApi,
+  type OpenBZPluginApi,
   type ProviderAuthContext,
   type ProviderAuthMethod,
   type ProviderAuthMethodNonInteractiveContext,
   type ProviderResolveDynamicModelContext,
   type ProviderRuntimeModel,
-} from "openclaw/plugin-sdk/core";
-import { resolveRequiredHomeDir } from "openclaw/plugin-sdk/infra-runtime";
+} from "openbz/plugin-sdk/core";
+import { resolveRequiredHomeDir } from "openbz/plugin-sdk/infra-runtime";
 import {
   applyAuthProfileConfig,
   buildApiKeyCredential,
@@ -20,10 +20,10 @@ import {
   type SecretInput,
   upsertAuthProfile,
   validateApiKeyInput,
-} from "openclaw/plugin-sdk/provider-auth";
-import { DEFAULT_CONTEXT_TOKENS, normalizeModelCompat } from "openclaw/plugin-sdk/provider-models";
-import { createZaiToolStreamWrapper } from "openclaw/plugin-sdk/provider-stream";
-import { fetchZaiUsage } from "openclaw/plugin-sdk/provider-usage";
+} from "openbz/plugin-sdk/provider-auth";
+import { DEFAULT_CONTEXT_TOKENS, normalizeModelCompat } from "openbz/plugin-sdk/provider-models";
+import { createZaiToolStreamWrapper } from "openbz/plugin-sdk/provider-stream";
+import { fetchZaiUsage } from "openbz/plugin-sdk/provider-usage";
 import { detectZaiEndpoint, type ZaiEndpointId } from "./detect.js";
 import { zaiMediaUnderstandingProvider } from "./media-understanding-provider.js";
 import { applyZaiConfig, applyZaiProviderConfig, ZAI_DEFAULT_MODEL_REF } from "./onboard.js";
@@ -256,7 +256,7 @@ const zaiPlugin = {
   name: "Z.AI Provider",
   description: "Bundled Z.AI provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "Z.AI",

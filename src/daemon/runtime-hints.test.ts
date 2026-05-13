@@ -7,15 +7,15 @@ describe("buildPlatformRuntimeLogHints", () => {
       buildPlatformRuntimeLogHints({
         platform: "darwin",
         env: {
-          OPENCLAW_STATE_DIR: "/tmp/openclaw-state",
-          OPENCLAW_LOG_PREFIX: "gateway",
+          OPENBZ_STATE_DIR: "/tmp/openbz-state",
+          OPENBZ_LOG_PREFIX: "gateway",
         },
-        systemdServiceName: "openclaw-gateway",
-        windowsTaskName: "OpenClaw Gateway",
+        systemdServiceName: "openbz-gateway",
+        windowsTaskName: "BZ AI DevOps2 Gateway",
       }),
     ).toEqual([
-      "Launchd stdout (if installed): /tmp/openclaw-state/logs/gateway.log",
-      "Launchd stderr (if installed): /tmp/openclaw-state/logs/gateway.err.log",
+      "Launchd stdout (if installed): /tmp/openbz-state/logs/gateway.log",
+      "Launchd stderr (if installed): /tmp/openbz-state/logs/gateway.err.log",
     ]);
   });
 
@@ -23,17 +23,17 @@ describe("buildPlatformRuntimeLogHints", () => {
     expect(
       buildPlatformRuntimeLogHints({
         platform: "linux",
-        systemdServiceName: "openclaw-gateway",
-        windowsTaskName: "OpenClaw Gateway",
+        systemdServiceName: "openbz-gateway",
+        windowsTaskName: "BZ AI DevOps2 Gateway",
       }),
-    ).toEqual(["Logs: journalctl --user -u openclaw-gateway.service -n 200 --no-pager"]);
+    ).toEqual(["Logs: journalctl --user -u openbz-gateway.service -n 200 --no-pager"]);
     expect(
       buildPlatformRuntimeLogHints({
         platform: "win32",
-        systemdServiceName: "openclaw-gateway",
-        windowsTaskName: "OpenClaw Gateway",
+        systemdServiceName: "openbz-gateway",
+        windowsTaskName: "BZ AI DevOps2 Gateway",
       }),
-    ).toEqual(['Logs: schtasks /Query /TN "OpenClaw Gateway" /V /FO LIST']);
+    ).toEqual(['Logs: schtasks /Query /TN "BZ AI DevOps2 Gateway" /V /FO LIST']);
   });
 });
 
@@ -42,30 +42,30 @@ describe("buildPlatformServiceStartHints", () => {
     expect(
       buildPlatformServiceStartHints({
         platform: "darwin",
-        installCommand: "openclaw gateway install",
-        startCommand: "openclaw gateway",
-        launchAgentPlistPath: "~/Library/LaunchAgents/com.openclaw.gateway.plist",
-        systemdServiceName: "openclaw-gateway",
-        windowsTaskName: "OpenClaw Gateway",
+        installCommand: "openbz gateway install",
+        startCommand: "openbz gateway",
+        launchAgentPlistPath: "~/Library/LaunchAgents/com.openbz.gateway.plist",
+        systemdServiceName: "openbz-gateway",
+        windowsTaskName: "BZ AI DevOps2 Gateway",
       }),
     ).toEqual([
-      "openclaw gateway install",
-      "openclaw gateway",
-      "launchctl bootstrap gui/$UID ~/Library/LaunchAgents/com.openclaw.gateway.plist",
+      "openbz gateway install",
+      "openbz gateway",
+      "launchctl bootstrap gui/$UID ~/Library/LaunchAgents/com.openbz.gateway.plist",
     ]);
     expect(
       buildPlatformServiceStartHints({
         platform: "linux",
-        installCommand: "openclaw gateway install",
-        startCommand: "openclaw gateway",
-        launchAgentPlistPath: "~/Library/LaunchAgents/com.openclaw.gateway.plist",
-        systemdServiceName: "openclaw-gateway",
-        windowsTaskName: "OpenClaw Gateway",
+        installCommand: "openbz gateway install",
+        startCommand: "openbz gateway",
+        launchAgentPlistPath: "~/Library/LaunchAgents/com.openbz.gateway.plist",
+        systemdServiceName: "openbz-gateway",
+        windowsTaskName: "BZ AI DevOps2 Gateway",
       }),
     ).toEqual([
-      "openclaw gateway install",
-      "openclaw gateway",
-      "systemctl --user start openclaw-gateway.service",
+      "openbz gateway install",
+      "openbz gateway",
+      "systemctl --user start openbz-gateway.service",
     ]);
   });
 });

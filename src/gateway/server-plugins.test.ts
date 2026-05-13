@@ -4,7 +4,7 @@ import type { PluginRuntime } from "../plugins/runtime/types.js";
 import type { PluginDiagnostic } from "../plugins/types.js";
 import type { GatewayRequestContext, GatewayRequestOptions } from "./server-methods/types.js";
 
-const loadOpenClawPlugins = vi.hoisted(() => vi.fn());
+const loadOpenBZPlugins = vi.hoisted(() => vi.fn());
 type HandleGatewayRequestOptions = GatewayRequestOptions & {
   extraHandlers?: Record<string, unknown>;
 };
@@ -13,7 +13,7 @@ const handleGatewayRequest = vi.hoisted(() =>
 );
 
 vi.mock("../plugins/loader.js", () => ({
-  loadOpenClawPlugins,
+  loadOpenBZPlugins,
 }));
 
 vi.mock("./server-methods.js", () => ({
@@ -64,7 +64,7 @@ async function createSubagentRuntime(
     error: vi.fn(),
     debug: vi.fn(),
   };
-  loadOpenClawPlugins.mockReturnValue(createRegistry([]));
+  loadOpenBZPlugins.mockReturnValue(createRegistry([]));
   serverPlugins.loadGatewayPlugins({
     cfg: {},
     workspaceDir: "/tmp",
@@ -72,7 +72,7 @@ async function createSubagentRuntime(
     coreGatewayHandlers: {},
     baseMethods: [],
   });
-  const call = loadOpenClawPlugins.mock.calls.at(-1)?.[0] as
+  const call = loadOpenBZPlugins.mock.calls.at(-1)?.[0] as
     | { runtimeOptions?: { allowGatewaySubagentBinding?: boolean } }
     | undefined;
   if (call?.runtimeOptions?.allowGatewaySubagentBinding !== true) {
@@ -83,7 +83,7 @@ async function createSubagentRuntime(
 }
 
 beforeEach(async () => {
-  loadOpenClawPlugins.mockReset();
+  loadOpenBZPlugins.mockReset();
   handleGatewayRequest.mockReset();
   const runtimeModule = await import("../plugins/runtime/index.js");
   runtimeModule.clearGatewaySubagentRuntime();
@@ -124,7 +124,7 @@ describe("loadGatewayPlugins", () => {
         message: "failed to load plugin: boom",
       },
     ];
-    loadOpenClawPlugins.mockReturnValue(createRegistry(diagnostics));
+    loadOpenBZPlugins.mockReturnValue(createRegistry(diagnostics));
 
     const log = {
       info: vi.fn(),
@@ -149,7 +149,7 @@ describe("loadGatewayPlugins", () => {
 
   test("provides subagent runtime with sessions.get method aliases", async () => {
     const { loadGatewayPlugins } = await importServerPluginsModule();
-    loadOpenClawPlugins.mockReturnValue(createRegistry([]));
+    loadOpenBZPlugins.mockReturnValue(createRegistry([]));
 
     const log = {
       info: vi.fn(),
@@ -166,7 +166,7 @@ describe("loadGatewayPlugins", () => {
       baseMethods: [],
     });
 
-    const call = loadOpenClawPlugins.mock.calls.at(-1)?.[0] as
+    const call = loadOpenBZPlugins.mock.calls.at(-1)?.[0] as
       | { runtimeOptions?: { allowGatewaySubagentBinding?: boolean } }
       | undefined;
     expect(call?.runtimeOptions?.allowGatewaySubagentBinding).toBe(true);
@@ -180,7 +180,7 @@ describe("loadGatewayPlugins", () => {
 
   test("can prefer setup-runtime channel plugins during startup loads", async () => {
     const { loadGatewayPlugins } = await importServerPluginsModule();
-    loadOpenClawPlugins.mockReturnValue(createRegistry([]));
+    loadOpenBZPlugins.mockReturnValue(createRegistry([]));
 
     const log = {
       info: vi.fn(),
@@ -198,7 +198,7 @@ describe("loadGatewayPlugins", () => {
       preferSetupRuntimeForChannelPlugins: true,
     });
 
-    expect(loadOpenClawPlugins).toHaveBeenCalledWith(
+    expect(loadOpenBZPlugins).toHaveBeenCalledWith(
       expect.objectContaining({
         preferSetupRuntimeForChannelPlugins: true,
       }),
@@ -215,7 +215,7 @@ describe("loadGatewayPlugins", () => {
         message: "failed to load plugin: boom",
       },
     ];
-    loadOpenClawPlugins.mockReturnValue(createRegistry(diagnostics));
+    loadOpenBZPlugins.mockReturnValue(createRegistry(diagnostics));
 
     const log = {
       info: vi.fn(),

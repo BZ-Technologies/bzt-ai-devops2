@@ -1,5 +1,5 @@
-import type { PluginRuntime } from "openclaw/plugin-sdk/nostr";
-import { createPluginRuntimeStore } from "openclaw/plugin-sdk/runtime-store";
+import type { PluginRuntime } from "openbz/plugin-sdk/nostr";
+import { createPluginRuntimeStore } from "openbz/plugin-sdk/runtime-store";
 
 const { setRuntime: setNostrRuntime, getRuntime: getNostrRuntime } =
   createPluginRuntimeStore<PluginRuntime>("Nostr runtime not initialized");

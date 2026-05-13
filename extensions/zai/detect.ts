@@ -2,7 +2,7 @@ import {
   detectZaiEndpoint as detectZaiEndpointCore,
   type ZaiDetectedEndpoint,
   type ZaiEndpointId,
-} from "openclaw/plugin-sdk/zai";
+} from "openbz/plugin-sdk/zai";
 
 type DetectZaiEndpointFn = typeof detectZaiEndpointCore;
 

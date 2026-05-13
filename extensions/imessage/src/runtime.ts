@@ -1,5 +1,5 @@
-import type { PluginRuntime } from "openclaw/plugin-sdk/core";
-import { createPluginRuntimeStore } from "openclaw/plugin-sdk/runtime-store";
+import type { PluginRuntime } from "openbz/plugin-sdk/core";
+import { createPluginRuntimeStore } from "openbz/plugin-sdk/runtime-store";
 
 const { setRuntime: setIMessageRuntime, getRuntime: getIMessageRuntime } =
   createPluginRuntimeStore<PluginRuntime>("iMessage runtime not initialized");

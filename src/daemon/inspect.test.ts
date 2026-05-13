@@ -44,15 +44,15 @@ describe("findExtraGatewayServices (win32)", () => {
     expect(result).toEqual([]);
   });
 
-  it("collects only non-openclaw marker tasks from schtasks output", async () => {
+  it("collects only non-openbz marker tasks from schtasks output", async () => {
     execSchtasksMock.mockResolvedValueOnce({
       code: 0,
       stdout: [
-        "TaskName: OpenClaw Gateway",
-        "Task To Run: C:\\Program Files\\OpenClaw\\openclaw.exe gateway run",
+        "TaskName: BZ AI DevOps2 Gateway",
+        "Task To Run: C:\\Program Files\\BZ AI DevOps2\\openbz.exe gateway run",
         "",
-        "TaskName: Clawdbot Legacy",
-        "Task To Run: C:\\clawdbot\\clawdbot.exe run",
+        "TaskName: Bzdbot Legacy",
+        "Task To Run: C:\\bzdbot\\bzdbot.exe run",
         "",
         "TaskName: Other Task",
         "Task To Run: C:\\tools\\helper.exe",
@@ -68,10 +68,10 @@ describe("findExtraGatewayServices (win32)", () => {
     expect(result).toEqual([
       {
         platform: "win32",
-        label: "Clawdbot Legacy",
-        detail: "task: Clawdbot Legacy, run: C:\\clawdbot\\clawdbot.exe run",
+        label: "Bzdbot Legacy",
+        detail: "task: Bzdbot Legacy, run: C:\\bzdbot\\bzdbot.exe run",
         scope: "system",
-        marker: "clawdbot",
+        marker: "bzdbot",
         legacy: true,
       },
       {

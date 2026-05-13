@@ -1,12 +1,12 @@
-import { formatAllowFromLowercase } from "openclaw/plugin-sdk/allow-from";
+import { formatAllowFromLowercase } from "openbz/plugin-sdk/allow-from";
 import {
   createScopedAccountConfigAccessors,
   createScopedChannelConfigBase,
-} from "openclaw/plugin-sdk/channel-config-helpers";
+} from "openbz/plugin-sdk/channel-config-helpers";
 import { buildChannelConfigSchema } from "../../../src/channels/plugins/config-schema.js";
 import type { ChannelPlugin } from "../../../src/channels/plugins/types.plugin.js";
 import { getChatChannelMeta } from "../../../src/channels/registry.js";
-import type { OpenClawConfig } from "../../../src/config/config.js";
+import type { OpenBZConfig } from "../../../src/config/config.js";
 import { TelegramConfigSchema } from "../../../src/config/zod-schema.providers-core.js";
 import { normalizeAccountId } from "../../../src/routing/session-key.js";
 import { inspectTelegramAccount } from "./account-inspect.js";
@@ -20,7 +20,7 @@ import {
 export const TELEGRAM_CHANNEL = "telegram" as const;
 
 export function findTelegramTokenOwnerAccountId(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId: string;
 }): string | null {
   const normalizedAccountId = normalizeAccountId(params.accountId);

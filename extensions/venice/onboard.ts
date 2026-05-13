@@ -3,16 +3,16 @@ import {
   VENICE_BASE_URL,
   VENICE_DEFAULT_MODEL_REF,
   VENICE_MODEL_CATALOG,
-} from "openclaw/plugin-sdk/provider-models";
+} from "openbz/plugin-sdk/provider-models";
 import {
   applyAgentDefaultModelPrimary,
   applyProviderConfigWithModelCatalog,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/provider-onboard";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/provider-onboard";
 
 export { VENICE_DEFAULT_MODEL_REF };
 
-export function applyVeniceProviderConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyVeniceProviderConfig(cfg: OpenBZConfig): OpenBZConfig {
   const models = { ...cfg.agents?.defaults?.models };
   models[VENICE_DEFAULT_MODEL_REF] = {
     ...models[VENICE_DEFAULT_MODEL_REF],
@@ -28,6 +28,6 @@ export function applyVeniceProviderConfig(cfg: OpenClawConfig): OpenClawConfig {
   });
 }
 
-export function applyVeniceConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyVeniceConfig(cfg: OpenBZConfig): OpenBZConfig {
   return applyAgentDefaultModelPrimary(applyVeniceProviderConfig(cfg), VENICE_DEFAULT_MODEL_REF);
 }

@@ -1,6 +1,6 @@
-import { emptyPluginConfigSchema, type OpenClawPluginApi } from "openclaw/plugin-sdk/core";
-import { createProviderApiKeyAuthMethod } from "openclaw/plugin-sdk/provider-auth";
-import { ensureModelAllowlistEntry } from "openclaw/plugin-sdk/provider-onboard";
+import { emptyPluginConfigSchema, type OpenBZPluginApi } from "openbz/plugin-sdk/core";
+import { createProviderApiKeyAuthMethod } from "openbz/plugin-sdk/provider-auth";
+import { ensureModelAllowlistEntry } from "openbz/plugin-sdk/provider-onboard";
 import { buildBytePlusCodingProvider, buildBytePlusProvider } from "./provider-catalog.js";
 
 const PROVIDER_ID = "byteplus";
@@ -11,7 +11,7 @@ const byteplusPlugin = {
   name: "BytePlus Provider",
   description: "Bundled BytePlus provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "BytePlus",

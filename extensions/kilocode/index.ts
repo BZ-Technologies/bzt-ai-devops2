@@ -1,10 +1,10 @@
-import { emptyPluginConfigSchema, type OpenClawPluginApi } from "openclaw/plugin-sdk/core";
-import { createProviderApiKeyAuthMethod } from "openclaw/plugin-sdk/provider-auth";
-import { buildSingleProviderApiKeyCatalog } from "openclaw/plugin-sdk/provider-catalog";
+import { emptyPluginConfigSchema, type OpenBZPluginApi } from "openbz/plugin-sdk/core";
+import { createProviderApiKeyAuthMethod } from "openbz/plugin-sdk/provider-auth";
+import { buildSingleProviderApiKeyCatalog } from "openbz/plugin-sdk/provider-catalog";
 import {
   createKilocodeWrapper,
   isProxyReasoningUnsupported,
-} from "openclaw/plugin-sdk/provider-stream";
+} from "openbz/plugin-sdk/provider-stream";
 import { applyKilocodeConfig, KILOCODE_DEFAULT_MODEL_REF } from "./onboard.js";
 import { buildKilocodeProviderWithDiscovery } from "./provider-catalog.js";
 
@@ -15,7 +15,7 @@ const kilocodePlugin = {
   name: "Kilo Gateway Provider",
   description: "Bundled Kilo Gateway provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "Kilo Gateway",

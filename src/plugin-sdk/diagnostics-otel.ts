@@ -7,7 +7,7 @@ export { registerLogTransport } from "../logging/logger.js";
 export { redactSensitiveText } from "../logging/redact.js";
 export { emptyPluginConfigSchema } from "../plugins/config-schema.js";
 export type {
-  OpenClawPluginApi,
-  OpenClawPluginService,
-  OpenClawPluginServiceContext,
+  OpenBZPluginApi,
+  OpenBZPluginService,
+  OpenBZPluginServiceContext,
 } from "../plugins/types.js";

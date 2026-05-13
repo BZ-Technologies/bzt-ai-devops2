@@ -1,5 +1,5 @@
-import type { OpenClawConfig } from "../config/config.js";
-import { loadOpenClawPlugins } from "../plugins/loader.js";
+import type { OpenBZConfig } from "../config/config.js";
+import { loadOpenBZPlugins } from "../plugins/loader.js";
 import { getActivePluginRegistry } from "../plugins/runtime.js";
 import type { SpeechProviderPlugin } from "../plugins/types.js";
 import type { SpeechProviderId } from "./provider-types.js";
@@ -28,16 +28,16 @@ export function normalizeSpeechProviderId(
   return normalized === "edge" ? "microsoft" : normalized;
 }
 
-function resolveSpeechProviderPluginEntries(cfg?: OpenClawConfig): SpeechProviderPlugin[] {
+function resolveSpeechProviderPluginEntries(cfg?: OpenBZConfig): SpeechProviderPlugin[] {
   const active = getActivePluginRegistry();
   const registry =
     (active?.speechProviders?.length ?? 0) > 0 || !cfg
       ? active
-      : loadOpenClawPlugins({ config: cfg });
+      : loadOpenBZPlugins({ config: cfg });
   return registry?.speechProviders?.map((entry) => entry.provider) ?? [];
 }
 
-function buildProviderMaps(cfg?: OpenClawConfig): {
+function buildProviderMaps(cfg?: OpenBZConfig): {
   canonical: Map<string, SpeechProviderPlugin>;
   aliases: Map<string, SpeechProviderPlugin>;
 } {
@@ -68,13 +68,13 @@ function buildProviderMaps(cfg?: OpenClawConfig): {
   return { canonical, aliases };
 }
 
-export function listSpeechProviders(cfg?: OpenClawConfig): SpeechProviderPlugin[] {
+export function listSpeechProviders(cfg?: OpenBZConfig): SpeechProviderPlugin[] {
   return [...buildProviderMaps(cfg).canonical.values()];
 }
 
 export function getSpeechProvider(
   providerId: string | undefined,
-  cfg?: OpenClawConfig,
+  cfg?: OpenBZConfig,
 ): SpeechProviderPlugin | undefined {
   const normalized = normalizeSpeechProviderId(providerId);
   if (!normalized) {

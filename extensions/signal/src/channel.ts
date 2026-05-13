@@ -1,12 +1,12 @@
-import { buildAccountScopedAllowlistConfigEditor } from "openclaw/plugin-sdk/allowlist-config-edit";
+import { buildAccountScopedAllowlistConfigEditor } from "openbz/plugin-sdk/allowlist-config-edit";
 import {
   buildAccountScopedDmSecurityPolicy,
   collectAllowlistProviderRestrictSendersWarnings,
-} from "openclaw/plugin-sdk/channel-config-helpers";
-import { resolveOutboundSendDep } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { resolveTextChunkLimit } from "openclaw/plugin-sdk/reply-runtime";
-import { buildAgentSessionKey, type RoutePeer } from "openclaw/plugin-sdk/routing";
+} from "openbz/plugin-sdk/channel-config-helpers";
+import { resolveOutboundSendDep } from "openbz/plugin-sdk/channel-runtime";
+import { resolveMarkdownTableMode } from "openbz/plugin-sdk/config-runtime";
+import { resolveTextChunkLimit } from "openbz/plugin-sdk/reply-runtime";
+import { buildAgentSessionKey, type RoutePeer } from "openbz/plugin-sdk/routing";
 import {
   buildBaseAccountStatusSnapshot,
   buildBaseChannelStatusSummary,
@@ -20,7 +20,7 @@ import {
   resolveChannelMediaMaxBytes,
   type ChannelMessageActionAdapter,
   type ChannelPlugin,
-} from "openclaw/plugin-sdk/signal";
+} from "openbz/plugin-sdk/signal";
 import { resolveSignalAccount, type ResolvedSignalAccount } from "./accounts.js";
 import { markdownToSignalTextChunks } from "./format.js";
 import {

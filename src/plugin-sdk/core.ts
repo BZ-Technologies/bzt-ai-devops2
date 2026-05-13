@@ -1,7 +1,7 @@
 export type {
   AnyAgentTool,
   MediaUnderstandingProviderPlugin,
-  OpenClawPluginConfigSchema,
+  OpenBZPluginConfigSchema,
   ProviderDiscoveryContext,
   ProviderCatalogContext,
   ProviderCatalogResult,
@@ -25,14 +25,14 @@ export type {
   SpeechProviderPlugin,
   ProviderThinkingPolicyContext,
   ProviderWrapStreamFnContext,
-  OpenClawPluginService,
+  OpenBZPluginService,
   ProviderAuthContext,
   ProviderAuthDoctorHintContext,
   ProviderAuthMethodNonInteractiveContext,
   ProviderAuthMethod,
   ProviderAuthResult,
 } from "../plugins/types.js";
-export type { OpenClawConfig } from "../config/config.js";
+export type { OpenBZConfig } from "../config/config.js";
 export type { GatewayRequestHandlerOptions } from "../gateway/server-methods/types.js";
 export type {
   ProviderUsageSnapshot,
@@ -41,7 +41,7 @@ export type {
 } from "../infra/provider-usage.types.js";
 export type { ChannelMessageActionContext } from "../channels/plugins/types.js";
 export type { ChannelPlugin } from "../channels/plugins/types.plugin.js";
-export type { OpenClawPluginApi } from "../plugins/types.js";
+export type { OpenBZPluginApi } from "../plugins/types.js";
 export type { PluginRuntime } from "../plugins/runtime/types.js";
 
 export { emptyPluginConfigSchema } from "../plugins/config-schema.js";

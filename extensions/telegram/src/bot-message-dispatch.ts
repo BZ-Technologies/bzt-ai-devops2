@@ -1,33 +1,33 @@
 import type { Bot } from "grammy";
-import { resolveAgentDir } from "openclaw/plugin-sdk/agent-runtime";
+import { resolveAgentDir } from "openbz/plugin-sdk/agent-runtime";
 import {
   findModelInCatalog,
   loadModelCatalog,
   modelSupportsVision,
-} from "openclaw/plugin-sdk/agent-runtime";
-import { resolveDefaultModelForAgent } from "openclaw/plugin-sdk/agent-runtime";
-import { removeAckReactionAfterReply } from "openclaw/plugin-sdk/channel-runtime";
-import { logAckFailure, logTypingFailure } from "openclaw/plugin-sdk/channel-runtime";
-import { createReplyPrefixOptions } from "openclaw/plugin-sdk/channel-runtime";
-import { createTypingCallbacks } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
+} from "openbz/plugin-sdk/agent-runtime";
+import { resolveDefaultModelForAgent } from "openbz/plugin-sdk/agent-runtime";
+import { removeAckReactionAfterReply } from "openbz/plugin-sdk/channel-runtime";
+import { logAckFailure, logTypingFailure } from "openbz/plugin-sdk/channel-runtime";
+import { createReplyPrefixOptions } from "openbz/plugin-sdk/channel-runtime";
+import { createTypingCallbacks } from "openbz/plugin-sdk/channel-runtime";
+import { resolveMarkdownTableMode } from "openbz/plugin-sdk/config-runtime";
 import {
   loadSessionStore,
   resolveSessionStoreEntry,
   resolveStorePath,
-} from "openclaw/plugin-sdk/config-runtime";
+} from "openbz/plugin-sdk/config-runtime";
 import type {
-  OpenClawConfig,
+  OpenBZConfig,
   ReplyToMode,
   TelegramAccountConfig,
-} from "openclaw/plugin-sdk/config-runtime";
-import { getAgentScopedMediaLocalRoots } from "openclaw/plugin-sdk/media-runtime";
-import { resolveChunkMode } from "openclaw/plugin-sdk/reply-runtime";
-import { clearHistoryEntriesIfEnabled } from "openclaw/plugin-sdk/reply-runtime";
-import { dispatchReplyWithBufferedBlockDispatcher } from "openclaw/plugin-sdk/reply-runtime";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
-import { danger, logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+} from "openbz/plugin-sdk/config-runtime";
+import { getAgentScopedMediaLocalRoots } from "openbz/plugin-sdk/media-runtime";
+import { resolveChunkMode } from "openbz/plugin-sdk/reply-runtime";
+import { clearHistoryEntriesIfEnabled } from "openbz/plugin-sdk/reply-runtime";
+import { dispatchReplyWithBufferedBlockDispatcher } from "openbz/plugin-sdk/reply-runtime";
+import type { ReplyPayload } from "openbz/plugin-sdk/reply-runtime";
+import { danger, logVerbose } from "openbz/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
 import type { TelegramMessageContext } from "./bot-message-context.js";
 import type { TelegramBotOptions } from "./bot.js";
 import { deliverReplies } from "./bot/delivery.js";
@@ -56,7 +56,7 @@ const EMPTY_RESPONSE_FALLBACK = "No response generated. Please try again.";
 /** Minimum chars before sending first streaming message (improves push notification UX) */
 const DRAFT_MIN_INITIAL_CHARS = 30;
 
-async function resolveStickerVisionSupport(cfg: OpenClawConfig, agentId: string) {
+async function resolveStickerVisionSupport(cfg: OpenBZConfig, agentId: string) {
   try {
     const catalog = await loadModelCatalog({ config: cfg });
     const defaultModel = resolveDefaultModelForAgent({ cfg, agentId });
@@ -104,7 +104,7 @@ export function pruneStickerMediaFromContext(
 type DispatchTelegramMessageParams = {
   context: TelegramMessageContext;
   bot: Bot;
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   runtime: RuntimeEnv;
   replyToMode: ReplyToMode;
   streamMode: TelegramStreamMode;
@@ -116,7 +116,7 @@ type DispatchTelegramMessageParams = {
 type TelegramReasoningLevel = "off" | "on" | "stream";
 
 function resolveTelegramReasoningLevel(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   sessionKey?: string;
   agentId: string;
 }): TelegramReasoningLevel {

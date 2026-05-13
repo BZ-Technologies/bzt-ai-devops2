@@ -1,12 +1,12 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
 import type {
   DmPolicy,
   GroupPolicy,
   SignalReactionNotificationMode,
-} from "openclaw/plugin-sdk/config-runtime";
-import type { HistoryEntry } from "openclaw/plugin-sdk/reply-runtime";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+} from "openbz/plugin-sdk/config-runtime";
+import type { HistoryEntry } from "openbz/plugin-sdk/reply-runtime";
+import type { ReplyPayload } from "openbz/plugin-sdk/reply-runtime";
+import type { RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
 import type { SignalSender } from "../identity.js";
 
 export type SignalEnvelope = {
@@ -73,7 +73,7 @@ export type SignalReceivePayload = {
 
 export type SignalEventHandlerDeps = {
   runtime: RuntimeEnv;
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   baseUrl: string;
   account?: string;
   accountUuid?: string;

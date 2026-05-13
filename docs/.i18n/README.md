@@ -1,4 +1,4 @@
-# OpenClaw docs i18n assets
+# BZ AI DevOps2 docs i18n assets
 
 This folder stores **generated** and **config** files for documentation translations.
 

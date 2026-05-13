@@ -5,7 +5,7 @@ import { resolveMainSessionKey } from "../config/sessions/main-session.js";
 import { resolveStorePath } from "../config/sessions/paths.js";
 import { readSessionStoreReadOnly } from "../config/sessions/store-read.js";
 import { resolveFreshSessionTotalTokens, type SessionEntry } from "../config/sessions/types.js";
-import type { OpenClawConfig } from "../config/types.js";
+import type { OpenBZConfig } from "../config/types.js";
 import { listGatewayAgentsBasic } from "../gateway/agent-list.js";
 import { resolveHeartbeatSummaryForAgent } from "../infra/heartbeat-summary.js";
 import { peekSystemEvents } from "../infra/system-events.js";
@@ -61,7 +61,7 @@ function parseStatusModelRef(
 }
 
 function resolveConfiguredStatusModelRef(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   defaultProvider: string;
   defaultModel: string;
 }): { provider: string; model: string } {
@@ -172,8 +172,8 @@ export function redactSensitiveStatusSummary(summary: StatusSummary): StatusSumm
 export async function getStatusSummary(
   options: {
     includeSensitive?: boolean;
-    config?: OpenClawConfig;
-    sourceConfig?: OpenClawConfig;
+    config?: OpenBZConfig;
+    sourceConfig?: OpenBZConfig;
   } = {},
 ): Promise<StatusSummary> {
   const { includeSensitive = true } = options;

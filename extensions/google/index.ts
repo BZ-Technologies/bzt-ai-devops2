@@ -1,14 +1,14 @@
-import { emptyPluginConfigSchema, type OpenClawPluginApi } from "openclaw/plugin-sdk/core";
-import { createProviderApiKeyAuthMethod } from "openclaw/plugin-sdk/provider-auth";
+import { emptyPluginConfigSchema, type OpenBZPluginApi } from "openbz/plugin-sdk/core";
+import { createProviderApiKeyAuthMethod } from "openbz/plugin-sdk/provider-auth";
 import {
   GOOGLE_GEMINI_DEFAULT_MODEL,
   applyGoogleGeminiModelDefault,
-} from "openclaw/plugin-sdk/provider-models";
+} from "openbz/plugin-sdk/provider-models";
 import {
   createPluginBackedWebSearchProvider,
   getScopedCredentialValue,
   setScopedCredentialValue,
-} from "openclaw/plugin-sdk/provider-web-search";
+} from "openbz/plugin-sdk/provider-web-search";
 import { registerGoogleGeminiCliProvider } from "./gemini-cli-provider.js";
 import { googleMediaUnderstandingProvider } from "./media-understanding-provider.js";
 import { isModernGoogleModel, resolveGoogle31ForwardCompatModel } from "./provider-models.js";
@@ -18,7 +18,7 @@ const googlePlugin = {
   name: "Google Plugin",
   description: "Bundled Google plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: "google",
       label: "Google AI Studio",
@@ -60,7 +60,7 @@ const googlePlugin = {
         envVars: ["GEMINI_API_KEY"],
         placeholder: "AIza...",
         signupUrl: "https://aistudio.google.com/apikey",
-        docsUrl: "https://docs.openclaw.ai/tools/web",
+        docsUrl: "https://docs.openbz.ai/tools/web",
         autoDetectOrder: 20,
         getCredentialValue: (searchConfig) => getScopedCredentialValue(searchConfig, "gemini"),
         setCredentialValue: (searchConfigTarget, value) =>

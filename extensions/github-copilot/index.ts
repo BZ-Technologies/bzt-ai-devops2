@@ -1,17 +1,17 @@
 import {
   emptyPluginConfigSchema,
-  type OpenClawPluginApi,
+  type OpenBZPluginApi,
   type ProviderAuthContext,
   type ProviderResolveDynamicModelContext,
   type ProviderRuntimeModel,
-} from "openclaw/plugin-sdk/core";
+} from "openbz/plugin-sdk/core";
 import {
   coerceSecretRef,
   ensureAuthProfileStore,
   githubCopilotLoginCommand,
   listProfilesForProvider,
-} from "openclaw/plugin-sdk/provider-auth";
-import { normalizeModelCompat } from "openclaw/plugin-sdk/provider-models";
+} from "openbz/plugin-sdk/provider-auth";
+import { normalizeModelCompat } from "openbz/plugin-sdk/provider-models";
 import { DEFAULT_COPILOT_API_BASE_URL, resolveCopilotApiToken } from "./token.js";
 import { fetchCopilotUsage } from "./usage.js";
 
@@ -121,7 +121,7 @@ const githubCopilotPlugin = {
   name: "GitHub Copilot Provider",
   description: "Bundled GitHub Copilot provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "GitHub Copilot",

@@ -1,0 +1,28 @@
+# OpenBZ gateway — Podman Quadlet (rootless)
+# Installed by setup-podman.sh into openbz's ~/.config/containers/systemd/
+# {{OPENBZ_HOME}} is replaced at install time.
+
+[Unit]
+Description=OpenBZ gateway (rootless Podman)
+
+[Container]
+Image=openbz:local
+ContainerName=openbz
+UserNS=keep-id
+# Keep container UID/GID aligned with the invoking user so mounted config is readable.
+User=%U:%G
+Volume={{OPENBZ_HOME}}/.openbz:/home/node/.openbz:Z
+EnvironmentFile={{OPENBZ_HOME}}/.openbz/.env
+Environment=HOME=/home/node
+Environment=TERM=xterm-256color
+PublishPort=18789:18789
+PublishPort=18790:18790
+Pull=never
+Exec=node dist/index.js gateway --bind lan --port 18789
+
+[Service]
+TimeoutStartSec=300
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

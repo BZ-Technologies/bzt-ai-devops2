@@ -1,10 +1,10 @@
 import type { Block, KnownBlock } from "@slack/web-api";
-import { reduceInteractiveReply } from "openclaw/plugin-sdk/channel-runtime";
-import type { InteractiveReply } from "openclaw/plugin-sdk/channel-runtime";
+import { reduceInteractiveReply } from "openbz/plugin-sdk/channel-runtime";
+import type { InteractiveReply } from "openbz/plugin-sdk/channel-runtime";
 import { truncateSlackText } from "./truncate.js";
 
-export const SLACK_REPLY_BUTTON_ACTION_ID = "openclaw:reply_button";
-export const SLACK_REPLY_SELECT_ACTION_ID = "openclaw:reply_select";
+export const SLACK_REPLY_BUTTON_ACTION_ID = "openbz:reply_button";
+export const SLACK_REPLY_SELECT_ACTION_ID = "openbz:reply_select";
 const SLACK_SECTION_TEXT_MAX = 3000;
 const SLACK_PLAIN_TEXT_MAX = 75;
 
@@ -37,7 +37,7 @@ export function buildSlackInteractiveBlocks(interactive?: InteractiveReply): Sla
       }
       state.blocks.push({
         type: "actions",
-        block_id: `openclaw_reply_buttons_${++state.buttonIndex}`,
+        block_id: `openbz_reply_buttons_${++state.buttonIndex}`,
         elements: block.buttons.map((button, choiceIndex) => ({
           type: "button",
           action_id: SLACK_REPLY_BUTTON_ACTION_ID,
@@ -56,7 +56,7 @@ export function buildSlackInteractiveBlocks(interactive?: InteractiveReply): Sla
     }
     state.blocks.push({
       type: "actions",
-      block_id: `openclaw_reply_select_${++state.selectIndex}`,
+      block_id: `openbz_reply_select_${++state.selectIndex}`,
       elements: [
         {
           type: "static_select",

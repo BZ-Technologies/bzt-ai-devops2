@@ -107,7 +107,7 @@ export async function updateStatusCommand(opts: UpdateStatusOptions): Promise<vo
     },
   ];
 
-  defaultRuntime.log(theme.heading("OpenClaw update status"));
+  defaultRuntime.log(theme.heading("BZ AI DevOps2 update status"));
   defaultRuntime.log("");
   defaultRuntime.log(
     renderTable({

@@ -1,5 +1,5 @@
 import type { AgentToolResult } from "@mariozechner/pi-agent-core";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 import { readBooleanParam } from "../../plugin-sdk/boolean-param.js";
 import {
   createTelegramActionGate,
@@ -95,7 +95,7 @@ export function readTelegramButtons(
 
 export async function handleTelegramAction(
   params: Record<string, unknown>,
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   options?: {
     mediaLocalRoots?: readonly string[];
   },

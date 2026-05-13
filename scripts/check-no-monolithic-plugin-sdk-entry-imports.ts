@@ -1,11 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
-import { discoverOpenClawPlugins } from "../src/plugins/discovery.js";
+import { discoverOpenBZPlugins } from "../src/plugins/discovery.js";
 
 // Match exact monolithic-root specifier in any code path:
 // imports/exports, require/dynamic import, and test mocks (vi.mock/jest.mock).
-const ROOT_IMPORT_PATTERN = /["']openclaw\/plugin-sdk["']/;
-const LEGACY_COMPAT_IMPORT_PATTERN = /["']openclaw\/plugin-sdk\/compat["']/;
+const ROOT_IMPORT_PATTERN = /["']openbz\/plugin-sdk["']/;
+const LEGACY_COMPAT_IMPORT_PATTERN = /["']openbz\/plugin-sdk\/compat["']/;
 
 function hasMonolithicRootImport(content: string): boolean {
   return ROOT_IMPORT_PATTERN.test(content);
@@ -69,7 +69,7 @@ function collectSharedExtensionSourceFiles(): string[] {
 }
 
 function main() {
-  const discovery = discoverOpenClawPlugins({});
+  const discovery = discoverOpenBZPlugins({});
   const bundledCandidates = discovery.candidates.filter((c) => c.origin === "bundled");
   const filesToCheck = new Set<string>();
   for (const candidate of bundledCandidates) {
@@ -101,7 +101,7 @@ function main() {
 
   if (monolithicOffenders.length > 0 || legacyCompatOffenders.length > 0) {
     if (monolithicOffenders.length > 0) {
-      console.error("Bundled plugin source files must not import monolithic openclaw/plugin-sdk.");
+      console.error("Bundled plugin source files must not import monolithic openbz/plugin-sdk.");
       for (const file of monolithicOffenders.toSorted()) {
         const relative = path.relative(process.cwd(), file) || file;
         console.error(`- ${relative}`);
@@ -109,7 +109,7 @@ function main() {
     }
     if (legacyCompatOffenders.length > 0) {
       console.error(
-        "Bundled plugin source files must not import legacy openclaw/plugin-sdk/compat.",
+        "Bundled plugin source files must not import legacy openbz/plugin-sdk/compat.",
       );
       for (const file of legacyCompatOffenders.toSorted()) {
         const relative = path.relative(process.cwd(), file) || file;
@@ -118,7 +118,7 @@ function main() {
     }
     if (monolithicOffenders.length > 0 || legacyCompatOffenders.length > 0) {
       console.error(
-        "Use openclaw/plugin-sdk/<domain> or openclaw/plugin-sdk/<channel> subpaths for bundled plugins; root and compat are legacy surfaces only.",
+        "Use openbz/plugin-sdk/<domain> or openbz/plugin-sdk/<channel> subpaths for bundled plugins; root and compat are legacy surfaces only.",
       );
     }
     process.exit(1);

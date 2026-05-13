@@ -1,6 +1,6 @@
-import { resetSystemEventsForTest } from "openclaw/plugin-sdk/infra-runtime";
-import { resetInboundDedupe } from "openclaw/plugin-sdk/reply-runtime";
-import type { MockFn } from "openclaw/plugin-sdk/test-utils";
+import { resetSystemEventsForTest } from "openbz/plugin-sdk/infra-runtime";
+import { resetInboundDedupe } from "openbz/plugin-sdk/reply-runtime";
+import type { MockFn } from "openbz/plugin-sdk/test-utils";
 import { beforeEach, vi } from "vitest";
 import type { SignalDaemonExitEvent, SignalDaemonHandle } from "./daemon.js";
 
@@ -68,15 +68,15 @@ export function createMockSignalDaemonHandle(
   };
 }
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     loadConfig: () => config,
   };
 });
 
-vi.mock("openclaw/plugin-sdk/reply-runtime", () => ({
+vi.mock("openbz/plugin-sdk/reply-runtime", () => ({
   getReplyFromConfig: (...args: unknown[]) => replyMock(...args),
 }));
 
@@ -86,16 +86,16 @@ vi.mock("./send.js", () => ({
   sendReadReceiptSignal: vi.fn().mockResolvedValue(true),
 }));
 
-vi.mock("openclaw/plugin-sdk/conversation-runtime", () => ({
+vi.mock("openbz/plugin-sdk/conversation-runtime", () => ({
   readChannelAllowFromStore: (...args: unknown[]) => readAllowFromStoreMock(...args),
   upsertChannelPairingRequest: (...args: unknown[]) => upsertPairingRequestMock(...args),
 }));
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
-    resolveStorePath: vi.fn(() => "/tmp/openclaw-sessions.json"),
+    resolveStorePath: vi.fn(() => "/tmp/openbz-sessions.json"),
     updateLastRoute: (...args: unknown[]) => updateLastRouteMock(...args),
     readSessionUpdatedAt: vi.fn(() => undefined),
     recordSessionMetaFromInbound: vi.fn().mockResolvedValue(undefined),
@@ -116,7 +116,7 @@ vi.mock("./daemon.js", async (importOriginal) => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/infra-runtime", () => ({
+vi.mock("openbz/plugin-sdk/infra-runtime", () => ({
   waitForTransportReady: (...args: unknown[]) => waitForTransportReadyMock(...args),
 }));
 

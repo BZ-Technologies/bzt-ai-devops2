@@ -1,5 +1,5 @@
 ---
-summary: "Advanced setup and development workflows for OpenClaw"
+summary: "Advanced setup and development workflows for BZ AI DevOps2"
 read_when:
   - Setting up a new machine
   - You want “latest + greatest” without breaking your personal setup
@@ -17,7 +17,7 @@ Last updated: 2026-01-01
 
 ## TL;DR
 
-- **Tailoring lives outside the repo:** `~/.openclaw/workspace` (workspace) + `~/.openclaw/openclaw.json` (config).
+- **Tailoring lives outside the repo:** `~/.openbz/workspace` (workspace) + `~/.openbz/openbz.json` (config).
 - **Stable workflow:** install the macOS app; let it run the bundled Gateway.
 - **Bleeding edge workflow:** run the Gateway yourself via `pnpm gateway:watch`, then let the macOS app attach in Local mode.
 
@@ -31,51 +31,51 @@ Last updated: 2026-01-01
 
 If you want “100% tailored to me” _and_ easy updates, keep your customization in:
 
-- **Config:** `~/.openclaw/openclaw.json` (JSON/JSON5-ish)
-- **Workspace:** `~/.openclaw/workspace` (skills, prompts, memories; make it a private git repo)
+- **Config:** `~/.openbz/openbz.json` (JSON/JSON5-ish)
+- **Workspace:** `~/.openbz/workspace` (skills, prompts, memories; make it a private git repo)
 
 Bootstrap once:
 
 ```bash
-openclaw setup
+openbz setup
 ```
 
 From inside this repo, use the local CLI entry:
 
 ```bash
-openclaw setup
+openbz setup
 ```
 
-If you don’t have a global install yet, run it via `pnpm openclaw setup`.
+If you don’t have a global install yet, run it via `pnpm openbz setup`.
 
 ## Run the Gateway from this repo
 
 After `pnpm build`, you can run the packaged CLI directly:
 
 ```bash
-node openclaw.mjs gateway --port 18789 --verbose
+node openbz.mjs gateway --port 18789 --verbose
 ```
 
 ## Stable workflow (macOS app first)
 
-1. Install + launch **OpenClaw.app** (menu bar).
+1. Install + launch **BZ AI DevOps2.app** (menu bar).
 2. Complete the onboarding/permissions checklist (TCC prompts).
 3. Ensure Gateway is **Local** and running (the app manages it).
 4. Link surfaces (example: WhatsApp):
 
 ```bash
-openclaw channels login
+openbz channels login
 ```
 
 5. Sanity check:
 
 ```bash
-openclaw health
+openbz health
 ```
 
 If onboarding is not available in your build:
 
-- Run `openclaw setup`, then `openclaw channels login`, then start the Gateway manually (`openclaw gateway`).
+- Run `openbz setup`, then `openbz channels login`, then start the Gateway manually (`openbz gateway`).
 
 ## Bleeding edge workflow (Gateway in a terminal)
 
@@ -101,7 +101,7 @@ config, and bundled-plugin metadata changes.
 
 ### 2) Point the macOS app at your running Gateway
 
-In **OpenClaw.app**:
+In **BZ AI DevOps2.app**:
 
 - Connection Mode: **Local**
   The app will attach to the running gateway on the configured port.
@@ -112,36 +112,36 @@ In **OpenClaw.app**:
 - Or via CLI:
 
 ```bash
-openclaw health
+openbz health
 ```
 
 ### Common footguns
 
 - **Wrong port:** Gateway WS defaults to `ws://127.0.0.1:18789`; keep app + CLI on the same port.
 - **Where state lives:**
-  - Credentials: `~/.openclaw/credentials/`
-  - Sessions: `~/.openclaw/agents/<agentId>/sessions/`
-  - Logs: `/tmp/openclaw/`
+  - Credentials: `~/.openbz/credentials/`
+  - Sessions: `~/.openbz/agents/<agentId>/sessions/`
+  - Logs: `/tmp/openbz/`
 
 ## Credential storage map
 
 Use this when debugging auth or deciding what to back up:
 
-- **WhatsApp**: `~/.openclaw/credentials/whatsapp/<accountId>/creds.json`
+- **WhatsApp**: `~/.openbz/credentials/whatsapp/<accountId>/creds.json`
 - **Telegram bot token**: config/env or `channels.telegram.tokenFile` (regular file only; symlinks rejected)
 - **Discord bot token**: config/env or SecretRef (env/file/exec providers)
 - **Slack tokens**: config/env (`channels.slack.*`)
 - **Pairing allowlists**:
-  - `~/.openclaw/credentials/<channel>-allowFrom.json` (default account)
-  - `~/.openclaw/credentials/<channel>-<accountId>-allowFrom.json` (non-default accounts)
-- **Model auth profiles**: `~/.openclaw/agents/<agentId>/agent/auth-profiles.json`
-- **File-backed secrets payload (optional)**: `~/.openclaw/secrets.json`
-- **Legacy OAuth import**: `~/.openclaw/credentials/oauth.json`
+  - `~/.openbz/credentials/<channel>-allowFrom.json` (default account)
+  - `~/.openbz/credentials/<channel>-<accountId>-allowFrom.json` (non-default accounts)
+- **Model auth profiles**: `~/.openbz/agents/<agentId>/agent/auth-profiles.json`
+- **File-backed secrets payload (optional)**: `~/.openbz/secrets.json`
+- **Legacy OAuth import**: `~/.openbz/credentials/oauth.json`
   More detail: [Security](/gateway/security#credential-storage-map).
 
 ## Updating (without wrecking your setup)
 
-- Keep `~/.openclaw/workspace` and `~/.openclaw/` as “your stuff”; don’t put personal prompts/config into the `openclaw` repo.
+- Keep `~/.openbz/workspace` and `~/.openbz/` as “your stuff”; don’t put personal prompts/config into the `openbz` repo.
 - Updating source: `git pull` + `pnpm install` (when lockfile changed) + keep using `pnpm gateway:watch`.
 
 ## Linux (systemd user service)
@@ -162,5 +162,5 @@ user service (no lingering needed). See [Gateway runbook](/gateway) for the syst
 - [Gateway runbook](/gateway) (flags, supervision, ports)
 - [Gateway configuration](/gateway/configuration) (config schema + examples)
 - [Discord](/channels/discord) and [Telegram](/channels/telegram) (reply tags + replyToMode settings)
-- [OpenClaw assistant setup](/start/openclaw)
+- [BZ AI DevOps2 assistant setup](/start/openbz)
 - [macOS app](/platforms/macos) (gateway lifecycle)

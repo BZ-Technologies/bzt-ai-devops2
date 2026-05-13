@@ -1,49 +1,53 @@
 :root {
-  /* Background - Deep, rich dark with layered depth */
-  --bg: #0e1015;
-  --bg-accent: #13151b;
-  --bg-elevated: #191c24;
-  --bg-hover: #1f2330;
-  --bg-muted: #1f2330;
+  /* BZ Technologies brand (canonical: navy + gold) */
+  --brand-navy: #00205b;
+  --brand-gold: #eaaa00;
 
-  /* Card / Surface - Clear hierarchy between levels */
-  --card: #161920;
-  --card-foreground: #f0f0f2;
-  --card-highlight: rgba(255, 255, 255, 0.04);
-  --popover: #191c24;
-  --popover-foreground: #f0f0f2;
+  /* Background — navy-tinted enterprise dark */
+  --bg: #0a1628;
+  --bg-accent: #0d1f38;
+  --bg-elevated: #122642;
+  --bg-hover: #163054;
+  --bg-muted: #142a48;
+
+  /* Card / Surface */
+  --card: #0f2038;
+  --card-foreground: #f0f4fa;
+  --card-highlight: rgba(234, 170, 0, 0.06);
+  --popover: #122642;
+  --popover-foreground: #f0f4fa;
 
   /* Panel */
-  --panel: #0e1015;
-  --panel-strong: #191c24;
-  --panel-hover: #1f2330;
-  --chrome: rgba(14, 16, 21, 0.96);
-  --chrome-strong: rgba(14, 16, 21, 0.98);
+  --panel: #0a1628;
+  --panel-strong: #122642;
+  --panel-hover: #163054;
+  --chrome: rgba(0, 32, 91, 0.94);
+  --chrome-strong: rgba(0, 32, 91, 0.97);
 
-  /* Text - Clean contrast */
-  --text: #d4d4d8;
-  --text-strong: #f4f4f5;
-  --chat-text: #d4d4d8;
-  --muted: #636370;
-  --muted-strong: #4e4e5a;
-  --muted-foreground: #636370;
+  /* Text */
+  --text: #c8d0e0;
+  --text-strong: #ffffff;
+  --chat-text: #c8d0e0;
+  --muted: #7a8aa8;
+  --muted-strong: #5c6b88;
+  --muted-foreground: #7a8aa8;
 
-  /* Border - Whisper-thin, barely there */
-  --border: #1e2028;
-  --border-strong: #2e3040;
-  --border-hover: #3e4050;
-  --input: #1e2028;
-  --ring: #ff5c5c;
+  /* Border */
+  --border: #1a3358;
+  --border-strong: #254578;
+  --border-hover: #2f5590;
+  --input: #1a3358;
+  --ring: var(--brand-gold);
 
-  /* Accent - Punchy signature red */
-  --accent: #ff5c5c;
-  --accent-hover: #ff7070;
-  --accent-muted: #ff5c5c;
-  --accent-subtle: rgba(255, 92, 92, 0.1);
-  --accent-foreground: #fafafa;
-  --accent-glow: rgba(255, 92, 92, 0.2);
-  --primary: #ff5c5c;
-  --primary-foreground: #ffffff;
+  /* Accent — BZ gold (CTAs, focus, nav highlights) */
+  --accent: var(--brand-gold);
+  --accent-hover: #f0be4a;
+  --accent-muted: #c9a000;
+  --accent-subtle: rgba(234, 170, 0, 0.14);
+  --accent-foreground: var(--brand-navy);
+  --accent-glow: rgba(234, 170, 0, 0.22);
+  --primary: var(--brand-gold);
+  --primary-foreground: var(--brand-navy);
 
   /* Secondary */
   --secondary: #161920;
@@ -67,8 +71,8 @@
   --info: #3b82f6;
 
   /* Focus */
-  --focus: rgba(255, 92, 92, 0.2);
-  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 3px color-mix(in srgb, var(--ring) 60%, transparent);
+  --focus: rgba(234, 170, 0, 0.22);
+  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 3px color-mix(in srgb, var(--ring) 65%, transparent);
   --focus-glow: 0 0 0 2px var(--bg), 0 0 0 3px var(--ring), 0 0 16px var(--accent-glow);
 
   /* Grid */
@@ -112,45 +116,48 @@
 
 /* Light theme tokens apply to every light-mode family. */
 :root[data-theme-mode="light"] {
-  --bg: #f8f9fa;
-  --bg-accent: #f1f3f5;
+  --brand-navy: #00205b;
+  --brand-gold: #eaaa00;
+
+  --bg: #f8fafc;
+  --bg-accent: #f1f5f9;
   --bg-elevated: #ffffff;
-  --bg-hover: #eceef0;
-  --bg-muted: #eceef0;
-  --bg-content: #f1f3f5;
+  --bg-hover: #e8eef5;
+  --bg-muted: #e8eef5;
+  --bg-content: #f1f5f9;
 
   --card: #ffffff;
-  --card-foreground: #1a1a1e;
-  --card-highlight: rgba(0, 0, 0, 0.02);
+  --card-foreground: #00205b;
+  --card-highlight: rgba(0, 32, 91, 0.04);
   --popover: #ffffff;
-  --popover-foreground: #1a1a1e;
+  --popover-foreground: #00205b;
 
-  --panel: #f8f9fa;
-  --panel-strong: #f1f3f5;
-  --panel-hover: #e6e8eb;
-  --chrome: rgba(248, 249, 250, 0.96);
-  --chrome-strong: rgba(248, 249, 250, 0.98);
+  --panel: #f8fafc;
+  --panel-strong: #f1f5f9;
+  --panel-hover: #e8eef5;
+  --chrome: rgba(248, 250, 252, 0.96);
+  --chrome-strong: rgba(248, 250, 252, 0.98);
 
-  --text: #3c3c43;
-  --text-strong: #1a1a1e;
-  --chat-text: #3c3c43;
-  --muted: #8e8e93;
-  --muted-strong: #636366;
-  --muted-foreground: #8e8e93;
+  --text: #334155;
+  --text-strong: #00205b;
+  --chat-text: #334155;
+  --muted: #64748b;
+  --muted-strong: #475569;
+  --muted-foreground: #64748b;
 
-  --border: #e5e5ea;
-  --border-strong: #d1d1d6;
-  --border-hover: #aeaeb2;
-  --input: #e5e5ea;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --border-hover: #94a3b8;
+  --input: #e2e8f0;
 
-  --accent: #dc2626;
-  --accent-hover: #ef4444;
-  --accent-muted: #dc2626;
-  --accent-subtle: rgba(220, 38, 38, 0.08);
-  --accent-foreground: #ffffff;
-  --accent-glow: rgba(220, 38, 38, 0.1);
-  --primary: #dc2626;
-  --primary-foreground: #ffffff;
+  --accent: var(--brand-gold);
+  --accent-hover: #d99a00;
+  --accent-muted: #b8860b;
+  --accent-subtle: rgba(234, 170, 0, 0.12);
+  --accent-foreground: var(--brand-navy);
+  --accent-glow: rgba(234, 170, 0, 0.15);
+  --primary: var(--brand-gold);
+  --primary-foreground: var(--brand-navy);
 
   --secondary: #f1f3f5;
   --secondary-foreground: #3c3c43;
@@ -171,8 +178,8 @@
   --danger-subtle: rgba(220, 38, 38, 0.08);
   --info: #2563eb;
 
-  --focus: rgba(220, 38, 38, 0.15);
-  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+  --focus: rgba(234, 170, 0, 0.18);
+  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 3px color-mix(in srgb, var(--ring) 55%, transparent);
   --focus-glow: 0 0 0 2px var(--bg), 0 0 0 3px var(--ring), 0 0 12px var(--accent-glow);
 
   --grid-line: rgba(0, 0, 0, 0.04);
@@ -280,7 +287,7 @@ html.theme-transition::view-transition-new(theme) {
   }
 }
 
-openclaw-app {
+openbz-app {
   display: block;
   position: relative;
   z-index: 1;

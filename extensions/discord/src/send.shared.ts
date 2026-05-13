@@ -9,15 +9,15 @@ import {
 import { PollLayoutType } from "discord-api-types/payloads/v10";
 import type { RESTAPIPoll } from "discord-api-types/rest/v10";
 import { Routes, type APIChannel, type APIEmbed } from "discord-api-types/v10";
-import { loadConfig, type OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { RetryRunner } from "openclaw/plugin-sdk/infra-runtime";
-import { buildOutboundMediaLoadOptions } from "openclaw/plugin-sdk/media-runtime";
+import { loadConfig, type OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import type { RetryRunner } from "openbz/plugin-sdk/infra-runtime";
+import { buildOutboundMediaLoadOptions } from "openbz/plugin-sdk/media-runtime";
 import {
   normalizePollDurationHours,
   normalizePollInput,
   type PollInput,
-} from "openclaw/plugin-sdk/media-runtime";
-import type { ChunkMode } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/media-runtime";
+import type { ChunkMode } from "openbz/plugin-sdk/reply-runtime";
 import { loadWebMedia } from "../../whatsapp/src/media.js";
 import { resolveDiscordAccount } from "./accounts.js";
 import { chunkDiscordTextWithMode } from "./chunk.js";
@@ -84,7 +84,7 @@ function parseRecipient(raw: string): DiscordRecipient {
 export async function parseAndResolveRecipient(
   raw: string,
   accountId?: string,
-  cfg?: OpenClawConfig,
+  cfg?: OpenBZConfig,
 ): Promise<DiscordRecipient> {
   const resolvedCfg = cfg ?? loadConfig();
   const accountInfo = resolveDiscordAccount({ cfg: resolvedCfg, accountId });

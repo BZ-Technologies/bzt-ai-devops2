@@ -1,6 +1,6 @@
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 
-export function makeModelFallbackCfg(overrides: Partial<OpenClawConfig> = {}): OpenClawConfig {
+export function makeModelFallbackCfg(overrides: Partial<OpenBZConfig> = {}): OpenBZConfig {
   return {
     agents: {
       defaults: {
@@ -11,5 +11,5 @@ export function makeModelFallbackCfg(overrides: Partial<OpenClawConfig> = {}): O
       },
     },
     ...overrides,
-  } as OpenClawConfig;
+  } as OpenBZConfig;
 }

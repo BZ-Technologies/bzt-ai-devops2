@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/opencode-provider",
+  "name": "@openbz/opencode-provider",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw OpenCode Zen provider plugin",
+  "description": "BZ AI DevOps2 OpenCode Zen provider plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ]

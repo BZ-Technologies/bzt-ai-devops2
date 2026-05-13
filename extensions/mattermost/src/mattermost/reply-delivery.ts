@@ -1,5 +1,5 @@
-import type { OpenClawConfig, PluginRuntime, ReplyPayload } from "openclaw/plugin-sdk/mattermost";
-import { getAgentScopedMediaLocalRoots } from "openclaw/plugin-sdk/mattermost";
+import type { OpenBZConfig, PluginRuntime, ReplyPayload } from "openbz/plugin-sdk/mattermost";
+import { getAgentScopedMediaLocalRoots } from "openbz/plugin-sdk/mattermost";
 
 type MarkdownTableMode = Parameters<PluginRuntime["channel"]["text"]["convertMarkdownTables"]>[1];
 
@@ -16,7 +16,7 @@ type SendMattermostMessage = (
 
 export async function deliverMattermostReplyPayload(params: {
   core: PluginRuntime;
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   payload: ReplyPayload;
   to: string;
   accountId: string;

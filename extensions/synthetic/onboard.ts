@@ -3,16 +3,16 @@ import {
   SYNTHETIC_BASE_URL,
   SYNTHETIC_DEFAULT_MODEL_REF,
   SYNTHETIC_MODEL_CATALOG,
-} from "openclaw/plugin-sdk/provider-models";
+} from "openbz/plugin-sdk/provider-models";
 import {
   applyAgentDefaultModelPrimary,
   applyProviderConfigWithModelCatalog,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/provider-onboard";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/provider-onboard";
 
 export { SYNTHETIC_DEFAULT_MODEL_REF };
 
-export function applySyntheticProviderConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applySyntheticProviderConfig(cfg: OpenBZConfig): OpenBZConfig {
   const models = { ...cfg.agents?.defaults?.models };
   models[SYNTHETIC_DEFAULT_MODEL_REF] = {
     ...models[SYNTHETIC_DEFAULT_MODEL_REF],
@@ -28,7 +28,7 @@ export function applySyntheticProviderConfig(cfg: OpenClawConfig): OpenClawConfi
   });
 }
 
-export function applySyntheticConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applySyntheticConfig(cfg: OpenBZConfig): OpenBZConfig {
   return applyAgentDefaultModelPrimary(
     applySyntheticProviderConfig(cfg),
     SYNTHETIC_DEFAULT_MODEL_REF,

@@ -1,12 +1,12 @@
 import type { Bot } from "grammy";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
 import type {
   DmPolicy,
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "openclaw/plugin-sdk/config-runtime";
-import type { HistoryEntry } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/config-runtime";
+import type { HistoryEntry } from "openbz/plugin-sdk/reply-runtime";
 import type { StickerMetadata, TelegramContext } from "./bot/types.js";
 
 export type TelegramMediaRef = {
@@ -48,7 +48,7 @@ export type BuildTelegramMessageContextParams = {
   storeAllowFrom: string[];
   options?: TelegramMessageContextOptions;
   bot: Bot;
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   account: { accountId: string };
   historyLimit: number;
   groupHistories: Map<string, HistoryEntry[]>;

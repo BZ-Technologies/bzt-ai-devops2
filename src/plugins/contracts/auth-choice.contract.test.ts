@@ -5,7 +5,7 @@ import {
   createExitThrowingRuntime,
   createWizardPrompter,
   readAuthProfilesForAgent,
-  requireOpenClawAgentDir,
+  requireOpenBZAgentDir,
   setupAuthTestEnv,
 } from "../../commands/test-wizard-helpers.js";
 import { applyAuthChoiceLoadedPluginProvider } from "../../plugins/provider-auth-choice.js";
@@ -68,8 +68,8 @@ const qwenPortalPlugin = (await import("../../../extensions/qwen-portal-auth/ind
 
 describe("provider auth-choice contract", () => {
   const lifecycle = createAuthTestLifecycle([
-    "OPENCLAW_STATE_DIR",
-    "OPENCLAW_AGENT_DIR",
+    "OPENBZ_STATE_DIR",
+    "OPENBZ_AGENT_DIR",
     "PI_CODING_AGENT_DIR",
   ]);
   let activeStateDir: string | null = null;
@@ -78,7 +78,7 @@ describe("provider auth-choice contract", () => {
     if (activeStateDir) {
       await lifecycle.cleanup();
     }
-    const env = await setupAuthTestEnv("openclaw-provider-auth-choice-");
+    const env = await setupAuthTestEnv("openbz-provider-auth-choice-");
     activeStateDir = env.stateDir;
     lifecycle.setStateDir(env.stateDir);
   }
@@ -172,7 +172,7 @@ describe("provider auth-choice contract", () => {
     );
 
     const stored = await readAuthProfilesForAgent<{ profiles?: Record<string, StoredAuthProfile> }>(
-      requireOpenClawAgentDir(),
+      requireOpenBZAgentDir(),
     );
     expect(stored.profiles?.["qwen-portal:default"]).toMatchObject({
       type: "oauth",
@@ -240,7 +240,7 @@ describe("provider auth-choice contract", () => {
 
     const stored = await readAuthProfilesForAgent<{
       profiles?: Record<string, StoredAuthProfile>;
-    }>(requireOpenClawAgentDir());
+    }>(requireOpenBZAgentDir());
     expect(stored.profiles?.["qwen-portal:default"]).toMatchObject({
       type: "oauth",
       provider: "qwen-portal",

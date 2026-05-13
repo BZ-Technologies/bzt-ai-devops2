@@ -1,5 +1,5 @@
 import type { AgentToolResult } from "@mariozechner/pi-agent-core";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 import { resolveSlackAccount } from "../../plugin-sdk/account-resolution.js";
 import {
   deleteSlackMessage,
@@ -107,7 +107,7 @@ function readSlackBlocksParam(params: Record<string, unknown>) {
 
 export async function handleSlackAction(
   params: Record<string, unknown>,
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   context?: SlackActionContext,
 ): Promise<AgentToolResult<unknown>> {
   const resolveChannelId = () =>

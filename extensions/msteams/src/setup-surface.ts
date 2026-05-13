@@ -1,4 +1,4 @@
-import type { MSTeamsTeamConfig } from "openclaw/plugin-sdk/msteams";
+import type { MSTeamsTeamConfig } from "openbz/plugin-sdk/msteams";
 import {
   DEFAULT_ACCOUNT_ID,
   formatDocsLink,
@@ -10,9 +10,9 @@ import {
   type ChannelSetupDmPolicy,
   type ChannelSetupWizard,
   type DmPolicy,
-  type OpenClawConfig,
+  type OpenBZConfig,
   type WizardPrompter,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import {
   parseMSTeamsTeamEntry,
   resolveMSTeamsChannelAllowlist,
@@ -24,7 +24,7 @@ import { hasConfiguredMSTeamsCredentials, resolveMSTeamsCredentials } from "./to
 
 const channel = "msteams" as const;
 
-function setMSTeamsDmPolicy(cfg: OpenClawConfig, dmPolicy: DmPolicy) {
+function setMSTeamsDmPolicy(cfg: OpenBZConfig, dmPolicy: DmPolicy) {
   return setTopLevelChannelDmPolicyWithAllowFrom({
     cfg,
     channel,
@@ -32,7 +32,7 @@ function setMSTeamsDmPolicy(cfg: OpenClawConfig, dmPolicy: DmPolicy) {
   });
 }
 
-function setMSTeamsAllowFrom(cfg: OpenClawConfig, allowFrom: string[]): OpenClawConfig {
+function setMSTeamsAllowFrom(cfg: OpenBZConfig, allowFrom: string[]): OpenBZConfig {
   return setTopLevelChannelAllowFrom({
     cfg,
     channel,
@@ -71,9 +71,9 @@ async function promptMSTeamsCredentials(prompter: WizardPrompter): Promise<{
 }
 
 async function promptMSTeamsAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   prompter: WizardPrompter;
-}): Promise<OpenClawConfig> {
+}): Promise<OpenBZConfig> {
   const existing = params.cfg.channels?.msteams?.allowFrom ?? [];
   await params.prompter.note(
     [
@@ -147,9 +147,9 @@ async function noteMSTeamsCredentialHelp(prompter: WizardPrompter): Promise<void
 }
 
 function setMSTeamsGroupPolicy(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   groupPolicy: "open" | "allowlist" | "disabled",
-): OpenClawConfig {
+): OpenBZConfig {
   return setTopLevelChannelGroupPolicy({
     cfg,
     channel,
@@ -159,9 +159,9 @@ function setMSTeamsGroupPolicy(
 }
 
 function setMSTeamsTeamsAllowlist(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   entries: Array<{ teamKey: string; channelKey?: string }>,
-): OpenClawConfig {
+): OpenBZConfig {
   const baseTeams = cfg.channels?.msteams?.teams ?? {};
   const teams: Record<string, { channels?: Record<string, unknown> }> = { ...baseTeams };
   for (const entry of entries) {
@@ -191,7 +191,7 @@ function setMSTeamsTeamsAllowlist(
   };
 }
 
-function listMSTeamsGroupEntries(cfg: OpenClawConfig): string[] {
+function listMSTeamsGroupEntries(cfg: OpenBZConfig): string[] {
   return Object.entries(cfg.channels?.msteams?.teams ?? {}).flatMap(([teamKey, value]) => {
     const channels = value?.channels ?? {};
     const channelKeys = Object.keys(channels);
@@ -203,7 +203,7 @@ function listMSTeamsGroupEntries(cfg: OpenClawConfig): string[] {
 }
 
 async function resolveMSTeamsGroupAllowlist(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   entries: string[];
   prompter: Pick<WizardPrompter, "note">;
 }): Promise<Array<{ teamKey: string; channelKey?: string }>> {

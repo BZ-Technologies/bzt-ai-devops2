@@ -12,8 +12,8 @@ describe("detectMacCloudSyncedStateDir", () => {
       "Library",
       "Mobile Documents",
       "com~apple~CloudDocs",
-      "OpenClaw",
-      ".openclaw",
+      "BZ AI DevOps2",
+      ".openbz",
     );
 
     const result = detectMacCloudSyncedStateDir(stateDir, {
@@ -28,7 +28,7 @@ describe("detectMacCloudSyncedStateDir", () => {
   });
 
   it("detects state dir under Library/CloudStorage", () => {
-    const stateDir = path.join(home, "Library", "CloudStorage", "Dropbox", "OpenClaw", ".openclaw");
+    const stateDir = path.join(home, "Library", "CloudStorage", "Dropbox", "BZ AI DevOps2", ".openbz");
 
     const result = detectMacCloudSyncedStateDir(stateDir, {
       platform: "darwin",
@@ -42,14 +42,14 @@ describe("detectMacCloudSyncedStateDir", () => {
   });
 
   it("detects cloud-synced target when state dir resolves via symlink", () => {
-    const symlinkPath = "/tmp/openclaw-state";
+    const symlinkPath = "/tmp/openbz-state";
     const resolvedCloudPath = path.join(
       home,
       "Library",
       "CloudStorage",
       "OneDrive-Personal",
-      "OpenClaw",
-      ".openclaw",
+      "BZ AI DevOps2",
+      ".openbz",
     );
 
     const result = detectMacCloudSyncedStateDir(symlinkPath, {
@@ -70,10 +70,10 @@ describe("detectMacCloudSyncedStateDir", () => {
       "Library",
       "CloudStorage",
       "OneDrive-Personal",
-      "OpenClaw",
-      ".openclaw",
+      "BZ AI DevOps2",
+      ".openbz",
     );
-    const resolvedLocalPath = path.join(home, ".openclaw");
+    const resolvedLocalPath = path.join(home, ".openbz");
 
     const result = detectMacCloudSyncedStateDir(symlinkPath, {
       platform: "darwin",
@@ -84,10 +84,10 @@ describe("detectMacCloudSyncedStateDir", () => {
     expect(result).toBeNull();
   });
 
-  it("anchors cloud detection to OS homedir when OPENCLAW_HOME is overridden", () => {
-    const stateDir = path.join(home, "Library", "CloudStorage", "iCloud Drive", ".openclaw");
-    const originalOpenClawHome = process.env.OPENCLAW_HOME;
-    process.env.OPENCLAW_HOME = "/tmp/openclaw-home-override";
+  it("anchors cloud detection to OS homedir when OPENBZ_HOME is overridden", () => {
+    const stateDir = path.join(home, "Library", "CloudStorage", "iCloud Drive", ".openbz");
+    const originalOpenBZHome = process.env.OPENBZ_HOME;
+    process.env.OPENBZ_HOME = "/tmp/openbz-home-override";
     const homedirSpy = vi.spyOn(os, "homedir").mockReturnValue(home);
     try {
       const result = detectMacCloudSyncedStateDir(stateDir, {
@@ -100,10 +100,10 @@ describe("detectMacCloudSyncedStateDir", () => {
       });
     } finally {
       homedirSpy.mockRestore();
-      if (originalOpenClawHome === undefined) {
-        delete process.env.OPENCLAW_HOME;
+      if (originalOpenBZHome === undefined) {
+        delete process.env.OPENBZ_HOME;
       } else {
-        process.env.OPENCLAW_HOME = originalOpenClawHome;
+        process.env.OPENBZ_HOME = originalOpenBZHome;
       }
     }
   });
@@ -114,8 +114,8 @@ describe("detectMacCloudSyncedStateDir", () => {
       "Library",
       "Mobile Documents",
       "com~apple~CloudDocs",
-      "OpenClaw",
-      ".openclaw",
+      "BZ AI DevOps2",
+      ".openbz",
     );
 
     const result = detectMacCloudSyncedStateDir(stateDir, {

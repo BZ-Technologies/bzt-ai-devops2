@@ -5,7 +5,7 @@ import { openBoundaryFileSync } from "../infra/boundary-file-read.js";
 import { isRecord } from "../utils.js";
 import type { PluginConfigUiHint, PluginKind } from "./types.js";
 
-export const PLUGIN_MANIFEST_FILENAME = "openclaw.plugin.json";
+export const PLUGIN_MANIFEST_FILENAME = "openbz.plugin.json";
 export const PLUGIN_MANIFEST_FILENAMES = [PLUGIN_MANIFEST_FILENAME] as const;
 
 export type PluginManifest = {
@@ -214,7 +214,7 @@ export function loadPluginManifest(
   };
 }
 
-// package.json "openclaw" metadata (used for setup/catalog)
+// package.json "openbz" metadata (used for setup/catalog)
 export type PluginPackageChannel = {
   id?: string;
   label?: string;
@@ -242,7 +242,7 @@ export type PluginPackageInstall = {
   defaultChoice?: "npm" | "local";
 };
 
-export type OpenClawPackageStartup = {
+export type OpenBZPackageStartup = {
   /**
    * Opt-in for channel plugins whose `setupEntry` fully covers the gateway
    * startup surface needed before the server starts listening.
@@ -250,12 +250,12 @@ export type OpenClawPackageStartup = {
   deferConfiguredChannelFullLoadUntilAfterListen?: boolean;
 };
 
-export type OpenClawPackageManifest = {
+export type OpenBZPackageManifest = {
   extensions?: string[];
   setupEntry?: string;
   channel?: PluginPackageChannel;
   install?: PluginPackageInstall;
-  startup?: OpenClawPackageStartup;
+  startup?: OpenBZPackageStartup;
 };
 
 export const DEFAULT_PLUGIN_ENTRY_CANDIDATES = [
@@ -276,11 +276,11 @@ export type PackageManifest = {
   name?: string;
   version?: string;
   description?: string;
-} & Partial<Record<ManifestKey, OpenClawPackageManifest>>;
+} & Partial<Record<ManifestKey, OpenBZPackageManifest>>;
 
 export function getPackageManifestMetadata(
   manifest: PackageManifest | undefined,
-): OpenClawPackageManifest | undefined {
+): OpenBZPackageManifest | undefined {
   if (!manifest) {
     return undefined;
   }

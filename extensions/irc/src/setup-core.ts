@@ -1,15 +1,15 @@
-import type { ChannelSetupAdapter } from "openclaw/plugin-sdk/channel-runtime";
-import type { ChannelSetupInput } from "openclaw/plugin-sdk/channel-runtime";
-import type { DmPolicy } from "openclaw/plugin-sdk/config-runtime";
-import { normalizeAccountId } from "openclaw/plugin-sdk/routing";
+import type { ChannelSetupAdapter } from "openbz/plugin-sdk/channel-runtime";
+import type { ChannelSetupInput } from "openbz/plugin-sdk/channel-runtime";
+import type { DmPolicy } from "openbz/plugin-sdk/config-runtime";
+import { normalizeAccountId } from "openbz/plugin-sdk/routing";
 import {
   applyAccountNameToChannelSection,
   patchScopedAccountConfig,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import {
   setTopLevelChannelAllowFrom,
   setTopLevelChannelDmPolicyWithAllowFrom,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import type { CoreConfig, IrcAccountConfig, IrcNickServConfig } from "./types.js";
 
 const channel = "irc" as const;

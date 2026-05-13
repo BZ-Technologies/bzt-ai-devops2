@@ -4,9 +4,9 @@ import {
   normalizeAccountId,
   normalizeChatType,
   resolveAccountEntry,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/account-resolution";
-import type { SlackAccountConfig } from "openclaw/plugin-sdk/slack";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/account-resolution";
+import type { SlackAccountConfig } from "openbz/plugin-sdk/slack";
 import type { SlackAccountSurfaceFields } from "./account-surface-fields.js";
 import { resolveSlackAppToken, resolveSlackBotToken, resolveSlackUserToken } from "./token.js";
 
@@ -30,14 +30,14 @@ export const listSlackAccountIds = listAccountIds;
 export const resolveDefaultSlackAccountId = resolveDefaultAccountId;
 
 function resolveAccountConfig(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   accountId: string,
 ): SlackAccountConfig | undefined {
   return resolveAccountEntry(cfg.channels?.slack?.accounts, accountId);
 }
 
 export function mergeSlackAccountConfig(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   accountId: string,
 ): SlackAccountConfig {
   const { accounts: _ignored, ...base } = (cfg.channels?.slack ?? {}) as SlackAccountConfig & {
@@ -48,7 +48,7 @@ export function mergeSlackAccountConfig(
 }
 
 export function resolveSlackAccount(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId?: string | null;
 }): ResolvedSlackAccount {
   const accountId = normalizeAccountId(params.accountId);
@@ -104,7 +104,7 @@ export function resolveSlackAccount(params: {
   };
 }
 
-export function listEnabledSlackAccounts(cfg: OpenClawConfig): ResolvedSlackAccount[] {
+export function listEnabledSlackAccounts(cfg: OpenBZConfig): ResolvedSlackAccount[] {
   return listSlackAccountIds(cfg)
     .map((accountId) => resolveSlackAccount({ cfg, accountId }))
     .filter((account) => account.enabled);

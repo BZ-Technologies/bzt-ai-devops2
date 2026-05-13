@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+import type { OpenBZConfig } from "../config/config.js";
 import { applyExclusiveSlotSelection } from "./slots.js";
 
 describe("applyExclusiveSlotSelection", () => {
-  const createMemoryConfig = (plugins?: OpenClawConfig["plugins"]): OpenClawConfig => ({
+  const createMemoryConfig = (plugins?: OpenBZConfig["plugins"]): OpenBZConfig => ({
     plugins: {
       ...plugins,
       entries: {
@@ -16,7 +16,7 @@ describe("applyExclusiveSlotSelection", () => {
     },
   });
 
-  const runMemorySelection = (config: OpenClawConfig, selectedId = "memory") =>
+  const runMemorySelection = (config: OpenBZConfig, selectedId = "memory") =>
     applyExclusiveSlotSelection({
       config,
       selectedId,
@@ -93,7 +93,7 @@ describe("applyExclusiveSlotSelection", () => {
   });
 
   it("skips changes when no exclusive slot applies", () => {
-    const config: OpenClawConfig = {};
+    const config: OpenBZConfig = {};
     const result = applyExclusiveSlotSelection({
       config,
       selectedId: "custom",

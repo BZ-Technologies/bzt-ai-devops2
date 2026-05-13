@@ -3,9 +3,9 @@ import {
   createAccountListHelpers,
   normalizeAccountId,
   resolveAccountEntry,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/account-resolution";
-import type { DiscordAccountConfig, DiscordActionConfig } from "openclaw/plugin-sdk/discord";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/account-resolution";
+import type { DiscordAccountConfig, DiscordActionConfig } from "openbz/plugin-sdk/discord";
 import { resolveDiscordToken } from "./token.js";
 
 export type ResolvedDiscordAccount = {
@@ -22,14 +22,14 @@ export const listDiscordAccountIds = listAccountIds;
 export const resolveDefaultDiscordAccountId = resolveDefaultAccountId;
 
 export function resolveDiscordAccountConfig(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   accountId: string,
 ): DiscordAccountConfig | undefined {
   return resolveAccountEntry(cfg.channels?.discord?.accounts, accountId);
 }
 
 export function mergeDiscordAccountConfig(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   accountId: string,
 ): DiscordAccountConfig {
   const { accounts: _ignored, ...base } = (cfg.channels?.discord ?? {}) as DiscordAccountConfig & {
@@ -40,7 +40,7 @@ export function mergeDiscordAccountConfig(
 }
 
 export function createDiscordActionGate(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId?: string | null;
 }): (key: keyof DiscordActionConfig, defaultValue?: boolean) => boolean {
   const accountId = normalizeAccountId(params.accountId);
@@ -51,7 +51,7 @@ export function createDiscordActionGate(params: {
 }
 
 export function resolveDiscordAccount(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId?: string | null;
 }): ResolvedDiscordAccount {
   const accountId = normalizeAccountId(params.accountId);
@@ -71,7 +71,7 @@ export function resolveDiscordAccount(params: {
 }
 
 export function resolveDiscordMaxLinesPerMessage(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   discordConfig?: DiscordAccountConfig | null;
   accountId?: string | null;
 }): number | undefined {
@@ -84,7 +84,7 @@ export function resolveDiscordMaxLinesPerMessage(params: {
   }).config.maxLinesPerMessage;
 }
 
-export function listEnabledDiscordAccounts(cfg: OpenClawConfig): ResolvedDiscordAccount[] {
+export function listEnabledDiscordAccounts(cfg: OpenBZConfig): ResolvedDiscordAccount[] {
   return listDiscordAccountIds(cfg)
     .map((accountId) => resolveDiscordAccount({ cfg, accountId }))
     .filter((account) => account.enabled);

@@ -1,4 +1,4 @@
-import { type ChannelPlugin } from "openclaw/plugin-sdk/whatsapp";
+import { type ChannelPlugin } from "openbz/plugin-sdk/whatsapp";
 import { type ResolvedWhatsAppAccount } from "./accounts.js";
 import { webAuthExists } from "./auth-store.js";
 import { whatsappSetupAdapter } from "./setup-core.js";

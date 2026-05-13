@@ -1,18 +1,18 @@
 import {
   buildOauthProviderAuthResult,
   emptyPluginConfigSchema,
-  type OpenClawPluginApi,
+  type OpenBZPluginApi,
   type ProviderAuthContext,
   type ProviderAuthResult,
   type ProviderCatalogContext,
-} from "openclaw/plugin-sdk/minimax-portal-auth";
+} from "openbz/plugin-sdk/minimax-portal-auth";
 import {
   MINIMAX_OAUTH_MARKER,
   createProviderApiKeyAuthMethod,
   ensureAuthProfileStore,
   listProfilesForProvider,
-} from "openclaw/plugin-sdk/provider-auth";
-import { fetchMinimaxUsage } from "openclaw/plugin-sdk/provider-usage";
+} from "openbz/plugin-sdk/provider-auth";
+import { fetchMinimaxUsage } from "openbz/plugin-sdk/provider-usage";
 import {
   minimaxMediaUnderstandingProvider,
   minimaxPortalMediaUnderstandingProvider,
@@ -164,7 +164,7 @@ const minimaxPlugin = {
   name: "MiniMax",
   description: "Bundled MiniMax API-key and OAuth provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: API_PROVIDER_ID,
       label: PROVIDER_LABEL,

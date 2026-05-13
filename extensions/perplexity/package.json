@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/perplexity-plugin",
+  "name": "@openbz/perplexity-plugin",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw Perplexity plugin",
+  "description": "BZ AI DevOps2 Perplexity plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ]

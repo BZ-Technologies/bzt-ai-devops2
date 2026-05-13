@@ -1,32 +1,32 @@
-import { resolveAckReaction } from "openclaw/plugin-sdk/agent-runtime";
+import { resolveAckReaction } from "openbz/plugin-sdk/agent-runtime";
 import {
   shouldAckReaction as shouldAckReactionGate,
   type AckReactionScope,
-} from "openclaw/plugin-sdk/channel-runtime";
-import { resolveControlCommandGate } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveConversationLabel } from "openclaw/plugin-sdk/channel-runtime";
-import { logInboundDrop } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveMentionGatingWithBypass } from "openclaw/plugin-sdk/channel-runtime";
-import { recordInboundSession } from "openclaw/plugin-sdk/channel-runtime";
-import { readSessionUpdatedAt, resolveStorePath } from "openclaw/plugin-sdk/config-runtime";
-import { enqueueSystemEvent } from "openclaw/plugin-sdk/infra-runtime";
-import { hasControlCommand } from "openclaw/plugin-sdk/reply-runtime";
-import { shouldHandleTextCommands } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/channel-runtime";
+import { resolveControlCommandGate } from "openbz/plugin-sdk/channel-runtime";
+import { resolveConversationLabel } from "openbz/plugin-sdk/channel-runtime";
+import { logInboundDrop } from "openbz/plugin-sdk/channel-runtime";
+import { resolveMentionGatingWithBypass } from "openbz/plugin-sdk/channel-runtime";
+import { recordInboundSession } from "openbz/plugin-sdk/channel-runtime";
+import { readSessionUpdatedAt, resolveStorePath } from "openbz/plugin-sdk/config-runtime";
+import { enqueueSystemEvent } from "openbz/plugin-sdk/infra-runtime";
+import { hasControlCommand } from "openbz/plugin-sdk/reply-runtime";
+import { shouldHandleTextCommands } from "openbz/plugin-sdk/reply-runtime";
 import {
   formatInboundEnvelope,
   resolveEnvelopeFormatOptions,
-} from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
 import {
   buildPendingHistoryContextFromMap,
   recordPendingHistoryEntryIfEnabled,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { finalizeInboundContext } from "openclaw/plugin-sdk/reply-runtime";
-import { buildMentionRegexes, matchesMentionWithExplicit } from "openclaw/plugin-sdk/reply-runtime";
-import type { FinalizedMsgContext } from "openclaw/plugin-sdk/reply-runtime";
-import { resolveAgentRoute } from "openclaw/plugin-sdk/routing";
-import { resolveThreadSessionKeys } from "openclaw/plugin-sdk/routing";
-import { logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { resolvePinnedMainDmOwnerFromAllowlist } from "openclaw/plugin-sdk/security-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
+import { finalizeInboundContext } from "openbz/plugin-sdk/reply-runtime";
+import { buildMentionRegexes, matchesMentionWithExplicit } from "openbz/plugin-sdk/reply-runtime";
+import type { FinalizedMsgContext } from "openbz/plugin-sdk/reply-runtime";
+import { resolveAgentRoute } from "openbz/plugin-sdk/routing";
+import { resolveThreadSessionKeys } from "openbz/plugin-sdk/routing";
+import { logVerbose, shouldLogVerbose } from "openbz/plugin-sdk/runtime-env";
+import { resolvePinnedMainDmOwnerFromAllowlist } from "openbz/plugin-sdk/security-runtime";
 import { resolveSlackReplyToMode, type ResolvedSlackAccount } from "../../accounts.js";
 import { reactSlackMessage } from "../../actions.js";
 import { sendMessageSlack } from "../../send.js";

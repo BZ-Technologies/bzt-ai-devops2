@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/line",
+  "name": "@openbz/line",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw LINE channel plugin",
+  "description": "BZ AI DevOps2 LINE channel plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ],
@@ -20,7 +20,7 @@
       "quickstartAllowFrom": true
     },
     "install": {
-      "npmSpec": "@openclaw/line",
+      "npmSpec": "@openbz/line",
       "localPath": "extensions/line",
       "defaultChoice": "npm"
     }

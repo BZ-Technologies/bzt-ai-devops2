@@ -1,16 +1,19 @@
-## OpenClaw Vision
+## BZ AI DevOps2 Vision
 
-OpenClaw is the AI that actually does things.
+BZ AI DevOps2 is the AI that actually does things.
 It runs on your devices, in your channels, with your rules.
+
+**Enterprise direction (BZ Technologies)**  
+UI and docs use **standard BZ branding** (navy + gold). Long-term, this repo is positioned to complement **BZDevOps v2** (`bzt-ai-devops/docs/PRD-BZDEVOPS-V2.md`): intent-first workflows, MCP execution, RAG/OPA, and Proxmox-first hosting. See [`docs/BZDEVOPS-V2-PRD-ALIGNMENT.md`](docs/BZDEVOPS-V2-PRD-ALIGNMENT.md) and [`docs/deploy/PROXMOX-HOSTING.md`](docs/deploy/PROXMOX-HOSTING.md).
 
 This document explains the current state and direction of the project.
 We are still early, so iteration is fast.
 Project overview and developer docs: [`README.md`](README.md)
 Contribution guide: [`CONTRIBUTING.md`](CONTRIBUTING.md)
 
-OpenClaw started as a personal playground to learn AI and build something genuinely useful:
+BZ AI DevOps2 started as a personal playground to learn AI and build something genuinely useful:
 an assistant that can run real tasks on a real computer.
-It evolved through several names and shells: Warelay -> Clawdbot -> Moltbot -> OpenClaw.
+It evolved through several names and shells: Warelay -> Bzdbot -> Moltbot -> BZ AI DevOps2.
 
 The goal: a personal assistant that is easy to use, supports a wide range of platforms, and respects privacy and security.
 
@@ -40,7 +43,7 @@ Contribution rules:
 
 ## Security
 
-Security in OpenClaw is a deliberate tradeoff: strong defaults without killing capability.
+Security in BZ AI DevOps2 is a deliberate tradeoff: strong defaults without killing capability.
 The goal is to stay powerful for real work while making risky paths explicit and operator-controlled.
 
 Canonical security policy and reporting:
@@ -51,14 +54,14 @@ We prioritize secure defaults, but also expose clear knobs for trusted high-powe
 
 ## Plugins & Memory
 
-OpenClaw has an extensive plugin API.
+BZ AI DevOps2 has an extensive plugin API.
 Core stays lean; optional capability should usually ship as plugins.
 
 Preferred plugin path is npm package distribution plus local extension loading for development.
 If you build a plugin, host and maintain it in your own repository.
 The bar for adding optional plugins to core is intentionally high.
 Plugin docs: [`docs/tools/plugin.md`](docs/tools/plugin.md)
-Community plugin listing + PR bar: https://docs.openclaw.ai/plugins/community
+Community plugin listing + PR bar: https://docs.openbz.ai/plugins/community
 
 Memory is a special plugin slot where only one memory plugin can be active at a time.
 Today we ship multiple memory options; over time we plan to converge on one recommended default path.
@@ -66,12 +69,12 @@ Today we ship multiple memory options; over time we plan to converge on one reco
 ### Skills
 
 We still ship some bundled skills for baseline UX.
-New skills should be published to ClawHub first (`clawhub.ai`), not added to core by default.
+New skills should be published to ClawHub first (`bzhub.ai`), not added to core by default.
 Core skill additions should be rare and require a strong product or security reason.
 
 ### MCP Support
 
-OpenClaw supports MCP through `mcporter`: https://github.com/steipete/mcporter
+BZ AI DevOps2 supports MCP through `mcporter`: https://github.com/steipete/mcporter
 
 This keeps MCP integration flexible and decoupled from core runtime:
 
@@ -84,7 +87,7 @@ If there is an MCP server or feature `mcporter` does not support yet, please ope
 
 ### Setup
 
-OpenClaw is currently terminal-first by design.
+BZ AI DevOps2 is currently terminal-first by design.
 This keeps setup explicit: users see docs, auth, permissions, and security posture up front.
 
 Long term, we want easier onboarding flows as hardening matures.
@@ -92,8 +95,8 @@ We do not want convenience wrappers that hide critical security decisions from u
 
 ### Why TypeScript?
 
-OpenClaw is primarily an orchestration system: prompts, tools, protocols, and integrations.
-TypeScript was chosen to keep OpenClaw hackable by default.
+BZ AI DevOps2 is primarily an orchestration system: prompts, tools, protocols, and integrations.
+TypeScript was chosen to keep BZ AI DevOps2 hackable by default.
 It is widely known, fast to iterate in, and easy to read, modify, and extend.
 
 ## What We Will Not Merge (For Now)

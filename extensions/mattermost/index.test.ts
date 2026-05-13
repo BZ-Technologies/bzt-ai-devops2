@@ -1,18 +1,18 @@
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk/mattermost";
+import type { OpenBZPluginApi } from "openbz/plugin-sdk/mattermost";
 import { describe, expect, it, vi } from "vitest";
 import { createTestPluginApi } from "../test-utils/plugin-api.js";
 import plugin from "./index.js";
 
 function createApi(
-  registrationMode: OpenClawPluginApi["registrationMode"],
+  registrationMode: OpenBZPluginApi["registrationMode"],
   registerHttpRoute = vi.fn(),
-): OpenClawPluginApi {
+): OpenBZPluginApi {
   return createTestPluginApi({
     id: "mattermost",
     name: "Mattermost",
     source: "test",
     config: {},
-    runtime: {} as OpenClawPluginApi["runtime"],
+    runtime: {} as OpenBZPluginApi["runtime"],
     registrationMode,
     registerHttpRoute,
   });

@@ -1,7 +1,7 @@
-import { emptyPluginConfigSchema, type OpenClawPluginApi } from "openclaw/plugin-sdk/core";
-import { createProviderApiKeyAuthMethod } from "openclaw/plugin-sdk/provider-auth";
-import { buildSingleProviderApiKeyCatalog } from "openclaw/plugin-sdk/provider-catalog";
-import { PROVIDER_LABELS } from "openclaw/plugin-sdk/provider-usage";
+import { emptyPluginConfigSchema, type OpenBZPluginApi } from "openbz/plugin-sdk/core";
+import { createProviderApiKeyAuthMethod } from "openbz/plugin-sdk/provider-auth";
+import { buildSingleProviderApiKeyCatalog } from "openbz/plugin-sdk/provider-catalog";
+import { PROVIDER_LABELS } from "openbz/plugin-sdk/provider-usage";
 import { applyXiaomiConfig, XIAOMI_DEFAULT_MODEL_REF } from "./onboard.js";
 import { buildXiaomiProvider } from "./provider-catalog.js";
 
@@ -12,7 +12,7 @@ const xiaomiPlugin = {
   name: "Xiaomi Provider",
   description: "Bundled Xiaomi provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "Xiaomi",

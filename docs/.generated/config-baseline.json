@@ -1450,7 +1450,7 @@
         "advanced"
       ],
       "label": "Embedded Pi",
-      "help": "Embedded Pi runner hardening controls for how workspace-local Pi settings are trusted and applied in OpenClaw sessions.",
+      "help": "Embedded Pi runner hardening controls for how workspace-local Pi settings are trusted and applied in BZ AI DevOps2 sessions.",
       "hasChildren": true
     },
     {
@@ -2567,7 +2567,7 @@
         "storage"
       ],
       "label": "Memory Search Index Path",
-      "help": "Sets where the SQLite memory index is stored on disk for each agent. Keep the default `~/.openclaw/memory/{agentId}.sqlite` unless you need custom storage placement or backup policy alignment.",
+      "help": "Sets where the SQLite memory index is stored on disk for each agent. Keep the default `~/.openbz/memory/{agentId}.sqlite` unless you need custom storage placement or backup policy alignment.",
       "hasChildren": false
     },
     {
@@ -3111,7 +3111,7 @@
         "storage"
       ],
       "label": "Sandbox Browser Network",
-      "help": "Docker network for sandbox browser containers (default: openclaw-sandbox-browser). Avoid bridge if you need stricter isolation.",
+      "help": "Docker network for sandbox browser containers (default: openbz-sandbox-browser). Avoid bridge if you need stricter isolation.",
       "hasChildren": false
     },
     {
@@ -5185,7 +5185,7 @@
         "advanced"
       ],
       "label": "Agent Runtime",
-      "help": "Optional runtime descriptor for this agent. Use embedded for default OpenClaw execution or acp for external ACP harness defaults.",
+      "help": "Optional runtime descriptor for this agent. Use embedded for default BZ AI DevOps2 execution or acp for external ACP harness defaults.",
       "hasChildren": true
     },
     {
@@ -5213,7 +5213,7 @@
         "advanced"
       ],
       "label": "Agent ACP Harness Agent",
-      "help": "Optional ACP harness agent id to use for this OpenClaw agent (for example codex, claude).",
+      "help": "Optional ACP harness agent id to use for this BZ AI DevOps2 agent (for example codex, claude).",
       "hasChildren": false
     },
     {
@@ -5273,7 +5273,7 @@
         "advanced"
       ],
       "label": "Agent Runtime Type",
-      "help": "Runtime type for this agent: \"embedded\" (default OpenClaw runtime) or \"acp\" (ACP harness defaults).",
+      "help": "Runtime type for this agent: \"embedded\" (default BZ AI DevOps2 runtime) or \"acp\" (ACP harness defaults).",
       "hasChildren": false
     },
     {
@@ -8035,7 +8035,7 @@
         "storage"
       ],
       "label": "Browser Profile Driver",
-      "help": "Per-profile browser driver mode. Use \"openclaw\" (or legacy \"clawd\") for CDP-based profiles, or use \"existing-session\" for host-local Chrome DevTools MCP attachment.",
+      "help": "Per-profile browser driver mode. Use \"openbz\" (or legacy \"bzd\") for CDP-based profiles, or use \"existing-session\" for host-local Chrome DevTools MCP attachment.",
       "hasChildren": false
     },
     {
@@ -12853,7 +12853,7 @@
         "performance"
       ],
       "label": "Discord EventQueue Listener Timeout (ms)",
-      "help": "Canonical Discord listener timeout control in ms for gateway normalization/enqueue handlers. Default is 120000 in OpenClaw; set per account via channels.discord.accounts.<id>.eventQueue.listenerTimeout.",
+      "help": "Canonical Discord listener timeout control in ms for gateway normalization/enqueue handlers. Default is 120000 in BZ AI DevOps2; set per account via channels.discord.accounts.<id>.eventQueue.listenerTimeout.",
       "hasChildren": false
     },
     {
@@ -30436,7 +30436,7 @@
         "network"
       ],
       "label": "Synology Chat",
-      "help": "Connect your Synology NAS Chat to OpenClaw",
+      "help": "Connect your Synology NAS Chat to BZ AI DevOps2",
       "hasChildren": true
     },
     {
@@ -38588,7 +38588,7 @@
         "storage"
       ],
       "label": "Cache Trace File Path",
-      "help": "JSONL output path for cache trace logs (default: $OPENCLAW_STATE_DIR/logs/cache-trace.jsonl).",
+      "help": "JSONL output path for cache trace logs (default: $OPENBZ_STATE_DIR/logs/cache-trace.jsonl).",
       "hasChildren": false
     },
     {
@@ -38926,7 +38926,7 @@
         "network"
       ],
       "label": "Wide-area Discovery Domain",
-      "help": "Optional unicast DNS-SD domain for wide-area discovery, such as openclaw.internal. Use this when you intentionally publish gateway discovery beyond local mDNS scopes.",
+      "help": "Optional unicast DNS-SD domain for wide-area discovery, such as openbz.internal. Use this when you intentionally publish gateway discovery beyond local mDNS scopes.",
       "hasChildren": false
     },
     {
@@ -39020,7 +39020,7 @@
         "advanced"
       ],
       "label": "Environment Variable Overrides",
-      "help": "Explicit key/value environment variable overrides merged into runtime process environment for OpenClaw. Use this for deterministic env configuration instead of relying only on shell profile side effects.",
+      "help": "Explicit key/value environment variable overrides merged into runtime process environment for BZ AI DevOps2. Use this for deterministic env configuration instead of relying only on shell profile side effects.",
       "hasChildren": true
     },
     {
@@ -39451,7 +39451,7 @@
         "storage"
       ],
       "label": "Control UI Base Path",
-      "help": "Optional URL prefix where the Control UI is served (e.g. /openclaw).",
+      "help": "Optional URL prefix where the Control UI is served (e.g. /openbz).",
       "hasChildren": false
     },
     {
@@ -40098,7 +40098,7 @@
         "network"
       ],
       "label": "Gateway Node Allowlist (Extra Commands)",
-      "help": "Extra node.invoke commands to allow beyond the gateway defaults (array of command strings). Enabling dangerous commands here is a security-sensitive override and is flagged by `openclaw security audit`.",
+      "help": "Extra node.invoke commands to allow beyond the gateway defaults (array of command strings). Enabling dangerous commands here is a security-sensitive override and is flagged by `openbz security audit`.",
       "hasChildren": true
     },
     {
@@ -40734,7 +40734,7 @@
         "advanced"
       ],
       "label": "Hooks",
-      "help": "Inbound webhook automation surface for mapping external events into wake or agent actions in OpenClaw. Keep this locked down with explicit token/session/agent controls before exposing it beyond trusted networks.",
+      "help": "Inbound webhook automation surface for mapping external events into wake or agent actions in BZ AI DevOps2. Keep this locked down with explicit token/session/agent controls before exposing it beyond trusted networks.",
       "hasChildren": true
     },
     {
@@ -42071,7 +42071,7 @@
         "storage"
       ],
       "label": "Memory Backend",
-      "help": "Selects the global memory engine: \"builtin\" uses OpenClaw memory internals, while \"qmd\" uses the QMD sidecar pipeline. Keep \"builtin\" unless you intentionally operate QMD.",
+      "help": "Selects the global memory engine: \"builtin\" uses BZ AI DevOps2 memory internals, while \"qmd\" uses the QMD sidecar pipeline. Keep \"builtin\" unless you intentionally operate QMD.",
       "hasChildren": false
     },
     {
@@ -43827,7 +43827,7 @@
         "advanced"
       ],
       "label": "Metadata",
-      "help": "Metadata fields automatically maintained by OpenClaw to record write/version history for this config file. Keep these values system-managed and avoid manual edits unless debugging migration history.",
+      "help": "Metadata fields automatically maintained by BZ AI DevOps2 to record write/version history for this config file. Keep these values system-managed and avoid manual edits unless debugging migration history.",
       "hasChildren": true
     },
     {
@@ -43855,7 +43855,7 @@
         "media"
       ],
       "label": "Config Last Touched Version",
-      "help": "Auto-set when OpenClaw writes the config.",
+      "help": "Auto-set when BZ AI DevOps2 writes the config.",
       "hasChildren": false
     },
     {
@@ -44208,7 +44208,7 @@
         "models"
       ],
       "label": "Model Provider Inject num_ctx (OpenAI Compat)",
-      "help": "Controls whether OpenClaw injects `options.num_ctx` for Ollama providers configured with the OpenAI-compatible adapter (`openai-completions`). Default is true. Set false only if your proxy/upstream rejects unknown `options` payload fields.",
+      "help": "Controls whether BZ AI DevOps2 injects `options.num_ctx` for Ollama providers configured with the OpenAI-compatible adapter (`openai-completions`). Default is true. Set false only if your proxy/upstream rejects unknown `options` payload fields.",
       "hasChildren": false
     },
     {
@@ -44961,7 +44961,7 @@
         "advanced"
       ],
       "label": "Queue Owner TTL Seconds",
-      "help": "Idle queue-owner TTL for acpx prompt turns. Keep this short in OpenClaw to avoid delayed completion after each turn.",
+      "help": "Idle queue-owner TTL for acpx prompt turns. Keep this short in BZ AI DevOps2 to avoid delayed completion after each turn.",
       "hasChildren": false
     },
     {
@@ -45044,8 +45044,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/amazon-bedrock-provider",
-      "help": "OpenClaw Amazon Bedrock provider plugin (plugin: amazon-bedrock)",
+      "label": "@openbz/amazon-bedrock-provider",
+      "help": "BZ AI DevOps2 Amazon Bedrock provider plugin (plugin: amazon-bedrock)",
       "hasChildren": true
     },
     {
@@ -45058,7 +45058,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/amazon-bedrock-provider Config",
+      "label": "@openbz/amazon-bedrock-provider Config",
       "help": "Plugin-defined config payload for amazon-bedrock.",
       "hasChildren": false
     },
@@ -45072,7 +45072,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/amazon-bedrock-provider",
+      "label": "Enable @openbz/amazon-bedrock-provider",
       "hasChildren": false
     },
     {
@@ -45113,8 +45113,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/anthropic-provider",
-      "help": "OpenClaw Anthropic provider plugin (plugin: anthropic)",
+      "label": "@openbz/anthropic-provider",
+      "help": "BZ AI DevOps2 Anthropic provider plugin (plugin: anthropic)",
       "hasChildren": true
     },
     {
@@ -45127,7 +45127,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/anthropic-provider Config",
+      "label": "@openbz/anthropic-provider Config",
       "help": "Plugin-defined config payload for anthropic.",
       "hasChildren": false
     },
@@ -45141,7 +45141,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/anthropic-provider",
+      "label": "Enable @openbz/anthropic-provider",
       "hasChildren": false
     },
     {
@@ -45182,8 +45182,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/bluebubbles",
-      "help": "OpenClaw BlueBubbles channel plugin (plugin: bluebubbles)",
+      "label": "@openbz/bluebubbles",
+      "help": "BZ AI DevOps2 BlueBubbles channel plugin (plugin: bluebubbles)",
       "hasChildren": true
     },
     {
@@ -45196,7 +45196,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/bluebubbles Config",
+      "label": "@openbz/bluebubbles Config",
       "help": "Plugin-defined config payload for bluebubbles.",
       "hasChildren": false
     },
@@ -45210,7 +45210,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/bluebubbles",
+      "label": "Enable @openbz/bluebubbles",
       "hasChildren": false
     },
     {
@@ -45251,8 +45251,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/brave-plugin",
-      "help": "OpenClaw Brave plugin (plugin: brave)",
+      "label": "@openbz/brave-plugin",
+      "help": "BZ AI DevOps2 Brave plugin (plugin: brave)",
       "hasChildren": true
     },
     {
@@ -45265,7 +45265,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/brave-plugin Config",
+      "label": "@openbz/brave-plugin Config",
       "help": "Plugin-defined config payload for brave.",
       "hasChildren": false
     },
@@ -45279,7 +45279,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/brave-plugin",
+      "label": "Enable @openbz/brave-plugin",
       "hasChildren": false
     },
     {
@@ -45320,8 +45320,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/byteplus-provider",
-      "help": "OpenClaw BytePlus provider plugin (plugin: byteplus)",
+      "label": "@openbz/byteplus-provider",
+      "help": "BZ AI DevOps2 BytePlus provider plugin (plugin: byteplus)",
       "hasChildren": true
     },
     {
@@ -45334,7 +45334,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/byteplus-provider Config",
+      "label": "@openbz/byteplus-provider Config",
       "help": "Plugin-defined config payload for byteplus.",
       "hasChildren": false
     },
@@ -45348,7 +45348,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/byteplus-provider",
+      "label": "Enable @openbz/byteplus-provider",
       "hasChildren": false
     },
     {
@@ -45389,8 +45389,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/cloudflare-ai-gateway-provider",
-      "help": "OpenClaw Cloudflare AI Gateway provider plugin (plugin: cloudflare-ai-gateway)",
+      "label": "@openbz/cloudflare-ai-gateway-provider",
+      "help": "BZ AI DevOps2 Cloudflare AI Gateway provider plugin (plugin: cloudflare-ai-gateway)",
       "hasChildren": true
     },
     {
@@ -45403,7 +45403,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/cloudflare-ai-gateway-provider Config",
+      "label": "@openbz/cloudflare-ai-gateway-provider Config",
       "help": "Plugin-defined config payload for cloudflare-ai-gateway.",
       "hasChildren": false
     },
@@ -45417,7 +45417,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/cloudflare-ai-gateway-provider",
+      "label": "Enable @openbz/cloudflare-ai-gateway-provider",
       "hasChildren": false
     },
     {
@@ -45458,8 +45458,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/copilot-proxy",
-      "help": "OpenClaw Copilot Proxy provider plugin (plugin: copilot-proxy)",
+      "label": "@openbz/copilot-proxy",
+      "help": "BZ AI DevOps2 Copilot Proxy provider plugin (plugin: copilot-proxy)",
       "hasChildren": true
     },
     {
@@ -45472,7 +45472,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/copilot-proxy Config",
+      "label": "@openbz/copilot-proxy Config",
       "help": "Plugin-defined config payload for copilot-proxy.",
       "hasChildren": false
     },
@@ -45486,7 +45486,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/copilot-proxy",
+      "label": "Enable @openbz/copilot-proxy",
       "hasChildren": false
     },
     {
@@ -45610,8 +45610,8 @@
       "tags": [
         "observability"
       ],
-      "label": "@openclaw/diagnostics-otel",
-      "help": "OpenClaw diagnostics OpenTelemetry exporter (plugin: diagnostics-otel)",
+      "label": "@openbz/diagnostics-otel",
+      "help": "BZ AI DevOps2 diagnostics OpenTelemetry exporter (plugin: diagnostics-otel)",
       "hasChildren": true
     },
     {
@@ -45624,7 +45624,7 @@
       "tags": [
         "observability"
       ],
-      "label": "@openclaw/diagnostics-otel Config",
+      "label": "@openbz/diagnostics-otel Config",
       "help": "Plugin-defined config payload for diagnostics-otel.",
       "hasChildren": false
     },
@@ -45638,7 +45638,7 @@
       "tags": [
         "observability"
       ],
-      "label": "Enable @openclaw/diagnostics-otel",
+      "label": "Enable @openbz/diagnostics-otel",
       "hasChildren": false
     },
     {
@@ -46085,8 +46085,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/discord",
-      "help": "OpenClaw Discord channel plugin (plugin: discord)",
+      "label": "@openbz/discord",
+      "help": "BZ AI DevOps2 Discord channel plugin (plugin: discord)",
       "hasChildren": true
     },
     {
@@ -46099,7 +46099,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/discord Config",
+      "label": "@openbz/discord Config",
       "help": "Plugin-defined config payload for discord.",
       "hasChildren": false
     },
@@ -46113,7 +46113,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/discord",
+      "label": "Enable @openbz/discord",
       "hasChildren": false
     },
     {
@@ -46154,8 +46154,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/feishu",
-      "help": "OpenClaw Feishu/Lark channel plugin (community maintained by @m1heng) (plugin: feishu)",
+      "label": "@openbz/feishu",
+      "help": "BZ AI DevOps2 Feishu/Lark channel plugin (community maintained by @m1heng) (plugin: feishu)",
       "hasChildren": true
     },
     {
@@ -46168,7 +46168,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/feishu Config",
+      "label": "@openbz/feishu Config",
       "help": "Plugin-defined config payload for feishu.",
       "hasChildren": false
     },
@@ -46182,7 +46182,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/feishu",
+      "label": "Enable @openbz/feishu",
       "hasChildren": false
     },
     {
@@ -46223,8 +46223,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/firecrawl-plugin",
-      "help": "OpenClaw Firecrawl plugin (plugin: firecrawl)",
+      "label": "@openbz/firecrawl-plugin",
+      "help": "BZ AI DevOps2 Firecrawl plugin (plugin: firecrawl)",
       "hasChildren": true
     },
     {
@@ -46237,7 +46237,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/firecrawl-plugin Config",
+      "label": "@openbz/firecrawl-plugin Config",
       "help": "Plugin-defined config payload for firecrawl.",
       "hasChildren": false
     },
@@ -46251,7 +46251,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/firecrawl-plugin",
+      "label": "Enable @openbz/firecrawl-plugin",
       "hasChildren": false
     },
     {
@@ -46292,8 +46292,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/github-copilot-provider",
-      "help": "OpenClaw GitHub Copilot provider plugin (plugin: github-copilot)",
+      "label": "@openbz/github-copilot-provider",
+      "help": "BZ AI DevOps2 GitHub Copilot provider plugin (plugin: github-copilot)",
       "hasChildren": true
     },
     {
@@ -46306,7 +46306,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/github-copilot-provider Config",
+      "label": "@openbz/github-copilot-provider Config",
       "help": "Plugin-defined config payload for github-copilot.",
       "hasChildren": false
     },
@@ -46320,7 +46320,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/github-copilot-provider",
+      "label": "Enable @openbz/github-copilot-provider",
       "hasChildren": false
     },
     {
@@ -46361,8 +46361,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/google-plugin",
-      "help": "OpenClaw Google plugin (plugin: google)",
+      "label": "@openbz/google-plugin",
+      "help": "BZ AI DevOps2 Google plugin (plugin: google)",
       "hasChildren": true
     },
     {
@@ -46375,7 +46375,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/google-plugin Config",
+      "label": "@openbz/google-plugin Config",
       "help": "Plugin-defined config payload for google.",
       "hasChildren": false
     },
@@ -46389,7 +46389,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/google-plugin",
+      "label": "Enable @openbz/google-plugin",
       "hasChildren": false
     },
     {
@@ -46430,8 +46430,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/googlechat",
-      "help": "OpenClaw Google Chat channel plugin (plugin: googlechat)",
+      "label": "@openbz/googlechat",
+      "help": "BZ AI DevOps2 Google Chat channel plugin (plugin: googlechat)",
       "hasChildren": true
     },
     {
@@ -46444,7 +46444,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/googlechat Config",
+      "label": "@openbz/googlechat Config",
       "help": "Plugin-defined config payload for googlechat.",
       "hasChildren": false
     },
@@ -46458,7 +46458,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/googlechat",
+      "label": "Enable @openbz/googlechat",
       "hasChildren": false
     },
     {
@@ -46499,8 +46499,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/huggingface-provider",
-      "help": "OpenClaw Hugging Face provider plugin (plugin: huggingface)",
+      "label": "@openbz/huggingface-provider",
+      "help": "BZ AI DevOps2 Hugging Face provider plugin (plugin: huggingface)",
       "hasChildren": true
     },
     {
@@ -46513,7 +46513,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/huggingface-provider Config",
+      "label": "@openbz/huggingface-provider Config",
       "help": "Plugin-defined config payload for huggingface.",
       "hasChildren": false
     },
@@ -46527,7 +46527,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/huggingface-provider",
+      "label": "Enable @openbz/huggingface-provider",
       "hasChildren": false
     },
     {
@@ -46568,8 +46568,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/imessage",
-      "help": "OpenClaw iMessage channel plugin (plugin: imessage)",
+      "label": "@openbz/imessage",
+      "help": "BZ AI DevOps2 iMessage channel plugin (plugin: imessage)",
       "hasChildren": true
     },
     {
@@ -46582,7 +46582,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/imessage Config",
+      "label": "@openbz/imessage Config",
       "help": "Plugin-defined config payload for imessage.",
       "hasChildren": false
     },
@@ -46596,7 +46596,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/imessage",
+      "label": "Enable @openbz/imessage",
       "hasChildren": false
     },
     {
@@ -46637,8 +46637,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/irc",
-      "help": "OpenClaw IRC channel plugin (plugin: irc)",
+      "label": "@openbz/irc",
+      "help": "BZ AI DevOps2 IRC channel plugin (plugin: irc)",
       "hasChildren": true
     },
     {
@@ -46651,7 +46651,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/irc Config",
+      "label": "@openbz/irc Config",
       "help": "Plugin-defined config payload for irc.",
       "hasChildren": false
     },
@@ -46665,7 +46665,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/irc",
+      "label": "Enable @openbz/irc",
       "hasChildren": false
     },
     {
@@ -46706,8 +46706,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/kilocode-provider",
-      "help": "OpenClaw Kilo Gateway provider plugin (plugin: kilocode)",
+      "label": "@openbz/kilocode-provider",
+      "help": "BZ AI DevOps2 Kilo Gateway provider plugin (plugin: kilocode)",
       "hasChildren": true
     },
     {
@@ -46720,7 +46720,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/kilocode-provider Config",
+      "label": "@openbz/kilocode-provider Config",
       "help": "Plugin-defined config payload for kilocode.",
       "hasChildren": false
     },
@@ -46734,7 +46734,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/kilocode-provider",
+      "label": "Enable @openbz/kilocode-provider",
       "hasChildren": false
     },
     {
@@ -46775,8 +46775,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/kimi-coding-provider",
-      "help": "OpenClaw Kimi Coding provider plugin (plugin: kimi-coding)",
+      "label": "@openbz/kimi-coding-provider",
+      "help": "BZ AI DevOps2 Kimi Coding provider plugin (plugin: kimi-coding)",
       "hasChildren": true
     },
     {
@@ -46789,7 +46789,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/kimi-coding-provider Config",
+      "label": "@openbz/kimi-coding-provider Config",
       "help": "Plugin-defined config payload for kimi-coding.",
       "hasChildren": false
     },
@@ -46803,7 +46803,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/kimi-coding-provider",
+      "label": "Enable @openbz/kimi-coding-provider",
       "hasChildren": false
     },
     {
@@ -46844,8 +46844,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/line",
-      "help": "OpenClaw LINE channel plugin (plugin: line)",
+      "label": "@openbz/line",
+      "help": "BZ AI DevOps2 LINE channel plugin (plugin: line)",
       "hasChildren": true
     },
     {
@@ -46858,7 +46858,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/line Config",
+      "label": "@openbz/line Config",
       "help": "Plugin-defined config payload for line.",
       "hasChildren": false
     },
@@ -46872,7 +46872,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/line",
+      "label": "Enable @openbz/line",
       "hasChildren": false
     },
     {
@@ -47121,8 +47121,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/matrix",
-      "help": "OpenClaw Matrix channel plugin (plugin: matrix)",
+      "label": "@openbz/matrix",
+      "help": "BZ AI DevOps2 Matrix channel plugin (plugin: matrix)",
       "hasChildren": true
     },
     {
@@ -47135,7 +47135,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/matrix Config",
+      "label": "@openbz/matrix Config",
       "help": "Plugin-defined config payload for matrix.",
       "hasChildren": false
     },
@@ -47149,7 +47149,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/matrix",
+      "label": "Enable @openbz/matrix",
       "hasChildren": false
     },
     {
@@ -47190,8 +47190,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/mattermost",
-      "help": "OpenClaw Mattermost channel plugin (plugin: mattermost)",
+      "label": "@openbz/mattermost",
+      "help": "BZ AI DevOps2 Mattermost channel plugin (plugin: mattermost)",
       "hasChildren": true
     },
     {
@@ -47204,7 +47204,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/mattermost Config",
+      "label": "@openbz/mattermost Config",
       "help": "Plugin-defined config payload for mattermost.",
       "hasChildren": false
     },
@@ -47218,7 +47218,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/mattermost",
+      "label": "Enable @openbz/mattermost",
       "hasChildren": false
     },
     {
@@ -47259,8 +47259,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/memory-core",
-      "help": "OpenClaw core memory search plugin (plugin: memory-core)",
+      "label": "@openbz/memory-core",
+      "help": "BZ AI DevOps2 core memory search plugin (plugin: memory-core)",
       "hasChildren": true
     },
     {
@@ -47273,7 +47273,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/memory-core Config",
+      "label": "@openbz/memory-core Config",
       "help": "Plugin-defined config payload for memory-core.",
       "hasChildren": false
     },
@@ -47287,7 +47287,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/memory-core",
+      "label": "Enable @openbz/memory-core",
       "hasChildren": false
     },
     {
@@ -47328,8 +47328,8 @@
       "tags": [
         "storage"
       ],
-      "label": "@openclaw/memory-lancedb",
-      "help": "OpenClaw LanceDB-backed long-term memory plugin with auto-recall/capture (plugin: memory-lancedb)",
+      "label": "@openbz/memory-lancedb",
+      "help": "BZ AI DevOps2 LanceDB-backed long-term memory plugin with auto-recall/capture (plugin: memory-lancedb)",
       "hasChildren": true
     },
     {
@@ -47342,7 +47342,7 @@
       "tags": [
         "storage"
       ],
-      "label": "@openclaw/memory-lancedb Config",
+      "label": "@openbz/memory-lancedb Config",
       "help": "Plugin-defined config payload for memory-lancedb.",
       "hasChildren": true
     },
@@ -47485,7 +47485,7 @@
       "tags": [
         "storage"
       ],
-      "label": "Enable @openclaw/memory-lancedb",
+      "label": "Enable @openbz/memory-lancedb",
       "hasChildren": false
     },
     {
@@ -47526,8 +47526,8 @@
       "tags": [
         "performance"
       ],
-      "label": "@openclaw/minimax-provider",
-      "help": "OpenClaw MiniMax provider and OAuth plugin (plugin: minimax)",
+      "label": "@openbz/minimax-provider",
+      "help": "BZ AI DevOps2 MiniMax provider and OAuth plugin (plugin: minimax)",
       "hasChildren": true
     },
     {
@@ -47540,7 +47540,7 @@
       "tags": [
         "performance"
       ],
-      "label": "@openclaw/minimax-provider Config",
+      "label": "@openbz/minimax-provider Config",
       "help": "Plugin-defined config payload for minimax.",
       "hasChildren": false
     },
@@ -47554,7 +47554,7 @@
       "tags": [
         "performance"
       ],
-      "label": "Enable @openclaw/minimax-provider",
+      "label": "Enable @openbz/minimax-provider",
       "hasChildren": false
     },
     {
@@ -47595,8 +47595,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/mistral-provider",
-      "help": "OpenClaw Mistral provider plugin (plugin: mistral)",
+      "label": "@openbz/mistral-provider",
+      "help": "BZ AI DevOps2 Mistral provider plugin (plugin: mistral)",
       "hasChildren": true
     },
     {
@@ -47609,7 +47609,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/mistral-provider Config",
+      "label": "@openbz/mistral-provider Config",
       "help": "Plugin-defined config payload for mistral.",
       "hasChildren": false
     },
@@ -47623,7 +47623,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/mistral-provider",
+      "label": "Enable @openbz/mistral-provider",
       "hasChildren": false
     },
     {
@@ -47664,8 +47664,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/modelstudio-provider",
-      "help": "OpenClaw Model Studio provider plugin (plugin: modelstudio)",
+      "label": "@openbz/modelstudio-provider",
+      "help": "BZ AI DevOps2 Model Studio provider plugin (plugin: modelstudio)",
       "hasChildren": true
     },
     {
@@ -47678,7 +47678,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/modelstudio-provider Config",
+      "label": "@openbz/modelstudio-provider Config",
       "help": "Plugin-defined config payload for modelstudio.",
       "hasChildren": false
     },
@@ -47692,7 +47692,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/modelstudio-provider",
+      "label": "Enable @openbz/modelstudio-provider",
       "hasChildren": false
     },
     {
@@ -47733,8 +47733,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/moonshot-provider",
-      "help": "OpenClaw Moonshot provider plugin (plugin: moonshot)",
+      "label": "@openbz/moonshot-provider",
+      "help": "BZ AI DevOps2 Moonshot provider plugin (plugin: moonshot)",
       "hasChildren": true
     },
     {
@@ -47747,7 +47747,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/moonshot-provider Config",
+      "label": "@openbz/moonshot-provider Config",
       "help": "Plugin-defined config payload for moonshot.",
       "hasChildren": false
     },
@@ -47761,7 +47761,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/moonshot-provider",
+      "label": "Enable @openbz/moonshot-provider",
       "hasChildren": false
     },
     {
@@ -47802,8 +47802,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/msteams",
-      "help": "OpenClaw Microsoft Teams channel plugin (plugin: msteams)",
+      "label": "@openbz/msteams",
+      "help": "BZ AI DevOps2 Microsoft Teams channel plugin (plugin: msteams)",
       "hasChildren": true
     },
     {
@@ -47816,7 +47816,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/msteams Config",
+      "label": "@openbz/msteams Config",
       "help": "Plugin-defined config payload for msteams.",
       "hasChildren": false
     },
@@ -47830,7 +47830,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/msteams",
+      "label": "Enable @openbz/msteams",
       "hasChildren": false
     },
     {
@@ -47871,8 +47871,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/nextcloud-talk",
-      "help": "OpenClaw Nextcloud Talk channel plugin (plugin: nextcloud-talk)",
+      "label": "@openbz/nextcloud-talk",
+      "help": "BZ AI DevOps2 Nextcloud Talk channel plugin (plugin: nextcloud-talk)",
       "hasChildren": true
     },
     {
@@ -47885,7 +47885,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/nextcloud-talk Config",
+      "label": "@openbz/nextcloud-talk Config",
       "help": "Plugin-defined config payload for nextcloud-talk.",
       "hasChildren": false
     },
@@ -47899,7 +47899,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/nextcloud-talk",
+      "label": "Enable @openbz/nextcloud-talk",
       "hasChildren": false
     },
     {
@@ -47940,8 +47940,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/nostr",
-      "help": "OpenClaw Nostr channel plugin for NIP-04 encrypted DMs (plugin: nostr)",
+      "label": "@openbz/nostr",
+      "help": "BZ AI DevOps2 Nostr channel plugin for NIP-04 encrypted DMs (plugin: nostr)",
       "hasChildren": true
     },
     {
@@ -47954,7 +47954,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/nostr Config",
+      "label": "@openbz/nostr Config",
       "help": "Plugin-defined config payload for nostr.",
       "hasChildren": false
     },
@@ -47968,7 +47968,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/nostr",
+      "label": "Enable @openbz/nostr",
       "hasChildren": false
     },
     {
@@ -48009,8 +48009,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/nvidia-provider",
-      "help": "OpenClaw NVIDIA provider plugin (plugin: nvidia)",
+      "label": "@openbz/nvidia-provider",
+      "help": "BZ AI DevOps2 NVIDIA provider plugin (plugin: nvidia)",
       "hasChildren": true
     },
     {
@@ -48023,7 +48023,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/nvidia-provider Config",
+      "label": "@openbz/nvidia-provider Config",
       "help": "Plugin-defined config payload for nvidia.",
       "hasChildren": false
     },
@@ -48037,7 +48037,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/nvidia-provider",
+      "label": "Enable @openbz/nvidia-provider",
       "hasChildren": false
     },
     {
@@ -48078,8 +48078,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/ollama-provider",
-      "help": "OpenClaw Ollama provider plugin (plugin: ollama)",
+      "label": "@openbz/ollama-provider",
+      "help": "BZ AI DevOps2 Ollama provider plugin (plugin: ollama)",
       "hasChildren": true
     },
     {
@@ -48092,7 +48092,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/ollama-provider Config",
+      "label": "@openbz/ollama-provider Config",
       "help": "Plugin-defined config payload for ollama.",
       "hasChildren": false
     },
@@ -48106,7 +48106,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/ollama-provider",
+      "label": "Enable @openbz/ollama-provider",
       "hasChildren": false
     },
     {
@@ -48216,8 +48216,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/openai-provider",
-      "help": "OpenClaw OpenAI provider plugins (plugin: openai)",
+      "label": "@openbz/openai-provider",
+      "help": "BZ AI DevOps2 OpenAI provider plugins (plugin: openai)",
       "hasChildren": true
     },
     {
@@ -48230,7 +48230,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/openai-provider Config",
+      "label": "@openbz/openai-provider Config",
       "help": "Plugin-defined config payload for openai.",
       "hasChildren": false
     },
@@ -48244,7 +48244,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/openai-provider",
+      "label": "Enable @openbz/openai-provider",
       "hasChildren": false
     },
     {
@@ -48285,8 +48285,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/opencode-provider",
-      "help": "OpenClaw OpenCode Zen provider plugin (plugin: opencode)",
+      "label": "@openbz/opencode-provider",
+      "help": "BZ AI DevOps2 OpenCode Zen provider plugin (plugin: opencode)",
       "hasChildren": true
     },
     {
@@ -48299,8 +48299,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/opencode-go-provider",
-      "help": "OpenClaw OpenCode Go provider plugin (plugin: opencode-go)",
+      "label": "@openbz/opencode-go-provider",
+      "help": "BZ AI DevOps2 OpenCode Go provider plugin (plugin: opencode-go)",
       "hasChildren": true
     },
     {
@@ -48313,7 +48313,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/opencode-go-provider Config",
+      "label": "@openbz/opencode-go-provider Config",
       "help": "Plugin-defined config payload for opencode-go.",
       "hasChildren": false
     },
@@ -48327,7 +48327,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/opencode-go-provider",
+      "label": "Enable @openbz/opencode-go-provider",
       "hasChildren": false
     },
     {
@@ -48368,7 +48368,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/opencode-provider Config",
+      "label": "@openbz/opencode-provider Config",
       "help": "Plugin-defined config payload for opencode.",
       "hasChildren": false
     },
@@ -48382,7 +48382,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/opencode-provider",
+      "label": "Enable @openbz/opencode-provider",
       "hasChildren": false
     },
     {
@@ -48423,8 +48423,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/openrouter-provider",
-      "help": "OpenClaw OpenRouter provider plugin (plugin: openrouter)",
+      "label": "@openbz/openrouter-provider",
+      "help": "BZ AI DevOps2 OpenRouter provider plugin (plugin: openrouter)",
       "hasChildren": true
     },
     {
@@ -48437,7 +48437,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/openrouter-provider Config",
+      "label": "@openbz/openrouter-provider Config",
       "help": "Plugin-defined config payload for openrouter.",
       "hasChildren": false
     },
@@ -48451,7 +48451,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/openrouter-provider",
+      "label": "Enable @openbz/openrouter-provider",
       "hasChildren": false
     },
     {
@@ -48549,7 +48549,7 @@
         "advanced"
       ],
       "label": "Sandbox Source",
-      "help": "OpenShell sandbox source for first-time create. Defaults to openclaw.",
+      "help": "OpenShell sandbox source for first-time create. Defaults to openbz.",
       "hasChildren": false
     },
     {
@@ -48728,8 +48728,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/perplexity-plugin",
-      "help": "OpenClaw Perplexity plugin (plugin: perplexity)",
+      "label": "@openbz/perplexity-plugin",
+      "help": "BZ AI DevOps2 Perplexity plugin (plugin: perplexity)",
       "hasChildren": true
     },
     {
@@ -48742,7 +48742,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/perplexity-plugin Config",
+      "label": "@openbz/perplexity-plugin Config",
       "help": "Plugin-defined config payload for perplexity.",
       "hasChildren": false
     },
@@ -48756,7 +48756,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/perplexity-plugin",
+      "label": "Enable @openbz/perplexity-plugin",
       "hasChildren": false
     },
     {
@@ -48866,8 +48866,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/qianfan-provider",
-      "help": "OpenClaw Qianfan provider plugin (plugin: qianfan)",
+      "label": "@openbz/qianfan-provider",
+      "help": "BZ AI DevOps2 Qianfan provider plugin (plugin: qianfan)",
       "hasChildren": true
     },
     {
@@ -48880,7 +48880,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/qianfan-provider Config",
+      "label": "@openbz/qianfan-provider Config",
       "help": "Plugin-defined config payload for qianfan.",
       "hasChildren": false
     },
@@ -48894,7 +48894,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/qianfan-provider",
+      "label": "Enable @openbz/qianfan-provider",
       "hasChildren": false
     },
     {
@@ -49004,8 +49004,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/sglang-provider",
-      "help": "OpenClaw SGLang provider plugin (plugin: sglang)",
+      "label": "@openbz/sglang-provider",
+      "help": "BZ AI DevOps2 SGLang provider plugin (plugin: sglang)",
       "hasChildren": true
     },
     {
@@ -49018,7 +49018,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/sglang-provider Config",
+      "label": "@openbz/sglang-provider Config",
       "help": "Plugin-defined config payload for sglang.",
       "hasChildren": false
     },
@@ -49032,7 +49032,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/sglang-provider",
+      "label": "Enable @openbz/sglang-provider",
       "hasChildren": false
     },
     {
@@ -49073,8 +49073,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/signal",
-      "help": "OpenClaw Signal channel plugin (plugin: signal)",
+      "label": "@openbz/signal",
+      "help": "BZ AI DevOps2 Signal channel plugin (plugin: signal)",
       "hasChildren": true
     },
     {
@@ -49087,7 +49087,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/signal Config",
+      "label": "@openbz/signal Config",
       "help": "Plugin-defined config payload for signal.",
       "hasChildren": false
     },
@@ -49101,7 +49101,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/signal",
+      "label": "Enable @openbz/signal",
       "hasChildren": false
     },
     {
@@ -49142,8 +49142,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/slack",
-      "help": "OpenClaw Slack channel plugin (plugin: slack)",
+      "label": "@openbz/slack",
+      "help": "BZ AI DevOps2 Slack channel plugin (plugin: slack)",
       "hasChildren": true
     },
     {
@@ -49156,7 +49156,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/slack Config",
+      "label": "@openbz/slack Config",
       "help": "Plugin-defined config payload for slack.",
       "hasChildren": false
     },
@@ -49170,7 +49170,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/slack",
+      "label": "Enable @openbz/slack",
       "hasChildren": false
     },
     {
@@ -49211,8 +49211,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/synology-chat",
-      "help": "Synology Chat channel plugin for OpenClaw (plugin: synology-chat)",
+      "label": "@openbz/synology-chat",
+      "help": "Synology Chat channel plugin for BZ AI DevOps2 (plugin: synology-chat)",
       "hasChildren": true
     },
     {
@@ -49225,7 +49225,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/synology-chat Config",
+      "label": "@openbz/synology-chat Config",
       "help": "Plugin-defined config payload for synology-chat.",
       "hasChildren": false
     },
@@ -49239,7 +49239,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/synology-chat",
+      "label": "Enable @openbz/synology-chat",
       "hasChildren": false
     },
     {
@@ -49280,8 +49280,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/synthetic-provider",
-      "help": "OpenClaw Synthetic provider plugin (plugin: synthetic)",
+      "label": "@openbz/synthetic-provider",
+      "help": "BZ AI DevOps2 Synthetic provider plugin (plugin: synthetic)",
       "hasChildren": true
     },
     {
@@ -49294,7 +49294,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/synthetic-provider Config",
+      "label": "@openbz/synthetic-provider Config",
       "help": "Plugin-defined config payload for synthetic.",
       "hasChildren": false
     },
@@ -49308,7 +49308,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/synthetic-provider",
+      "label": "Enable @openbz/synthetic-provider",
       "hasChildren": false
     },
     {
@@ -49418,8 +49418,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/telegram",
-      "help": "OpenClaw Telegram channel plugin (plugin: telegram)",
+      "label": "@openbz/telegram",
+      "help": "BZ AI DevOps2 Telegram channel plugin (plugin: telegram)",
       "hasChildren": true
     },
     {
@@ -49432,7 +49432,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/telegram Config",
+      "label": "@openbz/telegram Config",
       "help": "Plugin-defined config payload for telegram.",
       "hasChildren": false
     },
@@ -49446,7 +49446,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/telegram",
+      "label": "Enable @openbz/telegram",
       "hasChildren": false
     },
     {
@@ -49594,8 +49594,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/tlon",
-      "help": "OpenClaw Tlon/Urbit channel plugin (plugin: tlon)",
+      "label": "@openbz/tlon",
+      "help": "BZ AI DevOps2 Tlon/Urbit channel plugin (plugin: tlon)",
       "hasChildren": true
     },
     {
@@ -49608,7 +49608,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/tlon Config",
+      "label": "@openbz/tlon Config",
       "help": "Plugin-defined config payload for tlon.",
       "hasChildren": false
     },
@@ -49622,7 +49622,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/tlon",
+      "label": "Enable @openbz/tlon",
       "hasChildren": false
     },
     {
@@ -49663,8 +49663,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/together-provider",
-      "help": "OpenClaw Together provider plugin (plugin: together)",
+      "label": "@openbz/together-provider",
+      "help": "BZ AI DevOps2 Together provider plugin (plugin: together)",
       "hasChildren": true
     },
     {
@@ -49677,7 +49677,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/together-provider Config",
+      "label": "@openbz/together-provider Config",
       "help": "Plugin-defined config payload for together.",
       "hasChildren": false
     },
@@ -49691,7 +49691,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/together-provider",
+      "label": "Enable @openbz/together-provider",
       "hasChildren": false
     },
     {
@@ -49732,8 +49732,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/twitch",
-      "help": "OpenClaw Twitch channel plugin (plugin: twitch)",
+      "label": "@openbz/twitch",
+      "help": "BZ AI DevOps2 Twitch channel plugin (plugin: twitch)",
       "hasChildren": true
     },
     {
@@ -49746,7 +49746,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/twitch Config",
+      "label": "@openbz/twitch Config",
       "help": "Plugin-defined config payload for twitch.",
       "hasChildren": false
     },
@@ -49760,7 +49760,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/twitch",
+      "label": "Enable @openbz/twitch",
       "hasChildren": false
     },
     {
@@ -49801,8 +49801,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/venice-provider",
-      "help": "OpenClaw Venice provider plugin (plugin: venice)",
+      "label": "@openbz/venice-provider",
+      "help": "BZ AI DevOps2 Venice provider plugin (plugin: venice)",
       "hasChildren": true
     },
     {
@@ -49815,7 +49815,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/venice-provider Config",
+      "label": "@openbz/venice-provider Config",
       "help": "Plugin-defined config payload for venice.",
       "hasChildren": false
     },
@@ -49829,7 +49829,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/venice-provider",
+      "label": "Enable @openbz/venice-provider",
       "hasChildren": false
     },
     {
@@ -49870,8 +49870,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/vercel-ai-gateway-provider",
-      "help": "OpenClaw Vercel AI Gateway provider plugin (plugin: vercel-ai-gateway)",
+      "label": "@openbz/vercel-ai-gateway-provider",
+      "help": "BZ AI DevOps2 Vercel AI Gateway provider plugin (plugin: vercel-ai-gateway)",
       "hasChildren": true
     },
     {
@@ -49884,7 +49884,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/vercel-ai-gateway-provider Config",
+      "label": "@openbz/vercel-ai-gateway-provider Config",
       "help": "Plugin-defined config payload for vercel-ai-gateway.",
       "hasChildren": false
     },
@@ -49898,7 +49898,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/vercel-ai-gateway-provider",
+      "label": "Enable @openbz/vercel-ai-gateway-provider",
       "hasChildren": false
     },
     {
@@ -49939,8 +49939,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/vllm-provider",
-      "help": "OpenClaw vLLM provider plugin (plugin: vllm)",
+      "label": "@openbz/vllm-provider",
+      "help": "BZ AI DevOps2 vLLM provider plugin (plugin: vllm)",
       "hasChildren": true
     },
     {
@@ -49953,7 +49953,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/vllm-provider Config",
+      "label": "@openbz/vllm-provider Config",
       "help": "Plugin-defined config payload for vllm.",
       "hasChildren": false
     },
@@ -49967,7 +49967,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/vllm-provider",
+      "label": "Enable @openbz/vllm-provider",
       "hasChildren": false
     },
     {
@@ -50008,8 +50008,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/voice-call",
-      "help": "OpenClaw voice-call plugin (plugin: voice-call)",
+      "label": "@openbz/voice-call",
+      "help": "BZ AI DevOps2 voice-call plugin (plugin: voice-call)",
       "hasChildren": true
     },
     {
@@ -50022,7 +50022,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/voice-call Config",
+      "label": "@openbz/voice-call Config",
       "help": "Plugin-defined config payload for voice-call.",
       "hasChildren": true
     },
@@ -51397,7 +51397,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/voice-call",
+      "label": "Enable @openbz/voice-call",
       "hasChildren": false
     },
     {
@@ -51438,8 +51438,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/volcengine-provider",
-      "help": "OpenClaw Volcengine provider plugin (plugin: volcengine)",
+      "label": "@openbz/volcengine-provider",
+      "help": "BZ AI DevOps2 Volcengine provider plugin (plugin: volcengine)",
       "hasChildren": true
     },
     {
@@ -51452,7 +51452,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/volcengine-provider Config",
+      "label": "@openbz/volcengine-provider Config",
       "help": "Plugin-defined config payload for volcengine.",
       "hasChildren": false
     },
@@ -51466,7 +51466,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/volcengine-provider",
+      "label": "Enable @openbz/volcengine-provider",
       "hasChildren": false
     },
     {
@@ -51507,8 +51507,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/whatsapp",
-      "help": "OpenClaw WhatsApp channel plugin (plugin: whatsapp)",
+      "label": "@openbz/whatsapp",
+      "help": "BZ AI DevOps2 WhatsApp channel plugin (plugin: whatsapp)",
       "hasChildren": true
     },
     {
@@ -51521,7 +51521,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/whatsapp Config",
+      "label": "@openbz/whatsapp Config",
       "help": "Plugin-defined config payload for whatsapp.",
       "hasChildren": false
     },
@@ -51535,7 +51535,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/whatsapp",
+      "label": "Enable @openbz/whatsapp",
       "hasChildren": false
     },
     {
@@ -51576,8 +51576,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/xai-plugin",
-      "help": "OpenClaw xAI plugin (plugin: xai)",
+      "label": "@openbz/xai-plugin",
+      "help": "BZ AI DevOps2 xAI plugin (plugin: xai)",
       "hasChildren": true
     },
     {
@@ -51590,7 +51590,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/xai-plugin Config",
+      "label": "@openbz/xai-plugin Config",
       "help": "Plugin-defined config payload for xai.",
       "hasChildren": false
     },
@@ -51604,7 +51604,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/xai-plugin",
+      "label": "Enable @openbz/xai-plugin",
       "hasChildren": false
     },
     {
@@ -51645,8 +51645,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/xiaomi-provider",
-      "help": "OpenClaw Xiaomi provider plugin (plugin: xiaomi)",
+      "label": "@openbz/xiaomi-provider",
+      "help": "BZ AI DevOps2 Xiaomi provider plugin (plugin: xiaomi)",
       "hasChildren": true
     },
     {
@@ -51659,7 +51659,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/xiaomi-provider Config",
+      "label": "@openbz/xiaomi-provider Config",
       "help": "Plugin-defined config payload for xiaomi.",
       "hasChildren": false
     },
@@ -51673,7 +51673,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/xiaomi-provider",
+      "label": "Enable @openbz/xiaomi-provider",
       "hasChildren": false
     },
     {
@@ -51714,8 +51714,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/zai-provider",
-      "help": "OpenClaw Z.AI provider plugin (plugin: zai)",
+      "label": "@openbz/zai-provider",
+      "help": "BZ AI DevOps2 Z.AI provider plugin (plugin: zai)",
       "hasChildren": true
     },
     {
@@ -51728,7 +51728,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/zai-provider Config",
+      "label": "@openbz/zai-provider Config",
       "help": "Plugin-defined config payload for zai.",
       "hasChildren": false
     },
@@ -51742,7 +51742,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/zai-provider",
+      "label": "Enable @openbz/zai-provider",
       "hasChildren": false
     },
     {
@@ -51783,8 +51783,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/zalo",
-      "help": "OpenClaw Zalo channel plugin (plugin: zalo)",
+      "label": "@openbz/zalo",
+      "help": "BZ AI DevOps2 Zalo channel plugin (plugin: zalo)",
       "hasChildren": true
     },
     {
@@ -51797,7 +51797,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/zalo Config",
+      "label": "@openbz/zalo Config",
       "help": "Plugin-defined config payload for zalo.",
       "hasChildren": false
     },
@@ -51811,7 +51811,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/zalo",
+      "label": "Enable @openbz/zalo",
       "hasChildren": false
     },
     {
@@ -51852,8 +51852,8 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/zalouser",
-      "help": "OpenClaw Zalo Personal Account plugin via native zca-js integration (plugin: zalouser)",
+      "label": "@openbz/zalouser",
+      "help": "BZ AI DevOps2 Zalo Personal Account plugin via native zca-js integration (plugin: zalouser)",
       "hasChildren": true
     },
     {
@@ -51866,7 +51866,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "@openclaw/zalouser Config",
+      "label": "@openbz/zalouser Config",
       "help": "Plugin-defined config payload for zalouser.",
       "hasChildren": false
     },
@@ -51880,7 +51880,7 @@
       "tags": [
         "advanced"
       ],
-      "label": "Enable @openclaw/zalouser",
+      "label": "Enable @openbz/zalouser",
       "hasChildren": false
     },
     {
@@ -51922,7 +51922,7 @@
         "advanced"
       ],
       "label": "Plugin Install Records",
-      "help": "CLI-managed install metadata (used by `openclaw plugins update` to locate install sources).",
+      "help": "CLI-managed install metadata (used by `openbz plugins update` to locate install sources).",
       "hasChildren": true
     },
     {
@@ -51960,7 +51960,7 @@
         "storage"
       ],
       "label": "Plugin Install Path",
-      "help": "Resolved install directory (usually ~/.openclaw/extensions/<id>).",
+      "help": "Resolved install directory (usually ~/.openbz/extensions/<id>).",
       "hasChildren": false
     },
     {
@@ -52826,7 +52826,7 @@
         "storage"
       ],
       "label": "Session Parent Fork Max Tokens",
-      "help": "Maximum parent-session token count allowed for thread/session inheritance forking. If the parent exceeds this, OpenClaw starts a fresh thread session instead of forking; set 0 to disable this protection.",
+      "help": "Maximum parent-session token count allowed for thread/session inheritance forking. If the parent exceeds this, BZ AI DevOps2 starts a fresh thread session instead of forking; set 0 to disable this protection.",
       "hasChildren": false
     },
     {
@@ -54004,7 +54004,7 @@
         "media"
       ],
       "label": "Talk Voice Aliases",
-      "help": "Use this legacy ElevenLabs voice alias map (for example {\"Clawd\":\"EXAVITQu4vr4xnSDxMaL\"}) only during migration. Prefer talk.providers.elevenlabs.voiceAliases.",
+      "help": "Use this legacy ElevenLabs voice alias map (for example {\"Bzd\":\"EXAVITQu4vr4xnSDxMaL\"}) only during migration. Prefer talk.providers.elevenlabs.voiceAliases.",
       "hasChildren": true
     },
     {
@@ -58722,7 +58722,7 @@
         "advanced"
       ],
       "label": "Updates",
-      "help": "Update-channel and startup-check behavior for keeping OpenClaw runtime versions current. Use conservative channels in production and more experimental channels only in controlled environments.",
+      "help": "Update-channel and startup-check behavior for keeping BZ AI DevOps2 runtime versions current. Use conservative channels in production and more experimental channels only in controlled environments.",
       "hasChildren": true
     },
     {
@@ -59026,7 +59026,7 @@
         "advanced"
       ],
       "label": "Wizard Last Run Version",
-      "help": "OpenClaw version recorded at the time of the most recent wizard run on this config. Use this when diagnosing behavior differences across version-to-version setup changes.",
+      "help": "BZ AI DevOps2 version recorded at the time of the most recent wizard run on this config. Use this when diagnosing behavior differences across version-to-version setup changes.",
       "hasChildren": false
     }
   ]

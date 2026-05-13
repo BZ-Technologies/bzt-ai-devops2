@@ -1,4 +1,4 @@
-import type { MockFn } from "openclaw/plugin-sdk/test-utils";
+import type { MockFn } from "openbz/plugin-sdk/test-utils";
 import { vi } from "vitest";
 
 export const sendMock: MockFn = vi.fn();
@@ -15,8 +15,8 @@ vi.mock("./send.js", () => ({
   },
 }));
 
-vi.mock("openclaw/plugin-sdk/reply-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/reply-runtime")>();
+vi.mock("openbz/plugin-sdk/reply-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/reply-runtime")>();
   return {
     ...actual,
     dispatchInboundMessage: (...args: unknown[]) => dispatchMock(...args),
@@ -36,13 +36,13 @@ function createPairingStoreMocks() {
   };
 }
 
-vi.mock("openclaw/plugin-sdk/conversation-runtime", () => createPairingStoreMocks());
+vi.mock("openbz/plugin-sdk/conversation-runtime", () => createPairingStoreMocks());
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
-    resolveStorePath: vi.fn(() => "/tmp/openclaw-sessions.json"),
+    resolveStorePath: vi.fn(() => "/tmp/openbz-sessions.json"),
     updateLastRoute: (...args: unknown[]) => updateLastRouteMock(...args),
     resolveSessionKey: vi.fn(),
   };

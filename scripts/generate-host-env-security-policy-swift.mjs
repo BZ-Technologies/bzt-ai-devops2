@@ -20,7 +20,7 @@ const outputPath = path.join(
   "apps",
   "macos",
   "Sources",
-  "OpenClaw",
+  "BZ AI DevOps2",
   "HostEnvSecurityPolicy.generated.swift",
 );
 

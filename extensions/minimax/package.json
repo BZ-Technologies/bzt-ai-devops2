@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/minimax-provider",
+  "name": "@openbz/minimax-provider",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw MiniMax provider and OAuth plugin",
+  "description": "BZ AI DevOps2 MiniMax provider and OAuth plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ]

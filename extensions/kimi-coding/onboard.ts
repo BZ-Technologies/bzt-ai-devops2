@@ -1,8 +1,8 @@
 import {
   applyAgentDefaultModelPrimary,
   applyProviderConfigWithDefaultModel,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/provider-onboard";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/provider-onboard";
 import {
   buildKimiCodingProvider,
   KIMI_CODING_BASE_URL,
@@ -12,7 +12,7 @@ import {
 export const KIMI_MODEL_REF = `kimi/${KIMI_CODING_DEFAULT_MODEL_ID}`;
 export const KIMI_CODING_MODEL_REF = KIMI_MODEL_REF;
 
-export function applyKimiCodeProviderConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyKimiCodeProviderConfig(cfg: OpenBZConfig): OpenBZConfig {
   const models = { ...cfg.agents?.defaults?.models };
   models[KIMI_MODEL_REF] = {
     ...models[KIMI_MODEL_REF],
@@ -34,6 +34,6 @@ export function applyKimiCodeProviderConfig(cfg: OpenClawConfig): OpenClawConfig
   });
 }
 
-export function applyKimiCodeConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyKimiCodeConfig(cfg: OpenBZConfig): OpenBZConfig {
   return applyAgentDefaultModelPrimary(applyKimiCodeProviderConfig(cfg), KIMI_MODEL_REF);
 }

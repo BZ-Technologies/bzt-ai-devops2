@@ -1,5 +1,5 @@
-import type { RuntimeEnv } from "openclaw/plugin-sdk";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/telegram";
+import type { RuntimeEnv } from "openbz/plugin-sdk";
+import type { OpenBZConfig } from "openbz/plugin-sdk/telegram";
 import { expect, vi } from "vitest";
 import {
   createNativeCommandTestParams as createBaseNativeCommandTestParams,
@@ -30,8 +30,8 @@ const deliveryMocks = vi.hoisted(() => ({
 export const listSkillCommandsForAgents = skillCommandMocks.listSkillCommandsForAgents;
 export const deliverReplies = deliveryMocks.deliverReplies;
 
-vi.mock("openclaw/plugin-sdk/reply-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/reply-runtime")>();
+vi.mock("openbz/plugin-sdk/reply-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/reply-runtime")>();
   return {
     ...actual,
     listSkillCommandsForAgents,
@@ -75,7 +75,7 @@ export function createCommandBot(): CreateCommandBotResult {
 }
 
 export function createNativeCommandTestParams(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   params: Partial<RegisterTelegramNativeCommandsParams> = {},
 ): RegisterTelegramNativeCommandsParams {
   return createBaseNativeCommandTestParams({

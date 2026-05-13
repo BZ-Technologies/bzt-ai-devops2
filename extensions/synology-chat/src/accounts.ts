@@ -5,7 +5,7 @@
 
 import type { SynologyChatChannelConfig, ResolvedSynologyChatAccount } from "./types.js";
 
-/** Extract the channel config from the full OpenClaw config object. */
+/** Extract the channel config from the full BZ AI DevOps2 config object. */
 function getChannelConfig(cfg: any): SynologyChatChannelConfig | undefined {
   return cfg?.channels?.["synology-chat"];
 }
@@ -74,7 +74,7 @@ export function resolveAccount(cfg: any, accountId?: string | null): ResolvedSyn
   const envNasHost = process.env.SYNOLOGY_NAS_HOST ?? "localhost";
   const envAllowedUserIds = process.env.SYNOLOGY_ALLOWED_USER_IDS ?? "";
   const envRateLimitValue = parseRateLimitPerMinute(process.env.SYNOLOGY_RATE_LIMIT);
-  const envBotName = process.env.OPENCLAW_BOT_NAME ?? "OpenClaw";
+  const envBotName = process.env.OPENBZ_BOT_NAME ?? "BZ AI DevOps2";
 
   // Merge: account override > base channel config > env var
   return {

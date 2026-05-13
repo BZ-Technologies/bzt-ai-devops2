@@ -1,18 +1,18 @@
-import type { ChannelSetupAdapter } from "openclaw/plugin-sdk/channel-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { DmPolicy } from "openclaw/plugin-sdk/config-runtime";
-import { DEFAULT_ACCOUNT_ID } from "openclaw/plugin-sdk/routing";
+import type { ChannelSetupAdapter } from "openbz/plugin-sdk/channel-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import type { DmPolicy } from "openbz/plugin-sdk/config-runtime";
+import { DEFAULT_ACCOUNT_ID } from "openbz/plugin-sdk/routing";
 import {
   mergeAllowFromEntries,
   parseSetupEntriesWithParser,
   setTopLevelChannelAllowFrom,
   setTopLevelChannelDmPolicyWithAllowFrom,
   splitSetupEntries,
-} from "openclaw/plugin-sdk/setup";
-import type { ChannelSetupDmPolicy } from "openclaw/plugin-sdk/setup";
-import type { ChannelSetupWizard } from "openclaw/plugin-sdk/setup";
-import { formatDocsLink } from "openclaw/plugin-sdk/setup";
-import type { WizardPrompter } from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
+import type { ChannelSetupDmPolicy } from "openbz/plugin-sdk/setup";
+import type { ChannelSetupWizard } from "openbz/plugin-sdk/setup";
+import { formatDocsLink } from "openbz/plugin-sdk/setup";
+import type { WizardPrompter } from "openbz/plugin-sdk/setup";
 import { DEFAULT_RELAYS } from "./default-relays.js";
 import { getPublicKeyFromPrivate, normalizePubkey } from "./nostr-bus.js";
 import { resolveNostrAccount } from "./types.js";
@@ -37,11 +37,11 @@ const NOSTR_ALLOW_FROM_HELP_LINES = [
 ];
 
 function patchNostrConfig(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   patch: Record<string, unknown>;
   clearFields?: string[];
   enabled?: boolean;
-}): OpenClawConfig {
+}): OpenBZConfig {
   const existing = (params.cfg.channels?.nostr ?? {}) as Record<string, unknown>;
   const nextNostr = { ...existing };
   for (const field of params.clearFields ?? []) {
@@ -60,7 +60,7 @@ function patchNostrConfig(params: {
   };
 }
 
-function setNostrDmPolicy(cfg: OpenClawConfig, dmPolicy: DmPolicy): OpenClawConfig {
+function setNostrDmPolicy(cfg: OpenBZConfig, dmPolicy: DmPolicy): OpenBZConfig {
   return setTopLevelChannelDmPolicyWithAllowFrom({
     cfg,
     channel,
@@ -68,7 +68,7 @@ function setNostrDmPolicy(cfg: OpenClawConfig, dmPolicy: DmPolicy): OpenClawConf
   });
 }
 
-function setNostrAllowFrom(cfg: OpenClawConfig, allowFrom: string[]): OpenClawConfig {
+function setNostrAllowFrom(cfg: OpenBZConfig, allowFrom: string[]): OpenBZConfig {
   return setTopLevelChannelAllowFrom({
     cfg,
     channel,
@@ -105,9 +105,9 @@ function parseNostrAllowFrom(raw: string): { entries: string[]; error?: string }
 }
 
 async function promptNostrAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   prompter: WizardPrompter;
-}): Promise<OpenClawConfig> {
+}): Promise<OpenBZConfig> {
   const existing = params.cfg.channels?.nostr?.allowFrom ?? [];
   await params.prompter.note(NOSTR_ALLOW_FROM_HELP_LINES.join("\n"), "Nostr allowlist");
   const entry = await params.prompter.text({

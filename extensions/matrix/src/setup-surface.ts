@@ -11,10 +11,10 @@ import {
   type ChannelSetupDmPolicy,
   type ChannelSetupWizard,
   type DmPolicy,
-  type OpenClawConfig,
+  type OpenBZConfig,
   type SecretInput,
   type WizardPrompter,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import { listMatrixDirectoryGroupsLive } from "./directory-live.js";
 import { resolveMatrixAccount } from "./matrix/accounts.js";
 import { ensureMatrixSdkInstalled, isMatrixSdkAvailable } from "./matrix/deps.js";
@@ -427,7 +427,7 @@ export const matrixSetupWizard: ChannelSetupWizard = {
     const deviceName = String(
       await prompter.text({
         message: "Matrix device name (optional)",
-        initialValue: existing.deviceName ?? "OpenClaw Gateway",
+        initialValue: existing.deviceName ?? "BZ AI DevOps2 Gateway",
       }),
     ).trim();
 

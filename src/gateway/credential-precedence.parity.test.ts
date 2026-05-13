@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { resolveGatewayProbeAuth as resolveStatusGatewayProbeAuth } from "../commands/status.gateway-probe.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { OpenBZConfig } from "../config/config.js";
 import { resolveGatewayAuth } from "./auth.js";
 import { resolveGatewayCredentialsFromConfig } from "./credentials.js";
 import { resolveGatewayProbeAuth } from "./probe-auth.js";
@@ -14,17 +14,17 @@ type ExpectedCredentialSet = {
 
 type TestCase = {
   name: string;
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   env: NodeJS.ProcessEnv;
   expected: ExpectedCredentialSet;
 };
 
 const gatewayEnv = {
-  OPENCLAW_GATEWAY_TOKEN: "env-token", // pragma: allowlist secret
-  OPENCLAW_GATEWAY_PASSWORD: "env-password", // pragma: allowlist secret
+  OPENBZ_GATEWAY_TOKEN: "env-token", // pragma: allowlist secret
+  OPENBZ_GATEWAY_PASSWORD: "env-password", // pragma: allowlist secret
 } as NodeJS.ProcessEnv;
 
-function makeRemoteGatewayConfig(remote: { token?: string; password?: string }): OpenClawConfig {
+function makeRemoteGatewayConfig(remote: { token?: string; password?: string }): OpenBZConfig {
   return {
     gateway: {
       mode: "remote",
@@ -34,16 +34,16 @@ function makeRemoteGatewayConfig(remote: { token?: string; password?: string }):
         password: "local-password", // pragma: allowlist secret
       },
     },
-  } as OpenClawConfig;
+  } as OpenBZConfig;
 }
 
 function withGatewayAuthEnv<T>(env: NodeJS.ProcessEnv, fn: () => T): T {
   const keys = [
-    "OPENCLAW_GATEWAY_TOKEN",
-    "OPENCLAW_GATEWAY_PASSWORD",
-    "OPENCLAW_SERVICE_KIND",
-    "CLAWDBOT_GATEWAY_TOKEN",
-    "CLAWDBOT_GATEWAY_PASSWORD",
+    "OPENBZ_GATEWAY_TOKEN",
+    "OPENBZ_GATEWAY_PASSWORD",
+    "OPENBZ_SERVICE_KIND",
+    "BZDBOT_GATEWAY_TOKEN",
+    "BZDBOT_GATEWAY_PASSWORD",
   ] as const;
   const previous = new Map<string, string | undefined>();
   for (const key of keys) {
@@ -81,10 +81,10 @@ describe("gateway credential precedence parity", () => {
             password: "config-password", // pragma: allowlist secret
           },
         },
-      } as OpenClawConfig,
+      } as OpenBZConfig,
       env: {
-        OPENCLAW_GATEWAY_TOKEN: "env-token", // pragma: allowlist secret
-        OPENCLAW_GATEWAY_PASSWORD: "env-password", // pragma: allowlist secret
+        OPENBZ_GATEWAY_TOKEN: "env-token", // pragma: allowlist secret
+        OPENBZ_GATEWAY_PASSWORD: "env-password", // pragma: allowlist secret
       } as NodeJS.ProcessEnv,
       expected: {
         call: { token: "env-token", password: "env-password" }, // pragma: allowlist secret
@@ -127,10 +127,10 @@ describe("gateway credential precedence parity", () => {
           mode: "local",
           auth: {},
         },
-      } as OpenClawConfig,
+      } as OpenBZConfig,
       env: {
-        CLAWDBOT_GATEWAY_TOKEN: "legacy-token", // pragma: allowlist secret
-        CLAWDBOT_GATEWAY_PASSWORD: "legacy-password", // pragma: allowlist secret
+        BZDBOT_GATEWAY_TOKEN: "legacy-token", // pragma: allowlist secret
+        BZDBOT_GATEWAY_PASSWORD: "legacy-password", // pragma: allowlist secret
       } as NodeJS.ProcessEnv,
       expected: {
         call: { token: "legacy-token", password: "legacy-password" }, // pragma: allowlist secret
@@ -149,11 +149,11 @@ describe("gateway credential precedence parity", () => {
             password: "config-password", // pragma: allowlist secret
           },
         },
-      } as OpenClawConfig,
+      } as OpenBZConfig,
       env: {
-        OPENCLAW_GATEWAY_TOKEN: "env-token",
-        OPENCLAW_GATEWAY_PASSWORD: "env-password", // pragma: allowlist secret
-        OPENCLAW_SERVICE_KIND: "gateway",
+        OPENBZ_GATEWAY_TOKEN: "env-token",
+        OPENBZ_GATEWAY_PASSWORD: "env-password", // pragma: allowlist secret
+        OPENBZ_SERVICE_KIND: "gateway",
       } as NodeJS.ProcessEnv,
       expected: {
         call: { token: "config-token", password: "env-password" }, // pragma: allowlist secret

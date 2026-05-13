@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/amazon-bedrock-provider",
+  "name": "@openbz/amazon-bedrock-provider",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw Amazon Bedrock provider plugin",
+  "description": "BZ AI DevOps2 Amazon Bedrock provider plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ]

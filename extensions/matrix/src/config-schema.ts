@@ -3,8 +3,8 @@ import {
   buildNestedDmConfigSchema,
   DmPolicySchema,
   GroupPolicySchema,
-} from "openclaw/plugin-sdk/channel-config-schema";
-import { MarkdownConfigSchema, ToolPolicySchema } from "openclaw/plugin-sdk/matrix";
+} from "openbz/plugin-sdk/channel-config-schema";
+import { MarkdownConfigSchema, ToolPolicySchema } from "openbz/plugin-sdk/matrix";
 import { z } from "zod";
 import { buildSecretInputSchema } from "./secret-input.js";
 

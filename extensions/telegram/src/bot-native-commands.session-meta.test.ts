@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../../src/config/config.js";
+import type { OpenBZConfig } from "../../../src/config/config.js";
 import {
   createDeferred,
   createNativeCommandTestParams,
@@ -109,7 +109,7 @@ vi.mock("./bot/delivery.js", () => ({
 type TelegramCommandHandler = (ctx: unknown) => Promise<void>;
 
 function registerAndResolveStatusHandler(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   allowFrom?: string[];
   groupAllowFrom?: string[];
   telegramCfg?: NativeCommandTestParams["telegramCfg"];
@@ -132,7 +132,7 @@ function registerAndResolveStatusHandler(params: {
 
 function registerAndResolveCommandHandlerBase(params: {
   commandName: string;
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   allowFrom: string[];
   groupAllowFrom: string[];
   useAccessGroups: boolean;
@@ -180,7 +180,7 @@ function registerAndResolveCommandHandlerBase(params: {
 
 function registerAndResolveCommandHandler(params: {
   commandName: string;
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   allowFrom?: string[];
   groupAllowFrom?: string[];
   useAccessGroups?: boolean;
@@ -257,7 +257,7 @@ describe("registerTelegramNativeCommands — session metadata", () => {
       sessionKey: "agent:codex:acp:binding:telegram:default:seed",
     });
     sessionMocks.recordSessionMetaFromInbound.mockClear().mockResolvedValue(undefined);
-    sessionMocks.resolveStorePath.mockClear().mockReturnValue("/tmp/openclaw-sessions.json");
+    sessionMocks.resolveStorePath.mockClear().mockReturnValue("/tmp/openbz-sessions.json");
     replyMocks.dispatchReplyWithBufferedBlockDispatcher
       .mockClear()
       .mockResolvedValue(dispatchReplyResult);
@@ -267,7 +267,7 @@ describe("registerTelegramNativeCommands — session metadata", () => {
   });
 
   it("calls recordSessionMetaFromInbound after a native slash command", async () => {
-    const cfg: OpenClawConfig = {};
+    const cfg: OpenBZConfig = {};
     const { handler } = registerAndResolveStatusHandler({ cfg });
     await handler(createTelegramPrivateCommandContext());
 
@@ -286,7 +286,7 @@ describe("registerTelegramNativeCommands — session metadata", () => {
     const deferred = createDeferred<void>();
     sessionMocks.recordSessionMetaFromInbound.mockReturnValue(deferred.promise);
 
-    const cfg: OpenClawConfig = {};
+    const cfg: OpenBZConfig = {};
     const { handler } = registerAndResolveStatusHandler({ cfg });
     const runPromise = handler(createTelegramPrivateCommandContext());
 

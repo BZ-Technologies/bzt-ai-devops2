@@ -3,7 +3,7 @@ import {
   DiscordConfigSchema,
   getChatChannelMeta,
   type ChannelPlugin,
-} from "openclaw/plugin-sdk/discord";
+} from "openbz/plugin-sdk/discord";
 import { type ResolvedDiscordAccount } from "./accounts.js";
 import { discordConfigAccessors, discordConfigBase, discordSetupWizard } from "./plugin-shared.js";
 import { discordSetupAdapter } from "./setup-core.js";

@@ -3,8 +3,8 @@ import { configureClient } from "@tloncorp/api";
 import type {
   ChannelOutboundAdapter,
   ChannelPlugin,
-  OpenClawConfig,
-} from "openclaw/plugin-sdk/tlon";
+  OpenBZConfig,
+} from "openbz/plugin-sdk/tlon";
 import { monitorTlonProvider } from "./monitor/index.js";
 import { tlonSetupWizard } from "./setup-surface.js";
 import {
@@ -90,7 +90,7 @@ async function createHttpPokeApi(params: {
 }
 
 function resolveOutboundContext(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId?: string | null;
   to: string;
 }) {
@@ -230,7 +230,7 @@ export async function startTlonGatewayAccount(
     accountId: account.accountId,
     ship: account.ship,
     url: account.url,
-  } as import("openclaw/plugin-sdk/tlon").ChannelAccountSnapshot);
+  } as import("openbz/plugin-sdk/tlon").ChannelAccountSnapshot);
   ctx.log?.info(`[${account.accountId}] starting Tlon provider for ${account.ship ?? "tlon"}`);
   return monitorTlonProvider({
     runtime: ctx.runtime,

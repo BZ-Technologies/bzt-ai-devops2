@@ -1,6 +1,6 @@
-import { emptyPluginConfigSchema, type OpenClawPluginApi } from "openclaw/plugin-sdk/core";
-import { createProviderApiKeyAuthMethod } from "openclaw/plugin-sdk/provider-auth";
-import { OPENCODE_ZEN_DEFAULT_MODEL } from "openclaw/plugin-sdk/provider-models";
+import { emptyPluginConfigSchema, type OpenBZPluginApi } from "openbz/plugin-sdk/core";
+import { createProviderApiKeyAuthMethod } from "openbz/plugin-sdk/provider-auth";
+import { OPENCODE_ZEN_DEFAULT_MODEL } from "openbz/plugin-sdk/provider-models";
 import { applyOpencodeZenConfig } from "./onboard.js";
 
 const PROVIDER_ID = "opencode";
@@ -19,7 +19,7 @@ const opencodePlugin = {
   name: "OpenCode Zen Provider",
   description: "Bundled OpenCode Zen provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "OpenCode Zen",

@@ -4,13 +4,13 @@ import {
   readNumberParam,
   readStringArrayParam,
   readStringParam,
-} from "openclaw/plugin-sdk/agent-runtime";
+} from "openbz/plugin-sdk/agent-runtime";
 import {
   isDiscordModerationAction,
   readDiscordModerationCommand,
-} from "openclaw/plugin-sdk/agent-runtime";
-import { handleDiscordAction } from "openclaw/plugin-sdk/agent-runtime";
-import type { ChannelMessageActionContext } from "openclaw/plugin-sdk/channel-runtime";
+} from "openbz/plugin-sdk/agent-runtime";
+import { handleDiscordAction } from "openbz/plugin-sdk/agent-runtime";
+import type { ChannelMessageActionContext } from "openbz/plugin-sdk/channel-runtime";
 
 type Ctx = Pick<
   ChannelMessageActionContext,

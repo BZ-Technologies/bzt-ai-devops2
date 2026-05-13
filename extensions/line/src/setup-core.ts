@@ -3,19 +3,19 @@ import {
   normalizeAccountId,
   resolveLineAccount,
   type LineConfig,
-} from "openclaw/plugin-sdk/line";
-import type { ChannelSetupAdapter, OpenClawConfig } from "openclaw/plugin-sdk/setup";
-import { DEFAULT_ACCOUNT_ID } from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/line";
+import type { ChannelSetupAdapter, OpenBZConfig } from "openbz/plugin-sdk/setup";
+import { DEFAULT_ACCOUNT_ID } from "openbz/plugin-sdk/setup";
 
 const channel = "line" as const;
 
 export function patchLineAccountConfig(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId: string;
   patch: Record<string, unknown>;
   clearFields?: string[];
   enabled?: boolean;
-}): OpenClawConfig {
+}): OpenBZConfig {
   const accountId = normalizeAccountId(params.accountId);
   const lineConfig = (params.cfg.channels?.line ?? {}) as LineConfig;
   const clearFields = params.clearFields ?? [];
@@ -65,7 +65,7 @@ export function patchLineAccountConfig(params: {
   };
 }
 
-export function isLineConfigured(cfg: OpenClawConfig, accountId: string): boolean {
+export function isLineConfigured(cfg: OpenBZConfig, accountId: string): boolean {
   const resolved = resolveLineAccount({ cfg, accountId });
   return Boolean(resolved.channelAccessToken.trim() && resolved.channelSecret.trim());
 }

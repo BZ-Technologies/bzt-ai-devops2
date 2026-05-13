@@ -1,13 +1,13 @@
-import { ensureAuthProfileStore, listProfilesForProvider } from "openclaw/plugin-sdk/agent-runtime";
-import { QWEN_OAUTH_MARKER } from "openclaw/plugin-sdk/agent-runtime";
+import { ensureAuthProfileStore, listProfilesForProvider } from "openbz/plugin-sdk/agent-runtime";
+import { QWEN_OAUTH_MARKER } from "openbz/plugin-sdk/agent-runtime";
 import {
   buildOauthProviderAuthResult,
   emptyPluginConfigSchema,
-  type OpenClawPluginApi,
+  type OpenBZPluginApi,
   type ProviderAuthContext,
   type ProviderCatalogContext,
-} from "openclaw/plugin-sdk/qwen-portal-auth";
-import { refreshQwenPortalCredentials } from "openclaw/plugin-sdk/qwen-portal-auth";
+} from "openbz/plugin-sdk/qwen-portal-auth";
+import { refreshQwenPortalCredentials } from "openbz/plugin-sdk/qwen-portal-auth";
 import { loginQwenPortalOAuth } from "./oauth.js";
 import { buildQwenPortalProvider, QWEN_PORTAL_BASE_URL } from "./provider-catalog.js";
 
@@ -60,7 +60,7 @@ const qwenPortalPlugin = {
   name: "Qwen OAuth",
   description: "OAuth flow for Qwen (free-tier) models",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: PROVIDER_LABEL,

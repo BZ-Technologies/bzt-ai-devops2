@@ -1,5 +1,5 @@
 ---
-summary: "Curated links to the most used OpenClaw docs."
+summary: "Curated links to the most used BZ AI DevOps2 docs."
 read_when:
   - You want quick access to key docs pages
 title: "Docs directory"
@@ -21,7 +21,7 @@ For a complete map of the docs, see [Docs hubs](/start/hubs).
 - [Updating and rollback](/install/updating)
 - [Pairing (DM and nodes)](/channels/pairing)
 - [Nix mode](/install/nix)
-- [OpenClaw assistant setup](/start/openclaw)
+- [BZ AI DevOps2 assistant setup](/start/openbz)
 - [Skills](/tools/skills)
 - [Skills config](/tools/skills-config)
 - [Workspace templates](/reference/templates/AGENTS)

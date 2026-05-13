@@ -3,17 +3,17 @@ import {
   SGLANG_DEFAULT_BASE_URL,
   SGLANG_MODEL_PLACEHOLDER,
   SGLANG_PROVIDER_LABEL,
-} from "openclaw/plugin-sdk/agent-runtime";
+} from "openbz/plugin-sdk/agent-runtime";
 import {
   emptyPluginConfigSchema,
-  type OpenClawPluginApi,
+  type OpenBZPluginApi,
   type ProviderAuthMethodNonInteractiveContext,
-} from "openclaw/plugin-sdk/core";
+} from "openbz/plugin-sdk/core";
 
 const PROVIDER_ID = "sglang";
 
 async function loadProviderSetup() {
-  return await import("openclaw/plugin-sdk/self-hosted-provider-setup");
+  return await import("openbz/plugin-sdk/self-hosted-provider-setup");
 }
 
 const sglangPlugin = {
@@ -21,7 +21,7 @@ const sglangPlugin = {
   name: "SGLang Provider",
   description: "Bundled SGLang provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "SGLang",

@@ -8,7 +8,7 @@ read_when:
 
 # Release Policy
 
-OpenClaw has three public release lanes:
+BZ AI DevOps2 has three public release lanes:
 
 - stable: tagged releases that publish to npm `latest`
 - beta: prerelease tags that publish to npm `beta`
@@ -34,9 +34,9 @@ OpenClaw has three public release lanes:
 
 ## Public references
 
-- [`.github/workflows/openclaw-npm-release.yml`](https://github.com/openclaw/openclaw/blob/main/.github/workflows/openclaw-npm-release.yml)
-- [`scripts/openclaw-npm-release-check.ts`](https://github.com/openclaw/openclaw/blob/main/scripts/openclaw-npm-release-check.ts)
+- [`.github/workflows/openbz-npm-release.yml`](https://github.com/openbz/openbz/blob/main/.github/workflows/openbz-npm-release.yml)
+- [`scripts/openbz-npm-release-check.ts`](https://github.com/openbz/openbz/blob/main/scripts/openbz-npm-release-check.ts)
 
 Maintainers use the private release docs in
-[`openclaw/maintainers/release/README.md`](https://github.com/openclaw/maintainers/blob/main/release/README.md)
+[`openbz/maintainers/release/README.md`](https://github.com/openbz/maintainers/blob/main/release/README.md)
 for the actual runbook.

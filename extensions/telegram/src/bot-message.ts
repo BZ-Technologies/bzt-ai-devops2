@@ -1,7 +1,7 @@
-import type { ReplyToMode } from "openclaw/plugin-sdk/config-runtime";
-import type { TelegramAccountConfig } from "openclaw/plugin-sdk/config-runtime";
-import { danger } from "openclaw/plugin-sdk/runtime-env";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+import type { ReplyToMode } from "openbz/plugin-sdk/config-runtime";
+import type { TelegramAccountConfig } from "openbz/plugin-sdk/config-runtime";
+import { danger } from "openbz/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
 import {
   buildTelegramMessageContext,
   type BuildTelegramMessageContextParams,

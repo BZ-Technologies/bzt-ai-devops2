@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 import type { DmPolicy } from "../../config/types.js";
 import type { RuntimeEnv } from "../../runtime.js";
 import type { WizardPrompter } from "../../wizard/prompts.js";
@@ -30,11 +30,11 @@ export type SetupChannelsOptions = {
 };
 
 export type PromptAccountIdParams = {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   prompter: WizardPrompter;
   label: string;
   currentId?: string;
-  listAccountIds: (cfg: OpenClawConfig) => string[];
+  listAccountIds: (cfg: OpenBZConfig) => string[];
   defaultAccountId: string;
 };
 
@@ -49,13 +49,13 @@ export type ChannelSetupStatus = {
 };
 
 export type ChannelSetupStatusContext = {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   options?: SetupChannelsOptions;
   accountOverrides: Partial<Record<ChannelId, string>>;
 };
 
 export type ChannelSetupConfigureContext = {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   runtime: RuntimeEnv;
   prompter: WizardPrompter;
   options?: SetupChannelsOptions;
@@ -65,7 +65,7 @@ export type ChannelSetupConfigureContext = {
 };
 
 export type ChannelSetupResult = {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId?: string;
 };
 
@@ -81,13 +81,13 @@ export type ChannelSetupDmPolicy = {
   channel: ChannelId;
   policyKey: string;
   allowFromKey: string;
-  getCurrent: (cfg: OpenClawConfig) => DmPolicy;
-  setPolicy: (cfg: OpenClawConfig, policy: DmPolicy) => OpenClawConfig;
+  getCurrent: (cfg: OpenBZConfig) => DmPolicy;
+  setPolicy: (cfg: OpenBZConfig, policy: DmPolicy) => OpenBZConfig;
   promptAllowFrom?: (params: {
-    cfg: OpenClawConfig;
+    cfg: OpenBZConfig;
     prompter: WizardPrompter;
     accountId?: string;
-  }) => Promise<OpenClawConfig>;
+  }) => Promise<OpenBZConfig>;
 };
 
 export type ChannelSetupWizardAdapter = {
@@ -102,5 +102,5 @@ export type ChannelSetupWizardAdapter = {
   ) => Promise<ChannelSetupConfiguredResult>;
   dmPolicy?: ChannelSetupDmPolicy;
   onAccountRecorded?: (accountId: string, options?: SetupChannelsOptions) => void;
-  disable?: (cfg: OpenClawConfig) => OpenClawConfig;
+  disable?: (cfg: OpenBZConfig) => OpenBZConfig;
 };

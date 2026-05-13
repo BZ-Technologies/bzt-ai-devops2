@@ -566,13 +566,13 @@
   border-color: var(--accent);
   background: var(--accent);
   color: var(--primary-foreground);
-  box-shadow: 0 1px 3px rgba(255, 92, 92, 0.25);
+  box-shadow: 0 1px 3px rgba(234, 170, 0, 0.28);
 }
 
 .btn.primary:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
-  box-shadow: 0 2px 12px rgba(255, 92, 92, 0.3);
+  box-shadow: 0 2px 12px rgba(234, 170, 0, 0.32);
 }
 
 /* Keyboard shortcut badge (shadcn style) */
@@ -1172,6 +1172,7 @@
 :root[data-theme-mode="light"] .btn.primary {
   background: var(--accent);
   border-color: var(--accent);
+  color: var(--primary-foreground);
 }
 
 /* ===========================================

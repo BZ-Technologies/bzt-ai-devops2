@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 import type { RuntimeWebSearchMetadata } from "../../secrets/runtime-web-tools.types.js";
 import { __testing as runtimeTesting } from "../../web-search/runtime.js";
 import type { AnyAgentTool } from "./common.js";
@@ -8,7 +8,7 @@ import {
 } from "./web-search-core.js";
 
 export function createWebSearchTool(options?: {
-  config?: OpenClawConfig;
+  config?: OpenBZConfig;
   sandboxed?: boolean;
   runtimeWebSearch?: RuntimeWebSearchMetadata;
 }): AnyAgentTool | null {
@@ -18,7 +18,7 @@ export function createWebSearchTool(options?: {
 export const __testing = {
   ...coreTesting,
   resolveSearchProvider: (
-    search?: OpenClawConfig["tools"] extends infer Tools
+    search?: OpenBZConfig["tools"] extends infer Tools
       ? Tools extends { web?: infer Web }
         ? Web extends { search?: infer Search }
           ? Search

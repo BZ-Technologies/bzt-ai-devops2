@@ -2,10 +2,10 @@ import {
   applySetupAccountConfigPatch,
   DEFAULT_ACCOUNT_ID,
   hasConfiguredSecretInput,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/mattermost";
-import { type ChannelSetupWizard } from "openclaw/plugin-sdk/setup";
-import { formatDocsLink } from "openclaw/plugin-sdk/setup";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/mattermost";
+import { type ChannelSetupWizard } from "openbz/plugin-sdk/setup";
+import { formatDocsLink } from "openbz/plugin-sdk/setup";
 import { listMattermostAccountIds } from "./mattermost/accounts.js";
 import { normalizeMattermostBaseUrl } from "./mattermost/client.js";
 import {
@@ -111,7 +111,7 @@ export const mattermostSetupWizard: ChannelSetupWizard = {
       normalizeValue: ({ value }) => normalizeMattermostBaseUrl(value) ?? value.trim(),
     },
   ],
-  disable: (cfg: OpenClawConfig) => ({
+  disable: (cfg: OpenBZConfig) => ({
     ...cfg,
     channels: {
       ...cfg.channels,

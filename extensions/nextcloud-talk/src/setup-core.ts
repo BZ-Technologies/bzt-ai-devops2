@@ -1,21 +1,21 @@
-import type { ChannelSetupAdapter } from "openclaw/plugin-sdk/channel-runtime";
-import type { ChannelSetupInput } from "openclaw/plugin-sdk/channel-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openclaw/plugin-sdk/routing";
+import type { ChannelSetupAdapter } from "openbz/plugin-sdk/channel-runtime";
+import type { ChannelSetupInput } from "openbz/plugin-sdk/channel-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openbz/plugin-sdk/routing";
 import {
   applyAccountNameToChannelSection,
   patchScopedAccountConfig,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import {
   mergeAllowFromEntries,
   resolveSetupAccountId,
   setSetupChannelEnabled,
   setTopLevelChannelDmPolicyWithAllowFrom,
-} from "openclaw/plugin-sdk/setup";
-import type { ChannelSetupDmPolicy } from "openclaw/plugin-sdk/setup";
-import { type ChannelSetupWizard } from "openclaw/plugin-sdk/setup";
-import { formatDocsLink } from "openclaw/plugin-sdk/setup";
-import type { WizardPrompter } from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
+import type { ChannelSetupDmPolicy } from "openbz/plugin-sdk/setup";
+import { type ChannelSetupWizard } from "openbz/plugin-sdk/setup";
+import { formatDocsLink } from "openbz/plugin-sdk/setup";
+import type { WizardPrompter } from "openbz/plugin-sdk/setup";
 import {
   listNextcloudTalkAccountIds,
   resolveDefaultNextcloudTalkAccountId,
@@ -159,10 +159,10 @@ async function promptNextcloudTalkAllowFrom(params: {
 }
 
 async function promptNextcloudTalkAllowFromForAccount(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   prompter: WizardPrompter;
   accountId?: string;
-}): Promise<OpenClawConfig> {
+}): Promise<OpenBZConfig> {
   const accountId = resolveSetupAccountId({
     accountId: params.accountId,
     defaultAccountId: resolveDefaultNextcloudTalkAccountId(params.cfg as CoreConfig),

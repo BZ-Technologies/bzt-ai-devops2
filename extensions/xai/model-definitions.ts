@@ -1,4 +1,4 @@
-import type { ModelDefinitionConfig } from "openclaw/plugin-sdk/provider-models";
+import type { ModelDefinitionConfig } from "openbz/plugin-sdk/provider-models";
 
 export const XAI_BASE_URL = "https://api.x.ai/v1";
 export const XAI_DEFAULT_MODEL_ID = "grok-4";
@@ -22,4 +22,36 @@ export function buildXaiModelDefinition(): ModelDefinitionConfig {
     contextWindow: XAI_DEFAULT_CONTEXT_WINDOW,
     maxTokens: XAI_DEFAULT_MAX_TOKENS,
   };
+}
+
+/** Catalog entries for common xAI Grok models (OpenAI-compatible API). */
+export function buildXaiModelDefinitions(): ModelDefinitionConfig[] {
+  const base = {
+    reasoning: false as const,
+    input: ["text"] as const,
+    cost: XAI_DEFAULT_COST,
+  };
+  return [
+    {
+      ...base,
+      id: "grok-4",
+      name: "Grok 4",
+      contextWindow: XAI_DEFAULT_CONTEXT_WINDOW,
+      maxTokens: XAI_DEFAULT_MAX_TOKENS,
+    },
+    {
+      ...base,
+      id: "grok-3",
+      name: "Grok 3",
+      contextWindow: 131072,
+      maxTokens: 8192,
+    },
+    {
+      ...base,
+      id: "grok-3-mini",
+      name: "Grok 3 Mini",
+      contextWindow: 131072,
+      maxTokens: 8192,
+    },
+  ];
 }

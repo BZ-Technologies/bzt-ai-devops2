@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/firecrawl-plugin",
+  "name": "@openbz/firecrawl-plugin",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw Firecrawl plugin",
+  "description": "BZ AI DevOps2 Firecrawl plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ]

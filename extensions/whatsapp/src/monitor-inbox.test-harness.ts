@@ -2,7 +2,7 @@ import { EventEmitter } from "node:events";
 import fsSync from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { resetLogger, setLoggerOverride } from "openclaw/plugin-sdk/runtime-env";
+import { resetLogger, setLoggerOverride } from "openbz/plugin-sdk/runtime-env";
 import { afterEach, beforeEach, expect, vi } from "vitest";
 
 // Avoid exporting vitest mock types (TS2742 under pnpm + d.ts emit).
@@ -81,8 +81,8 @@ function getPairingStoreMocks() {
 
 const sock: MockSock = createMockSock();
 
-vi.mock("openclaw/plugin-sdk/media-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/media-runtime")>();
+vi.mock("openbz/plugin-sdk/media-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/media-runtime")>();
   return {
     ...actual,
     saveMediaBuffer: vi.fn().mockResolvedValue({
@@ -94,15 +94,15 @@ vi.mock("openclaw/plugin-sdk/media-runtime", async (importOriginal) => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     loadConfig: () => mockLoadConfig(),
   };
 });
 
-vi.mock("openclaw/plugin-sdk/conversation-runtime", () => getPairingStoreMocks());
+vi.mock("openbz/plugin-sdk/conversation-runtime", () => getPairingStoreMocks());
 
 vi.mock("./session.js", () => ({
   createWaSocket: vi.fn().mockResolvedValue(sock),
@@ -147,7 +147,7 @@ export function installWebMonitorInboxUnitTestHooks(opts?: { authDir?: boolean }
     const { resetWebInboundDedupe } = await import("./inbound.js");
     resetWebInboundDedupe();
     if (createAuthDir) {
-      authDir = fsSync.mkdtempSync(path.join(os.tmpdir(), "openclaw-auth-"));
+      authDir = fsSync.mkdtempSync(path.join(os.tmpdir(), "openbz-auth-"));
     } else {
       authDir = undefined;
     }

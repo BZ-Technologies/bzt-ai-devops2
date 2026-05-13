@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "../../../src/config/config.js";
+import type { OpenBZConfig } from "../../../src/config/config.js";
 import { listSlackMessageActions } from "./message-actions.js";
 
 describe("listSlackMessageActions", () => {
@@ -13,7 +13,7 @@ describe("listSlackMessageActions", () => {
           },
         },
       },
-    } as OpenClawConfig;
+    } as OpenBZConfig;
 
     expect(listSlackMessageActions(cfg)).toEqual(
       expect.arrayContaining(["read", "edit", "delete", "download-file"]),

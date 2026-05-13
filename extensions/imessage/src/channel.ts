@@ -1,9 +1,9 @@
-import { buildAccountScopedAllowlistConfigEditor } from "openclaw/plugin-sdk/allowlist-config-edit";
+import { buildAccountScopedAllowlistConfigEditor } from "openbz/plugin-sdk/allowlist-config-edit";
 import {
   buildAccountScopedDmSecurityPolicy,
   collectAllowlistProviderRestrictSendersWarnings,
-} from "openclaw/plugin-sdk/channel-config-helpers";
-import { resolveOutboundSendDep } from "openclaw/plugin-sdk/channel-runtime";
+} from "openbz/plugin-sdk/channel-config-helpers";
+import { resolveOutboundSendDep } from "openbz/plugin-sdk/channel-runtime";
 import {
   collectStatusIssuesFromLastError,
   DEFAULT_ACCOUNT_ID,
@@ -13,8 +13,8 @@ import {
   resolveIMessageGroupRequireMention,
   resolveIMessageGroupToolPolicy,
   type ChannelPlugin,
-} from "openclaw/plugin-sdk/imessage";
-import { buildAgentSessionKey, type RoutePeer } from "openclaw/plugin-sdk/routing";
+} from "openbz/plugin-sdk/imessage";
+import { buildAgentSessionKey, type RoutePeer } from "openbz/plugin-sdk/routing";
 import { buildPassiveProbedChannelStatusSummary } from "../../shared/channel-status-summary.js";
 import { resolveIMessageAccount, type ResolvedIMessageAccount } from "./accounts.js";
 import { getIMessageRuntime } from "./runtime.js";

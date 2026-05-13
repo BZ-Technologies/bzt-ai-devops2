@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/venice-provider",
+  "name": "@openbz/venice-provider",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw Venice provider plugin",
+  "description": "BZ AI DevOps2 Venice provider plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ]

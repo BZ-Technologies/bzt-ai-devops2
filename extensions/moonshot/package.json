@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/moonshot-provider",
+  "name": "@openbz/moonshot-provider",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw Moonshot provider plugin",
+  "description": "BZ AI DevOps2 Moonshot provider plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ]

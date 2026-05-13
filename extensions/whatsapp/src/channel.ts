@@ -1,4 +1,4 @@
-import { buildAccountScopedAllowlistConfigEditor } from "openclaw/plugin-sdk/allowlist-config-edit";
+import { buildAccountScopedAllowlistConfigEditor } from "openbz/plugin-sdk/allowlist-config-edit";
 import {
   createActionGate,
   createWhatsAppOutboundBase,
@@ -12,8 +12,8 @@ import {
   resolveWhatsAppMentionStripRegexes,
   type ChannelMessageActionName,
   type ChannelPlugin,
-} from "openclaw/plugin-sdk/whatsapp";
-import { isWhatsAppGroupJid, normalizeWhatsAppTarget } from "openclaw/plugin-sdk/whatsapp";
+} from "openbz/plugin-sdk/whatsapp";
+import { isWhatsAppGroupJid, normalizeWhatsAppTarget } from "openbz/plugin-sdk/whatsapp";
 // WhatsApp-specific imports from local extension code (moved from src/web/ and src/channels/plugins/)
 import { resolveWhatsAppAccount, type ResolvedWhatsAppAccount } from "./accounts.js";
 import { looksLikeWhatsAppTargetId, normalizeWhatsAppMessagingTarget } from "./normalize.js";

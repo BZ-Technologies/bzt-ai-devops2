@@ -1,9 +1,9 @@
 import * as dns from "node:dns";
-import type { TelegramNetworkConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveFetch } from "openclaw/plugin-sdk/infra-runtime";
-import { hasEnvHttpProxyConfigured } from "openclaw/plugin-sdk/infra-runtime";
-import type { PinnedDispatcherPolicy } from "openclaw/plugin-sdk/infra-runtime";
-import { createSubsystemLogger } from "openclaw/plugin-sdk/runtime-env";
+import type { TelegramNetworkConfig } from "openbz/plugin-sdk/config-runtime";
+import { resolveFetch } from "openbz/plugin-sdk/infra-runtime";
+import { hasEnvHttpProxyConfigured } from "openbz/plugin-sdk/infra-runtime";
+import type { PinnedDispatcherPolicy } from "openbz/plugin-sdk/infra-runtime";
+import { createSubsystemLogger } from "openbz/plugin-sdk/runtime-env";
 import { Agent, EnvHttpProxyAgent, ProxyAgent, fetch as undiciFetch } from "undici";
 import {
   resolveTelegramAutoSelectFamilyDecision,

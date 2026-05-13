@@ -1,12 +1,12 @@
-import { emptyPluginConfigSchema, type OpenClawPluginApi } from "openclaw/plugin-sdk/core";
-import { buildMicrosoftSpeechProvider } from "openclaw/plugin-sdk/speech";
+import { emptyPluginConfigSchema, type OpenBZPluginApi } from "openbz/plugin-sdk/core";
+import { buildMicrosoftSpeechProvider } from "openbz/plugin-sdk/speech";
 
 const microsoftPlugin = {
   id: "microsoft",
   name: "Microsoft Speech",
   description: "Bundled Microsoft speech provider",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerSpeechProvider(buildMicrosoftSpeechProvider());
   },
 };

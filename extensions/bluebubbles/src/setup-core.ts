@@ -5,13 +5,13 @@ import {
   setTopLevelChannelDmPolicyWithAllowFrom,
   type ChannelSetupAdapter,
   type DmPolicy,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/setup";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/setup";
 import { applyBlueBubblesConnectionConfig } from "./config-apply.js";
 
 const channel = "bluebubbles" as const;
 
-export function setBlueBubblesDmPolicy(cfg: OpenClawConfig, dmPolicy: DmPolicy): OpenClawConfig {
+export function setBlueBubblesDmPolicy(cfg: OpenBZConfig, dmPolicy: DmPolicy): OpenBZConfig {
   return setTopLevelChannelDmPolicyWithAllowFrom({
     cfg,
     channel,
@@ -20,10 +20,10 @@ export function setBlueBubblesDmPolicy(cfg: OpenClawConfig, dmPolicy: DmPolicy):
 }
 
 export function setBlueBubblesAllowFrom(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   accountId: string,
   allowFrom: string[],
-): OpenClawConfig {
+): OpenBZConfig {
   return patchScopedAccountConfig({
     cfg,
     channelKey: channel,

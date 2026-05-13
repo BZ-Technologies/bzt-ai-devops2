@@ -1,6 +1,6 @@
 import { describeFailoverError, isFailoverError } from "../agents/failover-error.js";
 import type { FallbackAttempt } from "../agents/model-fallback.types.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { OpenBZConfig } from "../config/config.js";
 import {
   resolveAgentModelFallbackValues,
   resolveAgentModelPrimaryValue,
@@ -12,7 +12,7 @@ import type { GeneratedImageAsset, ImageGenerationResult } from "./types.js";
 const log = createSubsystemLogger("image-generation");
 
 export type GenerateImageParams = {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   prompt: string;
   agentDir?: string;
   modelOverride?: string;
@@ -44,7 +44,7 @@ function parseModelRef(raw: string | undefined): { provider: string; model: stri
 }
 
 function resolveImageGenerationCandidates(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   modelOverride?: string;
 }): Array<{ provider: string; model: string }> {
   const candidates: Array<{ provider: string; model: string }> = [];
@@ -90,7 +90,7 @@ function throwImageGenerationFailure(params: {
   });
 }
 
-export function listRuntimeImageGenerationProviders(params?: { config?: OpenClawConfig }) {
+export function listRuntimeImageGenerationProviders(params?: { config?: OpenBZConfig }) {
   return listImageGenerationProviders(params?.config);
 }
 

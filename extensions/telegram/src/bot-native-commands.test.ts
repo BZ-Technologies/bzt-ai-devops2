@@ -1,6 +1,6 @@
 import path from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../../src/config/config.js";
+import type { OpenBZConfig } from "../../../src/config/config.js";
 import { STATE_DIR } from "../../../src/config/paths.js";
 import { TELEGRAM_COMMAND_NAME_PATTERN } from "../../../src/config/telegram-custom-commands.js";
 import type { TelegramAccountConfig } from "../../../src/config/types.js";
@@ -12,8 +12,8 @@ const deliveryMocks = vi.hoisted(() => ({
   deliverReplies: vi.fn(async () => ({ delivered: true })),
 }));
 
-vi.mock("openclaw/plugin-sdk/reply-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/reply-runtime")>();
+vi.mock("openbz/plugin-sdk/reply-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/reply-runtime")>();
   return {
     ...actual,
     listSkillCommandsForAgents: skillCommandMocks.listSkillCommandsForAgents,
@@ -58,7 +58,7 @@ describe("registerTelegramNativeCommands", () => {
   });
 
   it("scopes skill commands when account binding exists", () => {
-    const cfg: OpenClawConfig = {
+    const cfg: OpenBZConfig = {
       agents: {
         list: [{ id: "main", default: true }, { id: "butler" }],
       },
@@ -79,7 +79,7 @@ describe("registerTelegramNativeCommands", () => {
   });
 
   it("scopes skill commands to default agent without a matching binding (#15599)", () => {
-    const cfg: OpenClawConfig = {
+    const cfg: OpenBZConfig = {
       agents: {
         list: [{ id: "main", default: true }, { id: "butler" }],
       },
@@ -94,7 +94,7 @@ describe("registerTelegramNativeCommands", () => {
   });
 
   it("truncates Telegram command registration to 100 commands", async () => {
-    const cfg: OpenClawConfig = {
+    const cfg: OpenBZConfig = {
       commands: { native: false },
     };
     const customCommands = Array.from({ length: 120 }, (_, index) => ({
@@ -194,7 +194,7 @@ describe("registerTelegramNativeCommands", () => {
   it("passes agent-scoped media roots for plugin command replies with media", async () => {
     const commandHandlers = new Map<string, (ctx: unknown) => Promise<void>>();
     const sendMessage = vi.fn().mockResolvedValue(undefined);
-    const cfg: OpenClawConfig = {
+    const cfg: OpenBZConfig = {
       agents: {
         list: [{ id: "main", default: true }, { id: "work" }],
       },

@@ -2,7 +2,7 @@ import { ChannelType } from "discord-api-types/v10";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { NativeCommandSpec } from "../../../../src/auto-reply/commands-registry.js";
 import * as dispatcherModule from "../../../../src/auto-reply/reply/provider-dispatcher.js";
-import type { OpenClawConfig } from "../../../../src/config/config.js";
+import type { OpenBZConfig } from "../../../../src/config/config.js";
 import * as pluginCommandsModule from "../../../../src/plugins/commands.js";
 import { clearPluginCommands, registerPluginCommand } from "../../../../src/plugins/commands.js";
 import {
@@ -12,9 +12,9 @@ import {
 import { createNoopThreadBindingManager } from "./thread-bindings.js";
 
 type ResolveConfiguredAcpBindingRecordFn =
-  typeof import("openclaw/plugin-sdk/conversation-runtime").resolveConfiguredAcpRoute;
+  typeof import("openbz/plugin-sdk/conversation-runtime").resolveConfiguredAcpRoute;
 type EnsureConfiguredAcpBindingSessionFn =
-  typeof import("openclaw/plugin-sdk/conversation-runtime").ensureConfiguredAcpRouteReady;
+  typeof import("openbz/plugin-sdk/conversation-runtime").ensureConfiguredAcpRouteReady;
 
 const persistentBindingMocks = vi.hoisted(() => ({
   resolveConfiguredAcpBindingRecord: vi.fn<ResolveConfiguredAcpBindingRecordFn>((params) => ({
@@ -26,8 +26,8 @@ const persistentBindingMocks = vi.hoisted(() => ({
   })),
 }));
 
-vi.mock("openclaw/plugin-sdk/conversation-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/conversation-runtime")>();
+vi.mock("openbz/plugin-sdk/conversation-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/conversation-runtime")>();
   return {
     ...actual,
     resolveConfiguredAcpRoute: persistentBindingMocks.resolveConfiguredAcpBindingRecord,
@@ -55,17 +55,17 @@ function createInteraction(params?: {
   });
 }
 
-function createConfig(): OpenClawConfig {
+function createConfig(): OpenBZConfig {
   return {
     channels: {
       discord: {
         dm: { enabled: true, policy: "open" },
       },
     },
-  } as OpenClawConfig;
+  } as OpenBZConfig;
 }
 
-function createStatusCommand(cfg: OpenClawConfig) {
+function createStatusCommand(cfg: OpenBZConfig) {
   const commandSpec: NativeCommandSpec = {
     name: "status",
     description: "Status",
@@ -82,7 +82,7 @@ function createStatusCommand(cfg: OpenClawConfig) {
   });
 }
 
-function createPluginCommand(params: { cfg: OpenClawConfig; name: string }) {
+function createPluginCommand(params: { cfg: OpenBZConfig; name: string }) {
   return createDiscordNativeCommand({
     command: {
       name: params.name,
@@ -119,7 +119,7 @@ function registerPairPlugin(params?: { discordNativeName?: string }) {
 }
 
 async function expectPairCommandReply(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   commandName: string;
   interaction: MockCommandInteraction;
 }) {
@@ -210,7 +210,7 @@ function expectBoundSessionDispatch(
 }
 
 async function expectBoundStatusCommandDispatch(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   interaction: MockCommandInteraction;
   channelId: string;
   boundSessionKey: string;
@@ -289,7 +289,7 @@ describe("Discord native plugin command dispatch", () => {
           },
         },
       },
-    } as OpenClawConfig;
+    } as OpenBZConfig;
     const commandSpec: NativeCommandSpec = {
       name: "pair",
       description: "Pair",
@@ -409,7 +409,7 @@ describe("Discord native plugin command dispatch", () => {
           },
         },
       ],
-    } as OpenClawConfig;
+    } as OpenBZConfig;
     const interaction = createInteraction({
       channelType: ChannelType.GuildText,
       channelId,
@@ -454,7 +454,7 @@ describe("Discord native plugin command dispatch", () => {
           },
         },
       },
-    } as OpenClawConfig;
+    } as OpenBZConfig;
     const command = createStatusCommand(cfg);
     const interaction = createInteraction({
       channelType: ChannelType.GuildText,
@@ -506,7 +506,7 @@ describe("Discord native plugin command dispatch", () => {
           dm: { enabled: true, policy: "open" },
         },
       },
-    } as OpenClawConfig;
+    } as OpenBZConfig;
     const interaction = createInteraction({
       channelType: ChannelType.DM,
       channelId,

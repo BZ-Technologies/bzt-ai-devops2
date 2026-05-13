@@ -1,8 +1,8 @@
-import type { BaseProbeResult } from "openclaw/plugin-sdk/channel-runtime";
-import { loadConfig } from "openclaw/plugin-sdk/config-runtime";
-import { runCommandWithTimeout } from "openclaw/plugin-sdk/process-runtime";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
-import { detectBinary } from "openclaw/plugin-sdk/setup";
+import type { BaseProbeResult } from "openbz/plugin-sdk/channel-runtime";
+import { loadConfig } from "openbz/plugin-sdk/config-runtime";
+import { runCommandWithTimeout } from "openbz/plugin-sdk/process-runtime";
+import type { RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
+import { detectBinary } from "openbz/plugin-sdk/setup";
 import { createIMessageRpcClient } from "./client.js";
 import { DEFAULT_IMESSAGE_PROBE_TIMEOUT_MS } from "./constants.js";
 

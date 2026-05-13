@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 import { setActivePluginRegistry } from "../../plugins/runtime.js";
 import { defaultRuntime } from "../../runtime.js";
 import {
@@ -70,14 +70,14 @@ describe("message action capability checks", () => {
   it("aggregates capabilities across plugins", () => {
     activateMessageActionTestRegistry();
 
-    expect(listChannelMessageCapabilities({} as OpenClawConfig).toSorted()).toEqual([
+    expect(listChannelMessageCapabilities({} as OpenBZConfig).toSorted()).toEqual([
       "buttons",
       "cards",
       "interactive",
     ]);
-    expect(channelSupportsMessageCapability({} as OpenClawConfig, "interactive")).toBe(true);
-    expect(channelSupportsMessageCapability({} as OpenClawConfig, "buttons")).toBe(true);
-    expect(channelSupportsMessageCapability({} as OpenClawConfig, "cards")).toBe(true);
+    expect(channelSupportsMessageCapability({} as OpenBZConfig, "interactive")).toBe(true);
+    expect(channelSupportsMessageCapability({} as OpenBZConfig, "buttons")).toBe(true);
+    expect(channelSupportsMessageCapability({} as OpenBZConfig, "cards")).toBe(true);
   });
 
   it("checks per-channel capabilities", () => {
@@ -85,47 +85,47 @@ describe("message action capability checks", () => {
 
     expect(
       listChannelMessageCapabilitiesForChannel({
-        cfg: {} as OpenClawConfig,
+        cfg: {} as OpenBZConfig,
         channel: "discord",
       }),
     ).toEqual(["interactive", "buttons"]);
     expect(
       listChannelMessageCapabilitiesForChannel({
-        cfg: {} as OpenClawConfig,
+        cfg: {} as OpenBZConfig,
         channel: "telegram",
       }),
     ).toEqual(["cards"]);
     expect(
       channelSupportsMessageCapabilityForChannel(
-        { cfg: {} as OpenClawConfig, channel: "discord" },
+        { cfg: {} as OpenBZConfig, channel: "discord" },
         "interactive",
       ),
     ).toBe(true);
     expect(
       channelSupportsMessageCapabilityForChannel(
-        { cfg: {} as OpenClawConfig, channel: "telegram" },
+        { cfg: {} as OpenBZConfig, channel: "telegram" },
         "interactive",
       ),
     ).toBe(false);
     expect(
       channelSupportsMessageCapabilityForChannel(
-        { cfg: {} as OpenClawConfig, channel: "discord" },
+        { cfg: {} as OpenBZConfig, channel: "discord" },
         "buttons",
       ),
     ).toBe(true);
     expect(
       channelSupportsMessageCapabilityForChannel(
-        { cfg: {} as OpenClawConfig, channel: "telegram" },
+        { cfg: {} as OpenBZConfig, channel: "telegram" },
         "buttons",
       ),
     ).toBe(false);
     expect(
       channelSupportsMessageCapabilityForChannel(
-        { cfg: {} as OpenClawConfig, channel: "telegram" },
+        { cfg: {} as OpenBZConfig, channel: "telegram" },
         "cards",
       ),
     ).toBe(true);
-    expect(channelSupportsMessageCapabilityForChannel({ cfg: {} as OpenClawConfig }, "cards")).toBe(
+    expect(channelSupportsMessageCapabilityForChannel({ cfg: {} as OpenBZConfig }, "cards")).toBe(
       false,
     );
   });
@@ -153,12 +153,12 @@ describe("message action capability checks", () => {
       createTestRegistry([{ pluginId: "discord", source: "test", plugin: crashingPlugin }]),
     );
 
-    expect(listChannelMessageActions({} as OpenClawConfig)).toEqual(["send", "broadcast"]);
-    expect(listChannelMessageCapabilities({} as OpenClawConfig)).toEqual([]);
+    expect(listChannelMessageActions({} as OpenBZConfig)).toEqual(["send", "broadcast"]);
+    expect(listChannelMessageCapabilities({} as OpenBZConfig)).toEqual([]);
     expect(errorSpy).toHaveBeenCalledTimes(2);
 
-    expect(listChannelMessageActions({} as OpenClawConfig)).toEqual(["send", "broadcast"]);
-    expect(listChannelMessageCapabilities({} as OpenClawConfig)).toEqual([]);
+    expect(listChannelMessageActions({} as OpenBZConfig)).toEqual(["send", "broadcast"]);
+    expect(listChannelMessageCapabilities({} as OpenBZConfig)).toEqual([]);
     expect(errorSpy).toHaveBeenCalledTimes(2);
   });
 });

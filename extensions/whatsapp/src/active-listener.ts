@@ -1,6 +1,6 @@
-import { formatCliCommand } from "openclaw/plugin-sdk/cli-runtime";
-import type { PollInput } from "openclaw/plugin-sdk/media-runtime";
-import { DEFAULT_ACCOUNT_ID } from "openclaw/plugin-sdk/routing";
+import { formatCliCommand } from "openbz/plugin-sdk/cli-runtime";
+import type { PollInput } from "openbz/plugin-sdk/media-runtime";
+import { DEFAULT_ACCOUNT_ID } from "openbz/plugin-sdk/routing";
 
 export type ActiveWebSendOptions = {
   gifPlayback?: boolean;
@@ -44,7 +44,7 @@ export function requireActiveWebListener(accountId?: string | null): {
   const listener = listeners.get(id) ?? null;
   if (!listener) {
     throw new Error(
-      `No active WhatsApp Web listener (account: ${id}). Start the gateway, then link WhatsApp with: ${formatCliCommand(`openclaw channels login --channel whatsapp --account ${id}`)}.`,
+      `No active WhatsApp Web listener (account: ${id}). Start the gateway, then link WhatsApp with: ${formatCliCommand(`openbz channels login --channel whatsapp --account ${id}`)}.`,
     );
   }
   return { accountId: id, listener };

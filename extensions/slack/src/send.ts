@@ -1,17 +1,17 @@
 import { type Block, type KnownBlock, type WebClient } from "@slack/web-api";
-import { loadConfig, type OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
+import { loadConfig, type OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "openbz/plugin-sdk/config-runtime";
 import {
   fetchWithSsrFGuard,
   withTrustedEnvProxyGuardedFetchMode,
-} from "openclaw/plugin-sdk/infra-runtime";
+} from "openbz/plugin-sdk/infra-runtime";
 import {
   chunkMarkdownTextWithMode,
   resolveChunkMode,
   resolveTextChunkLimit,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { isSilentReplyText } from "openclaw/plugin-sdk/reply-runtime";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
+} from "openbz/plugin-sdk/reply-runtime";
+import { isSilentReplyText } from "openbz/plugin-sdk/reply-runtime";
+import { logVerbose } from "openbz/plugin-sdk/runtime-env";
 import { loadWebMedia } from "../../whatsapp/src/media.js";
 import type { SlackTokenSource } from "./accounts.js";
 import { resolveSlackAccount } from "./accounts.js";
@@ -45,7 +45,7 @@ export type SlackSendIdentity = {
 };
 
 type SlackSendOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: OpenBZConfig;
   token?: string;
   accountId?: string;
   mediaUrl?: string;

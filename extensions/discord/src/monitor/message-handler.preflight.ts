@@ -1,33 +1,33 @@
 import { ChannelType, MessageType, type User } from "@buape/carbon";
-import { formatAllowlistMatchMeta } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveControlCommandGate } from "openclaw/plugin-sdk/channel-runtime";
-import { logInboundDrop } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveMentionGatingWithBypass } from "openclaw/plugin-sdk/channel-runtime";
-import { loadConfig } from "openclaw/plugin-sdk/config-runtime";
-import { isDangerousNameMatchingEnabled } from "openclaw/plugin-sdk/config-runtime";
+import { formatAllowlistMatchMeta } from "openbz/plugin-sdk/channel-runtime";
+import { resolveControlCommandGate } from "openbz/plugin-sdk/channel-runtime";
+import { logInboundDrop } from "openbz/plugin-sdk/channel-runtime";
+import { resolveMentionGatingWithBypass } from "openbz/plugin-sdk/channel-runtime";
+import { loadConfig } from "openbz/plugin-sdk/config-runtime";
+import { isDangerousNameMatchingEnabled } from "openbz/plugin-sdk/config-runtime";
 import {
   ensureConfiguredAcpRouteReady,
   resolveConfiguredAcpRoute,
-} from "openclaw/plugin-sdk/conversation-runtime";
+} from "openbz/plugin-sdk/conversation-runtime";
 import {
   getSessionBindingService,
   type SessionBindingRecord,
-} from "openclaw/plugin-sdk/conversation-runtime";
-import { buildPairingReply } from "openclaw/plugin-sdk/conversation-runtime";
-import { isPluginOwnedSessionBindingRecord } from "openclaw/plugin-sdk/conversation-runtime";
-import { recordChannelActivity } from "openclaw/plugin-sdk/infra-runtime";
-import { enqueueSystemEvent } from "openclaw/plugin-sdk/infra-runtime";
-import { hasControlCommand } from "openclaw/plugin-sdk/reply-runtime";
-import { shouldHandleTextCommands } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/conversation-runtime";
+import { buildPairingReply } from "openbz/plugin-sdk/conversation-runtime";
+import { isPluginOwnedSessionBindingRecord } from "openbz/plugin-sdk/conversation-runtime";
+import { recordChannelActivity } from "openbz/plugin-sdk/infra-runtime";
+import { enqueueSystemEvent } from "openbz/plugin-sdk/infra-runtime";
+import { hasControlCommand } from "openbz/plugin-sdk/reply-runtime";
+import { shouldHandleTextCommands } from "openbz/plugin-sdk/reply-runtime";
 import {
   recordPendingHistoryEntryIfEnabled,
   type HistoryEntry,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { buildMentionRegexes, matchesMentionWithExplicit } from "openclaw/plugin-sdk/reply-runtime";
-import { DEFAULT_ACCOUNT_ID } from "openclaw/plugin-sdk/routing";
-import { logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { getChildLogger } from "openclaw/plugin-sdk/runtime-env";
-import { logDebug } from "openclaw/plugin-sdk/text-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
+import { buildMentionRegexes, matchesMentionWithExplicit } from "openbz/plugin-sdk/reply-runtime";
+import { DEFAULT_ACCOUNT_ID } from "openbz/plugin-sdk/routing";
+import { logVerbose, shouldLogVerbose } from "openbz/plugin-sdk/runtime-env";
+import { getChildLogger } from "openbz/plugin-sdk/runtime-env";
+import { logDebug } from "openbz/plugin-sdk/text-runtime";
 import { fetchPluralKitMessageInfo } from "../pluralkit.js";
 import { sendMessageDiscord } from "../send.js";
 import {

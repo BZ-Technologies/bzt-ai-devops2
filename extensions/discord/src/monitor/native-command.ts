@@ -15,29 +15,29 @@ import {
   type StringSelectMenuInteraction,
 } from "@buape/carbon";
 import { ApplicationCommandOptionType, ButtonStyle } from "discord-api-types/v10";
-import { resolveHumanDelayConfig } from "openclaw/plugin-sdk/agent-runtime";
-import { resolveCommandAuthorizedFromAuthorizers } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveNativeCommandSessionTargets } from "openclaw/plugin-sdk/channel-runtime";
-import { createReplyPrefixOptions } from "openclaw/plugin-sdk/channel-runtime";
-import type { OpenClawConfig, loadConfig } from "openclaw/plugin-sdk/config-runtime";
-import { isDangerousNameMatchingEnabled } from "openclaw/plugin-sdk/config-runtime";
-import { resolveOpenProviderRuntimeGroupPolicy } from "openclaw/plugin-sdk/config-runtime";
-import { loadSessionStore, resolveStorePath } from "openclaw/plugin-sdk/config-runtime";
+import { resolveHumanDelayConfig } from "openbz/plugin-sdk/agent-runtime";
+import { resolveCommandAuthorizedFromAuthorizers } from "openbz/plugin-sdk/channel-runtime";
+import { resolveNativeCommandSessionTargets } from "openbz/plugin-sdk/channel-runtime";
+import { createReplyPrefixOptions } from "openbz/plugin-sdk/channel-runtime";
+import type { OpenBZConfig, loadConfig } from "openbz/plugin-sdk/config-runtime";
+import { isDangerousNameMatchingEnabled } from "openbz/plugin-sdk/config-runtime";
+import { resolveOpenProviderRuntimeGroupPolicy } from "openbz/plugin-sdk/config-runtime";
+import { loadSessionStore, resolveStorePath } from "openbz/plugin-sdk/config-runtime";
 import {
   ensureConfiguredAcpRouteReady,
   resolveConfiguredAcpRoute,
-} from "openclaw/plugin-sdk/conversation-runtime";
-import { buildPairingReply } from "openclaw/plugin-sdk/conversation-runtime";
-import { getAgentScopedMediaLocalRoots } from "openclaw/plugin-sdk/media-runtime";
-import { executePluginCommand, matchPluginCommand } from "openclaw/plugin-sdk/plugin-runtime";
-import { resolveChunkMode, resolveTextChunkLimit } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/conversation-runtime";
+import { buildPairingReply } from "openbz/plugin-sdk/conversation-runtime";
+import { getAgentScopedMediaLocalRoots } from "openbz/plugin-sdk/media-runtime";
+import { executePluginCommand, matchPluginCommand } from "openbz/plugin-sdk/plugin-runtime";
+import { resolveChunkMode, resolveTextChunkLimit } from "openbz/plugin-sdk/reply-runtime";
 import type {
   ChatCommandDefinition,
   CommandArgDefinition,
   CommandArgValues,
   CommandArgs,
   NativeCommandSpec,
-} from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
 import {
   buildCommandTextFromArgs,
   findCommandByNativeName,
@@ -46,15 +46,15 @@ import {
   resolveCommandArgChoices,
   resolveCommandArgMenu,
   serializeCommandArgs,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { resolveStoredModelOverride } from "openclaw/plugin-sdk/reply-runtime";
-import { dispatchReplyWithDispatcher } from "openclaw/plugin-sdk/reply-runtime";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
-import type { ResolvedAgentRoute } from "openclaw/plugin-sdk/routing";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { createSubsystemLogger } from "openclaw/plugin-sdk/runtime-env";
-import { chunkItems } from "openclaw/plugin-sdk/text-runtime";
-import { withTimeout } from "openclaw/plugin-sdk/text-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
+import { resolveStoredModelOverride } from "openbz/plugin-sdk/reply-runtime";
+import { dispatchReplyWithDispatcher } from "openbz/plugin-sdk/reply-runtime";
+import type { ReplyPayload } from "openbz/plugin-sdk/reply-runtime";
+import type { ResolvedAgentRoute } from "openbz/plugin-sdk/routing";
+import { logVerbose } from "openbz/plugin-sdk/runtime-env";
+import { createSubsystemLogger } from "openbz/plugin-sdk/runtime-env";
+import { chunkItems } from "openbz/plugin-sdk/text-runtime";
+import { withTimeout } from "openbz/plugin-sdk/text-runtime";
 import { loadWebMedia } from "../../../whatsapp/src/media.js";
 import { resolveDiscordMaxLinesPerMessage } from "../accounts.js";
 import { chunkDiscordTextWithMode } from "../chunk.js";
@@ -95,11 +95,11 @@ import { resolveDiscordSenderIdentity } from "./sender-identity.js";
 import type { ThreadBindingManager } from "./thread-bindings.js";
 import { resolveDiscordThreadParentInfo } from "./threading.js";
 
-type DiscordConfig = NonNullable<OpenClawConfig["channels"]>["discord"];
+type DiscordConfig = NonNullable<OpenBZConfig["channels"]>["discord"];
 const log = createSubsystemLogger("discord/native-command");
 
 function resolveDiscordNativeCommandAllowlistAccess(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId?: string | null;
   sender: { id: string; name?: string; tag?: string };
   chatType: "direct" | "group" | "thread" | "channel";

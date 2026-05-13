@@ -1,10 +1,10 @@
-import type { MarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { chunkMarkdownTextWithMode, type ChunkMode } from "openclaw/plugin-sdk/reply-runtime";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
-import { logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { convertMarkdownTables } from "openclaw/plugin-sdk/text-runtime";
-import { markdownToWhatsApp } from "openclaw/plugin-sdk/text-runtime";
-import { sleep } from "openclaw/plugin-sdk/text-runtime";
+import type { MarkdownTableMode } from "openbz/plugin-sdk/config-runtime";
+import { chunkMarkdownTextWithMode, type ChunkMode } from "openbz/plugin-sdk/reply-runtime";
+import type { ReplyPayload } from "openbz/plugin-sdk/reply-runtime";
+import { logVerbose, shouldLogVerbose } from "openbz/plugin-sdk/runtime-env";
+import { convertMarkdownTables } from "openbz/plugin-sdk/text-runtime";
+import { markdownToWhatsApp } from "openbz/plugin-sdk/text-runtime";
+import { sleep } from "openbz/plugin-sdk/text-runtime";
 import { loadWebMedia } from "../media.js";
 import { newConnectionId } from "../reconnect.js";
 import { formatError } from "../session.js";

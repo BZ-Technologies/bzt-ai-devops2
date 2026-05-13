@@ -1,1 +1,1 @@
-openclaw,ai assistant,local ai,voice assistant,automation,gateway,chat,agent,node
+openbz,ai assistant,local ai,voice assistant,automation,gateway,chat,agent,node

@@ -4,7 +4,7 @@ import {
   noteChannelLookupFailure,
   noteChannelLookupSummary,
   normalizeAccountId,
-  type OpenClawConfig,
+  type OpenBZConfig,
   parseMentionOrPrefixedId,
   patchChannelConfigForAccount,
   promptLegacyChannelAllowFrom,
@@ -13,13 +13,13 @@ import {
   setLegacyChannelDmPolicyWithAllowFrom,
   setSetupChannelEnabled,
   type WizardPrompter,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import { formatDocsLink } from "../../../src/terminal/links.js";
 import type {
   ChannelSetupDmPolicy,
   ChannelSetupWizard,
   ChannelSetupWizardAllowFromEntry,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import { inspectSlackAccount } from "./account-inspect.js";
 import {
   listSlackAccountIds,
@@ -37,7 +37,7 @@ import {
   SLACK_CHANNEL as channel,
 } from "./shared.js";
 
-function enableSlackAccount(cfg: OpenClawConfig, accountId: string): OpenClawConfig {
+function enableSlackAccount(cfg: OpenBZConfig, accountId: string): OpenBZConfig {
   return patchChannelConfigForAccount({
     cfg,
     channel,
@@ -69,10 +69,10 @@ async function resolveSlackAllowFromEntries(params: {
 }
 
 async function promptSlackAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   prompter: WizardPrompter;
   accountId?: string;
-}): Promise<OpenClawConfig> {
+}): Promise<OpenBZConfig> {
   const accountId = resolveSetupAccountId({
     accountId: params.accountId,
     defaultAccountId: resolveDefaultSlackAccountId(params.cfg),

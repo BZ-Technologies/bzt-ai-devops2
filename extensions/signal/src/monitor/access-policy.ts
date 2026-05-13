@@ -1,9 +1,9 @@
-import { issuePairingChallenge } from "openclaw/plugin-sdk/conversation-runtime";
-import { upsertChannelPairingRequest } from "openclaw/plugin-sdk/conversation-runtime";
+import { issuePairingChallenge } from "openbz/plugin-sdk/conversation-runtime";
+import { upsertChannelPairingRequest } from "openbz/plugin-sdk/conversation-runtime";
 import {
   readStoreAllowFromForDmPolicy,
   resolveDmGroupAccessWithLists,
-} from "openclaw/plugin-sdk/security-runtime";
+} from "openbz/plugin-sdk/security-runtime";
 import { isSignalSenderAllowed, type SignalSender } from "../identity.js";
 
 type SignalDmPolicy = "open" | "pairing" | "allowlist" | "disabled";

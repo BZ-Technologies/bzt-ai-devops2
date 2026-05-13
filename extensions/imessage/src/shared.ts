@@ -1,7 +1,7 @@
 import {
   buildAccountScopedDmSecurityPolicy,
   collectAllowlistProviderRestrictSendersWarnings,
-} from "openclaw/plugin-sdk/channel-policy";
+} from "openbz/plugin-sdk/channel-policy";
 import {
   formatTrimmedAllowFromEntries,
   resolveIMessageConfigAllowFrom,

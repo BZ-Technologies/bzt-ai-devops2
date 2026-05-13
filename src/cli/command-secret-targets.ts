@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+import type { OpenBZConfig } from "../config/config.js";
 import { normalizeOptionalAccountId } from "../routing/session-key.js";
 import {
   discoverConfigSecretTargetsByIds,
@@ -72,7 +72,7 @@ function pathTargetsScopedChannelAccount(params: {
 }
 
 export function getScopedChannelsCommandSecretTargets(params: {
-  config: OpenClawConfig;
+  config: OpenBZConfig;
   channel?: string | null;
   accountId?: string | null;
 }): {

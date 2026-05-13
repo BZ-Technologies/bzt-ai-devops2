@@ -18,41 +18,41 @@ import {
 } from "@buape/carbon";
 import type { APIStringSelectComponent } from "discord-api-types/v10";
 import { ButtonStyle, ChannelType } from "discord-api-types/v10";
-import { resolveHumanDelayConfig } from "openclaw/plugin-sdk/agent-runtime";
-import { resolveCommandAuthorizedFromAuthorizers } from "openclaw/plugin-sdk/channel-runtime";
-import { createReplyPrefixOptions } from "openclaw/plugin-sdk/channel-runtime";
-import { recordInboundSession } from "openclaw/plugin-sdk/channel-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { isDangerousNameMatchingEnabled } from "openclaw/plugin-sdk/config-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { readSessionUpdatedAt, resolveStorePath } from "openclaw/plugin-sdk/config-runtime";
-import type { DiscordAccountConfig } from "openclaw/plugin-sdk/config-runtime";
-import { issuePairingChallenge } from "openclaw/plugin-sdk/conversation-runtime";
-import { upsertChannelPairingRequest } from "openclaw/plugin-sdk/conversation-runtime";
+import { resolveHumanDelayConfig } from "openbz/plugin-sdk/agent-runtime";
+import { resolveCommandAuthorizedFromAuthorizers } from "openbz/plugin-sdk/channel-runtime";
+import { createReplyPrefixOptions } from "openbz/plugin-sdk/channel-runtime";
+import { recordInboundSession } from "openbz/plugin-sdk/channel-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import { isDangerousNameMatchingEnabled } from "openbz/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "openbz/plugin-sdk/config-runtime";
+import { readSessionUpdatedAt, resolveStorePath } from "openbz/plugin-sdk/config-runtime";
+import type { DiscordAccountConfig } from "openbz/plugin-sdk/config-runtime";
+import { issuePairingChallenge } from "openbz/plugin-sdk/conversation-runtime";
+import { upsertChannelPairingRequest } from "openbz/plugin-sdk/conversation-runtime";
 import {
   buildPluginBindingResolvedText,
   parsePluginBindingApprovalCustomId,
   resolvePluginConversationBindingApproval,
-} from "openclaw/plugin-sdk/conversation-runtime";
-import { enqueueSystemEvent } from "openclaw/plugin-sdk/infra-runtime";
-import { getAgentScopedMediaLocalRoots } from "openclaw/plugin-sdk/media-runtime";
-import { dispatchPluginInteractiveHandler } from "openclaw/plugin-sdk/plugin-runtime";
-import { resolveChunkMode, resolveTextChunkLimit } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/conversation-runtime";
+import { enqueueSystemEvent } from "openbz/plugin-sdk/infra-runtime";
+import { getAgentScopedMediaLocalRoots } from "openbz/plugin-sdk/media-runtime";
+import { dispatchPluginInteractiveHandler } from "openbz/plugin-sdk/plugin-runtime";
+import { resolveChunkMode, resolveTextChunkLimit } from "openbz/plugin-sdk/reply-runtime";
 import {
   formatInboundEnvelope,
   resolveEnvelopeFormatOptions,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { finalizeInboundContext } from "openclaw/plugin-sdk/reply-runtime";
-import { dispatchReplyWithBufferedBlockDispatcher } from "openclaw/plugin-sdk/reply-runtime";
-import { createReplyReferencePlanner } from "openclaw/plugin-sdk/reply-runtime";
-import { resolveAgentRoute } from "openclaw/plugin-sdk/routing";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { createNonExitingRuntime, type RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+} from "openbz/plugin-sdk/reply-runtime";
+import { finalizeInboundContext } from "openbz/plugin-sdk/reply-runtime";
+import { dispatchReplyWithBufferedBlockDispatcher } from "openbz/plugin-sdk/reply-runtime";
+import { createReplyReferencePlanner } from "openbz/plugin-sdk/reply-runtime";
+import { resolveAgentRoute } from "openbz/plugin-sdk/routing";
+import { logVerbose } from "openbz/plugin-sdk/runtime-env";
+import { createNonExitingRuntime, type RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
 import {
   readStoreAllowFromForDmPolicy,
   resolvePinnedMainDmOwnerFromAllowlist,
-} from "openclaw/plugin-sdk/security-runtime";
-import { logDebug, logError } from "openclaw/plugin-sdk/text-runtime";
+} from "openbz/plugin-sdk/security-runtime";
+import { logDebug, logError } from "openbz/plugin-sdk/text-runtime";
 import { resolveDiscordMaxLinesPerMessage } from "../accounts.js";
 import { resolveDiscordComponentEntry, resolveDiscordModalEntry } from "../components-registry.js";
 import {
@@ -394,7 +394,7 @@ async function ensureAgentComponentInteractionAllowed(params: {
 }
 
 export type AgentComponentContext = {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId: string;
   discordConfig?: DiscordAccountConfig;
   runtime?: RuntimeEnv;
@@ -1701,7 +1701,7 @@ export class AgentSelectMenu extends StringSelectMenu {
 
 class DiscordComponentButton extends Button {
   label = "component";
-  customId = "__openclaw_discord_component_button_wildcard__";
+  customId = "__openbz_discord_component_button_wildcard__";
   style = ButtonStyle.Primary;
   customIdParser = parseDiscordComponentCustomIdForCarbon;
   private ctx: AgentComponentContext;
@@ -1733,7 +1733,7 @@ class DiscordComponentButton extends Button {
 }
 
 class DiscordComponentStringSelect extends StringSelectMenu {
-  customId = "__openclaw_discord_component_string_select_wildcard__";
+  customId = "__openbz_discord_component_string_select_wildcard__";
   options: APIStringSelectComponent["options"] = [];
   customIdParser = parseDiscordComponentCustomIdForCarbon;
   private ctx: AgentComponentContext;
@@ -1756,7 +1756,7 @@ class DiscordComponentStringSelect extends StringSelectMenu {
 }
 
 class DiscordComponentUserSelect extends UserSelectMenu {
-  customId = "__openclaw_discord_component_user_select_wildcard__";
+  customId = "__openbz_discord_component_user_select_wildcard__";
   customIdParser = parseDiscordComponentCustomIdForCarbon;
   private ctx: AgentComponentContext;
 
@@ -1778,7 +1778,7 @@ class DiscordComponentUserSelect extends UserSelectMenu {
 }
 
 class DiscordComponentRoleSelect extends RoleSelectMenu {
-  customId = "__openclaw_discord_component_role_select_wildcard__";
+  customId = "__openbz_discord_component_role_select_wildcard__";
   customIdParser = parseDiscordComponentCustomIdForCarbon;
   private ctx: AgentComponentContext;
 
@@ -1800,7 +1800,7 @@ class DiscordComponentRoleSelect extends RoleSelectMenu {
 }
 
 class DiscordComponentMentionableSelect extends MentionableSelectMenu {
-  customId = "__openclaw_discord_component_mentionable_select_wildcard__";
+  customId = "__openbz_discord_component_mentionable_select_wildcard__";
   customIdParser = parseDiscordComponentCustomIdForCarbon;
   private ctx: AgentComponentContext;
 
@@ -1822,7 +1822,7 @@ class DiscordComponentMentionableSelect extends MentionableSelectMenu {
 }
 
 class DiscordComponentChannelSelect extends ChannelSelectMenu {
-  customId = "__openclaw_discord_component_channel_select_wildcard__";
+  customId = "__openbz_discord_component_channel_select_wildcard__";
   customIdParser = parseDiscordComponentCustomIdForCarbon;
   private ctx: AgentComponentContext;
 
@@ -1844,8 +1844,8 @@ class DiscordComponentChannelSelect extends ChannelSelectMenu {
 }
 
 class DiscordComponentModal extends Modal {
-  title = "OpenClaw form";
-  customId = "__openclaw_discord_component_modal_wildcard__";
+  title = "BZ AI DevOps2 form";
+  customId = "__openbz_discord_component_modal_wildcard__";
   components = [];
   customIdParser = parseDiscordModalCustomIdForCarbon;
   private ctx: AgentComponentContext;

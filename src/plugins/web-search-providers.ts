@@ -12,12 +12,12 @@ import { capturePluginRegistration } from "./captured-registration.js";
 import type { PluginLoadOptions } from "./loader.js";
 import type { PluginWebSearchProviderRegistration } from "./registry.js";
 import { getActivePluginRegistry } from "./runtime.js";
-import type { OpenClawPluginApi, PluginWebSearchProviderEntry } from "./types.js";
+import type { OpenBZPluginApi, PluginWebSearchProviderEntry } from "./types.js";
 
 type RegistrablePlugin = {
   id: string;
   name: string;
-  register: (api: OpenClawPluginApi) => void;
+  register: (api: OpenBZPluginApi) => void;
 };
 
 const BUNDLED_WEB_SEARCH_PLUGINS: readonly RegistrablePlugin[] = [

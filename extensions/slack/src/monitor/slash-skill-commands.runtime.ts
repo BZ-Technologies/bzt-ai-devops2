@@ -1,1 +1,1 @@
-export { listSkillCommandsForAgents } from "openclaw/plugin-sdk/reply-runtime";
+export { listSkillCommandsForAgents } from "openbz/plugin-sdk/reply-runtime";

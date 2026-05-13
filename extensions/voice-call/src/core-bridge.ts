@@ -1,4 +1,4 @@
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk/voice-call";
+import type { OpenBZPluginApi } from "openbz/plugin-sdk/voice-call";
 import type { VoiceCallTtsConfig } from "./config.js";
 
 export type CoreConfig = {
@@ -11,4 +11,4 @@ export type CoreConfig = {
   [key: string]: unknown;
 };
 
-export type CoreAgentDeps = OpenClawPluginApi["runtime"]["agent"];
+export type CoreAgentDeps = OpenBZPluginApi["runtime"]["agent"];

@@ -1,5 +1,5 @@
-import type { DirectoryConfigParams } from "openclaw/plugin-sdk/channel-runtime";
-import type { ChannelDirectoryEntry } from "openclaw/plugin-sdk/channel-runtime";
+import type { DirectoryConfigParams } from "openbz/plugin-sdk/channel-runtime";
+import type { ChannelDirectoryEntry } from "openbz/plugin-sdk/channel-runtime";
 import { resolveDiscordAccount } from "./accounts.js";
 import { fetchDiscord } from "./api.js";
 import { rememberDiscordDirectoryUser } from "./directory-cache.js";

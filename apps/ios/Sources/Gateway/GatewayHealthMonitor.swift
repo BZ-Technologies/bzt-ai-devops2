@@ -1,5 +1,5 @@
 import Foundation
-import OpenClawKit
+import OpenBZKit
 
 @MainActor
 final class GatewayHealthMonitor {

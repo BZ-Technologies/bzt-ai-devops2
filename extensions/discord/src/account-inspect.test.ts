@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "../../../src/config/config.js";
+import type { OpenBZConfig } from "../../../src/config/config.js";
 import { inspectDiscordAccount } from "./account-inspect.js";
 
-function asConfig(value: unknown): OpenClawConfig {
-  return value as OpenClawConfig;
+function asConfig(value: unknown): OpenBZConfig {
+  return value as OpenBZConfig;
 }
 
 describe("inspectDiscordAccount", () => {

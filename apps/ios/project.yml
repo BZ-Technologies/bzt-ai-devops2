@@ -1,6 +1,6 @@
-name: OpenClaw
+name: BZ AI DevOps2
 options:
-  bundleIdPrefix: ai.openclaw
+  bundleIdPrefix: ai.openbz
   deploymentTarget:
     iOS: "18.0"
   xcodeVersion: "16.0"
@@ -11,32 +11,32 @@ settings:
     ENABLE_APP_INTENTS_METADATA_GENERATION: NO
 
 packages:
-  OpenClawKit:
-    path: ../shared/OpenClawKit
+  OpenBZKit:
+    path: ../shared/OpenBZKit
   Swabble:
     path: ../../Swabble
 
 schemes:
-  OpenClaw:
+  BZ AI DevOps2:
     shared: true
     build:
       targets:
-        OpenClaw: all
+        BZ AI DevOps2: all
     test:
       targets:
-        - OpenClawTests
-        - OpenClawLogicTests
-  OpenClawLogicTests:
+        - OpenBZTests
+        - OpenBZLogicTests
+  OpenBZLogicTests:
     shared: true
     build:
       targets:
-        OpenClawLogicTests: all
+        OpenBZLogicTests: all
     test:
       targets:
-        - OpenClawLogicTests
+        - OpenBZLogicTests
 
 targets:
-  OpenClaw:
+  BZ AI DevOps2:
     type: application
     platform: iOS
     configFiles:
@@ -45,16 +45,16 @@ targets:
     sources:
       - path: Sources
     dependencies:
-      - target: OpenClawShareExtension
+      - target: OpenBZShareExtension
         embed: true
-      - target: OpenClawActivityWidget
+      - target: OpenBZActivityWidget
         embed: true
-      - target: OpenClawWatchApp
-      - package: OpenClawKit
-      - package: OpenClawKit
-        product: OpenClawChatUI
-      - package: OpenClawKit
-        product: OpenClawProtocol
+      - target: OpenBZWatchApp
+      - package: OpenBZKit
+      - package: OpenBZKit
+        product: OpenBZChatUI
+      - package: OpenBZKit
+        product: OpenBZProtocol
       - package: Swabble
         product: SwabbleKit
       - sdk: AppIntents.framework
@@ -87,11 +87,11 @@ targets:
     settings:
       base:
         CODE_SIGN_IDENTITY: "Apple Development"
-        CODE_SIGN_ENTITLEMENTS: Sources/OpenClaw.entitlements
-        CODE_SIGN_STYLE: "$(OPENCLAW_CODE_SIGN_STYLE)"
-        DEVELOPMENT_TEAM: "$(OPENCLAW_DEVELOPMENT_TEAM)"
-        PRODUCT_BUNDLE_IDENTIFIER: "$(OPENCLAW_APP_BUNDLE_ID)"
-        PROVISIONING_PROFILE_SPECIFIER: "$(OPENCLAW_APP_PROFILE)"
+        CODE_SIGN_ENTITLEMENTS: Sources/BZ AI DevOps2.entitlements
+        CODE_SIGN_STYLE: "$(OPENBZ_CODE_SIGN_STYLE)"
+        DEVELOPMENT_TEAM: "$(OPENBZ_DEVELOPMENT_TEAM)"
+        PRODUCT_BUNDLE_IDENTIFIER: "$(OPENBZ_APP_BUNDLE_ID)"
+        PROVISIONING_PROFILE_SPECIFIER: "$(OPENBZ_APP_PROFILE)"
         TARGETED_DEVICE_FAMILY: "1"
         SWIFT_VERSION: "6.0"
         SWIFT_STRICT_CONCURRENCY: complete
@@ -100,26 +100,26 @@ targets:
         ENABLE_APP_INTENTS_METADATA_GENERATION: NO
       configs:
         Debug:
-          OPENCLAW_PUSH_TRANSPORT: direct
-          OPENCLAW_PUSH_DISTRIBUTION: local
-          OPENCLAW_PUSH_RELAY_BASE_URL: ""
-          OPENCLAW_PUSH_APNS_ENVIRONMENT: sandbox
+          OPENBZ_PUSH_TRANSPORT: direct
+          OPENBZ_PUSH_DISTRIBUTION: local
+          OPENBZ_PUSH_RELAY_BASE_URL: ""
+          OPENBZ_PUSH_APNS_ENVIRONMENT: sandbox
         Release:
-          OPENCLAW_PUSH_TRANSPORT: direct
-          OPENCLAW_PUSH_DISTRIBUTION: local
-          OPENCLAW_PUSH_RELAY_BASE_URL: ""
-          OPENCLAW_PUSH_APNS_ENVIRONMENT: production
+          OPENBZ_PUSH_TRANSPORT: direct
+          OPENBZ_PUSH_DISTRIBUTION: local
+          OPENBZ_PUSH_RELAY_BASE_URL: ""
+          OPENBZ_PUSH_APNS_ENVIRONMENT: production
     info:
       path: Sources/Info.plist
       properties:
-        CFBundleDisplayName: OpenClaw
+        CFBundleDisplayName: BZ AI DevOps2
         CFBundleIconName: AppIcon
         CFBundleURLTypes:
-          - CFBundleURLName: ai.openclaw.ios
+          - CFBundleURLName: ai.openbz.ios
             CFBundleURLSchemes:
-              - openclaw
-        CFBundleShortVersionString: "$(OPENCLAW_MARKETING_VERSION)"
-        CFBundleVersion: "$(OPENCLAW_BUILD_VERSION)"
+              - openbz
+        CFBundleShortVersionString: "$(OPENBZ_MARKETING_VERSION)"
+        CFBundleVersion: "$(OPENBZ_BUILD_VERSION)"
         UILaunchScreen: {}
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
@@ -127,25 +127,25 @@ targets:
           - audio
           - remote-notification
         BGTaskSchedulerPermittedIdentifiers:
-          - ai.openclaw.ios.bgrefresh
-        NSLocalNetworkUsageDescription: OpenClaw discovers and connects to your OpenClaw gateway on the local network.
+          - ai.openbz.ios.bgrefresh
+        NSLocalNetworkUsageDescription: BZ AI DevOps2 discovers and connects to your BZ AI DevOps2 gateway on the local network.
         NSAppTransportSecurity:
           NSAllowsArbitraryLoadsInWebContent: true
         NSBonjourServices:
-          - _openclaw-gw._tcp
-        NSCameraUsageDescription: OpenClaw can capture photos or short video clips when requested via the gateway.
-        NSLocationWhenInUseUsageDescription: OpenClaw uses your location when you allow location sharing.
-        NSLocationAlwaysAndWhenInUseUsageDescription: OpenClaw can share your location in the background when you enable Always.
-        NSMicrophoneUsageDescription: OpenClaw needs microphone access for voice wake.
-        NSMotionUsageDescription: OpenClaw may use motion data to support device-aware interactions and automations.
-        NSPhotoLibraryUsageDescription: OpenClaw needs photo library access when you choose existing photos to share with your assistant.
-        NSSpeechRecognitionUsageDescription: OpenClaw uses on-device speech recognition for voice wake.
+          - _openbz-gw._tcp
+        NSCameraUsageDescription: BZ AI DevOps2 can capture photos or short video clips when requested via the gateway.
+        NSLocationWhenInUseUsageDescription: BZ AI DevOps2 uses your location when you allow location sharing.
+        NSLocationAlwaysAndWhenInUseUsageDescription: BZ AI DevOps2 can share your location in the background when you enable Always.
+        NSMicrophoneUsageDescription: BZ AI DevOps2 needs microphone access for voice wake.
+        NSMotionUsageDescription: BZ AI DevOps2 may use motion data to support device-aware interactions and automations.
+        NSPhotoLibraryUsageDescription: BZ AI DevOps2 needs photo library access when you choose existing photos to share with your assistant.
+        NSSpeechRecognitionUsageDescription: BZ AI DevOps2 uses on-device speech recognition for voice wake.
         NSSupportsLiveActivities: true
         ITSAppUsesNonExemptEncryption: false
-        OpenClawPushTransport: "$(OPENCLAW_PUSH_TRANSPORT)"
-        OpenClawPushDistribution: "$(OPENCLAW_PUSH_DISTRIBUTION)"
-        OpenClawPushRelayBaseURL: "$(OPENCLAW_PUSH_RELAY_BASE_URL)"
-        OpenClawPushAPNsEnvironment: "$(OPENCLAW_PUSH_APNS_ENVIRONMENT)"
+        OpenBZPushTransport: "$(OPENBZ_PUSH_TRANSPORT)"
+        OpenBZPushDistribution: "$(OPENBZ_PUSH_DISTRIBUTION)"
+        OpenBZPushRelayBaseURL: "$(OPENBZ_PUSH_RELAY_BASE_URL)"
+        OpenBZPushAPNsEnvironment: "$(OPENBZ_PUSH_APNS_ENVIRONMENT)"
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
           - UIInterfaceOrientationPortraitUpsideDown
@@ -157,7 +157,7 @@ targets:
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
 
-  OpenClawShareExtension:
+  OpenBZShareExtension:
     type: app-extension
     platform: iOS
     configFiles:
@@ -166,25 +166,25 @@ targets:
     sources:
       - path: ShareExtension
     dependencies:
-      - package: OpenClawKit
+      - package: OpenBZKit
       - sdk: AppIntents.framework
     settings:
       base:
         CODE_SIGN_IDENTITY: "Apple Development"
-        CODE_SIGN_STYLE: "$(OPENCLAW_CODE_SIGN_STYLE)"
-        DEVELOPMENT_TEAM: "$(OPENCLAW_DEVELOPMENT_TEAM)"
+        CODE_SIGN_STYLE: "$(OPENBZ_CODE_SIGN_STYLE)"
+        DEVELOPMENT_TEAM: "$(OPENBZ_DEVELOPMENT_TEAM)"
         ENABLE_APPINTENTS_METADATA: NO
         ENABLE_APP_INTENTS_METADATA_GENERATION: NO
-        PRODUCT_BUNDLE_IDENTIFIER: "$(OPENCLAW_SHARE_BUNDLE_ID)"
-        PROVISIONING_PROFILE_SPECIFIER: "$(OPENCLAW_SHARE_PROFILE)"
+        PRODUCT_BUNDLE_IDENTIFIER: "$(OPENBZ_SHARE_BUNDLE_ID)"
+        PROVISIONING_PROFILE_SPECIFIER: "$(OPENBZ_SHARE_PROFILE)"
         SWIFT_VERSION: "6.0"
         SWIFT_STRICT_CONCURRENCY: complete
     info:
       path: ShareExtension/Info.plist
       properties:
-        CFBundleDisplayName: OpenClaw Share
-        CFBundleShortVersionString: "$(OPENCLAW_MARKETING_VERSION)"
-        CFBundleVersion: "$(OPENCLAW_BUILD_VERSION)"
+        CFBundleDisplayName: BZ AI DevOps2 Share
+        CFBundleShortVersionString: "$(OPENBZ_MARKETING_VERSION)"
+        CFBundleVersion: "$(OPENBZ_BUILD_VERSION)"
         NSExtension:
           NSExtensionPointIdentifier: com.apple.share-services
           NSExtensionPrincipalClass: "$(PRODUCT_MODULE_NAME).ShareViewController"
@@ -195,7 +195,7 @@ targets:
               NSExtensionActivationSupportsImageWithMaxCount: 10
               NSExtensionActivationSupportsMovieWithMaxCount: 1
 
-  OpenClawActivityWidget:
+  OpenBZActivityWidget:
     type: app-extension
     platform: iOS
     configFiles:
@@ -203,37 +203,37 @@ targets:
       Release: Signing.xcconfig
     sources:
       - path: ActivityWidget
-      - path: Sources/LiveActivity/OpenClawActivityAttributes.swift
+      - path: Sources/LiveActivity/OpenBZActivityAttributes.swift
     dependencies:
       - sdk: WidgetKit.framework
       - sdk: ActivityKit.framework
     settings:
       base:
         CODE_SIGN_IDENTITY: "Apple Development"
-        CODE_SIGN_STYLE: "$(OPENCLAW_CODE_SIGN_STYLE)"
-        DEVELOPMENT_TEAM: "$(OPENCLAW_DEVELOPMENT_TEAM)"
-        PRODUCT_BUNDLE_IDENTIFIER: "$(OPENCLAW_ACTIVITY_WIDGET_BUNDLE_ID)"
+        CODE_SIGN_STYLE: "$(OPENBZ_CODE_SIGN_STYLE)"
+        DEVELOPMENT_TEAM: "$(OPENBZ_DEVELOPMENT_TEAM)"
+        PRODUCT_BUNDLE_IDENTIFIER: "$(OPENBZ_ACTIVITY_WIDGET_BUNDLE_ID)"
         SWIFT_VERSION: "6.0"
         SWIFT_STRICT_CONCURRENCY: complete
         SUPPORTS_LIVE_ACTIVITIES: YES
     info:
       path: ActivityWidget/Info.plist
       properties:
-        CFBundleDisplayName: OpenClaw Activity
-        CFBundleShortVersionString: "$(OPENCLAW_MARKETING_VERSION)"
-        CFBundleVersion: "$(OPENCLAW_BUILD_VERSION)"
+        CFBundleDisplayName: BZ AI DevOps2 Activity
+        CFBundleShortVersionString: "$(OPENBZ_MARKETING_VERSION)"
+        CFBundleVersion: "$(OPENBZ_BUILD_VERSION)"
         NSSupportsLiveActivities: true
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
 
-  OpenClawWatchApp:
+  OpenBZWatchApp:
     type: application.watchapp2
     platform: watchOS
     deploymentTarget: "11.0"
     sources:
       - path: WatchApp
     dependencies:
-      - target: OpenClawWatchExtension
+      - target: OpenBZWatchExtension
     configFiles:
       Debug: Config/Signing.xcconfig
       Release: Config/Signing.xcconfig
@@ -242,17 +242,17 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ENABLE_APPINTENTS_METADATA: NO
         ENABLE_APP_INTENTS_METADATA_GENERATION: NO
-        PRODUCT_BUNDLE_IDENTIFIER: "$(OPENCLAW_WATCH_APP_BUNDLE_ID)"
+        PRODUCT_BUNDLE_IDENTIFIER: "$(OPENBZ_WATCH_APP_BUNDLE_ID)"
     info:
       path: WatchApp/Info.plist
       properties:
-        CFBundleDisplayName: OpenClaw
-        CFBundleShortVersionString: "$(OPENCLAW_MARKETING_VERSION)"
-        CFBundleVersion: "$(OPENCLAW_BUILD_VERSION)"
-        WKCompanionAppBundleIdentifier: "$(OPENCLAW_APP_BUNDLE_ID)"
+        CFBundleDisplayName: BZ AI DevOps2
+        CFBundleShortVersionString: "$(OPENBZ_MARKETING_VERSION)"
+        CFBundleVersion: "$(OPENBZ_BUILD_VERSION)"
+        WKCompanionAppBundleIdentifier: "$(OPENBZ_APP_BUNDLE_ID)"
         WKWatchKitApp: true
 
-  OpenClawWatchExtension:
+  OpenBZWatchExtension:
     type: watchkit2-extension
     platform: watchOS
     deploymentTarget: "11.0"
@@ -267,19 +267,19 @@ targets:
       Release: Config/Signing.xcconfig
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: "$(OPENCLAW_WATCH_EXTENSION_BUNDLE_ID)"
+        PRODUCT_BUNDLE_IDENTIFIER: "$(OPENBZ_WATCH_EXTENSION_BUNDLE_ID)"
     info:
       path: WatchExtension/Info.plist
       properties:
-        CFBundleDisplayName: OpenClaw
-        CFBundleShortVersionString: "$(OPENCLAW_MARKETING_VERSION)"
-        CFBundleVersion: "$(OPENCLAW_BUILD_VERSION)"
+        CFBundleDisplayName: BZ AI DevOps2
+        CFBundleShortVersionString: "$(OPENBZ_MARKETING_VERSION)"
+        CFBundleVersion: "$(OPENBZ_BUILD_VERSION)"
         NSExtension:
           NSExtensionAttributes:
-            WKAppBundleIdentifier: "$(OPENCLAW_WATCH_APP_BUNDLE_ID)"
+            WKAppBundleIdentifier: "$(OPENBZ_WATCH_APP_BUNDLE_ID)"
           NSExtensionPointIdentifier: com.apple.watchkit
 
-  OpenClawTests:
+  OpenBZTests:
     type: bundle.unit-test
     platform: iOS
     configFiles:
@@ -290,29 +290,29 @@ targets:
         excludes:
           - Logic
     dependencies:
-      - target: OpenClaw
+      - target: BZ AI DevOps2
       - package: Swabble
         product: SwabbleKit
       - sdk: AppIntents.framework
     settings:
       base:
         CODE_SIGN_IDENTITY: "Apple Development"
-        CODE_SIGN_STYLE: "$(OPENCLAW_CODE_SIGN_STYLE)"
-        DEVELOPMENT_TEAM: "$(OPENCLAW_DEVELOPMENT_TEAM)"
-        PRODUCT_BUNDLE_IDENTIFIER: ai.openclaw.ios.tests
+        CODE_SIGN_STYLE: "$(OPENBZ_CODE_SIGN_STYLE)"
+        DEVELOPMENT_TEAM: "$(OPENBZ_DEVELOPMENT_TEAM)"
+        PRODUCT_BUNDLE_IDENTIFIER: ai.openbz.ios.tests
         ENABLE_APP_INTENTS_METADATA_GENERATION: NO
         SWIFT_VERSION: "6.0"
         SWIFT_STRICT_CONCURRENCY: complete
-        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/OpenClaw.app/OpenClaw"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/BZ AI DevOps2.app/BZ AI DevOps2"
         BUNDLE_LOADER: "$(TEST_HOST)"
     info:
       path: Tests/Info.plist
       properties:
-        CFBundleDisplayName: OpenClawTests
-        CFBundleShortVersionString: "$(OPENCLAW_MARKETING_VERSION)"
-        CFBundleVersion: "$(OPENCLAW_BUILD_VERSION)"
+        CFBundleDisplayName: OpenBZTests
+        CFBundleShortVersionString: "$(OPENBZ_MARKETING_VERSION)"
+        CFBundleVersion: "$(OPENBZ_BUILD_VERSION)"
 
-  OpenClawLogicTests:
+  OpenBZLogicTests:
     type: bundle.unit-test
     platform: iOS
     configFiles:
@@ -321,19 +321,19 @@ targets:
     sources:
       - path: Tests/Logic
     dependencies:
-      - package: OpenClawKit
+      - package: OpenBZKit
     settings:
       base:
         CODE_SIGN_IDENTITY: "Apple Development"
-        CODE_SIGN_STYLE: "$(OPENCLAW_CODE_SIGN_STYLE)"
-        DEVELOPMENT_TEAM: "$(OPENCLAW_DEVELOPMENT_TEAM)"
-        PRODUCT_BUNDLE_IDENTIFIER: ai.openclaw.ios.logic-tests
+        CODE_SIGN_STYLE: "$(OPENBZ_CODE_SIGN_STYLE)"
+        DEVELOPMENT_TEAM: "$(OPENBZ_DEVELOPMENT_TEAM)"
+        PRODUCT_BUNDLE_IDENTIFIER: ai.openbz.ios.logic-tests
         ENABLE_APP_INTENTS_METADATA_GENERATION: NO
         SWIFT_VERSION: "6.0"
         SWIFT_STRICT_CONCURRENCY: complete
     info:
       path: Tests/Info.plist
       properties:
-        CFBundleDisplayName: OpenClawLogicTests
-        CFBundleShortVersionString: "$(OPENCLAW_MARKETING_VERSION)"
-        CFBundleVersion: "$(OPENCLAW_BUILD_VERSION)"
+        CFBundleDisplayName: OpenBZLogicTests
+        CFBundleShortVersionString: "$(OPENBZ_MARKETING_VERSION)"
+        CFBundleVersion: "$(OPENBZ_BUILD_VERSION)"

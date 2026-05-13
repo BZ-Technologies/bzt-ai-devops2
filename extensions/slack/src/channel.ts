@@ -1,18 +1,18 @@
 import {
   buildAccountScopedAllowlistConfigEditor,
   resolveLegacyDmAllowlistConfigPaths,
-} from "openclaw/plugin-sdk/allowlist-config-edit";
+} from "openbz/plugin-sdk/allowlist-config-edit";
 import {
   buildAccountScopedDmSecurityPolicy,
   collectOpenGroupPolicyConfiguredRouteWarnings,
   collectOpenProviderGroupPolicyWarnings,
-} from "openclaw/plugin-sdk/channel-config-helpers";
-import { resolveOutboundSendDep } from "openclaw/plugin-sdk/channel-runtime";
+} from "openbz/plugin-sdk/channel-config-helpers";
+import { resolveOutboundSendDep } from "openbz/plugin-sdk/channel-runtime";
 import {
   buildAgentSessionKey,
   resolveThreadSessionKeys,
   type RoutePeer,
-} from "openclaw/plugin-sdk/routing";
+} from "openbz/plugin-sdk/routing";
 import {
   buildComputedAccountStatusSnapshot,
   DEFAULT_ACCOUNT_ID,
@@ -26,8 +26,8 @@ import {
   resolveSlackGroupRequireMention,
   resolveSlackGroupToolPolicy,
   type ChannelPlugin,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/slack";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/slack";
 import { buildPassiveProbedChannelStatusSummary } from "../../shared/channel-status-summary.js";
 import {
   listEnabledSlackAccounts,
@@ -152,7 +152,7 @@ function normalizeOutboundThreadId(value?: string | number | null): string | und
 }
 
 function buildSlackBaseSessionKey(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   agentId: string;
   accountId?: string | null;
   peer: RoutePeer;
@@ -168,7 +168,7 @@ function buildSlackBaseSessionKey(params: {
 }
 
 async function resolveSlackChannelType(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId?: string | null;
   channelId: string;
 }): Promise<"channel" | "group" | "dm" | "unknown"> {
@@ -231,7 +231,7 @@ async function resolveSlackChannelType(params: {
 }
 
 async function resolveSlackOutboundSessionRoute(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   agentId: string;
   accountId?: string | null;
   target: string;

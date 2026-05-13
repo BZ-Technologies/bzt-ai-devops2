@@ -12,9 +12,9 @@ import {
   type ChannelSetupDmPolicy,
   type ChannelSetupWizard,
   type DmPolicy,
-  type OpenClawConfig,
+  type OpenBZConfig,
   type SecretInput,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import { listFeishuAccountIds, resolveFeishuCredentials } from "./accounts.js";
 import { probeFeishu } from "./probe.js";
 import { feishuSetupAdapter } from "./setup-core.js";
@@ -30,35 +30,35 @@ function normalizeString(value: unknown): string | undefined {
   return trimmed || undefined;
 }
 
-function setFeishuDmPolicy(cfg: OpenClawConfig, dmPolicy: DmPolicy): OpenClawConfig {
+function setFeishuDmPolicy(cfg: OpenBZConfig, dmPolicy: DmPolicy): OpenBZConfig {
   return setTopLevelChannelDmPolicyWithAllowFrom({
     cfg,
     channel,
     dmPolicy,
-  }) as OpenClawConfig;
+  }) as OpenBZConfig;
 }
 
-function setFeishuAllowFrom(cfg: OpenClawConfig, allowFrom: string[]): OpenClawConfig {
+function setFeishuAllowFrom(cfg: OpenBZConfig, allowFrom: string[]): OpenBZConfig {
   return setTopLevelChannelAllowFrom({
     cfg,
     channel,
     allowFrom,
-  }) as OpenClawConfig;
+  }) as OpenBZConfig;
 }
 
 function setFeishuGroupPolicy(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   groupPolicy: "open" | "allowlist" | "disabled",
-): OpenClawConfig {
+): OpenBZConfig {
   return setTopLevelChannelGroupPolicy({
     cfg,
     channel,
     groupPolicy,
     enabled: true,
-  }) as OpenClawConfig;
+  }) as OpenBZConfig;
 }
 
-function setFeishuGroupAllowFrom(cfg: OpenClawConfig, groupAllowFrom: string[]): OpenClawConfig {
+function setFeishuGroupAllowFrom(cfg: OpenBZConfig, groupAllowFrom: string[]): OpenBZConfig {
   return {
     ...cfg,
     channels: {
@@ -71,7 +71,7 @@ function setFeishuGroupAllowFrom(cfg: OpenClawConfig, groupAllowFrom: string[]):
   };
 }
 
-function isFeishuConfigured(cfg: OpenClawConfig): boolean {
+function isFeishuConfigured(cfg: OpenBZConfig): boolean {
   const feishuCfg = cfg.channels?.feishu as FeishuConfig | undefined;
 
   const isAppIdConfigured = (value: unknown): boolean => {
@@ -114,9 +114,9 @@ function isFeishuConfigured(cfg: OpenClawConfig): boolean {
 }
 
 async function promptFeishuAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   prompter: Parameters<NonNullable<ChannelSetupDmPolicy["promptAllowFrom"]>>[0]["prompter"];
-}): Promise<OpenClawConfig> {
+}): Promise<OpenBZConfig> {
   const existing = params.cfg.channels?.feishu?.allowFrom ?? [];
   await params.prompter.note(
     [
@@ -183,7 +183,7 @@ const feishuDmPolicy: ChannelSetupDmPolicy = {
   policyKey: "channels.feishu.dmPolicy",
   allowFromKey: "channels.feishu.allowFrom",
   getCurrent: (cfg) => (cfg.channels?.feishu as FeishuConfig | undefined)?.dmPolicy ?? "pairing",
-  setPolicy: (cfg, policy) => setFeishuDmPolicy(cfg as OpenClawConfig, policy),
+  setPolicy: (cfg, policy) => setFeishuDmPolicy(cfg as OpenBZConfig, policy),
   promptAllowFrom: promptFeishuAllowFrom,
 };
 

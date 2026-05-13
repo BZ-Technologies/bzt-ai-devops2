@@ -7,7 +7,7 @@ import { prepareSlackMessage } from "../../../../extensions/slack/src/monitor/me
 import { createInboundSlackTestContext } from "../../../../extensions/slack/src/monitor/message-handler/prepare.test-helpers.js";
 import type { SlackMessageEvent } from "../../../../extensions/slack/src/types.js";
 import type { MsgContext } from "../../../auto-reply/templating.js";
-import type { OpenClawConfig } from "../../../config/config.js";
+import type { OpenBZConfig } from "../../../config/config.js";
 import { inboundCtxCapture } from "./inbound-testkit.js";
 import { expectChannelInboundContextContract } from "./suites.js";
 
@@ -220,7 +220,7 @@ describe("channel inbound contract", () => {
     const ctx = createInboundSlackTestContext({
       cfg: {
         channels: { slack: { enabled: true } },
-      } as OpenClawConfig,
+      } as OpenBZConfig,
     });
     // oxlint-disable-next-line typescript/no-explicit-any
     ctx.resolveUserName = async () => ({ name: "Alice" }) as any;
@@ -258,7 +258,7 @@ describe("channel inbound contract", () => {
           groups: { "*": { requireMention: false } },
         },
       },
-    } satisfies OpenClawConfig);
+    } satisfies OpenBZConfig);
 
     const { createTelegramBot } = await import("../../../../extensions/telegram/src/bot.js");
 
@@ -278,7 +278,7 @@ describe("channel inbound contract", () => {
           username: "ada",
         },
       },
-      me: { username: "openclaw_bot" },
+      me: { username: "openbz_bot" },
       getFile: async () => ({ download: async () => new Uint8Array() }),
     });
 
@@ -288,7 +288,7 @@ describe("channel inbound contract", () => {
   });
 
   it("keeps WhatsApp inbound context finalized", async () => {
-    whatsappSessionDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-whatsapp-contract-"));
+    whatsappSessionDir = await fs.mkdtemp(path.join(os.tmpdir(), "openbz-whatsapp-contract-"));
     const sessionStorePath = path.join(whatsappSessionDir, "sessions.json");
 
     await processMessage(makeWhatsAppProcessArgs(sessionStorePath));

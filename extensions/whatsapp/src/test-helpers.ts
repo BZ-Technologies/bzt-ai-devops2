@@ -3,7 +3,7 @@ import type { MockBaileysSocket } from "../../../test/mocks/baileys.js";
 import { createMockBaileys } from "../../../test/mocks/baileys.js";
 
 // Use globalThis to store the mock config so it survives vi.mock hoisting
-const CONFIG_KEY = Symbol.for("openclaw:testConfigMock");
+const CONFIG_KEY = Symbol.for("openbz:testConfigMock");
 const DEFAULT_CONFIG = {
   channels: {
     whatsapp: {
@@ -30,8 +30,8 @@ export function resetLoadConfigMock() {
   (globalThis as Record<symbol, unknown>)[CONFIG_KEY] = () => DEFAULT_CONFIG;
 }
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     loadConfig: () => {
@@ -51,7 +51,7 @@ vi.mock("../../config/config.js", async (importOriginal) => {
   // `../../config/config.js` is correct for modules under `src/web/auto-reply/*`.
   // For typing in this file (which lives in `src/web/*`), refer to the same module
   // via the local relative path.
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     loadConfig: () => {
@@ -64,8 +64,8 @@ vi.mock("../../config/config.js", async (importOriginal) => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/media-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/media-runtime")>();
+vi.mock("openbz/plugin-sdk/media-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/media-runtime")>();
   const mockModule = Object.create(null) as Record<string, unknown>;
   Object.defineProperties(mockModule, Object.getOwnPropertyDescriptors(actual));
   Object.defineProperty(mockModule, "saveMediaBuffer", {
@@ -84,7 +84,7 @@ vi.mock("openclaw/plugin-sdk/media-runtime", async (importOriginal) => {
 
 vi.mock("@whiskeysockets/baileys", () => {
   const created = createMockBaileys();
-  (globalThis as Record<PropertyKey, unknown>)[Symbol.for("openclaw:lastSocket")] =
+  (globalThis as Record<PropertyKey, unknown>)[Symbol.for("openbz:lastSocket")] =
     created.lastSocket;
   return created.mod;
 });
@@ -98,7 +98,7 @@ export const baileys = await import("@whiskeysockets/baileys");
 
 export function resetBaileysMocks() {
   const recreated = createMockBaileys();
-  (globalThis as Record<PropertyKey, unknown>)[Symbol.for("openclaw:lastSocket")] =
+  (globalThis as Record<PropertyKey, unknown>)[Symbol.for("openbz:lastSocket")] =
     recreated.lastSocket;
 
   const makeWASocket = vi.mocked(baileys.makeWASocket);
@@ -134,7 +134,7 @@ export function resetBaileysMocks() {
 }
 
 export function getLastSocket(): MockBaileysSocket {
-  const getter = (globalThis as Record<PropertyKey, unknown>)[Symbol.for("openclaw:lastSocket")];
+  const getter = (globalThis as Record<PropertyKey, unknown>)[Symbol.for("openbz:lastSocket")];
   if (typeof getter === "function") {
     return (getter as () => MockBaileysSocket)();
   }

@@ -21,10 +21,10 @@ agent (with a session switcher for other sessions).
 - Auto‑open for testing:
 
   ```bash
-  dist/OpenClaw.app/Contents/MacOS/OpenClaw --webchat
+  dist/BZ AI DevOps2.app/Contents/MacOS/BZ AI DevOps2 --webchat
   ```
 
-- Logs: `./scripts/clawlog.sh` (subsystem `ai.openclaw`, category `WebChatSwiftUI`).
+- Logs: `./scripts/bzlog.sh` (subsystem `ai.openbz`, category `WebChatSwiftUI`).
 
 ## How it’s wired
 

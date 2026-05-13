@@ -1,11 +1,11 @@
-import type { ClawdbotConfig } from "openclaw/plugin-sdk/feishu";
+import type { BzdbotConfig } from "openbz/plugin-sdk/feishu";
 import { describe, expect, it } from "vitest";
 import {
   resolveReactionSyntheticEvent,
   type FeishuReactionCreatedEvent,
 } from "./monitor.account.js";
 
-const cfg = {} as ClawdbotConfig;
+const cfg = {} as BzdbotConfig;
 
 function makeReactionEvent(
   overrides: Partial<FeishuReactionCreatedEvent> = {},

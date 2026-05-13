@@ -24,7 +24,7 @@ describe("installFromValidatedNpmSpecArchive", () => {
       installFromValidatedNpmSpecArchive({
         spec: "  nope  ",
         timeoutMs: 30_000,
-        tempDirPrefix: "openclaw-npm-",
+        tempDirPrefix: "openbz-npm-",
         installFromArchive: vi.fn(),
         archiveInstallParams: {},
       }),
@@ -51,9 +51,9 @@ describe("installFromValidatedNpmSpecArchive", () => {
 
     await expect(
       installFromValidatedNpmSpecArchive({
-        spec: "  @openclaw/demo@beta  ",
+        spec: "  @openbz/demo@beta  ",
         timeoutMs: 45_000,
-        tempDirPrefix: "openclaw-npm-",
+        tempDirPrefix: "openbz-npm-",
         expectedIntegrity: "sha512-demo",
         onIntegrityDrift,
         warn,
@@ -63,8 +63,8 @@ describe("installFromValidatedNpmSpecArchive", () => {
     ).resolves.toBe(finalized);
 
     expect(installFromNpmSpecArchiveWithInstallerMock).toHaveBeenCalledWith({
-      tempDirPrefix: "openclaw-npm-",
-      spec: "@openclaw/demo@beta",
+      tempDirPrefix: "openbz-npm-",
+      spec: "@openbz/demo@beta",
       timeoutMs: 45_000,
       expectedIntegrity: "sha512-demo",
       onIntegrityDrift,

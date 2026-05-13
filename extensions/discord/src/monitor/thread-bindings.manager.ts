@@ -1,14 +1,14 @@
 import { Routes } from "discord-api-types/v10";
-import { resolveThreadBindingConversationIdFromBindingId } from "openclaw/plugin-sdk/channel-runtime";
-import { getRuntimeConfigSnapshot, type OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import { resolveThreadBindingConversationIdFromBindingId } from "openbz/plugin-sdk/channel-runtime";
+import { getRuntimeConfigSnapshot, type OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
 import {
   registerSessionBindingAdapter,
   unregisterSessionBindingAdapter,
   type BindingTargetKind,
   type SessionBindingRecord,
-} from "openclaw/plugin-sdk/conversation-runtime";
-import { normalizeAccountId, resolveAgentIdFromSessionKey } from "openclaw/plugin-sdk/routing";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
+} from "openbz/plugin-sdk/conversation-runtime";
+import { normalizeAccountId, resolveAgentIdFromSessionKey } from "openbz/plugin-sdk/routing";
+import { logVerbose } from "openbz/plugin-sdk/runtime-env";
 import { createDiscordRestClient } from "../client.js";
 import {
   createThreadForBinding,
@@ -169,7 +169,7 @@ export function createThreadBindingManager(
   params: {
     accountId?: string;
     token?: string;
-    cfg?: OpenClawConfig;
+    cfg?: OpenBZConfig;
     persist?: boolean;
     enableSweeper?: boolean;
     idleTimeoutMs?: number;

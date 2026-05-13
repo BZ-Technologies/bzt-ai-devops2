@@ -3,7 +3,7 @@ import {
   normalizeSecretInputString,
   prepareScopedSetupConfig,
   type ChannelSetupAdapter,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import type { CoreConfig } from "./types.js";
 
 const channel = "matrix" as const;

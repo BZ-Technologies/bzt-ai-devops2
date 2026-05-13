@@ -1,5 +1,5 @@
-import type { DirectoryConfigParams } from "openclaw/plugin-sdk/channel-runtime";
-import type { ChannelDirectoryEntry } from "openclaw/plugin-sdk/channel-runtime";
+import type { DirectoryConfigParams } from "openbz/plugin-sdk/channel-runtime";
+import type { ChannelDirectoryEntry } from "openbz/plugin-sdk/channel-runtime";
 import { resolveSlackAccount } from "./accounts.js";
 import { createSlackWebClient } from "./client.js";
 

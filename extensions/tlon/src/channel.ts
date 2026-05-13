@@ -1,4 +1,4 @@
-import type { ChannelPlugin, OpenClawConfig } from "openclaw/plugin-sdk/tlon";
+import type { ChannelPlugin, OpenBZConfig } from "openbz/plugin-sdk/tlon";
 import { tlonChannelConfigSchema } from "./config-schema.js";
 import {
   applyTlonSetupConfig,
@@ -78,7 +78,7 @@ export const tlonPlugin: ChannelPlugin = {
               enabled,
             },
           },
-        } as OpenClawConfig;
+        } as OpenBZConfig;
       }
       return {
         ...cfg,
@@ -95,7 +95,7 @@ export const tlonPlugin: ChannelPlugin = {
             },
           },
         },
-      } as OpenClawConfig;
+      } as OpenBZConfig;
     },
     deleteAccount: ({ cfg, accountId }) => {
       const useDefault = !accountId || accountId === "default";
@@ -113,7 +113,7 @@ export const tlonPlugin: ChannelPlugin = {
             ...cfg.channels,
             tlon: rest,
           },
-        } as OpenClawConfig;
+        } as OpenBZConfig;
       }
       const { [accountId]: _removed, ...remainingAccounts } = cfg.channels?.tlon?.accounts ?? {};
       return {
@@ -125,7 +125,7 @@ export const tlonPlugin: ChannelPlugin = {
             accounts: remainingAccounts,
           },
         },
-      } as OpenClawConfig;
+      } as OpenBZConfig;
     },
     isConfigured: (account) => account.configured,
     describeAccount: (account) => ({
@@ -218,7 +218,7 @@ export const tlonPlugin: ChannelPlugin = {
         lastError: runtime?.lastError ?? null,
         probe,
       };
-      return snapshot as import("openclaw/plugin-sdk/tlon").ChannelAccountSnapshot;
+      return snapshot as import("openbz/plugin-sdk/tlon").ChannelAccountSnapshot;
     },
   },
   gateway: {

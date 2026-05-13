@@ -1,14 +1,14 @@
-import { resolveAccountWithDefaultFallback } from "openclaw/plugin-sdk/account-resolution";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import { resolveAccountWithDefaultFallback } from "openbz/plugin-sdk/account-resolution";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
 import {
   coerceSecretRef,
   hasConfiguredSecretInput,
   normalizeSecretInputString,
-} from "openclaw/plugin-sdk/config-runtime";
-import { tryReadSecretFileSync } from "openclaw/plugin-sdk/infra-runtime";
-import { resolveDefaultSecretProviderAlias } from "openclaw/plugin-sdk/provider-auth";
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openclaw/plugin-sdk/routing";
-import type { TelegramAccountConfig } from "openclaw/plugin-sdk/telegram";
+} from "openbz/plugin-sdk/config-runtime";
+import { tryReadSecretFileSync } from "openbz/plugin-sdk/infra-runtime";
+import { resolveDefaultSecretProviderAlias } from "openbz/plugin-sdk/provider-auth";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openbz/plugin-sdk/routing";
+import type { TelegramAccountConfig } from "openbz/plugin-sdk/telegram";
 import {
   mergeTelegramAccountConfig,
   resolveDefaultTelegramAccountId,
@@ -48,7 +48,7 @@ function inspectTokenFile(pathValue: unknown): {
 }
 
 function canResolveEnvSecretRefInReadOnlyPath(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   provider: string;
   id: string;
 }): boolean {
@@ -63,7 +63,7 @@ function canResolveEnvSecretRefInReadOnlyPath(params: {
   return !allowlist || allowlist.includes(params.id);
 }
 
-function inspectTokenValue(params: { cfg: OpenClawConfig; value: unknown }): {
+function inspectTokenValue(params: { cfg: OpenBZConfig; value: unknown }): {
   token: string;
   tokenSource: "config" | "env" | "none";
   tokenStatus: TelegramCredentialStatus;
@@ -117,7 +117,7 @@ function inspectTokenValue(params: { cfg: OpenClawConfig; value: unknown }): {
 }
 
 function inspectTelegramAccountPrimary(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId: string;
   envToken?: string | null;
 }): InspectedTelegramAccount {
@@ -213,7 +213,7 @@ function inspectTelegramAccountPrimary(params: {
 }
 
 export function inspectTelegramAccount(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId?: string | null;
   envToken?: string | null;
 }): InspectedTelegramAccount {

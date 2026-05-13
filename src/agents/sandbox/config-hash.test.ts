@@ -4,8 +4,8 @@ import type { SandboxDockerConfig } from "./types.js";
 
 function createDockerConfig(overrides?: Partial<SandboxDockerConfig>): SandboxDockerConfig {
   return {
-    image: "openclaw-sandbox:test",
-    containerPrefix: "openclaw-sbx-",
+    image: "openbz-sandbox:test",
+    containerPrefix: "openbz-sbx-",
     workdir: "/workspace",
     readOnlyRoot: true,
     tmpfs: ["/tmp", "/var/tmp", "/run"],

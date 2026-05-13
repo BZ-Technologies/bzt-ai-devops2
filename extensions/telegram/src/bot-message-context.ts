@@ -1,17 +1,17 @@
-import { resolveAckReaction } from "openclaw/plugin-sdk/agent-runtime";
-import { shouldAckReaction as shouldAckReactionGate } from "openclaw/plugin-sdk/channel-runtime";
-import { logInboundDrop } from "openclaw/plugin-sdk/channel-runtime";
+import { resolveAckReaction } from "openbz/plugin-sdk/agent-runtime";
+import { shouldAckReaction as shouldAckReactionGate } from "openbz/plugin-sdk/channel-runtime";
+import { logInboundDrop } from "openbz/plugin-sdk/channel-runtime";
 import {
   createStatusReactionController,
   type StatusReactionController,
-} from "openclaw/plugin-sdk/channel-runtime";
-import { loadConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { TelegramDirectConfig, TelegramGroupConfig } from "openclaw/plugin-sdk/config-runtime";
-import { ensureConfiguredAcpRouteReady } from "openclaw/plugin-sdk/conversation-runtime";
-import { recordChannelActivity } from "openclaw/plugin-sdk/infra-runtime";
-import { buildAgentSessionKey, deriveLastRoutePolicy } from "openclaw/plugin-sdk/routing";
-import { DEFAULT_ACCOUNT_ID, resolveThreadSessionKeys } from "openclaw/plugin-sdk/routing";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
+} from "openbz/plugin-sdk/channel-runtime";
+import { loadConfig } from "openbz/plugin-sdk/config-runtime";
+import type { TelegramDirectConfig, TelegramGroupConfig } from "openbz/plugin-sdk/config-runtime";
+import { ensureConfiguredAcpRouteReady } from "openbz/plugin-sdk/conversation-runtime";
+import { recordChannelActivity } from "openbz/plugin-sdk/infra-runtime";
+import { buildAgentSessionKey, deriveLastRoutePolicy } from "openbz/plugin-sdk/routing";
+import { DEFAULT_ACCOUNT_ID, resolveThreadSessionKeys } from "openbz/plugin-sdk/routing";
+import { logVerbose } from "openbz/plugin-sdk/runtime-env";
 import { withTelegramApiErrorLogging } from "./api-logging.js";
 import { firstDefined, normalizeAllowFrom, normalizeDmAllowFromWithStore } from "./bot-access.js";
 import { resolveTelegramInboundBody } from "./bot-message-context.body.js";

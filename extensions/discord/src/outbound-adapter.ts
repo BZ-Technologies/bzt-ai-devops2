@@ -2,11 +2,11 @@ import {
   resolvePayloadMediaUrls,
   sendPayloadMediaSequence,
   sendTextMediaPayload,
-} from "openclaw/plugin-sdk/channel-runtime";
-import type { ChannelOutboundAdapter } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveOutboundSendDep } from "openclaw/plugin-sdk/channel-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { OutboundIdentity } from "openclaw/plugin-sdk/infra-runtime";
+} from "openbz/plugin-sdk/channel-runtime";
+import type { ChannelOutboundAdapter } from "openbz/plugin-sdk/channel-runtime";
+import { resolveOutboundSendDep } from "openbz/plugin-sdk/channel-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import type { OutboundIdentity } from "openbz/plugin-sdk/infra-runtime";
 import type { DiscordComponentMessageSpec } from "./components.js";
 import { getThreadBindingManager, type ThreadBindingRecord } from "./monitor/thread-bindings.js";
 import { normalizeDiscordOutboundTarget } from "./normalize.js";
@@ -46,7 +46,7 @@ function resolveDiscordWebhookIdentity(params: {
 }
 
 async function maybeSendDiscordWebhookText(params: {
-  cfg?: OpenClawConfig;
+  cfg?: OpenBZConfig;
   text: string;
   threadId?: string | number | null;
   accountId?: string | null;

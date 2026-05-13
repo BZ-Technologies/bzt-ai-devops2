@@ -1,13 +1,13 @@
-import { formatNormalizedAllowFromEntries } from "openclaw/plugin-sdk/allow-from";
+import { formatNormalizedAllowFromEntries } from "openbz/plugin-sdk/allow-from";
 import {
   createScopedAccountConfigAccessors,
   createScopedChannelConfigBase,
   createScopedDmSecurityResolver,
-} from "openclaw/plugin-sdk/channel-config-helpers";
+} from "openbz/plugin-sdk/channel-config-helpers";
 import {
   buildOpenGroupPolicyConfigureRouteAllowlistWarning,
   collectAllowlistProviderGroupPolicyWarnings,
-} from "openclaw/plugin-sdk/channel-policy";
+} from "openbz/plugin-sdk/channel-policy";
 import {
   buildComputedAccountStatusSnapshot,
   buildChannelConfigSchema,
@@ -24,9 +24,9 @@ import {
   type ChannelMessageActionAdapter,
   type ChannelPlugin,
   type ChannelStatusIssue,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/googlechat";
-import { GoogleChatConfigSchema } from "openclaw/plugin-sdk/googlechat";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/googlechat";
+import { GoogleChatConfigSchema } from "openbz/plugin-sdk/googlechat";
 import { buildPassiveProbedChannelStatusSummary } from "../../shared/channel-status-summary.js";
 import {
   listGoogleChatAccountIds,

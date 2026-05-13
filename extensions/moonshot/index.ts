@@ -1,14 +1,14 @@
-import { emptyPluginConfigSchema, type OpenClawPluginApi } from "openclaw/plugin-sdk/core";
-import { createProviderApiKeyAuthMethod } from "openclaw/plugin-sdk/provider-auth";
+import { emptyPluginConfigSchema, type OpenBZPluginApi } from "openbz/plugin-sdk/core";
+import { createProviderApiKeyAuthMethod } from "openbz/plugin-sdk/provider-auth";
 import {
   createMoonshotThinkingWrapper,
   resolveMoonshotThinkingType,
-} from "openclaw/plugin-sdk/provider-stream";
+} from "openbz/plugin-sdk/provider-stream";
 import {
   createPluginBackedWebSearchProvider,
   getScopedCredentialValue,
   setScopedCredentialValue,
-} from "openclaw/plugin-sdk/provider-web-search";
+} from "openbz/plugin-sdk/provider-web-search";
 import { moonshotMediaUnderstandingProvider } from "./media-understanding-provider.js";
 import {
   applyMoonshotConfig,
@@ -24,7 +24,7 @@ const moonshotPlugin = {
   name: "Moonshot Provider",
   description: "Bundled Moonshot provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "Moonshot",
@@ -108,7 +108,7 @@ const moonshotPlugin = {
         envVars: ["KIMI_API_KEY", "MOONSHOT_API_KEY"],
         placeholder: "sk-...",
         signupUrl: "https://platform.moonshot.cn/",
-        docsUrl: "https://docs.openclaw.ai/tools/web",
+        docsUrl: "https://docs.openbz.ai/tools/web",
         autoDetectOrder: 40,
         getCredentialValue: (searchConfig) => getScopedCredentialValue(searchConfig, "kimi"),
         setCredentialValue: (searchConfigTarget, value) =>

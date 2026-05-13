@@ -1,6 +1,6 @@
-import { resolveActiveTalkProviderConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { SpeechVoiceOption } from "openclaw/plugin-sdk/speech";
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk/talk-voice";
+import { resolveActiveTalkProviderConfig } from "openbz/plugin-sdk/config-runtime";
+import type { SpeechVoiceOption } from "openbz/plugin-sdk/speech";
+import type { OpenBZPluginApi } from "openbz/plugin-sdk/talk-voice";
 
 function mask(s: string, keep: number = 6): string {
   const trimmed = s.trim();
@@ -99,7 +99,7 @@ function asProviderBaseUrl(value: unknown): string | undefined {
   return trimmed || undefined;
 }
 
-export default function register(api: OpenClawPluginApi) {
+export default function register(api: OpenBZPluginApi) {
   api.registerCommand({
     name: "voice",
     nativeNames: {

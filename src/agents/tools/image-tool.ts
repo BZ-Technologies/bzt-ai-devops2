@@ -1,5 +1,5 @@
 import { Type } from "@sinclair/typebox";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 import { getMediaUnderstandingProvider } from "../../media-understanding/providers/index.js";
 import { buildProviderRegistry } from "../../media-understanding/runner.js";
 import { loadWebMedia } from "../../plugin-sdk/web-media.js";
@@ -60,7 +60,7 @@ function resolveImageToolMaxTokens(modelMaxTokens: number | undefined, requested
  *   - fall back to OpenAI/Anthropic when available
  */
 export function resolveImageModelConfigForTool(params: {
-  cfg?: OpenClawConfig;
+  cfg?: OpenBZConfig;
   agentDir: string;
 }): ImageModelConfig | null {
   // Note: We intentionally do NOT gate based on primarySupportsImages here.
@@ -153,7 +153,7 @@ export function resolveImageModelConfigForTool(params: {
   return null;
 }
 
-function pickMaxBytes(cfg?: OpenClawConfig, maxBytesMb?: number): number | undefined {
+function pickMaxBytes(cfg?: OpenBZConfig, maxBytesMb?: number): number | undefined {
   if (typeof maxBytesMb === "number" && Number.isFinite(maxBytesMb) && maxBytesMb > 0) {
     return Math.floor(maxBytesMb * 1024 * 1024);
   }
@@ -170,7 +170,7 @@ type ImageSandboxConfig = {
 };
 
 async function runImagePrompt(params: {
-  cfg?: OpenClawConfig;
+  cfg?: OpenBZConfig;
   agentDir: string;
   imageModelConfig: ImageModelConfig;
   modelOverride?: string;
@@ -183,7 +183,7 @@ async function runImagePrompt(params: {
   attempts: Array<{ provider: string; model: string; error: string }>;
 }> {
   const effectiveCfg = applyImageModelConfigDefaults(params.cfg, params.imageModelConfig);
-  const providerCfg: OpenClawConfig = effectiveCfg ?? {};
+  const providerCfg: OpenBZConfig = effectiveCfg ?? {};
   const providerRegistry = buildProviderRegistry(undefined, providerCfg);
 
   const result = await runWithImageModelFallback({
@@ -268,7 +268,7 @@ async function runImagePrompt(params: {
 }
 
 export function createImageTool(options?: {
-  config?: OpenClawConfig;
+  config?: OpenBZConfig;
   agentDir?: string;
   workspaceDir?: string;
   sandbox?: ImageSandboxConfig;

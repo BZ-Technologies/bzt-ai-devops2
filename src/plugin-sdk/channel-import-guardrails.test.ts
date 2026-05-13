@@ -13,31 +13,31 @@ type GuardedSource = {
 const SAME_CHANNEL_SDK_GUARDS: GuardedSource[] = [
   {
     path: "extensions/discord/src/plugin-shared.ts",
-    forbiddenPatterns: [/openclaw\/plugin-sdk\/discord/, /plugin-sdk-internal\/discord/],
+    forbiddenPatterns: [/openbz\/plugin-sdk\/discord/, /plugin-sdk-internal\/discord/],
   },
   {
     path: "extensions/discord/src/shared.ts",
-    forbiddenPatterns: [/openclaw\/plugin-sdk\/discord/, /plugin-sdk-internal\/discord/],
+    forbiddenPatterns: [/openbz\/plugin-sdk\/discord/, /plugin-sdk-internal\/discord/],
   },
   {
     path: "extensions/slack/src/shared.ts",
-    forbiddenPatterns: [/openclaw\/plugin-sdk\/slack/, /plugin-sdk-internal\/slack/],
+    forbiddenPatterns: [/openbz\/plugin-sdk\/slack/, /plugin-sdk-internal\/slack/],
   },
   {
     path: "extensions/telegram/src/shared.ts",
-    forbiddenPatterns: [/openclaw\/plugin-sdk\/telegram/, /plugin-sdk-internal\/telegram/],
+    forbiddenPatterns: [/openbz\/plugin-sdk\/telegram/, /plugin-sdk-internal\/telegram/],
   },
   {
     path: "extensions/imessage/src/shared.ts",
-    forbiddenPatterns: [/openclaw\/plugin-sdk\/imessage/, /plugin-sdk-internal\/imessage/],
+    forbiddenPatterns: [/openbz\/plugin-sdk\/imessage/, /plugin-sdk-internal\/imessage/],
   },
   {
     path: "extensions/whatsapp/src/shared.ts",
-    forbiddenPatterns: [/openclaw\/plugin-sdk\/whatsapp/, /plugin-sdk-internal\/whatsapp/],
+    forbiddenPatterns: [/openbz\/plugin-sdk\/whatsapp/, /plugin-sdk-internal\/whatsapp/],
   },
   {
     path: "extensions/signal/src/shared.ts",
-    forbiddenPatterns: [/openclaw\/plugin-sdk\/signal/, /plugin-sdk-internal\/signal/],
+    forbiddenPatterns: [/openbz\/plugin-sdk\/signal/, /plugin-sdk-internal\/signal/],
   },
 ];
 

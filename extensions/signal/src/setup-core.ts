@@ -8,15 +8,15 @@ import {
   promptParsedAllowFromForScopedChannel,
   setChannelDmPolicyWithAllowFrom,
   setSetupChannelEnabled,
-  type OpenClawConfig,
+  type OpenBZConfig,
   type WizardPrompter,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import type {
   ChannelSetupAdapter,
   ChannelSetupDmPolicy,
   ChannelSetupWizard,
   ChannelSetupWizardTextInput,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import { formatCliCommand } from "../../../src/cli/command-format.js";
 import { formatDocsLink } from "../../../src/terminal/links.js";
 import {
@@ -89,10 +89,10 @@ function buildSignalSetupPatch(input: {
 }
 
 export async function promptSignalAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   prompter: WizardPrompter;
   accountId?: string;
-}): Promise<OpenClawConfig> {
+}): Promise<OpenBZConfig> {
   return promptParsedAllowFromForScopedChannel({
     cfg: params.cfg,
     channel,
@@ -121,8 +121,8 @@ export const signalDmPolicy: ChannelSetupDmPolicy = {
   channel,
   policyKey: "channels.signal.dmPolicy",
   allowFromKey: "channels.signal.allowFrom",
-  getCurrent: (cfg: OpenClawConfig) => cfg.channels?.signal?.dmPolicy ?? "pairing",
-  setPolicy: (cfg: OpenClawConfig, policy) =>
+  getCurrent: (cfg: OpenBZConfig) => cfg.channels?.signal?.dmPolicy ?? "pairing",
+  setPolicy: (cfg: OpenBZConfig, policy) =>
     setChannelDmPolicyWithAllowFrom({
       cfg,
       channel,
@@ -132,7 +132,7 @@ export const signalDmPolicy: ChannelSetupDmPolicy = {
 };
 
 function resolveSignalCliPath(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId: string;
   credentialValues: Record<string, unknown>;
 }) {
@@ -180,9 +180,9 @@ export const signalNumberTextInput: ChannelSetupWizardTextInput = {
 export const signalCompletionNote = {
   title: "Signal next steps",
   lines: [
-    'Link device with: signal-cli link -n "OpenClaw"',
+    'Link device with: signal-cli link -n "BZ AI DevOps2"',
     "Scan QR in Signal -> Linked Devices",
-    `Then run: ${formatCliCommand("openclaw gateway call channels.status --params '{\"probe\":true}'")}`,
+    `Then run: ${formatCliCommand("openbz gateway call channels.status --params '{\"probe\":true}'")}`,
     `Docs: ${formatDocsLink("/signal", "signal")}`,
   ],
 };
@@ -292,6 +292,6 @@ export function createSignalSetupWizardProxy(
     ],
     completionNote: signalCompletionNote,
     dmPolicy: signalDmPolicy,
-    disable: (cfg: OpenClawConfig) => setSetupChannelEnabled(cfg, channel, false),
+    disable: (cfg: OpenBZConfig) => setSetupChannelEnabled(cfg, channel, false),
   } satisfies ChannelSetupWizard;
 }

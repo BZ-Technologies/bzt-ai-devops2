@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/byteplus-provider",
+  "name": "@openbz/byteplus-provider",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw BytePlus provider plugin",
+  "description": "BZ AI DevOps2 BytePlus provider plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ]

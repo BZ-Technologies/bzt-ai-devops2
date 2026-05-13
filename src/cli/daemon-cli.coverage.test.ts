@@ -27,8 +27,8 @@ const buildGatewayInstallPlan = vi.fn(
     programArguments: ["/bin/node", "cli", "gateway", "--port", String(params.port)],
     workingDirectory: process.cwd(),
     environment: {
-      OPENCLAW_GATEWAY_PORT: String(params.port),
-      ...(params.token ? { OPENCLAW_GATEWAY_TOKEN: params.token } : {}),
+      OPENBZ_GATEWAY_PORT: String(params.port),
+      ...(params.token ? { OPENBZ_GATEWAY_TOKEN: params.token } : {}),
     },
   }),
 );
@@ -123,15 +123,15 @@ describe("daemon-cli coverage", () => {
   beforeEach(() => {
     daemonProgram = createDaemonProgram();
     envSnapshot = captureEnv([
-      "OPENCLAW_STATE_DIR",
-      "OPENCLAW_CONFIG_PATH",
-      "OPENCLAW_GATEWAY_PORT",
-      "OPENCLAW_PROFILE",
+      "OPENBZ_STATE_DIR",
+      "OPENBZ_CONFIG_PATH",
+      "OPENBZ_GATEWAY_PORT",
+      "OPENBZ_PROFILE",
     ]);
-    process.env.OPENCLAW_STATE_DIR = "/tmp/openclaw-cli-state";
-    process.env.OPENCLAW_CONFIG_PATH = "/tmp/openclaw-cli-state/openclaw.json";
-    delete process.env.OPENCLAW_GATEWAY_PORT;
-    delete process.env.OPENCLAW_PROFILE;
+    process.env.OPENBZ_STATE_DIR = "/tmp/openbz-cli-state";
+    process.env.OPENBZ_CONFIG_PATH = "/tmp/openbz-cli-state/openbz.json";
+    delete process.env.OPENBZ_GATEWAY_PORT;
+    delete process.env.OPENBZ_PROFILE;
     serviceReadCommand.mockResolvedValue(null);
     resolveGatewayProbeAuthWithSecretInputs.mockClear();
     buildGatewayInstallPlan.mockClear();
@@ -161,12 +161,12 @@ describe("daemon-cli coverage", () => {
     serviceReadCommand.mockResolvedValueOnce({
       programArguments: ["/bin/node", "cli", "gateway", "--port", "19001"],
       environment: {
-        OPENCLAW_PROFILE: "dev",
-        OPENCLAW_STATE_DIR: "/tmp/openclaw-daemon-state",
-        OPENCLAW_CONFIG_PATH: "/tmp/openclaw-daemon-state/openclaw.json",
-        OPENCLAW_GATEWAY_PORT: "19001",
+        OPENBZ_PROFILE: "dev",
+        OPENBZ_STATE_DIR: "/tmp/openbz-daemon-state",
+        OPENBZ_CONFIG_PATH: "/tmp/openbz-daemon-state/openbz.json",
+        OPENBZ_GATEWAY_PORT: "19001",
       },
-      sourcePath: "/tmp/ai.openclaw.gateway.plist",
+      sourcePath: "/tmp/ai.openbz.gateway.plist",
     });
 
     await runDaemonCommand(["daemon", "status", "--json"]);

@@ -1,12 +1,12 @@
-import { OPENCODE_ZEN_DEFAULT_MODEL_REF } from "openclaw/plugin-sdk/provider-models";
+import { OPENCODE_ZEN_DEFAULT_MODEL_REF } from "openbz/plugin-sdk/provider-models";
 import {
   applyAgentDefaultModelPrimary,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/provider-onboard";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/provider-onboard";
 
 export { OPENCODE_ZEN_DEFAULT_MODEL_REF };
 
-export function applyOpencodeZenProviderConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyOpencodeZenProviderConfig(cfg: OpenBZConfig): OpenBZConfig {
   const models = { ...cfg.agents?.defaults?.models };
   models[OPENCODE_ZEN_DEFAULT_MODEL_REF] = {
     ...models[OPENCODE_ZEN_DEFAULT_MODEL_REF],
@@ -25,7 +25,7 @@ export function applyOpencodeZenProviderConfig(cfg: OpenClawConfig): OpenClawCon
   };
 }
 
-export function applyOpencodeZenConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyOpencodeZenConfig(cfg: OpenBZConfig): OpenBZConfig {
   return applyAgentDefaultModelPrimary(
     applyOpencodeZenProviderConfig(cfg),
     OPENCODE_ZEN_DEFAULT_MODEL_REF,

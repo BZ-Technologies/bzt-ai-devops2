@@ -2,7 +2,7 @@ import { normalizeProviderId } from "../agents/provider-id.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
 import { withBundledPluginAllowlistCompat } from "./bundled-compat.js";
 import { normalizePluginsConfig, resolveEffectiveEnableState } from "./config-state.js";
-import { loadOpenClawPlugins, type PluginLoadOptions } from "./loader.js";
+import { loadOpenBZPlugins, type PluginLoadOptions } from "./loader.js";
 import { createPluginLoaderLogger } from "./logger.js";
 import { loadPluginManifestRegistry } from "./manifest-registry.js";
 import type { ProviderPlugin } from "./types.js";
@@ -172,7 +172,7 @@ export function resolvePluginProviders(params: {
         env: params.env,
       })
     : maybeAllowlistCompat;
-  const registry = loadOpenClawPlugins({
+  const registry = loadOpenBZPlugins({
     config,
     workspaceDir: params.workspaceDir,
     env: params.env,

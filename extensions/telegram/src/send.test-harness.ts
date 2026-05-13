@@ -1,4 +1,4 @@
-import type { MockFn } from "openclaw/plugin-sdk/test-utils";
+import type { MockFn } from "openbz/plugin-sdk/test-utils";
 import { beforeEach, vi } from "vitest";
 
 const { botApi, botCtorSpy } = vi.hoisted(() => ({
@@ -64,8 +64,8 @@ vi.mock("grammy", () => ({
   InputFile: class {},
 }));
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     loadConfig,

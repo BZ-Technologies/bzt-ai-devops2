@@ -1,7 +1,7 @@
-import { formatAllowFromLowercase } from "openclaw/plugin-sdk/allow-from";
-import { mapAllowFromEntries } from "openclaw/plugin-sdk/channel-config-helpers";
-import { collectAllowlistProviderRestrictSendersWarnings } from "openclaw/plugin-sdk/channel-policy";
-import type { ChannelMeta, ChannelPlugin, ClawdbotConfig } from "openclaw/plugin-sdk/feishu";
+import { formatAllowFromLowercase } from "openbz/plugin-sdk/allow-from";
+import { mapAllowFromEntries } from "openbz/plugin-sdk/channel-config-helpers";
+import { collectAllowlistProviderRestrictSendersWarnings } from "openbz/plugin-sdk/channel-policy";
+import type { ChannelMeta, ChannelPlugin, BzdbotConfig } from "openbz/plugin-sdk/feishu";
 import {
   buildChannelConfigSchema,
   buildProbeChannelStatusSummary,
@@ -10,8 +10,8 @@ import {
   createDefaultChannelRuntimeState,
   DEFAULT_ACCOUNT_ID,
   PAIRING_APPROVED_MESSAGE,
-} from "openclaw/plugin-sdk/feishu";
-import type { ChannelMessageActionName } from "openclaw/plugin-sdk/feishu";
+} from "openbz/plugin-sdk/feishu";
+import type { ChannelMessageActionName } from "openbz/plugin-sdk/feishu";
 import {
   resolveFeishuAccount,
   resolveFeishuCredentials,
@@ -46,10 +46,10 @@ async function loadFeishuChannelRuntime() {
 }
 
 function setFeishuNamedAccountEnabled(
-  cfg: ClawdbotConfig,
+  cfg: BzdbotConfig,
   accountId: string,
   enabled: boolean,
-): ClawdbotConfig {
+): BzdbotConfig {
   const feishuCfg = cfg.channels?.feishu as FeishuConfig | undefined;
   return {
     ...cfg,
@@ -70,7 +70,7 @@ function setFeishuNamedAccountEnabled(
 }
 
 function isFeishuReactionsActionEnabled(params: {
-  cfg: ClawdbotConfig;
+  cfg: BzdbotConfig;
   account: ResolvedFeishuAccount;
 }): boolean {
   if (!params.account.enabled || !params.account.configured) {
@@ -86,7 +86,7 @@ function isFeishuReactionsActionEnabled(params: {
   return gate("reactions");
 }
 
-function areAnyFeishuReactionActionsEnabled(cfg: ClawdbotConfig): boolean {
+function areAnyFeishuReactionActionsEnabled(cfg: BzdbotConfig): boolean {
   for (const account of listEnabledFeishuAccounts(cfg)) {
     if (isFeishuReactionsActionEnabled({ cfg, account })) {
       return true;
@@ -349,7 +349,7 @@ export const feishuPlugin: ChannelPlugin<ResolvedFeishuAccount> = {
 
       if (isDefault) {
         // Delete entire feishu config
-        const next = { ...cfg } as ClawdbotConfig;
+        const next = { ...cfg } as BzdbotConfig;
         const nextChannels = { ...cfg.channels };
         delete (nextChannels as Record<string, unknown>).feishu;
         if (Object.keys(nextChannels).length > 0) {

@@ -68,10 +68,10 @@ describe("pairing setup code", () => {
   }
 
   beforeEach(() => {
-    vi.stubEnv("OPENCLAW_GATEWAY_TOKEN", "");
-    vi.stubEnv("CLAWDBOT_GATEWAY_TOKEN", "");
-    vi.stubEnv("OPENCLAW_GATEWAY_PASSWORD", "");
-    vi.stubEnv("CLAWDBOT_GATEWAY_PASSWORD", "");
+    vi.stubEnv("OPENBZ_GATEWAY_TOKEN", "");
+    vi.stubEnv("BZDBOT_GATEWAY_TOKEN", "");
+    vi.stubEnv("OPENBZ_GATEWAY_PASSWORD", "");
+    vi.stubEnv("BZDBOT_GATEWAY_PASSWORD", "");
   });
 
   afterEach(() => {
@@ -133,7 +133,7 @@ describe("pairing setup code", () => {
     expectResolvedSetupOk(resolved, { authLabel: "password" });
   });
 
-  it("uses OPENCLAW_GATEWAY_PASSWORD without resolving configured password SecretRef", async () => {
+  it("uses OPENBZ_GATEWAY_PASSWORD without resolving configured password SecretRef", async () => {
     const resolved = await resolvePairingSetupFromConfig(
       {
         gateway: {
@@ -148,7 +148,7 @@ describe("pairing setup code", () => {
       },
       {
         env: {
-          OPENCLAW_GATEWAY_PASSWORD: "password-from-env", // pragma: allowlist secret
+          OPENBZ_GATEWAY_PASSWORD: "password-from-env", // pragma: allowlist secret
         },
       },
     );
@@ -234,7 +234,7 @@ describe("pairing setup code", () => {
       },
       {
         env: {
-          OPENCLAW_GATEWAY_PASSWORD: "password-from-env", // pragma: allowlist secret
+          OPENBZ_GATEWAY_PASSWORD: "password-from-env", // pragma: allowlist secret
         },
       },
     );
@@ -314,7 +314,7 @@ describe("pairing setup code", () => {
       },
       {
         env: {
-          OPENCLAW_GATEWAY_TOKEN: "new-token",
+          OPENBZ_GATEWAY_TOKEN: "new-token",
         },
       },
     );

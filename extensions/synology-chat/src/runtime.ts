@@ -1,5 +1,5 @@
-import { createPluginRuntimeStore } from "openclaw/plugin-sdk/runtime-store";
-import type { PluginRuntime } from "openclaw/plugin-sdk/synology-chat";
+import { createPluginRuntimeStore } from "openbz/plugin-sdk/runtime-store";
+import type { PluginRuntime } from "openbz/plugin-sdk/synology-chat";
 
 const { setRuntime: setSynologyRuntime, getRuntime: getSynologyRuntime } =
   createPluginRuntimeStore<PluginRuntime>(

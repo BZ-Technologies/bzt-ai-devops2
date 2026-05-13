@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 import { withTempHome } from "../../config/home-env.test-harness.js";
 import { handleCommands } from "./commands-core.js";
 import { buildCommandTestParams } from "./commands.test-harness.js";
@@ -10,13 +10,13 @@ import { buildCommandTestParams } from "./commands.test-harness.js";
 const tempDirs: string[] = [];
 
 async function createWorkspace(): Promise<string> {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-command-plugins-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openbz-command-plugins-"));
   tempDirs.push(dir);
   return dir;
 }
 
 async function createClaudeBundlePlugin(params: { workspaceDir: string; pluginId: string }) {
-  const pluginDir = path.join(params.workspaceDir, ".openclaw", "extensions", params.pluginId);
+  const pluginDir = path.join(params.workspaceDir, ".openbz", "extensions", params.pluginId);
   await fs.mkdir(path.join(pluginDir, ".claude-plugin"), { recursive: true });
   await fs.mkdir(path.join(pluginDir, "commands"), { recursive: true });
   await fs.writeFile(
@@ -27,7 +27,7 @@ async function createClaudeBundlePlugin(params: { workspaceDir: string; pluginId
   await fs.writeFile(path.join(pluginDir, "commands", "review.md"), "# Review\n", "utf-8");
 }
 
-function buildCfg(): OpenClawConfig {
+function buildCfg(): OpenBZConfig {
   return {
     commands: {
       text: true,
@@ -44,7 +44,7 @@ describe("handleCommands /plugins", () => {
   });
 
   it("lists discovered plugins and shows plugin details", async () => {
-    await withTempHome("openclaw-command-plugins-home-", async () => {
+    await withTempHome("openbz-command-plugins-home-", async () => {
       const workspaceDir = await createWorkspace();
       await createClaudeBundlePlugin({ workspaceDir, pluginId: "superpowers" });
 
@@ -68,7 +68,7 @@ describe("handleCommands /plugins", () => {
   });
 
   it("enables and disables a discovered plugin", async () => {
-    await withTempHome("openclaw-command-plugins-home-", async () => {
+    await withTempHome("openbz-command-plugins-home-", async () => {
       const workspaceDir = await createWorkspace();
       await createClaudeBundlePlugin({ workspaceDir, pluginId: "superpowers" });
 
@@ -112,7 +112,7 @@ describe("handleCommands /plugins", () => {
   });
 
   it("rejects internal writes without operator.admin", async () => {
-    await withTempHome("openclaw-command-plugins-home-", async () => {
+    await withTempHome("openbz-command-plugins-home-", async () => {
       const workspaceDir = await createWorkspace();
       await createClaudeBundlePlugin({ workspaceDir, pluginId: "superpowers" });
 

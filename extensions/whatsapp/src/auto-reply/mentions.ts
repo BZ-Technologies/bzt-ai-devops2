@@ -1,6 +1,6 @@
-import type { loadConfig } from "openclaw/plugin-sdk/config-runtime";
-import { buildMentionRegexes, normalizeMentionText } from "openclaw/plugin-sdk/reply-runtime";
-import { isSelfChatMode, jidToE164, normalizeE164 } from "openclaw/plugin-sdk/text-runtime";
+import type { loadConfig } from "openbz/plugin-sdk/config-runtime";
+import { buildMentionRegexes, normalizeMentionText } from "openbz/plugin-sdk/reply-runtime";
+import { isSelfChatMode, jidToE164, normalizeE164 } from "openbz/plugin-sdk/text-runtime";
 import type { WebInboundMsg } from "./types.js";
 
 export type MentionConfig = {

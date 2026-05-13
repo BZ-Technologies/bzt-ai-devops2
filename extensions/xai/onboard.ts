@@ -1,33 +1,35 @@
 import {
-  buildXaiModelDefinition,
+  buildXaiModelDefinitions,
   XAI_BASE_URL,
   XAI_DEFAULT_MODEL_ID,
-} from "openclaw/plugin-sdk/provider-models";
+  XAI_DEFAULT_MODEL_REF,
+} from "./model-definitions.js";
 import {
   applyAgentDefaultModelPrimary,
-  applyProviderConfigWithDefaultModel,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/provider-onboard";
+  applyProviderConfigWithDefaultModels,
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/provider-onboard";
 
-export const XAI_DEFAULT_MODEL_REF = `xai/${XAI_DEFAULT_MODEL_ID}`;
+export { XAI_DEFAULT_MODEL_REF } from "./model-definitions.js";
 
-export function applyXaiProviderConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyXaiProviderConfig(cfg: OpenBZConfig): OpenBZConfig {
+  const ref = `xai/${XAI_DEFAULT_MODEL_ID}`;
   const models = { ...cfg.agents?.defaults?.models };
-  models[XAI_DEFAULT_MODEL_REF] = {
-    ...models[XAI_DEFAULT_MODEL_REF],
-    alias: models[XAI_DEFAULT_MODEL_REF]?.alias ?? "Grok",
+  models[ref] = {
+    ...models[ref],
+    alias: models[ref]?.alias ?? "Grok",
   };
 
-  return applyProviderConfigWithDefaultModel(cfg, {
+  return applyProviderConfigWithDefaultModels(cfg, {
     agentModels: models,
     providerId: "xai",
     api: "openai-completions",
     baseUrl: XAI_BASE_URL,
-    defaultModel: buildXaiModelDefinition(),
+    defaultModels: buildXaiModelDefinitions(),
     defaultModelId: XAI_DEFAULT_MODEL_ID,
   });
 }
 
-export function applyXaiConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyXaiConfig(cfg: OpenBZConfig): OpenBZConfig {
   return applyAgentDefaultModelPrimary(applyXaiProviderConfig(cfg), XAI_DEFAULT_MODEL_REF);
 }

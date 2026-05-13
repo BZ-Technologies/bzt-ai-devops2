@@ -1,6 +1,6 @@
-import { emptyPluginConfigSchema, type OpenClawPluginApi } from "openclaw/plugin-sdk/core";
-import { createProviderApiKeyAuthMethod } from "openclaw/plugin-sdk/provider-auth";
-import { buildSingleProviderApiKeyCatalog } from "openclaw/plugin-sdk/provider-catalog";
+import { emptyPluginConfigSchema, type OpenBZPluginApi } from "openbz/plugin-sdk/core";
+import { createProviderApiKeyAuthMethod } from "openbz/plugin-sdk/provider-auth";
+import { buildSingleProviderApiKeyCatalog } from "openbz/plugin-sdk/provider-catalog";
 import { applyQianfanConfig, QIANFAN_DEFAULT_MODEL_REF } from "./onboard.js";
 import { buildQianfanProvider } from "./provider-catalog.js";
 
@@ -11,7 +11,7 @@ const qianfanPlugin = {
   name: "Qianfan Provider",
   description: "Bundled Qianfan provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "Qianfan",

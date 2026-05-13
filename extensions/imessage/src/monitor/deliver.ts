@@ -1,9 +1,9 @@
-import { loadConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { chunkTextWithMode, resolveChunkMode } from "openclaw/plugin-sdk/reply-runtime";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
-import { convertMarkdownTables } from "openclaw/plugin-sdk/text-runtime";
+import { loadConfig } from "openbz/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "openbz/plugin-sdk/config-runtime";
+import { chunkTextWithMode, resolveChunkMode } from "openbz/plugin-sdk/reply-runtime";
+import type { ReplyPayload } from "openbz/plugin-sdk/reply-runtime";
+import type { RuntimeEnv } from "openbz/plugin-sdk/runtime-env";
+import { convertMarkdownTables } from "openbz/plugin-sdk/text-runtime";
 import type { createIMessageRpcClient } from "../client.js";
 import { sendMessageIMessage } from "../send.js";
 import type { SentMessageCache } from "./echo-cache.js";

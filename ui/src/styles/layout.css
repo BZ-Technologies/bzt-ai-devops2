@@ -93,6 +93,12 @@
   -webkit-backdrop-filter: blur(12px) saturate(1.6);
 }
 
+/* BZ navy strip (dark mode default shell) */
+:root:not([data-theme-mode="light"]) .topbar {
+  background: color-mix(in srgb, var(--brand-navy) 92%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--brand-gold) 18%, var(--border) 82%);
+}
+
 .topnav-shell {
   display: flex;
   align-items: center;
@@ -418,6 +424,14 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+:root:not([data-theme-mode="light"]) .sidebar-brand__title {
+  color: var(--brand-gold);
+}
+
+:root:not([data-theme-mode="light"]) .sidebar-brand__eyebrow {
+  color: color-mix(in srgb, var(--brand-gold) 55%, var(--muted) 45%);
 }
 
 .sidebar-nav {

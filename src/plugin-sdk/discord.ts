@@ -1,5 +1,5 @@
 export type { ChannelMessageActionAdapter } from "../channels/plugins/types.js";
-export type { OpenClawConfig } from "../config/config.js";
+export type { OpenBZConfig } from "../config/config.js";
 export type { DiscordAccountConfig, DiscordActionConfig } from "../config/types.js";
 export type { DiscordPluralKitConfig } from "../../extensions/discord/src/pluralkit.js";
 export type { InspectedDiscordAccount } from "../../extensions/discord/src/account-inspect.js";
@@ -16,7 +16,7 @@ export type {
 export type {
   ChannelMessageActionContext,
   ChannelPlugin,
-  OpenClawPluginApi,
+  OpenBZPluginApi,
   PluginRuntime,
 } from "./channel-plugin-common.js";
 export {

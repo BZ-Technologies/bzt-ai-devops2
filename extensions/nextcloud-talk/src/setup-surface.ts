@@ -1,10 +1,10 @@
-import type { ChannelSetupInput } from "openclaw/plugin-sdk/channel-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { hasConfiguredSecretInput } from "openclaw/plugin-sdk/config-runtime";
-import { DEFAULT_ACCOUNT_ID } from "openclaw/plugin-sdk/routing";
-import { setSetupChannelEnabled } from "openclaw/plugin-sdk/setup";
-import { type ChannelSetupWizard } from "openclaw/plugin-sdk/setup";
-import { formatDocsLink } from "openclaw/plugin-sdk/setup";
+import type { ChannelSetupInput } from "openbz/plugin-sdk/channel-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import { hasConfiguredSecretInput } from "openbz/plugin-sdk/config-runtime";
+import { DEFAULT_ACCOUNT_ID } from "openbz/plugin-sdk/routing";
+import { setSetupChannelEnabled } from "openbz/plugin-sdk/setup";
+import { type ChannelSetupWizard } from "openbz/plugin-sdk/setup";
+import { formatDocsLink } from "openbz/plugin-sdk/setup";
 import { listNextcloudTalkAccountIds, resolveNextcloudTalkAccount } from "./accounts.js";
 import {
   clearNextcloudTalkAccountFields,
@@ -39,7 +39,7 @@ export const nextcloudTalkSetupWizard: ChannelSetupWizard = {
     title: "Nextcloud Talk bot setup",
     lines: [
       "1) SSH into your Nextcloud server",
-      '2) Run: ./occ talk:bot:install "OpenClaw" "<shared-secret>" "<webhook-url>" --feature reaction',
+      '2) Run: ./occ talk:bot:install "BZ AI DevOps2" "<shared-secret>" "<webhook-url>" --feature reaction',
       "3) Copy the shared secret you used in the command",
       "4) Enable the bot in your Nextcloud Talk room settings",
       "Tip: you can also set NEXTCLOUD_TALK_BOT_SECRET in your env.",

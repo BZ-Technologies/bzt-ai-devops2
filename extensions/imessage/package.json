@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/imessage",
+  "name": "@openbz/imessage",
   "version": "2026.3.14",
   "private": true,
-  "description": "OpenClaw iMessage channel plugin",
+  "description": "BZ AI DevOps2 iMessage channel plugin",
   "type": "module",
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ],

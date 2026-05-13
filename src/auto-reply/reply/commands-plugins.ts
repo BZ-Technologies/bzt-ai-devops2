@@ -3,7 +3,7 @@ import {
   validateConfigObjectWithPlugins,
   writeConfigFile,
 } from "../../config/config.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 import type { PluginRecord } from "../../plugins/registry.js";
 import { buildPluginStatusReport, type PluginStatusReport } from "../../plugins/status.js";
 import { setPluginEnabledInConfig } from "../../plugins/toggle-config.js";
@@ -38,8 +38,8 @@ function formatPluginsList(report: PluginStatusReport): string {
     `🔌 Plugins (${loaded}/${report.plugins.length} loaded)`,
     ...report.plugins.map((plugin) => {
       const format = plugin.bundleFormat
-        ? `${plugin.format ?? "openclaw"}/${plugin.bundleFormat}`
-        : (plugin.format ?? "openclaw");
+        ? `${plugin.format ?? "openbz"}/${plugin.bundleFormat}`
+        : (plugin.format ?? "openbz");
       return `- ${formatPluginLabel(plugin)} [${plugin.status}] ${format}`;
     }),
   ];
@@ -60,7 +60,7 @@ async function loadPluginCommandState(workspaceDir: string): Promise<
   | {
       ok: true;
       path: string;
-      config: OpenClawConfig;
+      config: OpenBZConfig;
       report: PluginStatusReport;
     }
   | { ok: false; path: string; error: string }

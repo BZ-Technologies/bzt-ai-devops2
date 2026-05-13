@@ -1,12 +1,12 @@
 import {
   createUnionActionGate,
   listTokenSourcedAccounts,
-} from "openclaw/plugin-sdk/channel-runtime";
+} from "openbz/plugin-sdk/channel-runtime";
 import type {
   ChannelMessageActionAdapter,
   ChannelMessageActionName,
-} from "openclaw/plugin-sdk/channel-runtime";
-import type { DiscordActionConfig } from "openclaw/plugin-sdk/config-runtime";
+} from "openbz/plugin-sdk/channel-runtime";
+import type { DiscordActionConfig } from "openbz/plugin-sdk/config-runtime";
 import { createDiscordActionGate, listEnabledDiscordAccounts } from "./accounts.js";
 import { handleDiscordMessageAction } from "./actions/handle-action.js";
 

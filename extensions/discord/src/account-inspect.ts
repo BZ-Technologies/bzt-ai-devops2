@@ -1,13 +1,13 @@
 import {
   DEFAULT_ACCOUNT_ID,
   normalizeAccountId,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/account-resolution";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/account-resolution";
 import {
   hasConfiguredSecretInput,
   normalizeSecretInputString,
-} from "openclaw/plugin-sdk/config-runtime";
-import type { DiscordAccountConfig } from "openclaw/plugin-sdk/discord";
+} from "openbz/plugin-sdk/config-runtime";
+import type { DiscordAccountConfig } from "openbz/plugin-sdk/discord";
 import {
   mergeDiscordAccountConfig,
   resolveDefaultDiscordAccountId,
@@ -51,7 +51,7 @@ function inspectDiscordTokenValue(value: unknown): {
 }
 
 export function inspectDiscordAccount(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId?: string | null;
   envToken?: string | null;
 }): InspectedDiscordAccount {

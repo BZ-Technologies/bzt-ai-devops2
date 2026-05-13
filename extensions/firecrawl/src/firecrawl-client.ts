@@ -1,6 +1,6 @@
-import { markdownToText, truncateText } from "openclaw/plugin-sdk/agent-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { withTrustedWebToolsEndpoint } from "openclaw/plugin-sdk/provider-web-search";
+import { markdownToText, truncateText } from "openbz/plugin-sdk/agent-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import { withTrustedWebToolsEndpoint } from "openbz/plugin-sdk/provider-web-search";
 import {
   DEFAULT_CACHE_TTL_MINUTES,
   normalizeCacheKey,
@@ -8,8 +8,8 @@ import {
   readResponseText,
   resolveCacheTtlMs,
   writeCache,
-} from "openclaw/plugin-sdk/provider-web-search";
-import { wrapExternalContent, wrapWebContent } from "openclaw/plugin-sdk/security-runtime";
+} from "openbz/plugin-sdk/provider-web-search";
+import { wrapExternalContent, wrapWebContent } from "openbz/plugin-sdk/security-runtime";
 import {
   resolveFirecrawlApiKey,
   resolveFirecrawlBaseUrl,
@@ -41,7 +41,7 @@ type FirecrawlSearchItem = {
 };
 
 export type FirecrawlSearchParams = {
-  cfg?: OpenClawConfig;
+  cfg?: OpenBZConfig;
   query: string;
   count?: number;
   timeoutSeconds?: number;
@@ -51,7 +51,7 @@ export type FirecrawlSearchParams = {
 };
 
 export type FirecrawlScrapeParams = {
-  cfg?: OpenClawConfig;
+  cfg?: OpenBZConfig;
   url: string;
   extractMode: "markdown" | "text";
   maxChars?: number;

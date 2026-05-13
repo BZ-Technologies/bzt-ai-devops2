@@ -1,5 +1,5 @@
-import { reduceInteractiveReply } from "openclaw/plugin-sdk/channel-runtime";
-import type { InteractiveButtonStyle, InteractiveReply } from "openclaw/plugin-sdk/channel-runtime";
+import { reduceInteractiveReply } from "openbz/plugin-sdk/channel-runtime";
+import type { InteractiveButtonStyle, InteractiveReply } from "openbz/plugin-sdk/channel-runtime";
 import type { DiscordComponentButtonStyle, DiscordComponentMessageSpec } from "./components.js";
 
 function resolveDiscordInteractiveButtonStyle(

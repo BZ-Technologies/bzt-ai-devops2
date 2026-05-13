@@ -1,5 +1,5 @@
 import { Type } from "@sinclair/typebox";
-import type { WebSearchProviderPlugin } from "openclaw/plugin-sdk/plugin-runtime";
+import type { WebSearchProviderPlugin } from "openbz/plugin-sdk/plugin-runtime";
 import { runFirecrawlSearch } from "./firecrawl-client.js";
 
 const GenericFirecrawlSearchSchema = Type.Object(
@@ -44,7 +44,7 @@ export function createFirecrawlWebSearchProvider(): WebSearchProviderPlugin {
     envVars: ["FIRECRAWL_API_KEY"],
     placeholder: "fc-...",
     signupUrl: "https://www.firecrawl.dev/",
-    docsUrl: "https://docs.openclaw.ai/tools/firecrawl",
+    docsUrl: "https://docs.openbz.ai/tools/firecrawl",
     autoDetectOrder: 60,
     getCredentialValue: getScopedCredentialValue,
     setCredentialValue: setScopedCredentialValue,

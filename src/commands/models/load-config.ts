@@ -4,17 +4,17 @@ import {
   loadConfig,
   readConfigFileSnapshotForWrite,
   setRuntimeConfigSnapshot,
-  type OpenClawConfig,
+  type OpenBZConfig,
 } from "../../config/config.js";
 import type { RuntimeEnv } from "../../runtime.js";
 
 export type LoadedModelsConfig = {
-  sourceConfig: OpenClawConfig;
-  resolvedConfig: OpenClawConfig;
+  sourceConfig: OpenBZConfig;
+  resolvedConfig: OpenBZConfig;
   diagnostics: string[];
 };
 
-async function loadSourceConfigSnapshot(fallback: OpenClawConfig): Promise<OpenClawConfig> {
+async function loadSourceConfigSnapshot(fallback: OpenBZConfig): Promise<OpenBZConfig> {
   try {
     const { snapshot } = await readConfigFileSnapshotForWrite();
     if (snapshot.valid) {
@@ -53,6 +53,6 @@ export async function loadModelsConfigWithSource(params: {
 export async function loadModelsConfig(params: {
   commandName: string;
   runtime?: RuntimeEnv;
-}): Promise<OpenClawConfig> {
+}): Promise<OpenBZConfig> {
   return (await loadModelsConfigWithSource(params)).resolvedConfig;
 }

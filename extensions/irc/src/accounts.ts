@@ -1,10 +1,10 @@
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openclaw/plugin-sdk/account-id";
-import { tryReadSecretFileSync } from "openclaw/plugin-sdk/infra-runtime";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openbz/plugin-sdk/account-id";
+import { tryReadSecretFileSync } from "openbz/plugin-sdk/infra-runtime";
 import {
   createAccountListHelpers,
   normalizeResolvedSecretInputString,
   parseOptionalDelimitedEntries,
-} from "openclaw/plugin-sdk/irc";
+} from "openbz/plugin-sdk/irc";
 import type { CoreConfig, IrcAccountConfig, IrcNickServConfig } from "./types.js";
 
 const TRUTHY_ENV = new Set(["true", "1", "yes", "on"]);
@@ -182,12 +182,12 @@ export function resolveIrcAccount(params: {
       merged.username?.trim() ||
       (accountId === DEFAULT_ACCOUNT_ID ? process.env.IRC_USERNAME?.trim() : "") ||
       nick ||
-      "openclaw"
+      "openbz"
     ).trim();
     const realname = (
       merged.realname?.trim() ||
       (accountId === DEFAULT_ACCOUNT_ID ? process.env.IRC_REALNAME?.trim() : "") ||
-      "OpenClaw"
+      "BZ AI DevOps2"
     ).trim();
 
     const passwordResolution = resolvePassword(accountId, merged);

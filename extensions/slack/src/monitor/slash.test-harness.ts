@@ -12,32 +12,32 @@ const mocks = vi.hoisted(() => ({
   resolveStorePathMock: vi.fn(),
 }));
 
-vi.mock("openclaw/plugin-sdk/reply-runtime", () => ({
+vi.mock("openbz/plugin-sdk/reply-runtime", () => ({
   dispatchReplyWithDispatcher: (...args: unknown[]) => mocks.dispatchMock(...args),
 }));
 
-vi.mock("openclaw/plugin-sdk/conversation-runtime", () => ({
+vi.mock("openbz/plugin-sdk/conversation-runtime", () => ({
   readChannelAllowFromStore: (...args: unknown[]) => mocks.readAllowFromStoreMock(...args),
   upsertChannelPairingRequest: (...args: unknown[]) => mocks.upsertPairingRequestMock(...args),
 }));
 
-vi.mock("openclaw/plugin-sdk/routing", () => ({
+vi.mock("openbz/plugin-sdk/routing", () => ({
   resolveAgentRoute: (...args: unknown[]) => mocks.resolveAgentRouteMock(...args),
 }));
 
-vi.mock("openclaw/plugin-sdk/reply-runtime", () => ({
+vi.mock("openbz/plugin-sdk/reply-runtime", () => ({
   finalizeInboundContext: (...args: unknown[]) => mocks.finalizeInboundContextMock(...args),
 }));
 
-vi.mock("openclaw/plugin-sdk/channel-runtime", () => ({
+vi.mock("openbz/plugin-sdk/channel-runtime", () => ({
   resolveConversationLabel: (...args: unknown[]) => mocks.resolveConversationLabelMock(...args),
 }));
 
-vi.mock("openclaw/plugin-sdk/channel-runtime", () => ({
+vi.mock("openbz/plugin-sdk/channel-runtime", () => ({
   createReplyPrefixOptions: (...args: unknown[]) => mocks.createReplyPrefixOptionsMock(...args),
 }));
 
-vi.mock("openclaw/plugin-sdk/config-runtime", () => ({
+vi.mock("openbz/plugin-sdk/config-runtime", () => ({
   recordSessionMetaFromInbound: (...args: unknown[]) =>
     mocks.recordSessionMetaFromInboundMock(...args),
   resolveStorePath: (...args: unknown[]) => mocks.resolveStorePathMock(...args),
@@ -72,5 +72,5 @@ export function resetSlackSlashMocks() {
   mocks.resolveConversationLabelMock.mockReset().mockReturnValue(undefined);
   mocks.createReplyPrefixOptionsMock.mockReset().mockReturnValue({ onModelSelected: () => {} });
   mocks.recordSessionMetaFromInboundMock.mockReset().mockResolvedValue(undefined);
-  mocks.resolveStorePathMock.mockReset().mockReturnValue("/tmp/openclaw-sessions.json");
+  mocks.resolveStorePathMock.mockReset().mockReturnValue("/tmp/openbz-sessions.json");
 }

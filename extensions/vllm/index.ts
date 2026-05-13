@@ -3,17 +3,17 @@ import {
   VLLM_DEFAULT_BASE_URL,
   VLLM_MODEL_PLACEHOLDER,
   VLLM_PROVIDER_LABEL,
-} from "openclaw/plugin-sdk/agent-runtime";
+} from "openbz/plugin-sdk/agent-runtime";
 import {
   emptyPluginConfigSchema,
-  type OpenClawPluginApi,
+  type OpenBZPluginApi,
   type ProviderAuthMethodNonInteractiveContext,
-} from "openclaw/plugin-sdk/core";
+} from "openbz/plugin-sdk/core";
 
 const PROVIDER_ID = "vllm";
 
 async function loadProviderSetup() {
-  return await import("openclaw/plugin-sdk/self-hosted-provider-setup");
+  return await import("openbz/plugin-sdk/self-hosted-provider-setup");
 }
 
 const vllmPlugin = {
@@ -21,7 +21,7 @@ const vllmPlugin = {
   name: "vLLM Provider",
   description: "Bundled vLLM provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "vLLM",

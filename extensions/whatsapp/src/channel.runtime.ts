@@ -9,4 +9,4 @@ export {
 export { loginWeb } from "./login.js";
 export { startWebLoginWithQr, waitForWebLogin } from "./login-qr.js";
 export { whatsappSetupWizard } from "./setup-surface.js";
-export { monitorWebChannel } from "openclaw/plugin-sdk/whatsapp";
+export { monitorWebChannel } from "openbz/plugin-sdk/whatsapp";

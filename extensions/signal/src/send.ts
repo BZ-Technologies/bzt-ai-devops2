@@ -1,14 +1,14 @@
-import { loadConfig, type OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { kindFromMime } from "openclaw/plugin-sdk/media-runtime";
-import { resolveOutboundAttachmentFromUrl } from "openclaw/plugin-sdk/media-runtime";
+import { loadConfig, type OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "openbz/plugin-sdk/config-runtime";
+import { kindFromMime } from "openbz/plugin-sdk/media-runtime";
+import { resolveOutboundAttachmentFromUrl } from "openbz/plugin-sdk/media-runtime";
 import { resolveSignalAccount } from "./accounts.js";
 import { signalRpcRequest } from "./client.js";
 import { markdownToSignalText, type SignalTextStyleRange } from "./format.js";
 import { resolveSignalRpcContext } from "./rpc-context.js";
 
 export type SignalSendOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: OpenBZConfig;
   baseUrl?: string;
   account?: string;
   accountId?: string;

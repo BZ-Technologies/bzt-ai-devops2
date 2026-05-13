@@ -9,16 +9,16 @@ describe("shared/assistant-identity-values", () => {
   });
 
   it("trims values and preserves strings within the limit", () => {
-    expect(coerceIdentityValue("  OpenClaw  ", 20)).toBe("OpenClaw");
-    expect(coerceIdentityValue("  OpenClaw  ", 8)).toBe("OpenClaw");
+    expect(coerceIdentityValue("  BZ AI DevOps2  ", 20)).toBe("BZ AI DevOps2");
+    expect(coerceIdentityValue("  BZ AI DevOps2  ", 8)).toBe("BZ AI DevOps2");
   });
 
   it("truncates overlong trimmed values at the exact limit", () => {
-    expect(coerceIdentityValue("  OpenClaw Assistant  ", 8)).toBe("OpenClaw");
+    expect(coerceIdentityValue("  BZ AI DevOps2 Assistant  ", 8)).toBe("BZ AI DevOps2");
   });
 
   it("returns an empty string when truncating to a zero-length limit", () => {
-    expect(coerceIdentityValue("  OpenClaw  ", 0)).toBe("");
-    expect(coerceIdentityValue("  OpenClaw  ", -1)).toBe("OpenCla");
+    expect(coerceIdentityValue("  BZ AI DevOps2  ", 0)).toBe("");
+    expect(coerceIdentityValue("  BZ AI DevOps2  ", -1)).toBe("OpenCla");
   });
 });

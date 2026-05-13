@@ -1,8 +1,8 @@
-import { formatAllowFromLowercase } from "openclaw/plugin-sdk/allow-from";
+import { formatAllowFromLowercase } from "openbz/plugin-sdk/allow-from";
 import {
   createScopedAccountConfigAccessors,
   createScopedChannelConfigBase,
-} from "openclaw/plugin-sdk/channel-config-helpers";
+} from "openbz/plugin-sdk/channel-config-helpers";
 import { buildChannelConfigSchema } from "../../../src/channels/plugins/config-schema.js";
 import type { ChannelPlugin } from "../../../src/channels/plugins/types.plugin.js";
 import { getChatChannelMeta } from "../../../src/channels/registry.js";

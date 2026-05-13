@@ -3,17 +3,17 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { serializePayload, type MessagePayloadObject, type RequestClient } from "@buape/carbon";
 import { ChannelType, Routes } from "discord-api-types/v10";
-import { loadConfig, type OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { recordChannelActivity } from "openclaw/plugin-sdk/infra-runtime";
-import type { RetryConfig } from "openclaw/plugin-sdk/infra-runtime";
-import { resolvePreferredOpenClawTmpDir } from "openclaw/plugin-sdk/infra-runtime";
-import { maxBytesForKind } from "openclaw/plugin-sdk/media-runtime";
-import { extensionForMime } from "openclaw/plugin-sdk/media-runtime";
-import { unlinkIfExists } from "openclaw/plugin-sdk/media-runtime";
-import type { PollInput } from "openclaw/plugin-sdk/media-runtime";
-import { resolveChunkMode } from "openclaw/plugin-sdk/reply-runtime";
-import { convertMarkdownTables } from "openclaw/plugin-sdk/text-runtime";
+import { loadConfig, type OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "openbz/plugin-sdk/config-runtime";
+import { recordChannelActivity } from "openbz/plugin-sdk/infra-runtime";
+import type { RetryConfig } from "openbz/plugin-sdk/infra-runtime";
+import { resolvePreferredOpenBZTmpDir } from "openbz/plugin-sdk/infra-runtime";
+import { maxBytesForKind } from "openbz/plugin-sdk/media-runtime";
+import { extensionForMime } from "openbz/plugin-sdk/media-runtime";
+import { unlinkIfExists } from "openbz/plugin-sdk/media-runtime";
+import type { PollInput } from "openbz/plugin-sdk/media-runtime";
+import { resolveChunkMode } from "openbz/plugin-sdk/reply-runtime";
+import { convertMarkdownTables } from "openbz/plugin-sdk/text-runtime";
 import { loadWebMediaRaw } from "../../whatsapp/src/media.js";
 import { resolveDiscordAccount } from "./accounts.js";
 import { rewriteDiscordKnownMentions } from "./mentions.js";
@@ -44,7 +44,7 @@ import {
 } from "./voice-message.js";
 
 type DiscordSendOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: OpenBZConfig;
   token?: string;
   accountId?: string;
   mediaUrl?: string;
@@ -317,7 +317,7 @@ export async function sendMessageDiscord(
 }
 
 type DiscordWebhookSendOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: OpenBZConfig;
   webhookId: string;
   webhookToken: string;
   accountId?: string;
@@ -472,7 +472,7 @@ export async function sendPollDiscord(
 }
 
 type VoiceMessageOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: OpenBZConfig;
   token?: string;
   accountId?: string;
   verbose?: boolean;
@@ -489,7 +489,7 @@ async function materializeVoiceMessageInput(mediaUrl: string): Promise<{ filePat
   const extFromName = media.fileName ? path.extname(media.fileName) : "";
   const extFromMime = media.contentType ? extensionForMime(media.contentType) : "";
   const ext = extFromName || extFromMime || ".bin";
-  const tempDir = resolvePreferredOpenClawTmpDir();
+  const tempDir = resolvePreferredOpenBZTmpDir();
   const filePath = path.join(tempDir, `voice-src-${crypto.randomUUID()}${ext}`);
   await fs.writeFile(filePath, media.buffer, { mode: 0o600 });
   return { filePath };

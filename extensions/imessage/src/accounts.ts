@@ -2,9 +2,9 @@ import {
   createAccountListHelpers,
   normalizeAccountId,
   resolveAccountEntry,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/account-resolution";
-import type { IMessageAccountConfig } from "openclaw/plugin-sdk/imessage";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/account-resolution";
+import type { IMessageAccountConfig } from "openbz/plugin-sdk/imessage";
 
 export type ResolvedIMessageAccount = {
   accountId: string;
@@ -19,13 +19,13 @@ export const listIMessageAccountIds = listAccountIds;
 export const resolveDefaultIMessageAccountId = resolveDefaultAccountId;
 
 function resolveAccountConfig(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   accountId: string,
 ): IMessageAccountConfig | undefined {
   return resolveAccountEntry(cfg.channels?.imessage?.accounts, accountId);
 }
 
-function mergeIMessageAccountConfig(cfg: OpenClawConfig, accountId: string): IMessageAccountConfig {
+function mergeIMessageAccountConfig(cfg: OpenBZConfig, accountId: string): IMessageAccountConfig {
   const { accounts: _ignored, ...base } = (cfg.channels?.imessage ??
     {}) as IMessageAccountConfig & { accounts?: unknown };
   const account = resolveAccountConfig(cfg, accountId) ?? {};
@@ -33,7 +33,7 @@ function mergeIMessageAccountConfig(cfg: OpenClawConfig, accountId: string): IMe
 }
 
 export function resolveIMessageAccount(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId?: string | null;
 }): ResolvedIMessageAccount {
   const accountId = normalizeAccountId(params.accountId);
@@ -65,7 +65,7 @@ export function resolveIMessageAccount(params: {
   };
 }
 
-export function listEnabledIMessageAccounts(cfg: OpenClawConfig): ResolvedIMessageAccount[] {
+export function listEnabledIMessageAccounts(cfg: OpenBZConfig): ResolvedIMessageAccount[] {
   return listIMessageAccountIds(cfg)
     .map((accountId) => resolveIMessageAccount({ cfg, accountId }))
     .filter((account) => account.enabled);

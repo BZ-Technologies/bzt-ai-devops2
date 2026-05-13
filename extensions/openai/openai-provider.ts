@@ -1,15 +1,15 @@
 import {
   type ProviderResolveDynamicModelContext,
   type ProviderRuntimeModel,
-} from "openclaw/plugin-sdk/core";
-import { createProviderApiKeyAuthMethod } from "openclaw/plugin-sdk/provider-auth";
+} from "openbz/plugin-sdk/core";
+import { createProviderApiKeyAuthMethod } from "openbz/plugin-sdk/provider-auth";
 import {
   applyOpenAIConfig,
   normalizeModelCompat,
   normalizeProviderId,
   OPENAI_DEFAULT_MODEL,
   type ProviderPlugin,
-} from "openclaw/plugin-sdk/provider-models";
+} from "openbz/plugin-sdk/provider-models";
 import {
   cloneFirstTemplateModel,
   findCatalogTemplate,

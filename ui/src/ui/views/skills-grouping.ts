@@ -7,10 +7,10 @@ export type SkillGroup = {
 };
 
 const SKILL_SOURCE_GROUPS: Array<{ id: string; label: string; sources: string[] }> = [
-  { id: "workspace", label: "Workspace Skills", sources: ["openclaw-workspace"] },
-  { id: "built-in", label: "Built-in Skills", sources: ["openclaw-bundled"] },
-  { id: "installed", label: "Installed Skills", sources: ["openclaw-managed"] },
-  { id: "extra", label: "Extra Skills", sources: ["openclaw-extra"] },
+  { id: "workspace", label: "Workspace Skills", sources: ["openbz-workspace"] },
+  { id: "built-in", label: "Built-in Skills", sources: ["openbz-bundled"] },
+  { id: "installed", label: "Installed Skills", sources: ["openbz-managed"] },
+  { id: "extra", label: "Extra Skills", sources: ["openbz-extra"] },
 ];
 
 export function groupSkills(skills: SkillStatusEntry[]): SkillGroup[] {

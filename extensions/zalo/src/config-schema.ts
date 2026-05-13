@@ -3,8 +3,8 @@ import {
   buildCatchallMultiAccountChannelSchema,
   DmPolicySchema,
   GroupPolicySchema,
-} from "openclaw/plugin-sdk/channel-config-schema";
-import { MarkdownConfigSchema } from "openclaw/plugin-sdk/zalo";
+} from "openbz/plugin-sdk/channel-config-schema";
+import { MarkdownConfigSchema } from "openbz/plugin-sdk/zalo";
 import { z } from "zod";
 import { buildSecretInputSchema } from "./secret-input.js";
 

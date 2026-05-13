@@ -14,28 +14,28 @@ Use this page for scheduler and delivery issues (`cron` + `heartbeat`).
 ## Command ladder
 
 ```bash
-openclaw status
-openclaw gateway status
-openclaw logs --follow
-openclaw doctor
-openclaw channels status --probe
+openbz status
+openbz gateway status
+openbz logs --follow
+openbz doctor
+openbz channels status --probe
 ```
 
 Then run automation checks:
 
 ```bash
-openclaw cron status
-openclaw cron list
-openclaw system heartbeat last
+openbz cron status
+openbz cron list
+openbz system heartbeat last
 ```
 
 ## Cron not firing
 
 ```bash
-openclaw cron status
-openclaw cron list
-openclaw cron runs --id <jobId> --limit 20
-openclaw logs --follow
+openbz cron status
+openbz cron list
+openbz cron runs --id <jobId> --limit 20
+openbz logs --follow
 ```
 
 Good output looks like:
@@ -53,10 +53,10 @@ Common signatures:
 ## Cron fired but no delivery
 
 ```bash
-openclaw cron runs --id <jobId> --limit 20
-openclaw cron list
-openclaw channels status --probe
-openclaw logs --follow
+openbz cron runs --id <jobId> --limit 20
+openbz cron list
+openbz channels status --probe
+openbz logs --follow
 ```
 
 Good output looks like:
@@ -74,10 +74,10 @@ Common signatures:
 ## Heartbeat suppressed or skipped
 
 ```bash
-openclaw system heartbeat last
-openclaw logs --follow
-openclaw config get agents.defaults.heartbeat
-openclaw channels status --probe
+openbz system heartbeat last
+openbz logs --follow
+openbz config get agents.defaults.heartbeat
+openbz channels status --probe
 ```
 
 Good output looks like:
@@ -95,11 +95,11 @@ Common signatures:
 ## Timezone and activeHours gotchas
 
 ```bash
-openclaw config get agents.defaults.heartbeat.activeHours
-openclaw config get agents.defaults.heartbeat.activeHours.timezone
-openclaw config get agents.defaults.userTimezone || echo "agents.defaults.userTimezone not set"
-openclaw cron list
-openclaw logs --follow
+openbz config get agents.defaults.heartbeat.activeHours
+openbz config get agents.defaults.heartbeat.activeHours.timezone
+openbz config get agents.defaults.userTimezone || echo "agents.defaults.userTimezone not set"
+openbz cron list
+openbz logs --follow
 ```
 
 Quick rules:

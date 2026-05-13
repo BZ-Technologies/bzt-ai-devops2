@@ -2,20 +2,20 @@ import {
   MODELSTUDIO_CN_BASE_URL,
   MODELSTUDIO_DEFAULT_MODEL_REF,
   MODELSTUDIO_GLOBAL_BASE_URL,
-} from "openclaw/plugin-sdk/provider-models";
+} from "openbz/plugin-sdk/provider-models";
 import {
   applyAgentDefaultModelPrimary,
   applyProviderConfigWithModelCatalog,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/provider-onboard";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/provider-onboard";
 import { buildModelStudioProvider } from "./provider-catalog.js";
 
 export { MODELSTUDIO_CN_BASE_URL, MODELSTUDIO_DEFAULT_MODEL_REF, MODELSTUDIO_GLOBAL_BASE_URL };
 
 function applyModelStudioProviderConfigWithBaseUrl(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   baseUrl: string,
-): OpenClawConfig {
+): OpenBZConfig {
   const models = { ...cfg.agents?.defaults?.models };
   const provider = buildModelStudioProvider();
   for (const model of provider.models ?? []) {
@@ -38,22 +38,22 @@ function applyModelStudioProviderConfigWithBaseUrl(
   });
 }
 
-export function applyModelStudioProviderConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyModelStudioProviderConfig(cfg: OpenBZConfig): OpenBZConfig {
   return applyModelStudioProviderConfigWithBaseUrl(cfg, MODELSTUDIO_GLOBAL_BASE_URL);
 }
 
-export function applyModelStudioProviderConfigCn(cfg: OpenClawConfig): OpenClawConfig {
+export function applyModelStudioProviderConfigCn(cfg: OpenBZConfig): OpenBZConfig {
   return applyModelStudioProviderConfigWithBaseUrl(cfg, MODELSTUDIO_CN_BASE_URL);
 }
 
-export function applyModelStudioConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyModelStudioConfig(cfg: OpenBZConfig): OpenBZConfig {
   return applyAgentDefaultModelPrimary(
     applyModelStudioProviderConfig(cfg),
     MODELSTUDIO_DEFAULT_MODEL_REF,
   );
 }
 
-export function applyModelStudioConfigCn(cfg: OpenClawConfig): OpenClawConfig {
+export function applyModelStudioConfigCn(cfg: OpenBZConfig): OpenBZConfig {
   return applyAgentDefaultModelPrimary(
     applyModelStudioProviderConfigCn(cfg),
     MODELSTUDIO_DEFAULT_MODEL_REF,

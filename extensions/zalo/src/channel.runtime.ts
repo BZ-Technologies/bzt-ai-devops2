@@ -1,12 +1,12 @@
-import { createAccountStatusSink } from "openclaw/plugin-sdk/channel-lifecycle";
-import { PAIRING_APPROVED_MESSAGE } from "openclaw/plugin-sdk/zalo";
+import { createAccountStatusSink } from "openbz/plugin-sdk/channel-lifecycle";
+import { PAIRING_APPROVED_MESSAGE } from "openbz/plugin-sdk/zalo";
 import { probeZalo } from "./probe.js";
 import { resolveZaloProxyFetch } from "./proxy.js";
 import { normalizeSecretInputString } from "./secret-input.js";
 import { sendMessageZalo } from "./send.js";
 
 export async function notifyZaloPairingApproval(params: {
-  cfg: import("openclaw/plugin-sdk/zalo").OpenClawConfig;
+  cfg: import("openbz/plugin-sdk/zalo").OpenBZConfig;
   id: string;
 }) {
   const { resolveZaloAccount } = await import("./accounts.js");
@@ -42,7 +42,7 @@ export async function probeZaloAccount(params: {
 export async function startZaloGatewayAccount(
   ctx: Parameters<
     NonNullable<
-      NonNullable<import("openclaw/plugin-sdk/zalo").ChannelPlugin["gateway"]>["startAccount"]
+      NonNullable<import("openbz/plugin-sdk/zalo").ChannelPlugin["gateway"]>["startAccount"]
     >
   >[0],
 ) {

@@ -1,5 +1,5 @@
-import { formatNormalizedAllowFromEntries } from "openclaw/plugin-sdk/allow-from";
-import type { ChannelAccountSnapshot, ChannelPlugin } from "openclaw/plugin-sdk/bluebubbles";
+import { formatNormalizedAllowFromEntries } from "openbz/plugin-sdk/allow-from";
+import type { ChannelAccountSnapshot, ChannelPlugin } from "openbz/plugin-sdk/bluebubbles";
 import {
   buildChannelConfigSchema,
   buildComputedAccountStatusSnapshot,
@@ -11,13 +11,13 @@ import {
   resolveBlueBubblesGroupRequireMention,
   resolveBlueBubblesGroupToolPolicy,
   setAccountEnabledInConfigSection,
-} from "openclaw/plugin-sdk/bluebubbles";
-import { mapAllowFromEntries } from "openclaw/plugin-sdk/channel-config-helpers";
-import { createAccountStatusSink } from "openclaw/plugin-sdk/channel-lifecycle";
+} from "openbz/plugin-sdk/bluebubbles";
+import { mapAllowFromEntries } from "openbz/plugin-sdk/channel-config-helpers";
+import { createAccountStatusSink } from "openbz/plugin-sdk/channel-lifecycle";
 import {
   buildAccountScopedDmSecurityPolicy,
   collectOpenGroupPolicyRestrictSendersWarnings,
-} from "openclaw/plugin-sdk/channel-policy";
+} from "openbz/plugin-sdk/channel-policy";
 import {
   listBlueBubblesAccountIds,
   type ResolvedBlueBubblesAccount,

@@ -1,2 +1,2 @@
 export const PAIRING_APPROVED_MESSAGE =
-  "✅ OpenClaw access approved. Send a message to start chatting.";
+  "✅ BZ AI DevOps2 access approved. Send a message to start chatting.";

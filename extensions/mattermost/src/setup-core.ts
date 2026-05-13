@@ -1,4 +1,4 @@
-import type { ChannelSetupAdapter } from "openclaw/plugin-sdk/channel-runtime";
+import type { ChannelSetupAdapter } from "openbz/plugin-sdk/channel-runtime";
 import {
   applyAccountNameToChannelSection,
   applySetupAccountConfigPatch,
@@ -6,8 +6,8 @@ import {
   hasConfiguredSecretInput,
   migrateBaseNameToDefaultAccount,
   normalizeAccountId,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/mattermost";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/mattermost";
 import { resolveMattermostAccount, type ResolvedMattermostAccount } from "./mattermost/accounts.js";
 import { normalizeMattermostBaseUrl } from "./mattermost/client.js";
 
@@ -19,7 +19,7 @@ export function isMattermostConfigured(account: ResolvedMattermostAccount): bool
   return tokenConfigured && Boolean(account.baseUrl);
 }
 
-export function resolveMattermostAccountWithSecrets(cfg: OpenClawConfig, accountId: string) {
+export function resolveMattermostAccountWithSecrets(cfg: OpenBZConfig, accountId: string) {
   return resolveMattermostAccount({
     cfg,
     accountId,

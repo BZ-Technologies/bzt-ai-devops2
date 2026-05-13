@@ -1,8 +1,8 @@
 import {
   buildAccountScopedDmSecurityPolicy,
   collectAllowlistProviderRestrictSendersWarnings,
-} from "openclaw/plugin-sdk/channel-config-helpers";
-import { DEFAULT_ACCOUNT_ID, normalizeE164, type ChannelPlugin } from "openclaw/plugin-sdk/signal";
+} from "openbz/plugin-sdk/channel-config-helpers";
+import { DEFAULT_ACCOUNT_ID, normalizeE164, type ChannelPlugin } from "openbz/plugin-sdk/signal";
 import { resolveSignalAccount, type ResolvedSignalAccount } from "./accounts.js";
 import { signalSetupAdapter } from "./setup-core.js";
 import { createSignalPluginBase, signalSetupWizard } from "./shared.js";

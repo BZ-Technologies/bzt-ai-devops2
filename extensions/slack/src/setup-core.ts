@@ -6,7 +6,7 @@ import {
   hasConfiguredSecretInput,
   migrateBaseNameToDefaultAccount,
   normalizeAccountId,
-  type OpenClawConfig,
+  type OpenBZConfig,
   noteChannelLookupFailure,
   noteChannelLookupSummary,
   parseMentionOrPrefixedId,
@@ -14,14 +14,14 @@ import {
   setAccountGroupPolicyForChannel,
   setLegacyChannelDmPolicyWithAllowFrom,
   setSetupChannelEnabled,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import { formatDocsLink } from "../../../src/terminal/links.js";
 import {
   type ChannelSetupAdapter,
   type ChannelSetupDmPolicy,
   type ChannelSetupWizard,
   type ChannelSetupWizardAllowFromEntry,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import { inspectSlackAccount } from "./account-inspect.js";
 import { listSlackAccountIds, resolveSlackAccount, type ResolvedSlackAccount } from "./accounts.js";
 import {
@@ -31,7 +31,7 @@ import {
   SLACK_CHANNEL as channel,
 } from "./shared.js";
 
-function enableSlackAccount(cfg: OpenClawConfig, accountId: string): OpenClawConfig {
+function enableSlackAccount(cfg: OpenBZConfig, accountId: string): OpenBZConfig {
   return patchChannelConfigForAccount({
     cfg,
     channel,
@@ -126,9 +126,9 @@ export function createSlackSetupWizardBase(handlers: {
     channel,
     policyKey: "channels.slack.dmPolicy",
     allowFromKey: "channels.slack.allowFrom",
-    getCurrent: (cfg: OpenClawConfig) =>
+    getCurrent: (cfg: OpenBZConfig) =>
       cfg.channels?.slack?.dmPolicy ?? cfg.channels?.slack?.dm?.policy ?? "pairing",
-    setPolicy: (cfg: OpenClawConfig, policy) =>
+    setPolicy: (cfg: OpenBZConfig, policy) =>
       setLegacyChannelDmPolicyWithAllowFrom({
         cfg,
         channel,
@@ -178,7 +178,7 @@ export function createSlackSetupWizardBase(handlers: {
         keepPrompt: "Slack bot token already configured. Keep it?",
         inputPrompt: "Enter Slack bot token (xoxb-...)",
         allowEnv: ({ accountId }: { accountId: string }) => accountId === DEFAULT_ACCOUNT_ID,
-        inspect: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId: string }) => {
+        inspect: ({ cfg, accountId }: { cfg: OpenBZConfig; accountId: string }) => {
           const resolved = resolveSlackAccount({ cfg, accountId });
           return {
             accountConfigured:
@@ -189,14 +189,14 @@ export function createSlackSetupWizardBase(handlers: {
               accountId === DEFAULT_ACCOUNT_ID ? process.env.SLACK_BOT_TOKEN?.trim() : undefined,
           };
         },
-        applyUseEnv: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId: string }) =>
+        applyUseEnv: ({ cfg, accountId }: { cfg: OpenBZConfig; accountId: string }) =>
           enableSlackAccount(cfg, accountId),
         applySet: ({
           cfg,
           accountId,
           value,
         }: {
-          cfg: OpenClawConfig;
+          cfg: OpenBZConfig;
           accountId: string;
           value: unknown;
         }) =>
@@ -219,7 +219,7 @@ export function createSlackSetupWizardBase(handlers: {
         keepPrompt: "Slack app token already configured. Keep it?",
         inputPrompt: "Enter Slack app token (xapp-...)",
         allowEnv: ({ accountId }: { accountId: string }) => accountId === DEFAULT_ACCOUNT_ID,
-        inspect: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId: string }) => {
+        inspect: ({ cfg, accountId }: { cfg: OpenBZConfig; accountId: string }) => {
           const resolved = resolveSlackAccount({ cfg, accountId });
           return {
             accountConfigured:
@@ -230,14 +230,14 @@ export function createSlackSetupWizardBase(handlers: {
               accountId === DEFAULT_ACCOUNT_ID ? process.env.SLACK_APP_TOKEN?.trim() : undefined,
           };
         },
-        applyUseEnv: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId: string }) =>
+        applyUseEnv: ({ cfg, accountId }: { cfg: OpenBZConfig; accountId: string }) =>
           enableSlackAccount(cfg, accountId),
         applySet: ({
           cfg,
           accountId,
           value,
         }: {
-          cfg: OpenClawConfig;
+          cfg: OpenBZConfig;
           accountId: string;
           value: unknown;
         }) =>
@@ -281,7 +281,7 @@ export function createSlackSetupWizardBase(handlers: {
         credentialValues,
         entries,
       }: {
-        cfg: OpenClawConfig;
+        cfg: OpenBZConfig;
         accountId: string;
         credentialValues: { botToken?: string };
         entries: string[];
@@ -291,7 +291,7 @@ export function createSlackSetupWizardBase(handlers: {
         accountId,
         allowFrom,
       }: {
-        cfg: OpenClawConfig;
+        cfg: OpenBZConfig;
         accountId: string;
         allowFrom: string[];
       }) =>
@@ -305,20 +305,20 @@ export function createSlackSetupWizardBase(handlers: {
     groupAccess: {
       label: "Slack channels",
       placeholder: "#general, #private, C123",
-      currentPolicy: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId: string }) =>
+      currentPolicy: ({ cfg, accountId }: { cfg: OpenBZConfig; accountId: string }) =>
         resolveSlackAccount({ cfg, accountId }).config.groupPolicy ?? "allowlist",
-      currentEntries: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId: string }) =>
+      currentEntries: ({ cfg, accountId }: { cfg: OpenBZConfig; accountId: string }) =>
         Object.entries(resolveSlackAccount({ cfg, accountId }).config.channels ?? {})
           .filter(([, value]) => value?.allow !== false && value?.enabled !== false)
           .map(([key]) => key),
-      updatePrompt: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId: string }) =>
+      updatePrompt: ({ cfg, accountId }: { cfg: OpenBZConfig; accountId: string }) =>
         Boolean(resolveSlackAccount({ cfg, accountId }).config.channels),
       setPolicy: ({
         cfg,
         accountId,
         policy,
       }: {
-        cfg: OpenClawConfig;
+        cfg: OpenBZConfig;
         accountId: string;
         policy: "open" | "allowlist" | "disabled";
       }) =>
@@ -335,7 +335,7 @@ export function createSlackSetupWizardBase(handlers: {
         entries,
         prompter,
       }: {
-        cfg: OpenClawConfig;
+        cfg: OpenBZConfig;
         accountId: string;
         credentialValues: { botToken?: string };
         entries: string[];
@@ -369,12 +369,12 @@ export function createSlackSetupWizardBase(handlers: {
         accountId,
         resolved,
       }: {
-        cfg: OpenClawConfig;
+        cfg: OpenBZConfig;
         accountId: string;
         resolved: unknown;
       }) => setSlackChannelAllowlist(cfg, accountId, resolved as string[]),
     },
-    disable: (cfg: OpenClawConfig) => setSetupChannelEnabled(cfg, channel, false),
+    disable: (cfg: OpenBZConfig) => setSetupChannelEnabled(cfg, channel, false),
   } satisfies ChannelSetupWizard;
 }
 export function createSlackSetupWizardProxy(

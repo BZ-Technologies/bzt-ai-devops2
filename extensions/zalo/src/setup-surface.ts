@@ -10,9 +10,9 @@ import {
   setTopLevelChannelDmPolicyWithAllowFrom,
   type ChannelSetupDmPolicy,
   type ChannelSetupWizard,
-  type OpenClawConfig,
+  type OpenBZConfig,
   type SecretInput,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import { listZaloAccountIds, resolveDefaultZaloAccountId, resolveZaloAccount } from "./accounts.js";
 import { zaloSetupAdapter } from "./setup-core.js";
 
@@ -21,24 +21,24 @@ const channel = "zalo" as const;
 type UpdateMode = "polling" | "webhook";
 
 function setZaloDmPolicy(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   dmPolicy: "pairing" | "allowlist" | "open" | "disabled",
 ) {
   return setTopLevelChannelDmPolicyWithAllowFrom({
     cfg,
     channel,
     dmPolicy,
-  }) as OpenClawConfig;
+  }) as OpenBZConfig;
 }
 
 function setZaloUpdateMode(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   accountId: string,
   mode: UpdateMode,
   webhookUrl?: string,
   webhookSecret?: SecretInput,
   webhookPath?: string,
-): OpenClawConfig {
+): OpenBZConfig {
   const isDefault = accountId === DEFAULT_ACCOUNT_ID;
   if (mode === "polling") {
     if (isDefault) {
@@ -54,7 +54,7 @@ function setZaloUpdateMode(
           ...cfg.channels,
           zalo: rest,
         },
-      } as OpenClawConfig;
+      } as OpenBZConfig;
     }
     const accounts = { ...cfg.channels?.zalo?.accounts } as Record<string, Record<string, unknown>>;
     const existing = accounts[accountId] ?? {};
@@ -69,7 +69,7 @@ function setZaloUpdateMode(
           accounts,
         },
       },
-    } as OpenClawConfig;
+    } as OpenBZConfig;
   }
 
   if (isDefault) {
@@ -84,7 +84,7 @@ function setZaloUpdateMode(
           webhookPath,
         },
       },
-    } as OpenClawConfig;
+    } as OpenBZConfig;
   }
 
   const accounts = { ...cfg.channels?.zalo?.accounts } as Record<string, Record<string, unknown>>;
@@ -103,7 +103,7 @@ function setZaloUpdateMode(
         accounts,
       },
     },
-  } as OpenClawConfig;
+  } as OpenBZConfig;
 }
 
 async function noteZaloTokenHelp(
@@ -122,10 +122,10 @@ async function noteZaloTokenHelp(
 }
 
 async function promptZaloAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   prompter: Parameters<NonNullable<ChannelSetupDmPolicy["promptAllowFrom"]>>[0]["prompter"];
   accountId: string;
-}): Promise<OpenClawConfig> {
+}): Promise<OpenBZConfig> {
   const { cfg, prompter, accountId } = params;
   const resolved = resolveZaloAccount({ cfg, accountId });
   const existingAllowFrom = resolved.config.allowFrom ?? [];
@@ -159,7 +159,7 @@ async function promptZaloAllowFrom(params: {
           allowFrom: unique,
         },
       },
-    } as OpenClawConfig;
+    } as OpenBZConfig;
   }
 
   return {
@@ -180,7 +180,7 @@ async function promptZaloAllowFrom(params: {
         },
       },
     },
-  } as OpenClawConfig;
+  } as OpenBZConfig;
 }
 
 const zaloDmPolicy: ChannelSetupDmPolicy = {
@@ -189,14 +189,14 @@ const zaloDmPolicy: ChannelSetupDmPolicy = {
   policyKey: "channels.zalo.dmPolicy",
   allowFromKey: "channels.zalo.allowFrom",
   getCurrent: (cfg) => (cfg.channels?.zalo?.dmPolicy ?? "pairing") as "pairing",
-  setPolicy: (cfg, policy) => setZaloDmPolicy(cfg as OpenClawConfig, policy),
+  setPolicy: (cfg, policy) => setZaloDmPolicy(cfg as OpenBZConfig, policy),
   promptAllowFrom: async ({ cfg, prompter, accountId }) => {
     const id =
       accountId && normalizeAccountId(accountId)
         ? (normalizeAccountId(accountId) ?? DEFAULT_ACCOUNT_ID)
-        : resolveDefaultZaloAccountId(cfg as OpenClawConfig);
+        : resolveDefaultZaloAccountId(cfg as OpenBZConfig);
     return await promptZaloAllowFrom({
-      cfg: cfg as OpenClawConfig,
+      cfg: cfg as OpenBZConfig,
       prompter,
       accountId: id,
     });
@@ -271,7 +271,7 @@ export const zaloSetupWizard: ChannelSetupWizard = {
                   enabled: true,
                 },
               },
-            } as OpenClawConfig)
+            } as OpenBZConfig)
           : currentCfg,
       applySet: async (currentCfg, value) =>
         accountId === DEFAULT_ACCOUNT_ID
@@ -285,7 +285,7 @@ export const zaloSetupWizard: ChannelSetupWizard = {
                   botToken: value,
                 },
               },
-            } as OpenClawConfig)
+            } as OpenBZConfig)
           : ({
               ...currentCfg,
               channels: {
@@ -303,7 +303,7 @@ export const zaloSetupWizard: ChannelSetupWizard = {
                   },
                 },
               },
-            } as OpenClawConfig),
+            } as OpenBZConfig),
     });
     next = tokenStep.cfg;
 

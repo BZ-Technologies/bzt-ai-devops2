@@ -1,18 +1,18 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveConfiguredAcpRoute } from "openclaw/plugin-sdk/conversation-runtime";
-import { getSessionBindingService } from "openclaw/plugin-sdk/conversation-runtime";
-import { isPluginOwnedSessionBindingRecord } from "openclaw/plugin-sdk/conversation-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import { resolveConfiguredAcpRoute } from "openbz/plugin-sdk/conversation-runtime";
+import { getSessionBindingService } from "openbz/plugin-sdk/conversation-runtime";
+import { isPluginOwnedSessionBindingRecord } from "openbz/plugin-sdk/conversation-runtime";
 import {
   buildAgentSessionKey,
   deriveLastRoutePolicy,
   resolveAgentRoute,
-} from "openclaw/plugin-sdk/routing";
+} from "openbz/plugin-sdk/routing";
 import {
   buildAgentMainSessionKey,
   resolveAgentIdFromSessionKey,
   sanitizeAgentId,
-} from "openclaw/plugin-sdk/routing";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
+} from "openbz/plugin-sdk/routing";
+import { logVerbose } from "openbz/plugin-sdk/runtime-env";
 import {
   buildTelegramGroupPeerId,
   buildTelegramParentPeer,
@@ -20,7 +20,7 @@ import {
 } from "./bot/helpers.js";
 
 export function resolveTelegramConversationRoute(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   accountId: string;
   chatId: number | string;
   isGroup: boolean;

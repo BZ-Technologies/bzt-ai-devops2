@@ -287,8 +287,8 @@ export async function createBackupArchive(
   if (plan.included.length === 0) {
     throw new Error(
       onlyConfig
-        ? "No OpenClaw config file was found to back up."
-        : "No local OpenClaw state was found to back up.",
+        ? "No BZ AI DevOps2 config file was found to back up."
+        : "No local BZ AI DevOps2 state was found to back up.",
     );
   }
 
@@ -324,7 +324,7 @@ export async function createBackupArchive(
   }
 
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
-  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-backup-"));
+  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openbz-backup-"));
   const manifestPath = path.join(tempDir, "manifest.json");
   const tempArchivePath = buildTempArchivePath(outputPath);
   try {

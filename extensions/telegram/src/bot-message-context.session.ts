@@ -1,26 +1,26 @@
-import { toLocationContext } from "openclaw/plugin-sdk/channel-runtime";
-import { recordInboundSession } from "openclaw/plugin-sdk/channel-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { readSessionUpdatedAt, resolveStorePath } from "openclaw/plugin-sdk/config-runtime";
+import { toLocationContext } from "openbz/plugin-sdk/channel-runtime";
+import { recordInboundSession } from "openbz/plugin-sdk/channel-runtime";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import { readSessionUpdatedAt, resolveStorePath } from "openbz/plugin-sdk/config-runtime";
 import type {
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "openclaw/plugin-sdk/config-runtime";
-import { normalizeCommandBody } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/config-runtime";
+import { normalizeCommandBody } from "openbz/plugin-sdk/reply-runtime";
 import {
   formatInboundEnvelope,
   resolveEnvelopeFormatOptions,
-} from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
 import {
   buildPendingHistoryContextFromMap,
   type HistoryEntry,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { finalizeInboundContext } from "openclaw/plugin-sdk/reply-runtime";
-import type { ResolvedAgentRoute } from "openclaw/plugin-sdk/routing";
-import { resolveInboundLastRouteSessionKey } from "openclaw/plugin-sdk/routing";
-import { logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { resolvePinnedMainDmOwnerFromAllowlist } from "openclaw/plugin-sdk/security-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
+import { finalizeInboundContext } from "openbz/plugin-sdk/reply-runtime";
+import type { ResolvedAgentRoute } from "openbz/plugin-sdk/routing";
+import { resolveInboundLastRouteSessionKey } from "openbz/plugin-sdk/routing";
+import { logVerbose, shouldLogVerbose } from "openbz/plugin-sdk/runtime-env";
+import { resolvePinnedMainDmOwnerFromAllowlist } from "openbz/plugin-sdk/security-runtime";
 import { normalizeAllowFrom } from "./bot-access.js";
 import type {
   TelegramMediaRef,
@@ -39,7 +39,7 @@ import type { TelegramContext } from "./bot/types.js";
 import { resolveTelegramGroupPromptSettings } from "./group-config-helpers.js";
 
 export async function buildTelegramInboundContextPayload(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   primaryCtx: TelegramContext;
   msg: TelegramContext["message"];
   allMedia: TelegramMediaRef[];
@@ -63,7 +63,7 @@ export async function buildTelegramInboundContextPayload(params: {
   stickerCacheHit: boolean;
   effectiveWasMentioned: boolean;
   commandAuthorized: boolean;
-  locationData?: import("openclaw/plugin-sdk/channel-runtime").NormalizedLocation;
+  locationData?: import("openbz/plugin-sdk/channel-runtime").NormalizedLocation;
   options?: TelegramMessageContextOptions;
   dmAllowFrom?: Array<string | number>;
 }): Promise<{

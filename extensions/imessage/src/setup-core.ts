@@ -7,16 +7,16 @@ import {
   promptParsedAllowFromForScopedChannel,
   setChannelDmPolicyWithAllowFrom,
   setSetupChannelEnabled,
-  type OpenClawConfig,
+  type OpenBZConfig,
   type WizardPrompter,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import { formatDocsLink } from "../../../src/terminal/links.js";
 import type {
   ChannelSetupAdapter,
   ChannelSetupDmPolicy,
   ChannelSetupWizard,
   ChannelSetupWizardTextInput,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import {
   listIMessageAccountIds,
   resolveDefaultIMessageAccountId,
@@ -70,10 +70,10 @@ function buildIMessageSetupPatch(input: {
 }
 
 export async function promptIMessageAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   prompter: WizardPrompter;
   accountId?: string;
-}): Promise<OpenClawConfig> {
+}): Promise<OpenBZConfig> {
   return promptParsedAllowFromForScopedChannel({
     cfg: params.cfg,
     channel,
@@ -104,8 +104,8 @@ export const imessageDmPolicy: ChannelSetupDmPolicy = {
   channel,
   policyKey: "channels.imessage.dmPolicy",
   allowFromKey: "channels.imessage.allowFrom",
-  getCurrent: (cfg: OpenClawConfig) => cfg.channels?.imessage?.dmPolicy ?? "pairing",
-  setPolicy: (cfg: OpenClawConfig, policy) =>
+  getCurrent: (cfg: OpenBZConfig) => cfg.channels?.imessage?.dmPolicy ?? "pairing",
+  setPolicy: (cfg: OpenBZConfig, policy) =>
     setChannelDmPolicyWithAllowFrom({
       cfg,
       channel,
@@ -114,7 +114,7 @@ export const imessageDmPolicy: ChannelSetupDmPolicy = {
   promptAllowFrom: promptIMessageAllowFrom,
 };
 
-function resolveIMessageCliPath(params: { cfg: OpenClawConfig; accountId: string }) {
+function resolveIMessageCliPath(params: { cfg: OpenBZConfig; accountId: string }) {
   return resolveIMessageAccount(params).config.cliPath ?? "imsg";
 }
 
@@ -138,7 +138,7 @@ export const imessageCompletionNote = {
   title: "iMessage next steps",
   lines: [
     "This is still a work in progress.",
-    "Ensure OpenClaw has Full Disk Access to Messages DB.",
+    "Ensure BZ AI DevOps2 has Full Disk Access to Messages DB.",
     "Grant Automation permission for Messages when prompted.",
     "List chats with: imsg chats --limit 20",
     `Docs: ${formatDocsLink("/imessage", "imessage")}`,
@@ -243,6 +243,6 @@ export function createIMessageSetupWizardProxy(
     ],
     completionNote: imessageCompletionNote,
     dmPolicy: imessageDmPolicy,
-    disable: (cfg: OpenClawConfig) => setSetupChannelEnabled(cfg, channel, false),
+    disable: (cfg: OpenBZConfig) => setSetupChannelEnabled(cfg, channel, false),
   } satisfies ChannelSetupWizard;
 }

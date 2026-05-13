@@ -1,15 +1,15 @@
-import { emptyPluginConfigSchema, type OpenClawPluginApi } from "openclaw/plugin-sdk/core";
-import { createProviderApiKeyAuthMethod } from "openclaw/plugin-sdk/provider-auth";
-import { normalizeProviderId } from "openclaw/plugin-sdk/provider-models";
+import { emptyPluginConfigSchema, type OpenBZPluginApi } from "openbz/plugin-sdk/core";
+import { createProviderApiKeyAuthMethod } from "openbz/plugin-sdk/provider-auth";
+import { normalizeProviderId } from "openbz/plugin-sdk/provider-models";
 import {
   createPluginBackedWebSearchProvider,
   getScopedCredentialValue,
   setScopedCredentialValue,
-} from "openclaw/plugin-sdk/provider-web-search";
+} from "openbz/plugin-sdk/provider-web-search";
 import { applyXaiConfig, XAI_DEFAULT_MODEL_REF } from "./onboard.js";
 
 const PROVIDER_ID = "xai";
-const XAI_MODERN_MODEL_PREFIXES = ["grok-4"] as const;
+const XAI_MODERN_MODEL_PREFIXES = ["grok-4", "grok-3"] as const;
 
 function matchesModernXaiModel(modelId: string): boolean {
   const normalized = modelId.trim().toLowerCase();
@@ -21,7 +21,7 @@ const xaiPlugin = {
   name: "xAI Plugin",
   description: "Bundled xAI plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "xAI",
@@ -60,7 +60,7 @@ const xaiPlugin = {
         envVars: ["XAI_API_KEY"],
         placeholder: "xai-...",
         signupUrl: "https://console.x.ai/",
-        docsUrl: "https://docs.openclaw.ai/tools/web",
+        docsUrl: "https://docs.openbz.ai/tools/web",
         autoDetectOrder: 30,
         getCredentialValue: (searchConfig) => getScopedCredentialValue(searchConfig, "grok"),
         setCredentialValue: (searchConfigTarget, value) =>

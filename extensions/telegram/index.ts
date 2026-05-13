@@ -1,5 +1,5 @@
-import type { ChannelPlugin, OpenClawPluginApi } from "openclaw/plugin-sdk/core";
-import { emptyPluginConfigSchema } from "openclaw/plugin-sdk/core";
+import type { ChannelPlugin, OpenBZPluginApi } from "openbz/plugin-sdk/core";
+import { emptyPluginConfigSchema } from "openbz/plugin-sdk/core";
 import { telegramPlugin } from "./src/channel.js";
 import { setTelegramRuntime } from "./src/runtime.js";
 
@@ -8,7 +8,7 @@ const plugin = {
   name: "Telegram",
   description: "Telegram channel plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: OpenBZPluginApi) {
     setTelegramRuntime(api.runtime);
     api.registerChannel({ plugin: telegramPlugin as ChannelPlugin });
   },

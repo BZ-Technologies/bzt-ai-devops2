@@ -1,8 +1,8 @@
 import {
   buildAccountScopedDmSecurityPolicy,
   collectAllowlistProviderRestrictSendersWarnings,
-} from "openclaw/plugin-sdk/channel-config-helpers";
-import { DEFAULT_ACCOUNT_ID, type ChannelPlugin } from "openclaw/plugin-sdk/imessage";
+} from "openbz/plugin-sdk/channel-config-helpers";
+import { DEFAULT_ACCOUNT_ID, type ChannelPlugin } from "openbz/plugin-sdk/imessage";
 import { resolveIMessageAccount, type ResolvedIMessageAccount } from "./accounts.js";
 import { imessageSetupAdapter } from "./setup-core.js";
 import { createIMessagePluginBase, imessageSetupWizard } from "./shared.js";

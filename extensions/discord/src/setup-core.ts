@@ -1,4 +1,4 @@
-import type { DiscordGuildEntry } from "openclaw/plugin-sdk/config-runtime";
+import type { DiscordGuildEntry } from "openbz/plugin-sdk/config-runtime";
 import {
   applyAccountNameToChannelSection,
   createPatchedAccountSetupAdapter,
@@ -11,15 +11,15 @@ import {
   patchChannelConfigForAccount,
   setLegacyChannelDmPolicyWithAllowFrom,
   setSetupChannelEnabled,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/setup";
+  type OpenBZConfig,
+} from "openbz/plugin-sdk/setup";
 import { formatDocsLink } from "../../../src/terminal/links.js";
 import {
   createAllowlistSetupWizardProxy,
   type ChannelSetupAdapter,
   type ChannelSetupDmPolicy,
   type ChannelSetupWizard,
-} from "openclaw/plugin-sdk/setup";
+} from "openbz/plugin-sdk/setup";
 import { inspectDiscordAccount } from "./account-inspect.js";
 import { listDiscordAccountIds, resolveDiscordAccount } from "./accounts.js";
 
@@ -34,13 +34,13 @@ export const DISCORD_TOKEN_HELP_LINES = [
 ];
 
 export function setDiscordGuildChannelAllowlist(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   accountId: string,
   entries: Array<{
     guildKey: string;
     channelKey?: string;
   }>,
-): OpenClawConfig {
+): OpenBZConfig {
   const baseGuilds =
     accountId === DEFAULT_ACCOUNT_ID
       ? (cfg.channels?.discord?.guilds ?? {})
@@ -154,9 +154,9 @@ export function createDiscordSetupWizardBase(handlers: {
     channel,
     policyKey: "channels.discord.dmPolicy",
     allowFromKey: "channels.discord.allowFrom",
-    getCurrent: (cfg: OpenClawConfig) =>
+    getCurrent: (cfg: OpenBZConfig) =>
       cfg.channels?.discord?.dmPolicy ?? cfg.channels?.discord?.dm?.policy ?? "pairing",
-    setPolicy: (cfg: OpenClawConfig, policy) =>
+    setPolicy: (cfg: OpenBZConfig, policy) =>
       setLegacyChannelDmPolicyWithAllowFrom({
         cfg,
         channel,
@@ -192,7 +192,7 @@ export function createDiscordSetupWizardBase(handlers: {
         keepPrompt: "Discord token already configured. Keep it?",
         inputPrompt: "Enter Discord bot token",
         allowEnv: ({ accountId }: { accountId: string }) => accountId === DEFAULT_ACCOUNT_ID,
-        inspect: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId: string }) => {
+        inspect: ({ cfg, accountId }: { cfg: OpenBZConfig; accountId: string }) => {
           const account = inspectDiscordAccount({ cfg, accountId });
           return {
             accountConfigured: account.configured,
@@ -209,9 +209,9 @@ export function createDiscordSetupWizardBase(handlers: {
     groupAccess: {
       label: "Discord channels",
       placeholder: "My Server/#general, guildId/channelId, #support",
-      currentPolicy: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId: string }) =>
+      currentPolicy: ({ cfg, accountId }: { cfg: OpenBZConfig; accountId: string }) =>
         resolveDiscordAccount({ cfg, accountId }).config.groupPolicy ?? "allowlist",
-      currentEntries: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId: string }) =>
+      currentEntries: ({ cfg, accountId }: { cfg: OpenBZConfig; accountId: string }) =>
         Object.entries(resolveDiscordAccount({ cfg, accountId }).config.guilds ?? {}).flatMap(
           ([guildKey, value]) => {
             const channels = value?.channels ?? {};
@@ -223,14 +223,14 @@ export function createDiscordSetupWizardBase(handlers: {
             return channelKeys.map((channelKey) => `${guildKey}/${channelKey}`);
           },
         ),
-      updatePrompt: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId: string }) =>
+      updatePrompt: ({ cfg, accountId }: { cfg: OpenBZConfig; accountId: string }) =>
         Boolean(resolveDiscordAccount({ cfg, accountId }).config.guilds),
       setPolicy: ({
         cfg,
         accountId,
         policy,
       }: {
-        cfg: OpenClawConfig;
+        cfg: OpenBZConfig;
         accountId: string;
         policy: "open" | "allowlist" | "disabled";
       }) =>
@@ -247,7 +247,7 @@ export function createDiscordSetupWizardBase(handlers: {
         entries,
         prompter,
       }: {
-        cfg: OpenClawConfig;
+        cfg: OpenBZConfig;
         accountId: string;
         credentialValues: { token?: string };
         entries: string[];
@@ -281,7 +281,7 @@ export function createDiscordSetupWizardBase(handlers: {
         accountId,
         resolved,
       }: {
-        cfg: OpenClawConfig;
+        cfg: OpenBZConfig;
         accountId: string;
         resolved: unknown;
       }) => setDiscordGuildChannelAllowlist(cfg, accountId, resolved as never),
@@ -309,7 +309,7 @@ export function createDiscordSetupWizardBase(handlers: {
         credentialValues,
         entries,
       }: {
-        cfg: OpenClawConfig;
+        cfg: OpenBZConfig;
         accountId: string;
         credentialValues: { token?: string };
         entries: string[];
@@ -319,7 +319,7 @@ export function createDiscordSetupWizardBase(handlers: {
         accountId,
         allowFrom,
       }: {
-        cfg: OpenClawConfig;
+        cfg: OpenBZConfig;
         accountId: string;
         allowFrom: string[];
       }) =>
@@ -331,7 +331,7 @@ export function createDiscordSetupWizardBase(handlers: {
         }),
     },
     dmPolicy: discordDmPolicy,
-    disable: (cfg: OpenClawConfig) => setSetupChannelEnabled(cfg, channel, false),
+    disable: (cfg: OpenBZConfig) => setSetupChannelEnabled(cfg, channel, false),
   } satisfies ChannelSetupWizard;
 }
 export function createDiscordSetupWizardProxy(

@@ -1,5 +1,5 @@
 import { Type } from "@sinclair/typebox";
-import type { ChannelAgentTool } from "openclaw/plugin-sdk/channel-runtime";
+import type { ChannelAgentTool } from "openbz/plugin-sdk/channel-runtime";
 
 export function createWhatsAppLoginTool(): ChannelAgentTool {
   return {

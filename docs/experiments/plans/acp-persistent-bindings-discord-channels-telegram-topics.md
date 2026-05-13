@@ -68,12 +68,12 @@ Unify routing and persistent ACP binding configuration in top-level `bindings[]`
       {
         "id": "main",
         "default": true,
-        "workspace": "~/.openclaw/workspace-main",
+        "workspace": "~/.openbz/workspace-main",
         "runtime": { "type": "embedded" },
       },
       {
         "id": "codex",
-        "workspace": "~/.openclaw/workspace-codex",
+        "workspace": "~/.openbz/workspace-codex",
         "runtime": {
           "type": "acp",
           "acp": {
@@ -86,7 +86,7 @@ Unify routing and persistent ACP binding configuration in top-level `bindings[]`
       },
       {
         "id": "claude",
-        "workspace": "~/.openclaw/workspace-claude",
+        "workspace": "~/.openbz/workspace-claude",
         "runtime": {
           "type": "acp",
           "acp": {

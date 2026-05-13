@@ -14,8 +14,8 @@ async function writeJsonSchema() {
 
   const rootSchema = {
     $schema: "http://json-schema.org/draft-07/schema#",
-    $id: "https://openclaw.ai/protocol.schema.json",
-    title: "OpenClaw Gateway Protocol",
+    $id: "https://openbz.ai/protocol.schema.json",
+    title: "BZ AI DevOps2 Gateway Protocol",
     description: "Handshake, request/response, and event frames for the Gateway WebSocket.",
     oneOf: [
       { $ref: "#/definitions/RequestFrame" },

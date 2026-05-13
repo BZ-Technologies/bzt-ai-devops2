@@ -1,12 +1,12 @@
 {
-  "name": "@openclaw/acpx",
+  "name": "@openbz/acpx",
   "version": "2026.3.14",
-  "description": "OpenClaw ACP runtime backend via acpx",
+  "description": "BZ AI DevOps2 ACP runtime backend via acpx",
   "type": "module",
   "dependencies": {
     "acpx": "0.3.0"
   },
-  "openclaw": {
+  "openbz": {
     "extensions": [
       "./index.ts"
     ]

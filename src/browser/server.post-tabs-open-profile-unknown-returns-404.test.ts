@@ -87,7 +87,7 @@ describe("profile CRUD endpoints", () => {
     const createDuplicate = await realFetch(`${base}/profiles/create`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: "openclaw" }),
+      body: JSON.stringify({ name: "openbz" }),
     });
     expect(createDuplicate.status).toBe(409);
     const createDuplicateBody = (await createDuplicate.json()) as { error: string };
@@ -117,24 +117,24 @@ describe("profile CRUD endpoints", () => {
     const createBadRemoteBody = (await createBadRemote.json()) as { error: string };
     expect(createBadRemoteBody.error).toContain("cdpUrl");
 
-    const createClawd = await realFetch(`${base}/profiles/create`, {
+    const createBzd = await realFetch(`${base}/profiles/create`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: "legacyclawd", driver: "clawd" }),
+      body: JSON.stringify({ name: "legacybzd", driver: "bzd" }),
     });
-    expect(createClawd.status).toBe(200);
-    const createClawdBody = (await createClawd.json()) as {
+    expect(createBzd.status).toBe(200);
+    const createBzdBody = (await createBzd.json()) as {
       profile?: string;
       transport?: string;
       cdpPort?: number | null;
       userDataDir?: string | null;
     };
-    expect(createClawdBody.profile).toBe("legacyclawd");
-    expect(createClawdBody.transport).toBe("cdp");
-    expect(createClawdBody.cdpPort).toBeTypeOf("number");
-    expect(createClawdBody.userDataDir).toBeNull();
+    expect(createBzdBody.profile).toBe("legacybzd");
+    expect(createBzdBody.transport).toBe("cdp");
+    expect(createBzdBody.cdpPort).toBeTypeOf("number");
+    expect(createBzdBody.userDataDir).toBeNull();
 
-    const explicitUserDataDir = "/tmp/openclaw-brave-profile";
+    const explicitUserDataDir = "/tmp/openbz-brave-profile";
     await fs.promises.mkdir(explicitUserDataDir, { recursive: true });
     const createExistingSession = await realFetch(`${base}/profiles/create`, {
       method: "POST",
@@ -185,7 +185,7 @@ describe("profile CRUD endpoints", () => {
     const deleteMissingBody = (await deleteMissing.json()) as { error: string };
     expect(deleteMissingBody.error).toContain("not found");
 
-    const deleteDefault = await realFetch(`${base}/profiles/openclaw`, {
+    const deleteDefault = await realFetch(`${base}/profiles/openbz`, {
       method: "DELETE",
     });
     expect(deleteDefault.status).toBe(400);

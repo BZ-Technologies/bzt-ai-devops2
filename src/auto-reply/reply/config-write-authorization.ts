@@ -4,10 +4,10 @@ import {
   formatConfigWriteDeniedMessage,
 } from "../../channels/plugins/config-writes.js";
 import type { ChannelId } from "../../channels/plugins/types.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { OpenBZConfig } from "../../config/config.js";
 
 export function resolveConfigWriteDeniedText(params: {
-  cfg: OpenClawConfig;
+  cfg: OpenBZConfig;
   channel?: string | null;
   channelId: ChannelId | null;
   accountId?: string;

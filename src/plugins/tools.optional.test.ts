@@ -8,10 +8,10 @@ type MockRegistryToolEntry = {
   factory: (ctx: unknown) => unknown;
 };
 
-const loadOpenClawPluginsMock = vi.fn();
+const loadOpenBZPluginsMock = vi.fn();
 
 vi.mock("./loader.js", () => ({
-  loadOpenClawPlugins: (params: unknown) => loadOpenClawPluginsMock(params),
+  loadOpenBZPlugins: (params: unknown) => loadOpenBZPluginsMock(params),
 }));
 
 function makeTool(name: string) {
@@ -48,7 +48,7 @@ function setRegistry(entries: MockRegistryToolEntry[]) {
       message: string;
     }>,
   };
-  loadOpenClawPluginsMock.mockReturnValue(registry);
+  loadOpenBZPluginsMock.mockReturnValue(registry);
   return registry;
 }
 
@@ -91,7 +91,7 @@ function resolveOptionalDemoTools(toolAllowlist?: string[]) {
 
 describe("resolvePluginTools optional tools", () => {
   beforeEach(() => {
-    loadOpenClawPluginsMock.mockClear();
+    loadOpenBZPluginsMock.mockClear();
   });
 
   it("skips optional tools without explicit allowlist", () => {
@@ -156,7 +156,7 @@ describe("resolvePluginTools optional tools", () => {
 
   it("forwards an explicit env to plugin loading", () => {
     setOptionalDemoRegistry();
-    const env = { OPENCLAW_HOME: "/srv/openclaw-home" } as NodeJS.ProcessEnv;
+    const env = { OPENBZ_HOME: "/srv/openbz-home" } as NodeJS.ProcessEnv;
 
     resolvePluginTools({
       context: createContext() as never,
@@ -164,7 +164,7 @@ describe("resolvePluginTools optional tools", () => {
       toolAllowlist: ["optional_tool"],
     });
 
-    expect(loadOpenClawPluginsMock).toHaveBeenCalledWith(
+    expect(loadOpenBZPluginsMock).toHaveBeenCalledWith(
       expect.objectContaining({
         env,
       }),
@@ -180,7 +180,7 @@ describe("resolvePluginTools optional tools", () => {
       toolAllowlist: ["optional_tool"],
     });
 
-    expect(loadOpenClawPluginsMock).toHaveBeenCalledWith(
+    expect(loadOpenBZPluginsMock).toHaveBeenCalledWith(
       expect.objectContaining({
         runtimeOptions: {
           allowGatewaySubagentBinding: true,

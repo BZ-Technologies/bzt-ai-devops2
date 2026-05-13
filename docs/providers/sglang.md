@@ -1,7 +1,7 @@
 ---
-summary: "Run OpenClaw with SGLang (OpenAI-compatible self-hosted server)"
+summary: "Run BZ AI DevOps2 with SGLang (OpenAI-compatible self-hosted server)"
 read_when:
-  - You want to run OpenClaw against a local SGLang server
+  - You want to run BZ AI DevOps2 against a local SGLang server
   - You want OpenAI-compatible /v1 endpoints with your own models
 title: "SGLang"
 ---
@@ -9,9 +9,9 @@ title: "SGLang"
 # SGLang
 
 SGLang can serve open-source models via an **OpenAI-compatible** HTTP API.
-OpenClaw can connect to SGLang using the `openai-completions` API.
+BZ AI DevOps2 can connect to SGLang using the `openai-completions` API.
 
-OpenClaw can also **auto-discover** available models from SGLang when you opt
+BZ AI DevOps2 can also **auto-discover** available models from SGLang when you opt
 in with `SGLANG_API_KEY` (any value works if your server does not enforce auth)
 and you do not define an explicit `models.providers.sglang` entry.
 
@@ -33,7 +33,7 @@ export SGLANG_API_KEY="sglang-local"
 3. Run onboarding and choose `SGLang`, or set a model directly:
 
 ```bash
-openclaw onboard
+openbz onboard
 ```
 
 ```json5
@@ -49,7 +49,7 @@ openclaw onboard
 ## Model discovery (implicit provider)
 
 When `SGLANG_API_KEY` is set (or an auth profile exists) and you **do not**
-define `models.providers.sglang`, OpenClaw will query:
+define `models.providers.sglang`, BZ AI DevOps2 will query:
 
 - `GET http://127.0.0.1:30000/v1/models`
 

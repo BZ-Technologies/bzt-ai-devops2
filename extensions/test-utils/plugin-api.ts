@@ -1,9 +1,9 @@
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk/plugin-runtime";
+import type { OpenBZPluginApi } from "openbz/plugin-sdk/plugin-runtime";
 
-type TestPluginApiInput = Partial<OpenClawPluginApi> &
-  Pick<OpenClawPluginApi, "id" | "name" | "source" | "config" | "runtime">;
+type TestPluginApiInput = Partial<OpenBZPluginApi> &
+  Pick<OpenBZPluginApi, "id" | "name" | "source" | "config" | "runtime">;
 
-export function createTestPluginApi(api: TestPluginApiInput): OpenClawPluginApi {
+export function createTestPluginApi(api: TestPluginApiInput): OpenBZPluginApi {
   return {
     registrationMode: "full",
     logger: { info() {}, warn() {}, error() {}, debug() {} },

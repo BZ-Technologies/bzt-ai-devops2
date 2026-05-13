@@ -1,15 +1,15 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resetInboundDedupe } from "openclaw/plugin-sdk/reply-runtime";
-import type { MsgContext } from "openclaw/plugin-sdk/reply-runtime";
-import type { GetReplyOptions, ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
-import type { MockFn } from "openclaw/plugin-sdk/test-utils";
+import type { OpenBZConfig } from "openbz/plugin-sdk/config-runtime";
+import { resetInboundDedupe } from "openbz/plugin-sdk/reply-runtime";
+import type { MsgContext } from "openbz/plugin-sdk/reply-runtime";
+import type { GetReplyOptions, ReplyPayload } from "openbz/plugin-sdk/reply-runtime";
+import type { MockFn } from "openbz/plugin-sdk/test-utils";
 import { beforeEach, vi } from "vitest";
 
 type AnyMock = MockFn<(...args: unknown[]) => unknown>;
 type AnyAsyncMock = MockFn<(...args: unknown[]) => Promise<unknown>>;
 
 const { sessionStorePath } = vi.hoisted(() => ({
-  sessionStorePath: `/tmp/openclaw-telegram-${process.pid}-${process.env.VITEST_POOL_ID ?? "0"}.json`,
+  sessionStorePath: `/tmp/openbz-telegram-${process.pid}-${process.env.VITEST_POOL_ID ?? "0"}.json`,
 }));
 
 const { loadWebMedia } = vi.hoisted((): { loadWebMedia: AnyMock } => ({
@@ -31,16 +31,16 @@ const { loadConfig } = vi.hoisted((): { loadConfig: AnyMock } => ({
 export function getLoadConfigMock(): AnyMock {
   return loadConfig;
 }
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     loadConfig,
   };
 });
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("openclaw/plugin-sdk/config-runtime")>();
+vi.mock("openbz/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("openbz/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     resolveStorePath: vi.fn((storePath) => storePath ?? sessionStorePath),
@@ -68,7 +68,7 @@ export function getUpsertChannelPairingRequestMock(): AnyAsyncMock {
   return upsertChannelPairingRequest;
 }
 
-vi.mock("openclaw/plugin-sdk/conversation-runtime", () => ({
+vi.mock("openbz/plugin-sdk/conversation-runtime", () => ({
   readChannelAllowFromStore,
   upsertChannelPairingRequest,
 }));
@@ -78,7 +78,7 @@ const skillCommandsHoisted = vi.hoisted(() => ({
 }));
 export const listSkillCommandsForAgents = skillCommandsHoisted.listSkillCommandsForAgents;
 
-vi.mock("openclaw/plugin-sdk/reply-runtime", () => ({
+vi.mock("openbz/plugin-sdk/reply-runtime", () => ({
   listSkillCommandsForAgents,
 }));
 
@@ -87,7 +87,7 @@ const systemEventsHoisted = vi.hoisted(() => ({
 }));
 export const enqueueSystemEventSpy: AnyMock = systemEventsHoisted.enqueueSystemEventSpy;
 
-vi.mock("openclaw/plugin-sdk/infra-runtime", () => ({
+vi.mock("openbz/plugin-sdk/infra-runtime", () => ({
   enqueueSystemEvent: enqueueSystemEventSpy,
 }));
 
@@ -120,7 +120,7 @@ const grammySpies = vi.hoisted(() => ({
   setMessageReactionSpy: vi.fn(async () => undefined) as AnyAsyncMock,
   setMyCommandsSpy: vi.fn(async () => undefined) as AnyAsyncMock,
   getMeSpy: vi.fn(async () => ({
-    username: "openclaw_bot",
+    username: "openbz_bot",
     has_topics_enabled: true,
   })) as AnyAsyncMock,
   sendMessageSpy: vi.fn(async () => ({ message_id: 77 })) as AnyAsyncMock,
@@ -202,14 +202,14 @@ export const replySpy: MockFn<
   (
     ctx: MsgContext,
     opts?: GetReplyOptions,
-    configOverride?: OpenClawConfig,
+    configOverride?: OpenBZConfig,
   ) => Promise<ReplyPayload | ReplyPayload[] | undefined>
 > = vi.fn(async (_ctx, opts) => {
   await opts?.onReplyStart?.();
   return undefined;
 });
 
-vi.mock("openclaw/plugin-sdk/reply-runtime", () => ({
+vi.mock("openbz/plugin-sdk/reply-runtime", () => ({
   getReplyFromConfig: replySpy,
   __replySpy: replySpy,
 }));
@@ -222,7 +222,7 @@ export const getOnHandler = (event: string) => {
   return handler as (ctx: Record<string, unknown>) => Promise<void>;
 };
 
-const DEFAULT_TELEGRAM_TEST_CONFIG: OpenClawConfig = {
+const DEFAULT_TELEGRAM_TEST_CONFIG: OpenBZConfig = {
   agents: {
     defaults: {
       envelopeTimezone: "utc",
@@ -257,7 +257,7 @@ export function makeTelegramMessageCtx(params: {
         ? {}
         : { message_thread_id: params.messageThreadId }),
     },
-    me: { username: "openclaw_bot" },
+    me: { username: "openbz_bot" },
     getFile: async () => ({ download: async () => new Uint8Array() }),
   };
 }
@@ -321,7 +321,7 @@ beforeEach(() => {
   setMyCommandsSpy.mockResolvedValue(undefined);
   getMeSpy.mockReset();
   getMeSpy.mockResolvedValue({
-    username: "openclaw_bot",
+    username: "openbz_bot",
     has_topics_enabled: true,
   });
   editMessageTextSpy.mockReset();

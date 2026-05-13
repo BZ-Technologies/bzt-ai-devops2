@@ -162,8 +162,8 @@
 
 .config-mode-toggle__btn.active {
   background: var(--accent);
-  color: white;
-  box-shadow: 0 1px 3px rgba(255, 92, 92, 0.2);
+  color: var(--primary-foreground);
+  box-shadow: 0 1px 3px rgba(234, 170, 0, 0.25);
 }
 
 /* ===========================================
@@ -1096,8 +1096,8 @@
 
 .cfg-segmented__btn.active {
   background: var(--accent);
-  color: white;
-  box-shadow: 0 1px 3px rgba(255, 92, 92, 0.2);
+  color: var(--primary-foreground);
+  box-shadow: 0 1px 3px rgba(234, 170, 0, 0.25);
 }
 
 .cfg-segmented__btn:disabled {

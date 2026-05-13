@@ -1,41 +1,41 @@
-import { resolveHumanDelayConfig } from "openclaw/plugin-sdk/agent-runtime";
-import { resolveControlCommandGate } from "openclaw/plugin-sdk/channel-runtime";
+import { resolveHumanDelayConfig } from "openbz/plugin-sdk/agent-runtime";
+import { resolveControlCommandGate } from "openbz/plugin-sdk/channel-runtime";
 import {
   createChannelInboundDebouncer,
   shouldDebounceTextInbound,
-} from "openclaw/plugin-sdk/channel-runtime";
-import { logInboundDrop, logTypingFailure } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveMentionGatingWithBypass } from "openclaw/plugin-sdk/channel-runtime";
-import { normalizeSignalMessagingTarget } from "openclaw/plugin-sdk/channel-runtime";
-import { createReplyPrefixOptions } from "openclaw/plugin-sdk/channel-runtime";
-import { recordInboundSession } from "openclaw/plugin-sdk/channel-runtime";
-import { createTypingCallbacks } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveChannelGroupRequireMention } from "openclaw/plugin-sdk/config-runtime";
-import { readSessionUpdatedAt, resolveStorePath } from "openclaw/plugin-sdk/config-runtime";
-import { enqueueSystemEvent } from "openclaw/plugin-sdk/infra-runtime";
-import { kindFromMime } from "openclaw/plugin-sdk/media-runtime";
-import { hasControlCommand } from "openclaw/plugin-sdk/reply-runtime";
-import { dispatchInboundMessage } from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/channel-runtime";
+import { logInboundDrop, logTypingFailure } from "openbz/plugin-sdk/channel-runtime";
+import { resolveMentionGatingWithBypass } from "openbz/plugin-sdk/channel-runtime";
+import { normalizeSignalMessagingTarget } from "openbz/plugin-sdk/channel-runtime";
+import { createReplyPrefixOptions } from "openbz/plugin-sdk/channel-runtime";
+import { recordInboundSession } from "openbz/plugin-sdk/channel-runtime";
+import { createTypingCallbacks } from "openbz/plugin-sdk/channel-runtime";
+import { resolveChannelGroupRequireMention } from "openbz/plugin-sdk/config-runtime";
+import { readSessionUpdatedAt, resolveStorePath } from "openbz/plugin-sdk/config-runtime";
+import { enqueueSystemEvent } from "openbz/plugin-sdk/infra-runtime";
+import { kindFromMime } from "openbz/plugin-sdk/media-runtime";
+import { hasControlCommand } from "openbz/plugin-sdk/reply-runtime";
+import { dispatchInboundMessage } from "openbz/plugin-sdk/reply-runtime";
 import {
   formatInboundEnvelope,
   formatInboundFromLabel,
   resolveEnvelopeFormatOptions,
-} from "openclaw/plugin-sdk/reply-runtime";
+} from "openbz/plugin-sdk/reply-runtime";
 import {
   buildPendingHistoryContextFromMap,
   clearHistoryEntriesIfEnabled,
   recordPendingHistoryEntryIfEnabled,
-} from "openclaw/plugin-sdk/reply-runtime";
-import { finalizeInboundContext } from "openclaw/plugin-sdk/reply-runtime";
-import { buildMentionRegexes, matchesMentionPatterns } from "openclaw/plugin-sdk/reply-runtime";
-import { createReplyDispatcherWithTyping } from "openclaw/plugin-sdk/reply-runtime";
-import { resolveAgentRoute } from "openclaw/plugin-sdk/routing";
-import { danger, logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
+} from "openbz/plugin-sdk/reply-runtime";
+import { finalizeInboundContext } from "openbz/plugin-sdk/reply-runtime";
+import { buildMentionRegexes, matchesMentionPatterns } from "openbz/plugin-sdk/reply-runtime";
+import { createReplyDispatcherWithTyping } from "openbz/plugin-sdk/reply-runtime";
+import { resolveAgentRoute } from "openbz/plugin-sdk/routing";
+import { danger, logVerbose, shouldLogVerbose } from "openbz/plugin-sdk/runtime-env";
 import {
   DM_GROUP_ACCESS_REASON,
   resolvePinnedMainDmOwnerFromAllowlist,
-} from "openclaw/plugin-sdk/security-runtime";
-import { normalizeE164 } from "openclaw/plugin-sdk/text-runtime";
+} from "openbz/plugin-sdk/security-runtime";
+import { normalizeE164 } from "openbz/plugin-sdk/text-runtime";
 import {
   formatSignalPairingIdLine,
   formatSignalSenderDisplay,

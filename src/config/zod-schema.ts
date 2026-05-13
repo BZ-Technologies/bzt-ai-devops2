@@ -221,7 +221,7 @@ const McpConfigSchema = z
   .strict()
   .optional();
 
-export const OpenClawSchema = z
+export const OpenBZSchema = z
   .object({
     $schema: z.string().optional(),
     meta: z
@@ -379,7 +379,7 @@ export const OpenClawSchema = z
                 cdpUrl: z.string().optional(),
                 userDataDir: z.string().optional(),
                 driver: z
-                  .union([z.literal("openclaw"), z.literal("clawd"), z.literal("existing-session")])
+                  .union([z.literal("openbz"), z.literal("bzd"), z.literal("existing-session")])
                   .optional(),
                 attachOnly: z.boolean().optional(),
                 color: HexColorSchema,

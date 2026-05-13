@@ -1,5 +1,5 @@
 ---
-summary: "Model providers (LLMs) supported by OpenClaw"
+summary: "Model providers (LLMs) supported by BZ AI DevOps2"
 read_when:
   - You want to choose a model provider
   - You need a quick overview of supported LLM backends
@@ -8,14 +8,14 @@ title: "Model Providers"
 
 # Model Providers
 
-OpenClaw can use many LLM providers. Pick a provider, authenticate, then set the
+BZ AI DevOps2 can use many LLM providers. Pick a provider, authenticate, then set the
 default model as `provider/model`.
 
 Looking for chat channel docs (WhatsApp/Telegram/Discord/Slack/Mattermost (plugin)/etc.)? See [Channels](/channels).
 
 ## Quick start
 
-1. Authenticate with the provider (usually via `openclaw onboard`).
+1. Authenticate with the provider (usually via `openbz onboard`).
 2. Set the default model:
 
 ```json5
@@ -23,6 +23,10 @@ Looking for chat channel docs (WhatsApp/Telegram/Discord/Slack/Mattermost (plugi
   agents: { defaults: { model: { primary: "anthropic/claude-opus-4-6" } } },
 }
 ```
+
+## BZ four-provider stack
+
+- **[Claude + OpenAI + Gemini + Grok](/providers/bz-core-models)** — env keys, onboard, and failover example
 
 ## Provider docs
 
@@ -47,6 +51,7 @@ Looking for chat channel docs (WhatsApp/Telegram/Discord/Slack/Mattermost (plugi
 - [Vercel AI Gateway](/providers/vercel-ai-gateway)
 - [Venice (Venice AI, privacy-focused)](/providers/venice)
 - [vLLM (local models)](/providers/vllm)
+- [xAI (Grok)](/providers/xai-grok)
 - [Xiaomi](/providers/xiaomi)
 - [Z.AI](/providers/zai)
 
@@ -58,5 +63,5 @@ Looking for chat channel docs (WhatsApp/Telegram/Discord/Slack/Mattermost (plugi
 
 - [Claude Max API Proxy](/providers/claude-max-api-proxy) - Community proxy for Claude subscription credentials (verify Anthropic policy/terms before use)
 
-For the full provider catalog (xAI, Groq, Mistral, etc.) and advanced configuration,
+For the full provider catalog (Groq, Mistral, etc.) and advanced configuration,
 see [Model providers](/concepts/model-providers).

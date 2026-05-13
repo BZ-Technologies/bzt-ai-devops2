@@ -1,0 +1,31 @@
+# Example: BZ AI DevOps2 on Proxmox VM (Docker Compose v2)
+# Copy to the server, set env file from Vault, then: docker compose up -d
+#
+# Not production-hardened — add Traefik labels, resource limits, and secrets management.
+
+services:
+  gateway:
+    image: bzt-ai-devops2:latest
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: bzt-ai-devops2
+    restart: unless-stopped
+    ports:
+      # Adjust to match gateway + UI ports from your openbz config
+      - "18789:18789"
+    env_file:
+      - .env.proxmox.example
+    volumes:
+      # Persist workspace / config — paths per your security model
+      - bzt-ai-devops2-data:/data
+    # Optional: enable when gateway listens on 18789 and responds on GET /
+    # healthcheck:
+    #   test: ["CMD-SHELL", "curl -sf http://127.0.0.1:18789/ >/dev/null || exit 1"]
+    #   interval: 30s
+    #   timeout: 5s
+    #   retries: 3
+    #   start_period: 40s
+
+volumes:
+  bzt-ai-devops2-data:

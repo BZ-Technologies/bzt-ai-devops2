@@ -1,9 +1,9 @@
-import { sendTextMediaPayload } from "openclaw/plugin-sdk/channel-runtime";
-import type { ChannelOutboundAdapter } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveOutboundSendDep } from "openclaw/plugin-sdk/channel-runtime";
-import { chunkText } from "openclaw/plugin-sdk/reply-runtime";
-import { shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { resolveWhatsAppOutboundTarget } from "openclaw/plugin-sdk/whatsapp";
+import { sendTextMediaPayload } from "openbz/plugin-sdk/channel-runtime";
+import type { ChannelOutboundAdapter } from "openbz/plugin-sdk/channel-runtime";
+import { resolveOutboundSendDep } from "openbz/plugin-sdk/channel-runtime";
+import { chunkText } from "openbz/plugin-sdk/reply-runtime";
+import { shouldLogVerbose } from "openbz/plugin-sdk/runtime-env";
+import { resolveWhatsAppOutboundTarget } from "openbz/plugin-sdk/whatsapp";
 import { sendMessageWhatsApp, sendPollWhatsApp } from "./send.js";
 
 function trimLeadingWhitespace(text: string | undefined): string {

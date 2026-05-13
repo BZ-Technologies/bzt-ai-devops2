@@ -1,0 +1,16 @@
+{
+  "name": "bzdbot",
+  "version": "2026.2.12",
+  "description": "Compatibility shim that forwards to openbz",
+  "bin": {
+    "bzdbot": "./bin/bzdbot.js"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./cli-entry": "./bin/bzdbot.js"
+  },
+  "dependencies": {
+    "openbz": "workspace:*"
+  }
+}

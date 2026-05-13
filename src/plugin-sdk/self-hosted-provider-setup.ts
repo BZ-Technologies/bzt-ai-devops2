@@ -1,5 +1,5 @@
 export type {
-  OpenClawPluginApi,
+  OpenBZPluginApi,
   ProviderAuthContext,
   ProviderAuthMethodNonInteractiveContext,
   ProviderAuthResult,

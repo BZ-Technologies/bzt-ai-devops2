@@ -54,6 +54,7 @@ export { MOONSHOT_BASE_URL } from "../../extensions/moonshot/provider-catalog.js
 export { MOONSHOT_CN_BASE_URL } from "../../extensions/moonshot/onboard.js";
 export {
   buildXaiModelDefinition,
+  buildXaiModelDefinitions,
   XAI_BASE_URL,
   XAI_DEFAULT_MODEL_ID,
   XAI_DEFAULT_MODEL_REF,

@@ -3,11 +3,11 @@ import { shortenText } from "./text-format.js";
 
 describe("shortenText", () => {
   it("returns original text when it fits", () => {
-    expect(shortenText("openclaw", 16)).toBe("openclaw");
+    expect(shortenText("openbz", 16)).toBe("openbz");
   });
 
   it("truncates and appends ellipsis when over limit", () => {
-    expect(shortenText("openclaw-status-output", 10)).toBe("openclaw-…");
+    expect(shortenText("openbz-status-output", 10)).toBe("openbz-…");
   });
 
   it("counts multi-byte characters correctly", () => {

@@ -1,9 +1,9 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/account-resolution";
-import { formatAllowFromLowercase } from "openclaw/plugin-sdk/allow-from";
+import type { OpenBZConfig } from "openbz/plugin-sdk/account-resolution";
+import { formatAllowFromLowercase } from "openbz/plugin-sdk/allow-from";
 import {
   createScopedAccountConfigAccessors,
   createScopedChannelConfigBase,
-} from "openclaw/plugin-sdk/channel-config-helpers";
+} from "openbz/plugin-sdk/channel-config-helpers";
 import { inspectDiscordAccount } from "./account-inspect.js";
 import {
   listDiscordAccountIds,
@@ -18,7 +18,7 @@ async function loadDiscordChannelRuntime() {
 }
 
 export const discordConfigAccessors = createScopedAccountConfigAccessors({
-  resolveAccount: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId?: string | null }) =>
+  resolveAccount: ({ cfg, accountId }: { cfg: OpenBZConfig; accountId?: string | null }) =>
     resolveDiscordAccount({ cfg, accountId }),
   resolveAllowFrom: (account: ResolvedDiscordAccount) => account.config.dm?.allowFrom,
   formatAllowFrom: (allowFrom) => formatAllowFromLowercase({ allowFrom }),

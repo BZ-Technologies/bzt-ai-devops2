@@ -2,11 +2,11 @@ import {
   createScopedAccountConfigAccessors,
   createScopedChannelConfigBase,
   createScopedDmSecurityResolver,
-} from "openclaw/plugin-sdk/channel-config-helpers";
+} from "openbz/plugin-sdk/channel-config-helpers";
 import {
   buildOpenGroupPolicyWarning,
   collectAllowlistProviderGroupPolicyWarnings,
-} from "openclaw/plugin-sdk/channel-policy";
+} from "openbz/plugin-sdk/channel-policy";
 import {
   buildChannelConfigSchema,
   buildProbeChannelStatusSummary,
@@ -14,7 +14,7 @@ import {
   DEFAULT_ACCOUNT_ID,
   PAIRING_APPROVED_MESSAGE,
   type ChannelPlugin,
-} from "openclaw/plugin-sdk/matrix";
+} from "openbz/plugin-sdk/matrix";
 import { buildTrafficStatusSummary } from "../../shared/channel-status-summary.js";
 import { matrixMessageActions } from "./actions.js";
 import { MatrixConfigSchema } from "./config-schema.js";

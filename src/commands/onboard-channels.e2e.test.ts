@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { ChannelPluginCatalogEntry } from "../channels/plugins/catalog.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { OpenBZConfig } from "../config/config.js";
 import { createEmptyPluginRegistry } from "../plugins/registry.js";
 import { setActivePluginRegistry } from "../plugins/runtime.js";
 import type { WizardPrompter } from "../wizard/prompts.js";
@@ -48,7 +48,7 @@ function createUnexpectedPromptGuards() {
 type SetupChannelsOptions = Parameters<typeof setupChannels>[3];
 
 function runSetupChannels(
-  cfg: OpenClawConfig,
+  cfg: OpenBZConfig,
   prompter: WizardPrompter,
   options?: SetupChannelsOptions,
 ) {
@@ -85,7 +85,7 @@ function createUnexpectedQuickstartPrompter(select: WizardPrompter["select"]) {
   };
 }
 
-function createTelegramCfg(botToken: string, enabled?: boolean): OpenClawConfig {
+function createTelegramCfg(botToken: string, enabled?: boolean): OpenBZConfig {
   return {
     channels: {
       telegram: {
@@ -93,7 +93,7 @@ function createTelegramCfg(botToken: string, enabled?: boolean): OpenClawConfig 
         ...(typeof enabled === "boolean" ? { enabled } : {}),
       },
     },
-  } as OpenClawConfig;
+  } as OpenBZConfig;
 }
 
 function patchTelegramAdapter(overrides: Parameters<typeof patchChannelSetupWizardAdapter>[1]) {
@@ -101,7 +101,7 @@ function patchTelegramAdapter(overrides: Parameters<typeof patchChannelSetupWiza
     ...overrides,
     getStatus:
       overrides.getStatus ??
-      vi.fn(async ({ cfg }: { cfg: OpenClawConfig }) => ({
+      vi.fn(async ({ cfg }: { cfg: OpenBZConfig }) => ({
         channel: "telegram",
         configured: Boolean(cfg.channels?.telegram?.botToken),
         statusLines: [],
@@ -165,7 +165,7 @@ async function runQuickstartTelegramSetupWithInteractive(params: {
   );
 
   try {
-    const cfg = await runSetupChannels({} as OpenClawConfig, prompter, {
+    const cfg = await runSetupChannels({} as OpenBZConfig, prompter, {
       quickstartDefaults: true,
       onSelection: selection,
       onAccountId,
@@ -218,7 +218,7 @@ vi.mock("./channel-setup/plugin-install.js", async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...(actual as Record<string, unknown>),
-    ensureChannelSetupPluginInstalled: vi.fn(async ({ cfg }: { cfg: OpenClawConfig }) => ({
+    ensureChannelSetupPluginInstalled: vi.fn(async ({ cfg }: { cfg: OpenBZConfig }) => ({
       cfg,
       installed: true,
     })),
@@ -266,7 +266,7 @@ describe("setupChannels", () => {
       text: text as unknown as WizardPrompter["text"],
     });
 
-    await runSetupChannels({} as OpenClawConfig, prompter, {
+    await runSetupChannels({} as OpenBZConfig, prompter, {
       quickstartDefaults: true,
       forceAllowFromChannels: ["whatsapp"],
     });
@@ -298,7 +298,7 @@ describe("setupChannels", () => {
       text: text as unknown as WizardPrompter["text"],
     });
 
-    await runSetupChannels({} as OpenClawConfig, prompter, {
+    await runSetupChannels({} as OpenBZConfig, prompter, {
       quickstartDefaults: true,
     });
 
@@ -327,7 +327,7 @@ describe("setupChannels", () => {
       text,
     });
 
-    await runSetupChannels({} as OpenClawConfig, prompter);
+    await runSetupChannels({} as OpenBZConfig, prompter);
 
     const sawPrimer = note.mock.calls.some(
       ([message, title]) =>
@@ -343,7 +343,7 @@ describe("setupChannels", () => {
     catalogMocks.listChannelPluginCatalogEntries.mockReturnValue([
       {
         id: "msteams",
-        pluginId: "@openclaw/msteams-plugin",
+        pluginId: "@openbz/msteams-plugin",
         meta: {
           id: "msteams",
           label: "Microsoft Teams",
@@ -352,7 +352,7 @@ describe("setupChannels", () => {
           blurb: "teams channel",
         },
         install: {
-          npmSpec: "@openclaw/msteams",
+          npmSpec: "@openbz/msteams",
         },
       } satisfies ChannelPluginCatalogEntry,
     ]);
@@ -361,7 +361,7 @@ describe("setupChannels", () => {
         const registry = createEmptyPluginRegistry();
         if (channel === "msteams") {
           registry.channels.push({
-            pluginId: "@openclaw/msteams-plugin",
+            pluginId: "@openbz/msteams-plugin",
             source: "test",
             plugin: {
               id: "msteams",
@@ -411,17 +411,17 @@ describe("setupChannels", () => {
         },
         plugins: {
           entries: {
-            "@openclaw/msteams-plugin": { enabled: true },
+            "@openbz/msteams-plugin": { enabled: true },
           },
         },
-      } as OpenClawConfig,
+      } as OpenBZConfig,
       prompter,
     );
 
     expect(loadChannelSetupPluginRegistrySnapshotForChannel).toHaveBeenCalledWith(
       expect.objectContaining({
         channel: "msteams",
-        pluginId: "@openclaw/msteams-plugin",
+        pluginId: "@openbz/msteams-plugin",
       }),
     );
     expect(multiselect).not.toHaveBeenCalled();
@@ -432,7 +432,7 @@ describe("setupChannels", () => {
     catalogMocks.listChannelPluginCatalogEntries.mockReturnValue([
       {
         id: "msteams",
-        pluginId: "@openclaw/msteams-plugin",
+        pluginId: "@openbz/msteams-plugin",
         meta: {
           id: "msteams",
           label: "Microsoft Teams",
@@ -441,14 +441,14 @@ describe("setupChannels", () => {
           blurb: "teams channel",
         },
         install: {
-          npmSpec: "@openclaw/msteams",
+          npmSpec: "@openbz/msteams",
         },
       } satisfies ChannelPluginCatalogEntry,
     ]);
     manifestRegistryMocks.loadPluginManifestRegistry.mockReturnValue({
       plugins: [
         {
-          id: "@openclaw/msteams-plugin",
+          id: "@openbz/msteams-plugin",
           channels: ["msteams"],
         } as never,
       ],
@@ -459,7 +459,7 @@ describe("setupChannels", () => {
         const registry = createEmptyPluginRegistry();
         if (channel === "msteams") {
           registry.channelSetups.push({
-            pluginId: "@openclaw/msteams-plugin",
+            pluginId: "@openbz/msteams-plugin",
             source: "test",
             plugin: {
               id: "msteams",
@@ -509,13 +509,13 @@ describe("setupChannels", () => {
       text,
     });
 
-    await runSetupChannels({} as OpenClawConfig, prompter);
+    await runSetupChannels({} as OpenBZConfig, prompter);
 
     expect(ensureChannelSetupPluginInstalled).not.toHaveBeenCalled();
     expect(loadChannelSetupPluginRegistrySnapshotForChannel).toHaveBeenCalledWith(
       expect.objectContaining({
         channel: "msteams",
-        pluginId: "@openclaw/msteams-plugin",
+        pluginId: "@openbz/msteams-plugin",
       }),
     );
     expect(multiselect).not.toHaveBeenCalled();
@@ -529,7 +529,7 @@ describe("setupChannels", () => {
         accountId,
         enabled,
       }: {
-        cfg: OpenClawConfig;
+        cfg: OpenBZConfig;
         accountId: string;
         enabled: boolean;
       }) => ({
@@ -574,12 +574,12 @@ describe("setupChannels", () => {
               },
               capabilities: { chatTypes: ["direct"] },
               config: {
-                listAccountIds: (cfg: OpenClawConfig) =>
+                listAccountIds: (cfg: OpenBZConfig) =>
                   Object.keys(
                     (cfg.channels?.msteams as { accounts?: Record<string, unknown> } | undefined)
                       ?.accounts ?? {},
                   ),
-                resolveAccount: (cfg: OpenClawConfig, accountId: string) =>
+                resolveAccount: (cfg: OpenBZConfig, accountId: string) =>
                   (
                     cfg.channels?.msteams as
                       | {
@@ -594,7 +594,7 @@ describe("setupChannels", () => {
                 status: {
                   configuredLabel: "configured",
                   unconfiguredLabel: "needs setup",
-                  resolveConfigured: ({ cfg }: { cfg: OpenClawConfig }) =>
+                  resolveConfigured: ({ cfg }: { cfg: OpenBZConfig }) =>
                     Boolean((cfg.channels?.msteams as { tenantId?: string } | undefined)?.tenantId),
                   resolveStatusLines: async () => [],
                   resolveSelectionHint: async () => "configured",
@@ -648,7 +648,7 @@ describe("setupChannels", () => {
             msteams: { enabled: true },
           },
         },
-      } as OpenClawConfig,
+      } as OpenBZConfig,
       prompter,
       { allowDisable: true },
     );
@@ -743,14 +743,14 @@ describe("setupChannels", () => {
   });
 
   it("applies configureInteractive result cfg/account updates", async () => {
-    const configureInteractive = vi.fn(async ({ cfg }: { cfg: OpenClawConfig }) => ({
+    const configureInteractive = vi.fn(async ({ cfg }: { cfg: OpenBZConfig }) => ({
       cfg: {
         ...cfg,
         channels: {
           ...cfg.channels,
           telegram: { ...cfg.channels?.telegram, botToken: "new-token" },
         },
-      } as OpenClawConfig,
+      } as OpenBZConfig,
       accountId: "acct-1",
     }));
     const configure = createUnexpectedConfigureCall(
@@ -769,14 +769,14 @@ describe("setupChannels", () => {
   });
 
   it("uses configureWhenConfigured when channel is already configured", async () => {
-    const configureWhenConfigured = vi.fn(async ({ cfg }: { cfg: OpenClawConfig }) => ({
+    const configureWhenConfigured = vi.fn(async ({ cfg }: { cfg: OpenBZConfig }) => ({
       cfg: {
         ...cfg,
         channels: {
           ...cfg.channels,
           telegram: { ...cfg.channels?.telegram, botToken: "updated-token" },
         },
-      } as OpenClawConfig,
+      } as OpenBZConfig,
       accountId: "acct-2",
     }));
     const { cfg, selection, onAccountId, configure } = await runConfiguredTelegramSetup({
