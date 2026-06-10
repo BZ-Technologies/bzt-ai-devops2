@@ -1,0 +1,99 @@
+# Giga AI context exclusions for bzt-ai-devops2 (OpenBZ).
+# Syntax matches .gitignore — see Giga extension docs.
+# Keeps core TypeScript (src/, ui/, extensions source) while dropping deps, builds, and bulky assets.
+
+# Dependencies and package stores
+node_modules/
+**/node_modules/
+.pnpm-store/
+vendor/
+bun.lock
+bun.lockb
+pnpm-lock.yaml
+package-lock.json
+
+# Build outputs and generated artifacts
+dist/
+dist-runtime/
+**/dist/**
+**/build/**
+**/.next/**
+**/.gradle/**
+**/.cxx/**
+**/.kotlin/**
+bin/
+*.bun-build
+**/*.bun-build
+*.map
+.bundle.hash
+src/canvas-host/a2ui/*.bundle.js
+dist/protocol.schema.json
+docs/.generated/
+docs/.i18n/
+
+# Test artifacts and coverage
+coverage/
+**/__screenshots__/
+ui/playwright-report/
+ui/test-results/
+ui/.vitest-attachments/
+
+# Large vendored / generated UI bundles
+extensions/diffs/assets/
+
+# Native mobile and desktop app trees (not needed for gateway/control-ui work)
+apps/ios/
+apps/macos/
+apps/android/
+Swabble/
+apps/shared/MoltbotKit/.build/
+apps/shared/OpenBZKit/.build/
+**/ModuleCache/
+Core/
+
+# Local, secrets, and agent state
+.env
+.env.*
+.local/
+docs/.local/
+tmp/
+.local/
+/memory/
+.agent/
+!.agent/workflows/
+/local/
+.claude/
+.agents/
+skills-lock.json
+
+# Media and binary assets
+assets/
+docs/assets/
+docs/images/
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.webp
+**/*.icns
+**/*.ipa
+**/*.dSYM.zip
+**/*.mobileprovision
+
+# Docs churn and release notes (large CHANGELOG)
+CHANGELOG.md
+docs/superpowers/
+
+# IDE and tooling caches
+.idea/
+.serena/
+.ant-colony/
+.dev-state
+**/.stfolder/
+.worktrees/
+
+# Misc local-only files from .gitignore
+IDENTITY.md
+USER.md
+*.tgz
+mise.toml
