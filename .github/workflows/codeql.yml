@@ -24,7 +24,7 @@ jobs:
       matrix:
         include:
           - language: javascript-typescript
-            runs_on: blacksmith-16vcpu-ubuntu-2404
+            runs_on: [self-hosted, Linux, X64, org]
             needs_node: true
             needs_python: false
             needs_java: false
@@ -33,7 +33,7 @@ jobs:
             needs_autobuild: false
             config_file: ./.github/codeql/codeql-javascript-typescript.yml
           - language: actions
-            runs_on: blacksmith-16vcpu-ubuntu-2404
+            runs_on: [self-hosted, Linux, X64, org]
             needs_node: false
             needs_python: false
             needs_java: false
@@ -42,7 +42,7 @@ jobs:
             needs_autobuild: false
             config_file: ""
           - language: python
-            runs_on: blacksmith-16vcpu-ubuntu-2404
+            runs_on: [self-hosted, Linux, X64, org]
             needs_node: false
             needs_python: true
             needs_java: false
@@ -51,7 +51,7 @@ jobs:
             needs_autobuild: false
             config_file: ""
           - language: java-kotlin
-            runs_on: blacksmith-16vcpu-ubuntu-2404
+            runs_on: [self-hosted, Linux, X64, org]
             needs_node: false
             needs_python: false
             needs_java: true
@@ -59,15 +59,9 @@ jobs:
             needs_manual_build: true
             needs_autobuild: false
             config_file: ""
-          - language: swift
-            runs_on: macos-latest
-            needs_node: false
-            needs_python: false
-            needs_java: false
-            needs_swift_tools: true
-            needs_manual_build: true
-            needs_autobuild: false
-            config_file: ""
+          # No macOS self-hosted runners yet; omit Swift until a Mac runner pool exists.
+          # - language: swift
+          #   runs_on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6

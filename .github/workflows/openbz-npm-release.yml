@@ -23,7 +23,7 @@ env:
 jobs:
   preview_openbz_npm:
     if: github.event_name == 'push'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, org]
     permissions:
       contents: read
     steps:
@@ -127,7 +127,7 @@ jobs:
   publish_openbz_npm:
     if: github.event_name == 'workflow_dispatch'
     # npm trusted publishing + provenance requires a GitHub-hosted runner.
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, org]
     environment: npm-release
     permissions:
       contents: read

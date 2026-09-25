@@ -31,7 +31,7 @@ env:
 jobs:
   validate_manual_backfill:
     if: github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-24.04
+    runs-on: [self-hosted, Linux, X64, org]
     permissions:
       contents: read
     steps:
@@ -55,7 +55,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch'
     needs: validate_manual_backfill
     # WARNING: KEEP MANUAL BACKFILLS GATED BY THE docker-release ENVIRONMENT.
-    runs-on: ubuntu-24.04
+    runs-on: [self-hosted, Linux, X64, org]
     environment: docker-release
     steps:
       - name: Approve Docker backfill
@@ -70,7 +70,7 @@ jobs:
     needs: [approve_manual_backfill]
     if: ${{ always() && (github.event_name != 'workflow_dispatch' || needs.approve_manual_backfill.result == 'success') }}
     # WARNING: DO NOT REVERT THIS TO A BLACKSMITH RUNNER WITHOUT RE-VALIDATING TAG BACKFILLS.
-    runs-on: ubuntu-24.04
+    runs-on: [self-hosted, Linux, X64, org]
     permissions:
       packages: write
       contents: read
@@ -181,9 +181,10 @@ jobs:
   # Build arm64 images (default + slim share the build stage cache)
   build-arm64:
     needs: [approve_manual_backfill]
-    if: ${{ always() && (github.event_name != 'workflow_dispatch' || needs.approve_manual_backfill.result == 'success') }}
+    # No ARM self-hosted runner pool yet; skip until an ARM org runner exists.
+    if: false
     # WARNING: DO NOT REVERT THIS TO A BLACKSMITH RUNNER WITHOUT RE-VALIDATING TAG BACKFILLS.
-    runs-on: ubuntu-24.04-arm
+    runs-on: [self-hosted, Linux, ARM64, org]
     permissions:
       packages: write
       contents: read
@@ -291,12 +292,12 @@ jobs:
           provenance: false
           push: true
 
-  # Create multi-platform manifests
+  # Create multi-platform manifests (amd64-only until ARM org runners exist)
   create-manifest:
-    needs: [approve_manual_backfill, build-amd64, build-arm64]
-    if: ${{ always() && needs.build-amd64.result == 'success' && needs.build-arm64.result == 'success' && (github.event_name != 'workflow_dispatch' || needs.approve_manual_backfill.result == 'success') }}
+    needs: [approve_manual_backfill, build-amd64]
+    if: ${{ always() && needs.build-amd64.result == 'success' && (github.event_name != 'workflow_dispatch' || needs.approve_manual_backfill.result == 'success') }}
     # WARNING: DO NOT REVERT THIS TO A BLACKSMITH RUNNER WITHOUT RE-VALIDATING TAG BACKFILLS.
-    runs-on: ubuntu-24.04
+    runs-on: [self-hosted, Linux, X64, org]
     permissions:
       packages: write
       contents: read
@@ -365,8 +366,7 @@ jobs:
             args+=("-t" "$tag")
           done
           docker buildx imagetools create "${args[@]}" \
-            ${{ needs.build-amd64.outputs.digest }} \
-            ${{ needs.build-arm64.outputs.digest }}
+            ${{ needs.build-amd64.outputs.digest }}
 
       - name: Create and push slim manifest
         shell: bash
@@ -379,5 +379,4 @@ jobs:
             args+=("-t" "$tag")
           done
           docker buildx imagetools create "${args[@]}" \
-            ${{ needs.build-amd64.outputs.slim-digest }} \
-            ${{ needs.build-arm64.outputs.slim-digest }}
+            ${{ needs.build-amd64.outputs.slim-digest }}
